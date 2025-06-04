@@ -25,7 +25,7 @@ My research interest lies on <span style="font-weight: bold;">Natural Language P
 
 # 🔥 News
 - *2025.05*: &nbsp;🎉🎉 One paper about LLM Bias Evaluation has been accepted by ACL 2025! 
-- *2022.05*: &nbsp;🎉🎉 One paper about Temperal Knowledge Graph has been accepted by ACL 2025! 
+- *2025.05*: &nbsp;🎉🎉 One paper about Temperal Knowledge Graph has been accepted by ACL 2025! 
 
 # 📝 Publications 
 
