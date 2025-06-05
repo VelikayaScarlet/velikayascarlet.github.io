@@ -24,8 +24,8 @@ My research interests include <span style="font-weight: bold;">Natural Language 
 
 
 # 🔥 News
-- *2025.05*: &nbsp;🎉🎉 One paper about LLM Bias Evaluation has been accepted by ACL 2025! 
-- *2025.05*: &nbsp;🎉🎉 One paper about Temperal Knowledge Graph has been accepted by ACL 2025! 
+- *2025.05*: &nbsp;🎉🎉 One paper about Chinese Bias Evaluation for LLMs has been accepted by ACL 2025! 
+- *2025.05*: &nbsp;🎉🎉 One paper about Knowledge Graph Embeddings has been accepted by ACL 2025! 
 
 # 📝 Publications 
 
