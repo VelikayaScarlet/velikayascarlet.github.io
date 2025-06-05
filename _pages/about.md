@@ -17,8 +17,8 @@ redirect_from:
 
 <span class='anchor' id='about-me'></span>
 
-I am currently a master student in College of Computer Science and National & Local Joint Engineering Research Center of Intelligent Information Processing Technology for Mongolian at Inner Mongolia University. Before that, I got my bachelor degree at Zhengzhou University of Light Industry in 2023. 
-My research interest lies on <span style="font-weight: bold;">Natural Language Processing, Large Language Models and AI Fairness</span>. I am seeking opportunities to serve as a research intern or a visiting student, and I am also interested in pursuing a PhD program for Fall 2026 admission.
+I am currently a master's student at the College of Computer Science and National & Local Joint Engineering Research Center of Intelligent Information Processing Technology for Mongolian, Inner Mongolia University. Prior to this, I earned my bachelor's degree in Computer Science from Zhengzhou University of Light Industry in 2023.
+My research interests include <span style="font-weight: bold;">Natural Language Processing, Large Language Models and AI Fairness</span>. I am actively seeking research internships or visiting student opportunities to deepen my expertise in these domains. Additionally, I am also interested in pursuing a PhD program for Fall 2026 admission.
 
 <!-- My research interest includes neural machine translation and computer vision. I have published more than 100 papers at the top international AI conferences with total <a href='https://scholar.google.com/citations?user=DhtAFkwAAAAJ'>google scholar citations <strong><span id='total_cit'>260000+</span></strong></a> (You can also use google scholar badge <a href='https://scholar.google.com/citations?user=DhtAFkwAAAAJ'><img src="https://img.shields.io/endpoint?url={{ url | url_encode }}&logo=Google%20Scholar&labelColor=f6f6f6&color=9cf&style=flat&label=citations"></a>). -->
 
