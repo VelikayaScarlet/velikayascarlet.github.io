@@ -48,7 +48,7 @@ I am actively seeking research internships or visiting student opportunities to 
 </div>
 </div>
 
-- [A Mutual Information Perspective on Knowledge Graph Embedding](https://github.com), Jiang Li, Xiangdong Su, Zehua Duo, **Tian Lan**, Xiaotao Guo, Guanglai Gao, **ACL 2025**
+- [**ACL 2025**] [A Mutual Information Perspective on Knowledge Graph Embedding](https://github.com), Jiang Li, Xiangdong Su, Zehua Duo, **Tian Lan**, Xiaotao Guo, Guanglai Gao, 
 
 # 🏆 Honors and Awards
 **2023**  
