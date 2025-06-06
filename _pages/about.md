@@ -74,11 +74,11 @@ I am actively seeking research internships or visiting student opportunities to 
 # 📖 Educations
 - *2023.09 - 2026.06 (now)*, Candidate for M.Eng. in Software Engineering. 
 
-Advisors: [Assoc. Prof. Xiangdong Su](https://scholar.google.com/citations?hl=en&user=kY7jo_sAAAAJ), [Prof. Guanglai Gao](https://scholar.google.com/citations?user=Auw0-XoAAAAJ&hl=en)
+  Advisors: [Assoc. Prof. Xiangdong Su](https://scholar.google.com/citations?hl=en&user=kY7jo_sAAAAJ), [Prof. Guanglai Gao](https://scholar.google.com/citations?user=Auw0-XoAAAAJ&hl=en)
 
 - *2019.09 - 2023.06*, Zhengzhou University of Light Industry, 
 
-Major: Computer Science, Graduated with Outstanding Graduate.
+  Major: Computer Science, Graduated with Outstanding Graduate.
 
 <!-- # 💬 Invited Talks
 - *2021.06*, Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus ornare aliquet ipsum, ac tempus justo dapibus sit amet. 
@@ -88,6 +88,6 @@ Major: Computer Science, Graduated with Outstanding Graduate.
 - *2019.05 - 2020.02*, [Lorem](https://github.com/), China. -->
 
 # 🚁 Beyond Academics
-I'm a Bilibili uploader (<a href="https://space.bilibili.com/23297003">(Velikaya)</a>), specializing in TNO-style superevent videos. I’m also passionate about language learning/constructing. 
+I'm a Bilibili uploader (<a href="https://space.bilibili.com/23297003">Velikaya</a>), specializing in TNO-style superevent videos. I’m also passionate about language learning/constructing. 
 
 In moments shaped by life’s struggles—for poetry thrives on hardship—I craft classical verses.
