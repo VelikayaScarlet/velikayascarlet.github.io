@@ -17,8 +17,14 @@ redirect_from:
 
 <span class='anchor' id='about-me'></span>
 
-I am currently a master's student at the College of Computer Science and National & Local Joint Engineering Research Center of Intelligent Information Processing Technology for Mongolian, Inner Mongolia University. Prior to this, I earned my bachelor's degree in Computer Science from Zhengzhou University of Light Industry in 2023.
-My research interests include <span style="font-weight: bold;">Natural Language Processing, Large Language Models and AI Fairness</span>. I am actively seeking research internships or visiting student opportunities to deepen my expertise in these domains. Additionally, I am also interested in pursuing a PhD program for Fall 2026 admission.
+I am currently a master's student at the <a href="https://ccs.imu.edu.cn/">College of Computer Science</a> and National & Local Joint Engineering Research Center of Intelligent Information Processing Technology for Mongolian, Inner Mongolia University. Prior to this, I earned my bachelor's degree in Computer Science from Zhengzhou University of Light Industry in 2023.
+
+My research interests include <span style="font-weight: bold;">Natural Language Processing, Large Language Models and AI Fairness</span>. Recently, I am focusing on:
+
+(1) Mitigating and Evaluating Stereotypes and Bias in LLMs.
+(2) Exploring Bias, Ethics and Fairness phenomenon in LLMs.
+
+I am actively seeking research internships or visiting student opportunities to deepen my expertise in these domains. Additionally, I am also interested in pursuing a PhD program for Fall 2026 admission.
 
 <!-- My research interest includes neural machine translation and computer vision. I have published more than 100 papers at the top international AI conferences with total <a href='https://scholar.google.com/citations?user=DhtAFkwAAAAJ'>google scholar citations <strong><span id='total_cit'>260000+</span></strong></a> (You can also use google scholar badge <a href='https://scholar.google.com/citations?user=DhtAFkwAAAAJ'><img src="https://img.shields.io/endpoint?url={{ url | url_encode }}&logo=Google%20Scholar&labelColor=f6f6f6&color=9cf&style=flat&label=citations"></a>). -->
 
@@ -73,3 +79,6 @@ Advisor: Assoc. Prof. Xiangdong Su, Prof. Guanglai Gao
 
 # 💻 Internships
 - *2019.05 - 2020.02*, [Lorem](https://github.com/), China. -->
+
+# 🚁 Beyond Academics
+I'm a Bilibili uploader (<a href="https://space.bilibili.com/23297003">(Velikaya)</a>), specializing in TNO-style superevent videos. I’m also passionate about language learning/constructing. In moments shaped by life’s struggles—for poetry thrives on hardship—I craft classical verses.
