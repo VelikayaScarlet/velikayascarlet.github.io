@@ -56,6 +56,8 @@ I am actively seeking research internships or visiting student opportunities to 
 
 **2022**  
 - Second Prize, 13th LanQiao Cup National Contest  
+- Third-Class Scholarship
+- "Three Good Student" Title
 
 **2021**  
 - Outstanding Student Individual Scholarship  
