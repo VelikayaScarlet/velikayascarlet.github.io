@@ -17,12 +17,13 @@ redirect_from:
 
 <span class='anchor' id='about-me'></span>
 
-I am currently a master's student at the <a href="https://ccs.imu.edu.cn/">College of Computer Science</a> and National & Local Joint Engineering Research Center of Intelligent Information Processing Technology for Mongolian, Inner Mongolia University. Prior to this, I earned my bachelor's degree in Computer Science from Zhengzhou University of Light Industry in 2023.
+I am currently a master's student at the <a href="https://ccs.imu.edu.cn/">College of Computer Science</a> and <a href="http://www.mglip.com/">National & Local Joint Engineering Research Center of Intelligent Information Processing Technology for Mongolian</a>, Inner Mongolia University. Prior to this, I earned my bachelor's degree in Computer Science from Zhengzhou University of Light Industry in 2023.
 
 My research interests include <span style="font-weight: bold;">Natural Language Processing, Large Language Models and AI Fairness</span>. Recently, I am focusing on:
 
 (1) Mitigating and Evaluating Stereotypes and Bias in LLMs.
-(2) Exploring Bias, Ethics and Fairness phenomenon in LLMs.
+
+(2) Exploring Bias, Ethics and Fairness phenomena in LLMs.
 
 I am actively seeking research internships or visiting student opportunities to deepen my expertise in these domains. Additionally, I am also interested in pursuing a PhD program for Fall 2026 admission.
 
@@ -49,7 +50,7 @@ I am actively seeking research internships or visiting student opportunities to 
 
 - [A Mutual Information Perspective on Knowledge Graph Embedding](https://github.com), Jiang Li, Xiangdong Su, Zehua Duo, **Tian Lan**, Xiaotao Guo, Guanglai Gao, **ACL 2025**
 
-# 🎖 Honors and Awards
+# 🏆 Honors and Awards
 **2023**  
 - Graduate Academic Scholarship  
 - Outstanding Graduate  
@@ -72,8 +73,12 @@ I am actively seeking research internships or visiting student opportunities to 
 
 # 📖 Educations
 - *2023.09 - 2026.06 (now)*, Candidate for M.Eng. in Software Engineering. 
-Advisor: Assoc. Prof. Xiangdong Su, Prof. Guanglai Gao
-- *2019.09 - 2023.06*, Zhengzhou University of Light Industry, B.Eng. in Computer Science.
+
+Advisors: [Assoc. Prof. Xiangdong Su](https://scholar.google.com/citations?hl=en&user=kY7jo_sAAAAJ), [Prof. Guanglai Gao](https://scholar.google.com/citations?user=Auw0-XoAAAAJ&hl=en)
+
+- *2019.09 - 2023.06*, Zhengzhou University of Light Industry, 
+
+Major: Computer Science, Graduated with Outstanding Graduate.
 
 <!-- # 💬 Invited Talks
 - *2021.06*, Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus ornare aliquet ipsum, ac tempus justo dapibus sit amet. 
@@ -83,4 +88,6 @@ Advisor: Assoc. Prof. Xiangdong Su, Prof. Guanglai Gao
 - *2019.05 - 2020.02*, [Lorem](https://github.com/), China. -->
 
 # 🚁 Beyond Academics
-I'm a Bilibili uploader (<a href="https://space.bilibili.com/23297003">(Velikaya)</a>), specializing in TNO-style superevent videos. I’m also passionate about language learning/constructing. In moments shaped by life’s struggles—for poetry thrives on hardship—I craft classical verses.
+I'm a Bilibili uploader (<a href="https://space.bilibili.com/23297003">(Velikaya)</a>), specializing in TNO-style superevent videos. I’m also passionate about language learning/constructing. 
+
+In moments shaped by life’s struggles—for poetry thrives on hardship—I craft classical verses.
