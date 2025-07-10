@@ -31,7 +31,7 @@ I am actively seeking research internships or visiting student opportunities to 
 
 
 # 🔥 News
-- *2025.05*: &nbsp;🎉🎉 One paper about Multi-modal Sarcasm Detection has been accepted by Data Intelligence (中科院二区)! 
+- *2025.07*: &nbsp;🎉🎉 One paper about Multi-modal Sarcasm Detection has been accepted by Data Intelligence (中科院二区)! 
 - *2025.05*: &nbsp;🎉🎉 One paper about Chinese Bias Evaluation for LLMs has been accepted by ACL 2025! 
 - *2025.05*: &nbsp;🎉🎉 One paper about Knowledge Graph Embeddings has been accepted by ACL 2025! 
 
