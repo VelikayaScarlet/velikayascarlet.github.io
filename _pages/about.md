@@ -51,7 +51,7 @@ I am actively seeking research internships or visiting student opportunities to 
 
 - [**ACL 2025**] [A Mutual Information Perspective on Knowledge Graph Embedding](https://github.com), Jiang Li, Xiangdong Su, Zehua Duo, **Tian Lan**, Xiaotao Guo, Guanglai Gao
 
-- [**Data Intelligence**, shortlisted for the Best Paper Award] [CoTMSD: Leveraging Chain-of-Thought for Multi-modal Sarcasm Detection](https://github.com), Xu Liu, Xiangdong Su, Jiang Li, Yu Tian, **Tian Lan**, Guanglai Gao
+- [**Data Intelligence**, Best Paper Award] [CoTMSD: Leveraging Chain-of-Thought for Multi-modal Sarcasm Detection](https://github.com), Xu Liu, Xiangdong Su, Jiang Li, Yu Tian, **Tian Lan**, Guanglai Gao
 
 # 🏆 Honors and Awards
 **2023**  
