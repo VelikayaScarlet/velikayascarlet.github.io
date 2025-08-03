@@ -31,7 +31,7 @@ I am actively seeking research internships or visiting student opportunities to 
 
 
 # 🔥 News
-- *2025.07*: &nbsp;🎉🎉 One paper about Multi-modal Sarcasm Detection has been accepted by Data Intelligence (中科院二区)! 
+- *2025.07*: &nbsp;🎉🎉 One paper about Multi-modal Sarcasm Detection has been accepted by Data Intelligence (SCI Q2)! 
 - *2025.05*: &nbsp;🎉🎉 One paper about Chinese Bias Evaluation for LLMs has been accepted by ACL 2025! 
 - *2025.05*: &nbsp;🎉🎉 One paper about Knowledge Graph Embeddings has been accepted by ACL 2025! 
 
@@ -40,7 +40,7 @@ I am actively seeking research internships or visiting student opportunities to 
 <div class='paper-box'><div class='paper-box-image'><div><div class="badge">ACL 2025</div><img src='images/500x300.png' alt="sym" width="100%"></div></div>
 <div class='paper-box-text' markdown="1">
 
-[McBE: A Multi-task Chinese Bias Evaluation Benchmark for Large Language Models](https://arxiv.org/abs/2507.02088)
+[McBE: A Multi-task Chinese Bias Evaluation Benchmark for Large Language Models](https://aclanthology.org/2025.findings-acl.313/)
 
 **Tian Lan**, Xiangdong Su, Xu Liu, Ruirui Wang, Ke Chang, Jiang Li, Guanglai Gao
 
@@ -49,7 +49,7 @@ I am actively seeking research internships or visiting student opportunities to 
 </div>
 </div>
 
-- [**ACL 2025**] [A Mutual Information Perspective on Knowledge Graph Embedding](https://github.com), Jiang Li, Xiangdong Su, Zehua Duo, **Tian Lan**, Xiaotao Guo, Guanglai Gao
+- [**ACL 2025**] [A Mutual Information Perspective on Knowledge Graph Embedding](https://aclanthology.org/2025.acl-long.1077/), Jiang Li, Xiangdong Su, Zehua Duo, **Tian Lan**, Xiaotao Guo, Guanglai Gao
 
 - [**Data Intelligence**, Best Paper Award] [CoTMSD: Leveraging Chain-of-Thought for Multi-modal Sarcasm Detection](https://github.com), Xu Liu, Xiangdong Su, Jiang Li, Yu Tian, **Tian Lan**, Guanglai Gao
 
