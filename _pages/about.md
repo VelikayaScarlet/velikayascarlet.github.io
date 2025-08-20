@@ -31,14 +31,19 @@ I am actively seeking research internships or visiting student opportunities to 
 
 
 # 🔥 News
+- *2025.08*: &nbsp;🎉🎉 One paper about Open-ended Fairness Evaluation has been accepted by EMNLP 2025! 
 - *2025.07*: &nbsp;🎉🎉 One paper about Multi-modal Sarcasm Detection has been accepted by Data Intelligence (SCI Q2)! 
 - *2025.05*: &nbsp;🎉🎉 One paper about Chinese Bias Evaluation for LLMs has been accepted by ACL 2025! 
 - *2025.05*: &nbsp;🎉🎉 One paper about Knowledge Graph Embeddings has been accepted by ACL 2025! 
 
 # 📝 Publications 
 
-<div class='paper-box'><div class='paper-box-image'><div><div class="badge">ACL 2025</div><img src='images/500x300.png' alt="sym" width="100%"></div></div>
+<div class='paper-box'><div class='paper-box-image'><div><div class="badge">EMNLP 2025</div><img src='images/500x300.png' alt="sym" width="100%"></div></div>
 <div class='paper-box-text' markdown="1">
+
+[F2Bench: An Open-ended Fairness Evaluation Benchmark for LLMs with Factuality Considerations](https://aclanthology.org/)
+
+**Tian Lan**, Jiang Li, Yemin Wang, Xu Liu, Xiangdong Su, Guanglai Gao
 
 [McBE: A Multi-task Chinese Bias Evaluation Benchmark for Large Language Models](https://aclanthology.org/2025.findings-acl.313/)
 
