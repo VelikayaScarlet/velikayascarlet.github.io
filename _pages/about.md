@@ -43,16 +43,18 @@ I am actively seeking research internships or visiting student opportunities to 
 
 [F2Bench: An Open-ended Fairness Evaluation Benchmark for LLMs with Factuality Considerations](https://aclanthology.org/)
 
-**Tian Lan**, Jiang Li, Yemin Wang, Xu Liu, Xiangdong Su, Guanglai Gao
+- [**EMNLP 2025**] **Tian Lan**, Jiang Li, Yemin Wang, Xu Liu, Xiangdong Su, Guanglai Gao
 
-[McBE: A Multi-task Chinese Bias Evaluation Benchmark for Large Language Models](https://aclanthology.org/2025.findings-acl.313/)
 
-**Tian Lan**, Xiangdong Su, Xu Liu, Ruirui Wang, Ke Chang, Jiang Li, Guanglai Gao
 
 <!-- [**Project**](https://scholar.google.com/citations?view_op=view_citation&hl=zh-CN&user=DhtAFkwAAAAJ&citation_for_view=DhtAFkwAAAAJ:ALROH1vI_8AC) <strong><span class='show_paper_citations' data='DhtAFkwAAAAJ:ALROH1vI_8AC'></span></strong>
 - Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus ornare aliquet ipsum, ac tempus justo dapibus sit amet.  -->
 </div>
 </div>
+
+- [**ACL 2025**] [McBE: A Multi-task Chinese Bias Evaluation Benchmark for Large Language Models](https://aclanthology.org/2025.findings-acl.313/)
+
+**Tian Lan**, Xiangdong Su, Xu Liu, Ruirui Wang, Ke Chang, Jiang Li, Guanglai Gao
 
 - [**ACL 2025**] [A Mutual Information Perspective on Knowledge Graph Embedding](https://aclanthology.org/2025.acl-long.1077/), Jiang Li, Xiangdong Su, Zehua Duo, **Tian Lan**, Xiaotao Guo, Guanglai Gao
 
