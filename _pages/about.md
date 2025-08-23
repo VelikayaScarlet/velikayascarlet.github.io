@@ -52,13 +52,11 @@ I am actively seeking research internships or visiting student opportunities to 
 </div>
 </div>
 
-- [**ACL 2025**] [McBE: A Multi-task Chinese Bias Evaluation Benchmark for Large Language Models](https://aclanthology.org/2025.findings-acl.313/)
+- [**ACL 2025**] [McBE: A Multi-task Chinese Bias Evaluation Benchmark for Large Language Models](https://aclanthology.org/2025.findings-acl.313/). **Tian Lan**, Xiangdong Su, Xu Liu, Ruirui Wang, Ke Chang, Jiang Li, Guanglai Gao
 
-**Tian Lan**, Xiangdong Su, Xu Liu, Ruirui Wang, Ke Chang, Jiang Li, Guanglai Gao
+- [**ACL 2025**] [A Mutual Information Perspective on Knowledge Graph Embedding](https://aclanthology.org/2025.acl-long.1077/). Jiang Li, Xiangdong Su, Zehua Duo, **Tian Lan**, Xiaotao Guo, Guanglai Gao
 
-- [**ACL 2025**] [A Mutual Information Perspective on Knowledge Graph Embedding](https://aclanthology.org/2025.acl-long.1077/), Jiang Li, Xiangdong Su, Zehua Duo, **Tian Lan**, Xiaotao Guo, Guanglai Gao
-
-- [**Data Intelligence**, Best Paper Award] [CoTMSD: Leveraging Chain-of-Thought for Multi-modal Sarcasm Detection](https://github.com), Xu Liu, Xiangdong Su, Jiang Li, Yu Tian, **Tian Lan**, Guanglai Gao
+- [**Data Intelligence**, Best Paper Award] [CoTMSD: Leveraging Chain-of-Thought for Multi-modal Sarcasm Detection](https://github.com). Xu Liu, Xiangdong Su, Jiang Li, Yu Tian, **Tian Lan**, Guanglai Gao
 
 # 🏆 Honors and Awards
 **2023**  
