@@ -19,11 +19,13 @@ redirect_from:
 
 I am currently a master's student at the <a href="https://ccs.imu.edu.cn/">College of Computer Science</a> and <a href="http://www.mglip.com/">National & Local Joint Engineering Research Center of Intelligent Information Processing Technology for Mongolian</a>, Inner Mongolia University. Prior to this, I earned my bachelor's degree in Computer Science from Zhengzhou University of Light Industry in 2023.
 
-My research interests include <span style="font-weight: bold;">Natural Language Processing, Large Language Models and AI Fairness</span>. Recently, I am focusing on:
+My research interests include <span style="font-weight: bold;">Natural Language Processing, AI Fairness, Computational Social Science</span>. Recently, I am focusing on:
 
 (1) Mitigating and Evaluating Stereotypes and Bias in LLMs.
 
-(2) Exploring Bias, Ethics and Fairness phenomena in LLMs.
+(2) Exploring Chinese Subcultures in LLMs.
+
+(3) Exploring LLMs' Reactions in Human-AI Interaction.
 
 I am actively seeking research internships or visiting student opportunities to deepen my expertise in these domains. Additionally, I am also interested in pursuing a PhD program for Fall 2026 admission.
 
@@ -32,7 +34,7 @@ I am actively seeking research internships or visiting student opportunities to 
 
 # 🔥 News
 - *2025.08*: &nbsp;🎉🎉 One paper about Open-ended Fairness Evaluation has been accepted by EMNLP 2025! 
-- *2025.07*: &nbsp;🎉🎉 One paper about Multi-modal Sarcasm Detection has been accepted by Data Intelligence (SCI Q2)! 
+- *2025.07*: &nbsp;🎉🎉 One paper about Multi-modal Sarcasm Detection has been accepted by Data Intelligence (SCI CAS Q2)! 
 - *2025.05*: &nbsp;🎉🎉 One paper about Chinese Bias Evaluation for LLMs has been accepted by ACL 2025! 
 - *2025.05*: &nbsp;🎉🎉 One paper about Knowledge Graph Embeddings has been accepted by ACL 2025! 
 
@@ -41,9 +43,7 @@ I am actively seeking research internships or visiting student opportunities to 
 <div class='paper-box'><div class='paper-box-image'><div><div class="badge">EMNLP 2025</div><img src='images/500x300.png' alt="sym" width="100%"></div></div>
 <div class='paper-box-text' markdown="1">
 
-[F2Bench: An Open-ended Fairness Evaluation Benchmark for LLMs with Factuality Considerations](https://aclanthology.org/)
-
-- [**EMNLP 2025**] **Tian Lan**, Jiang Li, Yemin Wang, Xu Liu, Xiangdong Su, Guanglai Gao
+- [**EMNLP 2025**] [F²Bench: An Open-ended Fairness Evaluation Benchmark for LLMs with Factuality Considerations](https://aclanthology.org/) **Tian Lan**, Jiang Li, Yemin Wang, Xu Liu, Xiangdong Su, Guanglai Gao 
 
 
 
@@ -59,6 +59,10 @@ I am actively seeking research internships or visiting student opportunities to 
 - [**Data Intelligence**, Best Paper Award] [CoTMSD: Leveraging Chain-of-Thought for Multi-modal Sarcasm Detection](https://github.com). Xu Liu, Xiangdong Su, Jiang Li, Yu Tian, **Tian Lan**, Guanglai Gao
 
 # 🏆 Honors and Awards
+**2025**
+- Graduate Academic Scholarship  
+- **National Scholarship**
+
 **2023**  
 - Graduate Academic Scholarship  
 - Outstanding Graduate  
