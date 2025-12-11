@@ -19,7 +19,7 @@ redirect_from:
 
 I am currently a master's student at the <a href="https://ccs.imu.edu.cn/">College of Computer Science</a> and <a href="http://www.mglip.com/">National & Local Joint Engineering Research Center of Intelligent Information Processing Technology for Mongolian</a>, Inner Mongolia University. Prior to this, I earned my bachelor's degree in Computer Science from Zhengzhou University of Light Industry in 2023.
 
-My research interests include <span style="font-weight: bold;">Natural Language Processing, AI Fairness, Computational Social Science</span>. Recently, I am focusing on:
+My research interests include: <span style="font-weight: bold;">
 
 (1) NLP & Society, including AI Fairness, Responsible AI, and Computational Social Science
 
@@ -27,7 +27,8 @@ My research interests include <span style="font-weight: bold;">Natural Language 
 
 (3) Culture & Creativity in LLMs, including Literature and LLMs, and Subcultures in AI
 
-I am actively seeking research internships or visiting student opportunities to deepen my expertise in these domains. Additionally, I am also interested in pursuing a PhD program for Fall 2026 admission.
+</span>
+
 
 <!-- My research interest includes neural machine translation and computer vision. I have published more than 100 papers at the top international AI conferences with total <a href='https://scholar.google.com/citations?user=DhtAFkwAAAAJ'>google scholar citations <strong><span id='total_cit'>260000+</span></strong></a> (You can also use google scholar badge <a href='https://scholar.google.com/citations?user=DhtAFkwAAAAJ'><img src="https://img.shields.io/endpoint?url={{ url | url_encode }}&logo=Google%20Scholar&labelColor=f6f6f6&color=9cf&style=flat&label=citations"></a>). -->
 
