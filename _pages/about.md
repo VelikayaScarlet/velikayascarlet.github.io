@@ -21,11 +21,11 @@ I am currently a master's student at the <a href="https://ccs.imu.edu.cn/">Colle
 
 My research interests include <span style="font-weight: bold;">Natural Language Processing, AI Fairness, Computational Social Science</span>. Recently, I am focusing on:
 
-(1) Mitigating and Evaluating Stereotypes and Bias in LLMs.
+(1) NLP & Society, including AI Fairness, Responsible AI, and Computational Social Science
 
-(2) Exploring Chinese Subcultures in LLMs.
+(2) Multilingual & Multicultural AI, including Multilingual systems, Low-resource Languages
 
-(3) Exploring LLMs' Reactions in Human-AI Interaction.
+(3) Culture & Creativity in LLMs, including Literature and LLMs, and Subcultures in AI
 
 I am actively seeking research internships or visiting student opportunities to deepen my expertise in these domains. Additionally, I am also interested in pursuing a PhD program for Fall 2026 admission.
 
