@@ -17,7 +17,7 @@ redirect_from:
 
 <span class='anchor' id='about-me'></span>
 
-I am currently a master's student at the <a href="https://ccs.imu.edu.cn/">College of Computer Science</a> and <a href="http://www.mglip.com/">National & Local Joint Engineering Research Center of Intelligent Information Processing Technology for Mongolian</a>, Inner Mongolia University. Prior to this, I earned my bachelor's degree in Computer Science from Zhengzhou University of Light Industry in 2023. 
+I am currently a master's student at the <a href="https://ccs.imu.edu.cn/">College of Computer Science</a>, Inner Mongolia University. Prior to this, I earned my bachelor's degree in Computer Science from Zhengzhou University of Light Industry in 2023. 
 
 In October 2026, I will start my research at the <a href="https://nlp.ist.i.kyoto-u.ac.jp/EN/">Language Media Lab (Kurohashi's Lab)</a> Kyoto University, under the supervision of <a href="https:/murawaki.org">Yugo Murawaki</a>.
 
