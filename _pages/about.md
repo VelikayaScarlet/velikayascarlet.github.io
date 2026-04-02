@@ -17,7 +17,11 @@ redirect_from:
 
 <span class='anchor' id='about-me'></span>
 
-I am currently a master's student at the <a href="https://ccs.imu.edu.cn/">College of Computer Science</a> and <a href="http://www.mglip.com/">National & Local Joint Engineering Research Center of Intelligent Information Processing Technology for Mongolian</a>, Inner Mongolia University. Prior to this, I earned my bachelor's degree in Computer Science from Zhengzhou University of Light Industry in 2023.
+I am currently a master's student at the <a href="https://ccs.imu.edu.cn/">College of Computer Science</a> and <a href="http://www.mglip.com/">National & Local Joint Engineering Research Center of Intelligent Information Processing Technology for Mongolian</a>, Inner Mongolia University. Prior to this, I earned my bachelor's degree in Computer Science from Zhengzhou University of Light Industry in 2023. 
+
+In October 2026, I will start my research at the <a href="https://nlp.ist.i.kyoto-u.ac.jp/EN/">Language Media Lab (Kurohashi's Lab)</a> Kyoto University, under the supervision of <a href="murawaki.org">Yugo Murawaki</a>.
+
+<!-- I am currently a Doctoral Student at the <a href="https://nlp.ist.i.kyoto-u.ac.jp/EN/">Language Media Lab (Former Kurohashi's Lab)</a>, Kyoto University, working under te supervision of <a href="murawaki.org">Murawaki Yugo</a>. Prior to this, I earned my master's degree at Inner Mongolia University and bachelor's degree at Zhengzhou University of Light Industry. -->
 
 My research interests include: <span style="font-weight: bold;"></span>
 
@@ -34,11 +38,12 @@ My research interests include: <span style="font-weight: bold;"></span>
 
 
 # 🔥 News
+<!-- - *2026.03*: &nbsp;🎉🎉 One paper about Multimodal Sarcasm Detection has been accepted by ICASSP 2026!  -->
+- *2026.03*: &nbsp;🎉🎉 Two papers about handwritten mathematical expression recognition & Multimodal Knowledge Graph Completion have been accepted by ICME 2026! 
 - *2025.08*: &nbsp;🎉🎉 One paper about Acupoint Localization has been accepted by Frontiers in Physiology (JCR Q1)! 
 - *2025.08*: &nbsp;🎉🎉 One paper about Open-ended Fairness Evaluation has been accepted by EMNLP 2025! 
-- *2025.07*: &nbsp;🎉🎉 One paper about Multi-modal Sarcasm Detection has been accepted by Data Intelligence (SCI CAS Q2)! 
-- *2025.05*: &nbsp;🎉🎉 One paper about Chinese Bias Evaluation for LLMs has been accepted by ACL 2025! 
-- *2025.05*: &nbsp;🎉🎉 One paper about Knowledge Graph Embeddings has been accepted by ACL 2025! 
+- *2025.07*: &nbsp;🎉🎉 One paper about Multimodal Sarcasm Detection has been accepted by Data Intelligence (SCI CAS Q2)! 
+- *2025.05*: &nbsp;🎉🎉 Two papers about Chinese Bias Evaluation & Knowledge Graph Embeddings has been accepted by ACL 2025! 
 
 # 📝 Publications 
 
@@ -60,33 +65,22 @@ My research interests include: <span style="font-weight: bold;"></span>
 
 - [**Data Intelligence**, Best Paper Award] [CoTMSD: Leveraging Chain-of-Thought for Multi-modal Sarcasm Detection](https://www.sciengine.com/DI/doi/10.3724/2096-7004.di.2025.0118). Xu Liu, Xiangdong Su, Jiang Li, Yu Tian, **Tian Lan**, Guanglai Gao
 
-- [**Frontiers in Physiology**] [Structure-guided deep learning for back acupoint localization via bone-measuring constraints
-](https://pmc.ncbi.nlm.nih.gov/articles/PMC12417426/). Yulong Wang, **Tian Lan**, Wenjian Dou, Zhi Chen, Song Zhang, Gong Chen
+- [**Frontiers in Physiology**] [Structure-guided deep learning for back acupoint localization via bone-measuring constraints](https://pmc.ncbi.nlm.nih.gov/articles/PMC12417426/). Yulong Wang, **Tian Lan**, Wenjian Dou, Zhi Chen, Song Zhang, Gong Chen
+
+- [**ICME 2026**] [CoMER-TSCL: Reshaping Decoder Geometry for HMER via Token-Level Supervised Contrastive Learning](https://scholar.google.com). Qianlin Jiang, Xiangdong Su, Xingxiang Zhou, **Tian Lan**, Ziming Li, Yu Tian, Lianwei Cui, Pengxuan Yuan, Guanglai Gao
+
+- [**ICME 2026**] [Counterfactual Contribution Alignment: An Adaptive Fusion Method for Multimodal Knowledge Graph Completion](https://scholar.google.com). Yu Tian, Xiangdong Su, Ziming Li, Jie Xing, Zehua Duo, Qianlin Jiang, Lianwei Cui, **Tian Lan**, Pengxuan Yuan.
+
 
 # 🏆 Honors and Awards
-**2025**
-- Graduate Academic Scholarship  
-- **National Scholarship**
+### 🏆 Honors and Awards
 
-**2023**  
-- Graduate Academic Scholarship  
-- Outstanding Graduate  
-
-**2022**  
-- Second Prize, 13th LanQiao Cup National Contest  
-- Third-Class Scholarship
-- "Three Good Student" Title
-
-**2021**  
-- Outstanding Student Individual Scholarship  
-- Third-Class Scholarship  
-- "Three Good Student" Title  
-
-**2020**  
-- Second-Class Scholarship  
-
-**2019**  
-- Third Prize, Xunfei Cup National College English Speaking Contest  
+- **2025**: **National Scholarship**, Graduate Academic Scholarship
+- **2023**: Outstanding Graduate, Graduate Academic Scholarship
+- **2022**: 2nd Prize (LanQiao Cup), Third-Class Scholarship, "Three Good Student"
+- **2021**: Outstanding Student Ind. Scholarship, Third-Class Scholarship, "Three Good Student"
+- **2020**: Second-Class Scholarship
+- **2019**: 3rd Prize (Xunfei Cup English Speaking)
 
 # 📖 Educations
 - *2023.09 - 2026.06 (now)*, Candidate for M.Eng. in Software Engineering. 
@@ -107,4 +101,4 @@ My research interests include: <span style="font-weight: bold;"></span>
 # 🚁 Beyond Academics
 I'm a Bilibili uploader (<a href="https://space.bilibili.com/23297003">Velikaya</a>), specializing in TNO-style superevent videos. I’m also passionate about language learning/constructing. 
 
-In moments shaped by life’s struggles—for poetry thrives on hardship—I craft classical verses.
+In moments shaped by life’s struggles—for poetry thrives on hardship—I craft classical chinese verses.
