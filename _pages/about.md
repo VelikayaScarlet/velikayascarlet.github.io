@@ -105,7 +105,10 @@ For Full Publications, see my Google Scholar.
 - **2019**: 3rd Prize (Xunfei Cup English Speaking)
 
 # 📖 Educations
-- *2023.09 - 2026.06 (now)*, Candidate for M.Eng. in Software Engineering. 
+- *2026.10 - 2029.10 (expected)*, Ph.D. Student at Kyoto University. 
+  Advisor: [Assoc. Prof. Yugo Murawaki](https:/murawaki.org)
+
+- *2023.09 - 2026.06*, Candidate for M.Eng. in Software Engineering. 
 
   Advisors: [Prof. Xiangdong Su](https://scholar.google.com/citations?hl=en&user=kY7jo_sAAAAJ), [Prof. Guanglai Gao](https://scholar.google.com/citations?user=Auw0-XoAAAAJ&hl=en)
 
