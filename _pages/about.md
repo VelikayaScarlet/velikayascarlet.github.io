@@ -46,7 +46,9 @@ My research interests include: <span style="font-weight: bold;"></span>
 - *2025.07*: &nbsp;🎉🎉 One paper about Multimodal Sarcasm Detection has been accepted by Data Intelligence (SCI CAS Q2)! 
 - *2025.05*: &nbsp;🎉🎉 Two papers about Chinese Bias Evaluation & Knowledge Graph Embeddings has been accepted by ACL 2025! 
 
-# 📝 Publications 
+# 📝 Selected Publications 
+
+For Full Publications, see my Google Scholar.
 
 <!-- <div class='paper-box'><div class='paper-box-image'><div><div class="badge">EMNLP 2025</div><img src='images/500x300.png' alt="sym" width="100%"></div></div>
 <div class='paper-box-text' markdown="1"> -->
@@ -57,8 +59,9 @@ My research interests include: <span style="font-weight: bold;"></span>
 
 <!-- [**Project**](https://scholar.google.com/citations?view_op=view_citation&hl=zh-CN&user=DhtAFkwAAAAJ&citation_for_view=DhtAFkwAAAAJ:ALROH1vI_8AC) <strong><span class='show_paper_citations' data='DhtAFkwAAAAJ:ALROH1vI_8AC'></span></strong>
 - Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus ornare aliquet ipsum, ac tempus justo dapibus sit amet.  -->
-</div>
-</div>
+
+<!-- </div>
+</div> -->
 
 - [**ACL 2026**] [CEDAR: A Chinese Evaluation Dataset for Computational Argumentation](https://scholar.google.com). **Tian Lan**, Jiang Li, Rong Yan, Feilong Bao, Weihua Wang, Guanglai Gao, Xiangdong Su.
 
@@ -66,15 +69,15 @@ My research interests include: <span style="font-weight: bold;"></span>
 
 - [**ACL 2026**] [Exploring the Capability Boundaries of LLMs in Mastering of Chinese Chouxiang Language](https://scholar.google.com). Dianqing Lin*, **Tian Lan\***, Jiali Zhu*, Jiang Li, Wei Chen, Xu Liu, Aruukhan, Xiangdong Su, Guanglai Gao.
 
-- [**ACL 2026**] [Born Pragmatic, Trained to Hallucinate? Quantifying the Origins of Contextual Bias in LLMs via the PaCE Benchmark](https://scholar.google.com). Ziming Li, Yu Tian, **Tian Lan**, Jiang Li, Zehua Duo, Guanglai Gao, Xiangdong Su.
+<!-- - [**ACL 2026**] [Born Pragmatic, Trained to Hallucinate? Quantifying the Origins of Contextual Bias in LLMs via the PaCE Benchmark](https://scholar.google.com). Ziming Li, Yu Tian, **Tian Lan**, Jiang Li, Zehua Duo, Guanglai Gao, Xiangdong Su. -->
 
 - [**ACL 2026**] [ToMELP: A Theory-of-Mind Benchmark for Route-Controlled Persuasion under the Elaboration Likelihood Model](https://scholar.google.com). Ruirui Wang, Haoran Zhang, **Tian Lan**, Zehua Duo, Jiang Li, Guanglai Gao, Xiangdong Su.
 
-- [**ACL 2026**] [Lightweight Haar Wavelet Subband Pruning for LLMs](https://scholar.google.com). Jiang Li, Pengfei Cao, Chenxi Zhou, **Tian Lan**, Xiangdong Su, Kang Liu, Jun Zhao, Guanglai Gao.
+<!-- - [**ACL 2026**] [Lightweight Haar Wavelet Subband Pruning for LLMs](https://scholar.google.com). Jiang Li, Pengfei Cao, Chenxi Zhou, **Tian Lan**, Xiangdong Su, Kang Liu, Jun Zhao, Guanglai Gao. -->
 
-- [**ACL 2026**] [Learning Continuous Temporal Dynamics on Symplectic Manifolds for Temporal Knowledge Graph Embedding](https://scholar.google.com). Jiang Li, Pengfei Cao, Chenxi Zhou, **Tian Lan**, Xiangdong Su, Kang Liu, Jun Zhao, Guanglai Gao.
+<!-- - [**ACL 2026**] [Learning Continuous Temporal Dynamics on Symplectic Manifolds for Temporal Knowledge Graph Embedding](https://scholar.google.com). Jiang Li, Pengfei Cao, Chenxi Zhou, **Tian Lan**, Xiangdong Su, Kang Liu, Jun Zhao, Guanglai Gao. -->
 
-- [**ACL 2026**] [Know Your Place: Diagnosing Implicit Social Adaptation Failures in Chinese Large Language Models](https://scholar.google.com). Yu Tian, Jie Xing, Ziming Li, Jiang Li, Zehua Duo, **Tian Lan**, Xu Liu, Guanglai Gao, Xiangdong Su.
+<!-- - [**ACL 2026**] [Know Your Place: Diagnosing Implicit Social Adaptation Failures in Chinese Large Language Models](https://scholar.google.com). Yu Tian, Jie Xing, Ziming Li, Jiang Li, Zehua Duo, **Tian Lan**, Xu Liu, Guanglai Gao, Xiangdong Su. -->
 
 - [**ACL 2025**] [McBE: A Multi-task Chinese Bias Evaluation Benchmark for Large Language Models](https://aclanthology.org/2025.findings-acl.313/). **Tian Lan**, Xiangdong Su, Xu Liu, Ruirui Wang, Ke Chang, Jiang Li, Guanglai Gao
 
@@ -86,9 +89,9 @@ My research interests include: <span style="font-weight: bold;"></span>
 
 - [**Frontiers in Physiology**] [Structure-guided deep learning for back acupoint localization via bone-measuring constraints](https://pmc.ncbi.nlm.nih.gov/articles/PMC12417426/). Yulong Wang, **Tian Lan**, Wenjian Dou, Zhi Chen, Song Zhang, Gong Chen
 
-- [**ICME 2026**] [CoMER-TSCL: Reshaping Decoder Geometry for HMER via Token-Level Supervised Contrastive Learning](https://scholar.google.com). Qianlin Jiang, Xiangdong Su, Xingxiang Zhou, **Tian Lan**, Ziming Li, Yu Tian, Lianwei Cui, Pengxuan Yuan, Guanglai Gao
+<!-- - [**ICME 2026**] [CoMER-TSCL: Reshaping Decoder Geometry for HMER via Token-Level Supervised Contrastive Learning](https://scholar.google.com). Qianlin Jiang, Xiangdong Su, Xingxiang Zhou, **Tian Lan**, Ziming Li, Yu Tian, Lianwei Cui, Pengxuan Yuan, Guanglai Gao
 
-- [**ICME 2026**] [Counterfactual Contribution Alignment: An Adaptive Fusion Method for Multimodal Knowledge Graph Completion](https://scholar.google.com). Yu Tian, Xiangdong Su, Ziming Li, Jie Xing, Zehua Duo, Qianlin Jiang, Lianwei Cui, **Tian Lan**, Pengxuan Yuan.
+- [**ICME 2026**] [Counterfactual Contribution Alignment: An Adaptive Fusion Method for Multimodal Knowledge Graph Completion](https://scholar.google.com). Yu Tian, Xiangdong Su, Ziming Li, Jie Xing, Zehua Duo, Qianlin Jiang, Lianwei Cui, **Tian Lan**, Pengxuan Yuan. -->
 
 
 # 🏆 Honors and Awards
