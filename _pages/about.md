@@ -79,9 +79,9 @@ For Full Publications, see my Google Scholar.
 
 <!-- - [**ACL 2026**] [Know Your Place: Diagnosing Implicit Social Adaptation Failures in Chinese Large Language Models](https://scholar.google.com). Yu Tian, Jie Xing, Ziming Li, Jiang Li, Zehua Duo, **Tian Lan**, Xu Liu, Guanglai Gao, Xiangdong Su. -->
 
-- [**ACL 2025**] [McBE: A Multi-task Chinese Bias Evaluation Benchmark for Large Language Models](https://aclanthology.org/2025.findings-acl.313/). **Tian Lan**, Xiangdong Su, Xu Liu, Ruirui Wang, Ke Chang, Jiang Li, Guanglai Gao
-
 - [**EMNLP 2025**] [F²Bench: An Open-ended Fairness Evaluation Benchmark for LLMs with Factuality Considerations](https://aclanthology.org/2025.emnlp-main.105/) **Tian Lan**, Jiang Li, Yemin Wang, Xu Liu, Xiangdong Su, Guanglai Gao 
+
+- [**ACL 2025**] [McBE: A Multi-task Chinese Bias Evaluation Benchmark for Large Language Models](https://aclanthology.org/2025.findings-acl.313/). **Tian Lan**, Xiangdong Su, Xu Liu, Ruirui Wang, Ke Chang, Jiang Li, Guanglai Gao
 
 - [**ACL 2025**] [A Mutual Information Perspective on Knowledge Graph Embedding](https://aclanthology.org/2025.acl-long.1077/). Jiang Li, Xiangdong Su, Zehua Duo, **Tian Lan**, Xiaotao Guo, Guanglai Gao
 
