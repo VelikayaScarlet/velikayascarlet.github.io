@@ -39,6 +39,7 @@ My research interests include: <span style="font-weight: bold;"></span>
 
 # 🔥 News
 <!-- - *2026.03*: &nbsp;🎉🎉 One paper about Multimodal Sarcasm Detection has been accepted by ICASSP 2026!  -->
+- *2026.04*: &nbsp;🎉🎉 8 papers (3 Main and 5 Findings) have been accepted by ACL 2026! 
 - *2026.03*: &nbsp;🎉🎉 Two papers about handwritten mathematical expression recognition & Multimodal Knowledge Graph Completion have been accepted by ICME 2026! 
 - *2025.08*: &nbsp;🎉🎉 One paper about Acupoint Localization has been accepted by Frontiers in Physiology (JCR Q1)! 
 - *2025.08*: &nbsp;🎉🎉 One paper about Open-ended Fairness Evaluation has been accepted by EMNLP 2025! 
@@ -47,10 +48,10 @@ My research interests include: <span style="font-weight: bold;"></span>
 
 # 📝 Publications 
 
-<div class='paper-box'><div class='paper-box-image'><div><div class="badge">EMNLP 2025</div><img src='images/500x300.png' alt="sym" width="100%"></div></div>
-<div class='paper-box-text' markdown="1">
+<!-- <div class='paper-box'><div class='paper-box-image'><div><div class="badge">EMNLP 2025</div><img src='images/500x300.png' alt="sym" width="100%"></div></div>
+<div class='paper-box-text' markdown="1"> -->
 
-- [**EMNLP 2025**] [F²Bench: An Open-ended Fairness Evaluation Benchmark for LLMs with Factuality Considerations](https://aclanthology.org/2025.emnlp-main.105/) **Tian Lan**, Jiang Li, Yemin Wang, Xu Liu, Xiangdong Su, Guanglai Gao 
+<!-- - [**EMNLP 2025**] [F²Bench: An Open-ended Fairness Evaluation Benchmark for LLMs with Factuality Considerations](https://aclanthology.org/2025.emnlp-main.105/) **Tian Lan**, Jiang Li, Yemin Wang, Xu Liu, Xiangdong Su, Guanglai Gao  -->
 
 
 
@@ -59,7 +60,25 @@ My research interests include: <span style="font-weight: bold;"></span>
 </div>
 </div>
 
+- [**ACL 2026**] [CEDAR: A Chinese Evaluation Dataset for Computational Argumentation](https://scholar.google.com). **Tian Lan**, Jiang Li, Rong Yan, Feilong Bao, Weihua Wang, Guanglai Gao, Xiangdong Su.
+
+- [**ACL 2026**] [Who Wrote This Line? Evaluating the Detection of LLM-Generated Classical Chinese Poetry](https://scholar.google.com). Jiang Li*, **Tian Lan\***, Shanshan Wang, Dongxing Zhang, Dianqing Lin, Guanglai Gao, Derek F. Wong, Xiangdong Su.
+
+- [**ACL 2026**] [Exploring the Capability Boundaries of LLMs in Mastering of Chinese Chouxiang Language](https://scholar.google.com). Dianqing Lin*, **Tian Lan\***, Jiali Zhu*, Jiang Li, Wei Chen, Xu Liu, Aruukhan, Xiangdong Su, Guanglai Gao.
+
+- [**ACL 2026**] [Born Pragmatic, Trained to Hallucinate? Quantifying the Origins of Contextual Bias in LLMs via the PaCE Benchmark](https://scholar.google.com). Ziming Li, Yu Tian, **Tian Lan**, Jiang Li, Zehua Duo, Guanglai Gao, Xiangdong Su.
+
+- [**ACL 2026**] [ToMELP: A Theory-of-Mind Benchmark for Route-Controlled Persuasion under the Elaboration Likelihood Model](https://scholar.google.com). Ruirui Wang, Haoran Zhang, **Tian Lan**, Zehua Duo, Jiang Li, Guanglai Gao, Xiangdong Su.
+
+- [**ACL 2026**] [Lightweight Haar Wavelet Subband Pruning for LLMs](https://scholar.google.com). Jiang Li, Pengfei Cao, Chenxi Zhou, **Tian Lan**, Xiangdong Su, Kang Liu, Jun Zhao, Guanglai Gao.
+
+- [**ACL 2026**] [Learning Continuous Temporal Dynamics on Symplectic Manifolds for Temporal Knowledge Graph Embedding](https://scholar.google.com). Jiang Li, Pengfei Cao, Chenxi Zhou, **Tian Lan**, Xiangdong Su, Kang Liu, Jun Zhao, Guanglai Gao.
+
+- [**ACL 2026**] [Know Your Place: Diagnosing Implicit Social Adaptation Failures in Chinese Large Language Models](https://scholar.google.com). Yu Tian, Jie Xing, Ziming Li, Jiang Li, Zehua Duo, **Tian Lan**, Xu Liu, Guanglai Gao, Xiangdong Su.
+
 - [**ACL 2025**] [McBE: A Multi-task Chinese Bias Evaluation Benchmark for Large Language Models](https://aclanthology.org/2025.findings-acl.313/). **Tian Lan**, Xiangdong Su, Xu Liu, Ruirui Wang, Ke Chang, Jiang Li, Guanglai Gao
+
+- [**EMNLP 2025**] [F²Bench: An Open-ended Fairness Evaluation Benchmark for LLMs with Factuality Considerations](https://aclanthology.org/2025.emnlp-main.105/) **Tian Lan**, Jiang Li, Yemin Wang, Xu Liu, Xiangdong Su, Guanglai Gao 
 
 - [**ACL 2025**] [A Mutual Information Perspective on Knowledge Graph Embedding](https://aclanthology.org/2025.acl-long.1077/). Jiang Li, Xiangdong Su, Zehua Duo, **Tian Lan**, Xiaotao Guo, Guanglai Gao
 
