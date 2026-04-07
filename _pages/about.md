@@ -85,7 +85,7 @@ For Full Publications, see my Google Scholar.
 
 - [**ACL 2025**] [A Mutual Information Perspective on Knowledge Graph Embedding](https://aclanthology.org/2025.acl-long.1077/). Jiang Li, Xiangdong Su, Zehua Duo, **Tian Lan**, Xiaotao Guo, Guanglai Gao
 
-- [**Data Intelligence**, Best Paper Award] [CoTMSD: Leveraging Chain-of-Thought for Multi-modal Sarcasm Detection](https://www.sciengine.com/DI/doi/10.3724/2096-7004.di.2025.0118). Xu Liu, Xiangdong Su, Jiang Li, Yu Tian, **Tian Lan**, Guanglai Gao
+<!-- - [**Data Intelligence**, Best Paper Award] [CoTMSD: Leveraging Chain-of-Thought for Multi-modal Sarcasm Detection](https://www.sciengine.com/DI/doi/10.3724/2096-7004.di.2025.0118). Xu Liu, Xiangdong Su, Jiang Li, Yu Tian, **Tian Lan**, Guanglai Gao -->
 
 - [**Frontiers in Physiology**] [Structure-guided deep learning for back acupoint localization via bone-measuring constraints](https://pmc.ncbi.nlm.nih.gov/articles/PMC12417426/). Yulong Wang, **Tian Lan**, Wenjian Dou, Zhi Chen, Song Zhang, Gong Chen
 
