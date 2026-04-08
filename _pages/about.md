@@ -67,7 +67,7 @@ For Full Publications, see my Google Scholar.
 
 - [**ACL 2026**] [Who Wrote This Line? Evaluating the Detection of LLM-Generated Classical Chinese Poetry](https://scholar.google.com). Jiang Li*, **Tian Lan\***, Shanshan Wang, Dongxing Zhang, Dianqing Lin, Guanglai Gao, Derek F. Wong, Xiangdong Su.
 
-- [**ACL 2026**] [Exploring the Capability Boundaries of LLMs in Mastering of Chinese Chouxiang Language](https://scholar.google.com). Dianqing Lin*, **Tian Lan\***, Jiali Zhu*, Jiang Li, Wei Chen, Xu Liu, Aruukhan, Xiangdong Su, Guanglai Gao.
+- [**ACL 2026**] [Exploring the Capability Boundaries of LLMs in Mastering of Chinese Chouxiang Language](https://scholar.google.com). Dianqing Lin\*, **Tian Lan\***, Jiali Zhu\*, Jiang Li, Wei Chen, Xu Liu, Aruukhan, Xiangdong Su, Guanglai Gao.
 
 <!-- - [**ACL 2026**] [Born Pragmatic, Trained to Hallucinate? Quantifying the Origins of Contextual Bias in LLMs via the PaCE Benchmark](https://scholar.google.com). Ziming Li, Yu Tian, **Tian Lan**, Jiang Li, Zehua Duo, Guanglai Gao, Xiangdong Su. -->
 
