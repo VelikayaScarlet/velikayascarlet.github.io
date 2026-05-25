@@ -63,15 +63,19 @@ For Full Publications, see my Google Scholar.
 <!-- </div>
 </div> -->
 
+- [**ACL 2025**] [McBE: A Multi-task Chinese Bias Evaluation Benchmark for Large Language Models](https://aclanthology.org/2025.findings-acl.313/). **Tian Lan**, Xiangdong Su, Xu Liu, Ruirui Wang, Ke Chang, Jiang Li, Guanglai Gao
+
+- [**EMNLP 2025**] [F²Bench: An Open-ended Fairness Evaluation Benchmark for LLMs with Factuality Considerations](https://aclanthology.org/2025.emnlp-main.105/) **Tian Lan**, Jiang Li, Yemin Wang, Xu Liu, Xiangdong Su, Guanglai Gao 
+
 - [**ACL 2026**] [CEDAR: A Chinese Evaluation Dataset for Computational Argumentation](https://scholar.google.com). **Tian Lan**, Jiang Li, Rong Yan, Feilong Bao, Weihua Wang, Guanglai Gao, Xiangdong Su.
 
-- [**ACL 2026**] [Who Wrote This Line? Evaluating the Detection of LLM-Generated Classical Chinese Poetry](https://scholar.google.com). Jiang Li*, **Tian Lan\***, Shanshan Wang, Dongxing Zhang, Dianqing Lin, Guanglai Gao, Derek F. Wong, Xiangdong Su.
+- [**ACL 2026**] [Who Wrote This Line? Evaluating the Detection of LLM-Generated Classical Chinese Poetry](https://scholar.google.com). Jiang Li*, **Tian Lan\***, Shanshan Wang, Dongxing Zhang, Dianqing Lin, Guanglai Gao, Derek F. Wong, Xiangdong Su. (Oral)
 
 - [**ACL 2026**] [Exploring the Capability Boundaries of LLMs in Mastering of Chinese Chouxiang Language](https://scholar.google.com). Dianqing Lin\*, **Tian Lan\***, Jiali Zhu\*, Jiang Li, Wei Chen, Xu Liu, Aruukhan, Xiangdong Su, Guanglai Gao.
 
 <!-- - [**ACL 2026**] [Born Pragmatic, Trained to Hallucinate? Quantifying the Origins of Contextual Bias in LLMs via the PaCE Benchmark](https://scholar.google.com). Ziming Li, Yu Tian, **Tian Lan**, Jiang Li, Zehua Duo, Guanglai Gao, Xiangdong Su. -->
 
-- [**ACL 2026**] [ToMELP: A Theory-of-Mind Benchmark for Route-Controlled Persuasion under the Elaboration Likelihood Model](https://scholar.google.com). Ruirui Wang, Haoran Zhang, **Tian Lan**, Zehua Duo, Jiang Li, Guanglai Gao, Xiangdong Su.
+<!-- - [**ACL 2026**] [ToMELP: A Theory-of-Mind Benchmark for Route-Controlled Persuasion under the Elaboration Likelihood Model](https://scholar.google.com). Ruirui Wang, Haoran Zhang, **Tian Lan**, Zehua Duo, Jiang Li, Guanglai Gao, Xiangdong Su. -->
 
 <!-- - [**ACL 2026**] [Lightweight Haar Wavelet Subband Pruning for LLMs](https://scholar.google.com). Jiang Li, Pengfei Cao, Chenxi Zhou, **Tian Lan**, Xiangdong Su, Kang Liu, Jun Zhao, Guanglai Gao. -->
 
@@ -79,15 +83,13 @@ For Full Publications, see my Google Scholar.
 
 <!-- - [**ACL 2026**] [Know Your Place: Diagnosing Implicit Social Adaptation Failures in Chinese Large Language Models](https://scholar.google.com). Yu Tian, Jie Xing, Ziming Li, Jiang Li, Zehua Duo, **Tian Lan**, Xu Liu, Guanglai Gao, Xiangdong Su. -->
 
-- [**EMNLP 2025**] [F²Bench: An Open-ended Fairness Evaluation Benchmark for LLMs with Factuality Considerations](https://aclanthology.org/2025.emnlp-main.105/) **Tian Lan**, Jiang Li, Yemin Wang, Xu Liu, Xiangdong Su, Guanglai Gao 
 
-- [**ACL 2025**] [McBE: A Multi-task Chinese Bias Evaluation Benchmark for Large Language Models](https://aclanthology.org/2025.findings-acl.313/). **Tian Lan**, Xiangdong Su, Xu Liu, Ruirui Wang, Ke Chang, Jiang Li, Guanglai Gao
 
-- [**ACL 2025**] [A Mutual Information Perspective on Knowledge Graph Embedding](https://aclanthology.org/2025.acl-long.1077/). Jiang Li, Xiangdong Su, Zehua Duo, **Tian Lan**, Xiaotao Guo, Guanglai Gao
+<!-- - [**ACL 2025**] [A Mutual Information Perspective on Knowledge Graph Embedding](https://aclanthology.org/2025.acl-long.1077/). Jiang Li, Xiangdong Su, Zehua Duo, **Tian Lan**, Xiaotao Guo, Guanglai Gao -->
 
 <!-- - [**Data Intelligence**, Best Paper Award] [CoTMSD: Leveraging Chain-of-Thought for Multi-modal Sarcasm Detection](https://www.sciengine.com/DI/doi/10.3724/2096-7004.di.2025.0118). Xu Liu, Xiangdong Su, Jiang Li, Yu Tian, **Tian Lan**, Guanglai Gao -->
 
-- [**Frontiers in Physiology**] [Structure-guided deep learning for back acupoint localization via bone-measuring constraints](https://pmc.ncbi.nlm.nih.gov/articles/PMC12417426/). Yulong Wang, **Tian Lan**, Wenjian Dou, Zhi Chen, Song Zhang, Gong Chen
+<!-- - [**Frontiers in Physiology**] [Structure-guided deep learning for back acupoint localization via bone-measuring constraints](https://pmc.ncbi.nlm.nih.gov/articles/PMC12417426/). Yulong Wang, **Tian Lan**, Wenjian Dou, Zhi Chen, Song Zhang, Gong Chen -->
 
 <!-- - [**ICME 2026**] [CoMER-TSCL: Reshaping Decoder Geometry for HMER via Token-Level Supervised Contrastive Learning](https://scholar.google.com). Qianlin Jiang, Xiangdong Su, Xingxiang Zhou, **Tian Lan**, Ziming Li, Yu Tian, Lianwei Cui, Pengxuan Yuan, Guanglai Gao
 
@@ -125,7 +127,7 @@ For Full Publications, see my Google Scholar.
 
 # 📖 Academic Services
 Conference Reviewer: ACM MM
-
+Workshop Reviewer: ACL StereACult
 # 🚁 Beyond Academics
 I'm a Bilibili uploader (<a href="https://space.bilibili.com/23297003">Velikaya</a>), specializing in TNO-style superevent videos. I’m also passionate about language learning/constructing. 
 
