@@ -67,7 +67,7 @@ For Full Publications, see my Google Scholar.
 
 - [**EMNLP 2025**] [F²Bench: An Open-ended Fairness Evaluation Benchmark for LLMs with Factuality Considerations](https://aclanthology.org/2025.emnlp-main.105/) **Tian Lan**, Jiang Li, Yemin Wang, Xu Liu, Xiangdong Su, Guanglai Gao 
 
-- [**ACL 2026**] [CEDAR: A Chinese Evaluation Dataset for Computational Argumentation](https://scholar.google.com). **Tian Lan**, Jiang Li, Rong Yan, Feilong Bao, Weihua Wang, Guanglai Gao, Xiangdong Su.
+- [**ACL 2026**] [CEDAR: A Chinese Evaluation Dataset for Computational Argumentation](https://scholar.google.com). **Tian Lan\***, Jiang Li*, Rong Yan, Feilong Bao, Weihua Wang, Guanglai Gao, Xiangdong Su.
 
 - [**ACL 2026**] [Who Wrote This Line? Evaluating the Detection of LLM-Generated Classical Chinese Poetry](https://scholar.google.com). Jiang Li*, **Tian Lan\***, Shanshan Wang, Dongxing Zhang, Dianqing Lin, Guanglai Gao, Derek F. Wong, Xiangdong Su. (Oral)
 
