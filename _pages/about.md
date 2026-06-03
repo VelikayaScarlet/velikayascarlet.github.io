@@ -97,7 +97,6 @@ For Full Publications, see my Google Scholar.
 
 
 # 🏆 Honors and Awards
-### 🏆 Honors and Awards
 
 - **2025**: **National Scholarship**, Graduate Academic Scholarship
 - **2023**: Outstanding Graduate, Graduate Academic Scholarship
@@ -110,13 +109,11 @@ For Full Publications, see my Google Scholar.
 - *2026.10 - 2029.10 (expected)*, Ph.D. Student at Kyoto University. 
   Advisor: [Assoc. Prof. Yugo Murawaki](https:/murawaki.org)
 
-- *2023.09 - 2026.06*, Candidate for M.Eng. in Software Engineering. 
+- *2023.09 - 2026.06*, Inner Mongolia University, M.Eng. in Software Engineering, Graduated with Outstanding Graduate.
 
   Advisors: [Prof. Xiangdong Su](https://scholar.google.com/citations?hl=en&user=kY7jo_sAAAAJ), [Prof. Guanglai Gao](https://scholar.google.com/citations?user=Auw0-XoAAAAJ&hl=en)
 
-- *2019.09 - 2023.06*, Zhengzhou University of Light Industry, 
-
-  Major: Computer Science, Graduated with Outstanding Graduate.
+- *2019.09 - 2023.06*, Zhengzhou University of Light Industry, B.E. in Computer Science, Graduated with Outstanding Graduate.
 
 <!-- # 💬 Invited Talks
 - *2021.06*, Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus ornare aliquet ipsum, ac tempus justo dapibus sit amet. 
@@ -127,6 +124,7 @@ For Full Publications, see my Google Scholar.
 
 # 📖 Academic Services
 Conference Reviewer: ACM MM
+
 Workshop Reviewer: ACL StereACult
 # 🚁 Beyond Academics
 I'm a Bilibili uploader (<a href="https://space.bilibili.com/23297003">Velikaya</a>), specializing in TNO-style superevent videos. I’m also passionate about language learning/constructing. 
