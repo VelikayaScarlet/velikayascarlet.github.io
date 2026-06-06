@@ -47,12 +47,17 @@
     var a = e.target && e.target.closest ? e.target.closest('a[href]') : null;
     if (!a) return;
     var href = a.getAttribute('href') || '';
-    if (href.charAt(0) !== '#' || href.length < 2) return;
+    if (href.charAt(0) !== '#' && href.indexOf('#') < 0) return;
+    if (href.length < 2) return;
+    // extract the anchor id (works for both '#news' and '/#news' and '/path#news')
+    var hashIdx = href.indexOf('#');
+    var id = href.slice(hashIdx + 1);
+    if (!id) return;
     // Cross-page? Only intercept on same page.
     var cur = (location.pathname || '/').replace(/\/$/, '') || '/';
     var tgt = (a.pathname || '/').replace(/\/$/, '') || '/';
     if (cur !== tgt) return;
-    if (scrollToAnchor(href.slice(1))) e.preventDefault();
+    if (scrollToAnchor(id)) e.preventDefault();
   });
   // On cross-page load, give layout time, then scroll.
   // Re-attempt up to 20 times with 50ms gap (1s total) until target is in DOM and positioned.
