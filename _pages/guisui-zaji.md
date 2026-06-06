@@ -4,47 +4,70 @@ title: "归绥杂记"
 author_profile: true
 ---
 
+{% assign preface = site.pages | where: "title", "序言" | first %}
+
 <style>
-.essay-group { margin: 2em 0 1em; }
+/* 序言正文 */
+.preface-text {
+  font-size: 1em;
+  line-height: 1.85;
+  color: #3a3a3a;
+  margin-bottom: 2.5em;
+  padding-bottom: 1.5em;
+  border-bottom: 1px solid #e8dccf;
+}
+.preface-text p { margin-bottom: 0.8em; }
+
+/* 年份标题 */
+.essay-group { margin: 1.8em 0 0.6em; }
 .essay-group h2 {
-  font-size: 1.15em;
+  font-size: 1.1em;
   color: #4a3728;
   border-bottom: 2px solid #c8a97e;
-  padding-bottom: 0.25em;
-  margin-bottom: 0.8em;
+  padding-bottom: 0.2em;
+  margin-bottom: 0.6em;
 }
-.essay-cards {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-  gap: 1em 1.2em;
-  margin-bottom: 2em;
+
+/* 横条式章节列表 */
+.chapter-list {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 1.5em;
 }
-.essay-card {
-  display: block;
+.chapter-list li {
+  margin-bottom: 1px;
+}
+.chapter-list a {
+  display: flex;
+  align-items: center;
+  gap: 0.7em;
   text-decoration: none;
-  color: inherit;
-  background: #fdfdfd;
-  border: 1px solid #e8dccf;
-  border-radius: 5px;
-  padding: 1em 1.2em;
+  color: #4a3728;
+  padding: 0.6em 0.9em;
+  border-left: 3px solid transparent;
+  border-radius: 0 4px 4px 0;
+  background: #fafaf7;
+  font-family: Georgia, "Songti SC", "STSong", serif;
+  font-size: 0.95em;
   transition: all 0.15s;
 }
-.essay-card:hover {
-  border-color: #c8a97e;
-  box-shadow: 0 3px 12px rgba(200, 169, 126, 0.18);
-  transform: translateY(-1px);
+.chapter-list a:hover {
+  background: #f5efe3;
+  border-left-color: #c8a97e;
 }
-.essay-card .card-title {
-  font-weight: 600;
-  font-size: 0.95em;
-  color: #4a3728;
-  font-family: Georgia, "Songti SC", "STSong", serif;
-}
-@media (max-width: 600px) {
-  .essay-cards { grid-template-columns: repeat(2, 1fr); }
+.chapter-list .chap-num {
+  font-size: 0.8em;
+  color: #a08060;
+  min-width: 2.2em;
 }
 </style>
 
+<!-- 序言内容 -->
+<div class="preface-text">
+  {{ preface.content }}
+</div>
+
+<!-- 按年份编录 -->
 {% assign all = site.pages | where_exp: "p", "p.path contains 'creations/essays/归绥杂记/'" | sort: "path" %}
 
 {% assign y23 = all | where_exp: "p", "p.path contains '/23/'" %}
@@ -54,42 +77,38 @@ author_profile: true
 {% if y23.size > 0 %}
 <div class="essay-group">
   <h2>2023 年</h2>
-  <div class="essay-cards">
+  <ul class="chapter-list">
     {% for essay in y23 %}
-      <a class="essay-card" href="{{ essay.url | relative_url }}">
-        <div class="card-title">{{ essay.title }}</div>
-      </a>
+      <li><a href="{{ essay.url | relative_url }}">
+        <span class="chap-num">{{ forloop.index }}</span>{{ essay.title }}
+      </a></li>
     {% endfor %}
-  </div>
+  </ul>
 </div>
 {% endif %}
 
 {% if y24.size > 0 %}
 <div class="essay-group">
   <h2>2024 年</h2>
-  <div class="essay-cards">
+  <ul class="chapter-list">
     {% for essay in y24 %}
-      <a class="essay-card" href="{{ essay.url | relative_url }}">
-        <div class="card-title">{{ essay.title }}</div>
-      </a>
+      <li><a href="{{ essay.url | relative_url }}">
+        <span class="chap-num">{{ forloop.index }}</span>{{ essay.title }}
+      </a></li>
     {% endfor %}
-  </div>
+  </ul>
 </div>
 {% endif %}
 
 {% if y25.size > 0 %}
 <div class="essay-group">
   <h2>2025 年</h2>
-  <div class="essay-cards">
+  <ul class="chapter-list">
     {% for essay in y25 %}
-      <a class="essay-card" href="{{ essay.url | relative_url }}">
-        <div class="card-title">{{ essay.title }}</div>
-      </a>
+      <li><a href="{{ essay.url | relative_url }}">
+        <span class="chap-num">{{ forloop.index }}</span>{{ essay.title }}
+      </a></li>
     {% endfor %}
-  </div>
+  </ul>
 </div>
 {% endif %}
-
-<p style="margin-top: 2em; font-size: 0.9em; color: #888;">
-  📝 <a href="/creations/essays/序言/">序言</a> — 该系列的缘起与说明
-</p>
