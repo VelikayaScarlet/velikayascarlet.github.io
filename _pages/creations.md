@@ -129,7 +129,7 @@ author_profile: true
 
 <div class="collections-grid">
   <a class="collection-card" href="/creations/poems/折光集.pdf" target="_blank">
-    <div class="collection-icon">📜</div>
+    <div class="collection-icon">💫</div>
     <div class="collection-name">折光集</div>
     <span class="collection-type">诗集</span>
   </a>
