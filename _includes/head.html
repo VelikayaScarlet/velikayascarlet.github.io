@@ -33,26 +33,34 @@
 </script>
 
 <script>
-  // In-page anchor scroll (simplified, no pushState)
+  // [DEBUG] in-page anchor scroll
+  console.log('[anchor-js] script loaded');
   function scrollToAnchor(id) {
+    console.log('[anchor-js] scrollToAnchor id=' + id);
     var t = document.getElementById(id);
+    console.log('[anchor-js] target =', t);
     if (!t) return false;
     var m = document.querySelector('.masthead');
     var off = m ? m.getBoundingClientRect().height : 0;
     var y = t.getBoundingClientRect().top + window.pageYOffset - off - 8;
+    console.log('[anchor-js] scrolling to y=' + y);
     window.scrollTo(0, y);
     return true;
   }
   document.addEventListener('click', function (e) {
+    console.log('[anchor-js] click on', e.target.tagName);
     var a = e.target && e.target.closest ? e.target.closest('a[href]') : null;
-    if (!a) return;
+    if (!a) { console.log('[anchor-js] no a'); return; }
     var href = a.getAttribute('href') || '';
+    var path = a.pathname || '';
+    console.log('[anchor-js] a href=' + href + ' path=' + path);
     if (href.charAt(0) !== '#' || href.length < 2) return;
-    // let cross-page links work naturally
-    if (location.pathname.replace(/\/$/, '') !== a.pathname.replace(/\/$/, '')) return;
+    var cur = location.pathname.replace(/\/$/, '') || '/';
+    var tgt = (a.pathname || '/').replace(/\/$/, '') || '/';
+    console.log('[anchor-js] cur=' + cur + ' tgt=' + tgt);
+    if (cur !== tgt) { console.log('[anchor-js] cross-page, skip'); return; }
     if (scrollToAnchor(href.slice(1))) e.preventDefault();
   });
-  // also handle initial load with hash
   window.addEventListener('load', function () {
     if (location.hash && location.hash.length > 1) {
       setTimeout(function () { scrollToAnchor(location.hash.slice(1)); }, 100);
