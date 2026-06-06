@@ -42,13 +42,14 @@ My research interests include:
 
 
 # 🔥 News
+
 <ul class="news-list">
-  <li><span class="news-date">2026.04</span><span class="news-content">🎉🎉 8 papers (3 Main and 5 Findings) have been accepted by ACL 2026!</span></li>
-  <li><span class="news-date">2026.03</span><span class="news-content">🎉🎉 Two papers about handwritten mathematical expression recognition & Multimodal Knowledge Graph Completion have been accepted by ICME 2026!</span></li>
-  <li><span class="news-date">2025.08</span><span class="news-content">🎉🎉 One paper about Acupoint Localization has been accepted by Frontiers in Physiology (JCR Q1)!</span></li>
-  <li><span class="news-date">2025.08</span><span class="news-content">🎉🎉 One paper about Open-ended Fairness Evaluation has been accepted by EMNLP 2025!</span></li>
-  <li><span class="news-date">2025.07</span><span class="news-content">🎉🎉 One paper about Multimodal Sarcasm Detection has been accepted by Data Intelligence (SCI CAS Q2)!</span></li>
-  <li><span class="news-date">2025.05</span><span class="news-content">🎉🎉 Two papers about Chinese Bias Evaluation & Knowledge Graph Embeddings has been accepted by ACL 2025!</span></li>
+  <li><span class="news-date">2026.04</span> <span class="news-content">🎉🎉 8 papers (3 Main and 5 Findings) have been accepted by ACL 2026!</span></li>
+  <li><span class="news-date">2026.03</span> <span class="news-content">🎉🎉 Two papers about handwritten mathematical expression recognition &amp; Multimodal Knowledge Graph Completion have been accepted by ICME 2026!</span></li>
+  <li><span class="news-date">2025.08</span> <span class="news-content">🎉🎉 One paper about Acupoint Localization has been accepted by Frontiers in Physiology (JCR Q1)!</span></li>
+  <li><span class="news-date">2025.08</span> <span class="news-content">🎉🎉 One paper about Open-ended Fairness Evaluation has been accepted by EMNLP 2025!</span></li>
+  <li><span class="news-date">2025.07</span> <span class="news-content">🎉🎉 One paper about Multimodal Sarcasm Detection has been accepted by Data Intelligence (SCI CAS Q2)!</span></li>
+  <li><span class="news-date">2025.05</span> <span class="news-content">🎉🎉 Two papers about Chinese Bias Evaluation &amp; Knowledge Graph Embeddings has been accepted by ACL 2025!</span></li>
 </ul>
 
 # 📝 Selected Publications 
@@ -56,15 +57,15 @@ My research interests include:
 For Full Publications, see my Google Scholar.
 
 <ul class="pub-list">
-  <li><span class="conf-badge conf-badge--acl">ACL 2025</span><a href="https://aclanthology.org/2025.findings-acl.313/">McBE: A Multi-task Chinese Bias Evaluation Benchmark for Large Language Models</a>. <strong>Tian Lan</strong>, Xiangdong Su, Xu Liu, Ruirui Wang, Ke Chang, Jiang Li, Guanglai Gao</li>
+  <li><span class="conf-badge conf-badge--acl">ACL 2025</span> <a href="https://aclanthology.org/2025.findings-acl.313/">McBE: A Multi-task Chinese Bias Evaluation Benchmark for Large Language Models</a>. <strong>Tian Lan</strong>, Xiangdong Su, Xu Liu, Ruirui Wang, Ke Chang, Jiang Li, Guanglai Gao</li>
 
-  <li><span class="conf-badge conf-badge--emnlp">EMNLP 2025</span><a href="https://aclanthology.org/2025.emnlp-main.105/">F²Bench: An Open-ended Fairness Evaluation Benchmark for LLMs with Factuality Considerations</a>. <strong>Tian Lan</strong>, Jiang Li, Yemin Wang, Xu Liu, Xiangdong Su, Guanglai Gao</li>
+  <li><span class="conf-badge conf-badge--emnlp">EMNLP 2025</span> <a href="https://aclanthology.org/2025.emnlp-main.105/">F²Bench: An Open-ended Fairness Evaluation Benchmark for LLMs with Factuality Considerations</a>. <strong>Tian Lan</strong>, Jiang Li, Yemin Wang, Xu Liu, Xiangdong Su, Guanglai Gao</li>
 
-  <li><span class="conf-badge conf-badge--acl">ACL 2026</span><a href="https://scholar.google.com">CEDAR: A Chinese Evaluation Dataset for Computational Argumentation</a>. <strong>Tian Lan*</strong>, Jiang Li*, Rong Yan, Feilong Bao, Weihua Wang, Guanglai Gao, Xiangdong Su.</li>
+  <li><span class="conf-badge conf-badge--acl">ACL 2026</span> <a href="https://scholar.google.com">CEDAR: A Chinese Evaluation Dataset for Computational Argumentation</a>. <strong>Tian Lan*</strong>, Jiang Li*, Rong Yan, Feilong Bao, Weihua Wang, Guanglai Gao, Xiangdong Su.</li>
 
-  <li><span class="conf-badge conf-badge--acl">ACL 2026</span><a href="https://scholar.google.com">Who Wrote This Line? Evaluating the Detection of LLM-Generated Classical Chinese Poetry</a>. Jiang Li*, <strong>Tian Lan*</strong>, Shanshan Wang, Dongxing Zhang, Dianqing Lin, Guanglai Gao, Derek F. Wong, Xiangdong Su. <em>(Oral)</em></li>
+  <li><span class="conf-badge conf-badge--acl">ACL 2026</span> <a href="https://scholar.google.com">Who Wrote This Line? Evaluating the Detection of LLM-Generated Classical Chinese Poetry</a>. Jiang Li*, <strong>Tian Lan*</strong>, Shanshan Wang, Dongxing Zhang, Dianqing Lin, Guanglai Gao, Derek F. Wong, Xiangdong Su. <em>(Oral)</em></li>
 
-  <li><span class="conf-badge conf-badge--acl">ACL 2026</span><a href="https://scholar.google.com">Exploring the Capability Boundaries of LLMs in Mastering of Chinese Chouxiang Language</a>. Dianqing Lin*, <strong>Tian Lan*</strong>, Jiali Zhu*, Jiang Li, Wei Chen, Xu Liu, Aruukhan, Xiangdong Su, Guanglai Gao.</li>
+  <li><span class="conf-badge conf-badge--acl">ACL 2026</span> <a href="https://scholar.google.com">Exploring the Capability Boundaries of LLMs in Mastering of Chinese Chouxiang Language</a>. Dianqing Lin*, <strong>Tian Lan*</strong>, Jiali Zhu*, Jiang Li, Wei Chen, Xu Liu, Aruukhan, Xiangdong Su, Guanglai Gao.</li>
 </ul>
 
 
