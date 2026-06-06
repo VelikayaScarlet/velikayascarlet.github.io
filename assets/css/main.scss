@@ -232,3 +232,53 @@ h1:before, .anchor:before {
         font-weight: bold;
     }
 }
+
+/* ==========================================================================
+   Education list — school logo circles
+   ========================================================================== */
+
+.edu-list {
+    list-style: none;
+    padding-left: 0;
+    margin: 1em 0;
+}
+.edu-list li {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.85em;
+    margin-bottom: 1.1em;
+}
+.edu-logo {
+    flex-shrink: 0;
+    width: 2.4em;
+    height: 2.4em;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.72em;
+    font-weight: 700;
+    letter-spacing: 0.03em;
+    color: #fff;
+    line-height: 1;
+    text-align: center;
+    overflow: hidden;
+    img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+}
+.edu-logo--kyoto  { background: #1a355c; }
+.edu-logo--imu    { background: #1a6b4a; }
+.edu-logo--zzuli  { background: #6b4a1a; }
+
+.edu-info {
+    flex: 1;
+    line-height: 1.55;
+}
+.edu-info .edu-meta {
+    font-size: 0.88em;
+    color: #888;
+    margin-top: 0.15em;
+}

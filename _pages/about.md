@@ -45,11 +45,11 @@ My research interests include:
 
 <ul class="news-list">
   <li><span class="news-date">2026.04</span> <span class="news-content">🎉🎉 8 papers (3 Main and 5 Findings) have been accepted by ACL 2026!</span></li>
-  <li><span class="news-date">2026.03</span> <span class="news-content">🎉🎉 Two papers about handwritten mathematical expression recognition &amp; Multimodal Knowledge Graph Completion have been accepted by ICME 2026!</span></li>
-  <li><span class="news-date">2025.08</span> <span class="news-content">🎉🎉 One paper about Acupoint Localization has been accepted by Frontiers in Physiology (JCR Q1)!</span></li>
-  <li><span class="news-date">2025.08</span> <span class="news-content">🎉🎉 One paper about Open-ended Fairness Evaluation has been accepted by EMNLP 2025!</span></li>
-  <li><span class="news-date">2025.07</span> <span class="news-content">🎉🎉 One paper about Multimodal Sarcasm Detection has been accepted by Data Intelligence (SCI CAS Q2)!</span></li>
-  <li><span class="news-date">2025.05</span> <span class="news-content">🎉🎉 Two papers about Chinese Bias Evaluation &amp; Knowledge Graph Embeddings has been accepted by ACL 2025!</span></li>
+  <li><span class="news-date">2026.03</span> <span class="news-content">🎉🎉 Two papers about handwritten mathematical expression recognition &amp; multimodal KG Completion have been accepted by ICME 2026!</span></li>
+  <li><span class="news-date">2025.08</span> <span class="news-content">🎉🎉 One paper about acupoint localization has been accepted by Frontiers in Physiology (JCR Q1)!</span></li>
+  <li><span class="news-date">2025.08</span> <span class="news-content">🎉🎉 One paper about open-ended fairness evaluation has been accepted by EMNLP 2025!</span></li>
+  <li><span class="news-date">2025.07</span> <span class="news-content">🎉🎉 One paper about multimodal sarcasm detection has been accepted by Data Intelligence (SCI CAS Q2)!</span></li>
+  <li><span class="news-date">2025.05</span> <span class="news-content">🎉🎉 Two papers about Chinese bias evaluation &amp; KG embeddings has been accepted by ACL 2025!</span></li>
 </ul>
 
 # 📝 Selected Publications 
@@ -81,14 +81,21 @@ For Full Publications, see my Google Scholar.
 </ul>
 
 # 🎓 Educations
-- *2026.10 - 2029.10 (expected)*, Ph.D. Student at Kyoto University. 
-  Advisor: [Assoc. Prof. Yugo Murawaki](https:/murawaki.org)
 
-- *2023.09 - 2026.06*, Inner Mongolia University, M.Eng. in Software Engineering, Graduated with Outstanding Graduate.
-
-  Advisors: [Prof. Xiangdong Su](https://scholar.google.com/citations?hl=en&user=kY7jo_sAAAAJ), [Prof. Guanglai Gao](https://scholar.google.com/citations?user=Auw0-XoAAAAJ&hl=en)
-
-- *2019.09 - 2023.06*, Zhengzhou University of Light Industry, B.E. in Computer Science, Graduated with Outstanding Graduate.
+<ul class="edu-list">
+  <li>
+    <span class="edu-logo edu-logo--kyoto">京大</span>
+    <span class="edu-info"><strong>Ph.D. Student</strong>, Kyoto University <em>(2026.10 – 2029.10 expected)</em><br><span class="edu-meta">Advisor: <a href="https:/murawaki.org">Assoc. Prof. Yugo Murawaki</a></span></span>
+  </li>
+  <li>
+    <span class="edu-logo edu-logo--imu">内大</span>
+    <span class="edu-info"><strong>M.Eng. in Software Engineering</strong>, Inner Mongolia University <em>(2023.09 – 2026.06)</em><br><span class="edu-meta">Graduated with Outstanding Graduate. Advisors: <a href="https://scholar.google.com/citations?hl=en&amp;user=kY7jo_sAAAAJ">Prof. Xiangdong Su</a>, <a href="https://scholar.google.com/citations?user=Auw0-XoAAAAJ&amp;hl=en">Prof. Guanglai Gao</a></span></span>
+  </li>
+  <li>
+    <span class="edu-logo edu-logo--zzuli">郑轻</span>
+    <span class="edu-info"><strong>B.E. in Computer Science</strong>, Zhengzhou University of Light Industry <em>(2019.09 – 2023.06)</em><br><span class="edu-meta">Graduated with Outstanding Graduate.</span></span>
+  </li>
+</ul>
 
 <!-- # 💬 Invited Talks
 - *2021.06*, Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus ornare aliquet ipsum, ac tempus justo dapibus sit amet. 
