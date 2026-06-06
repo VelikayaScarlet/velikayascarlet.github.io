@@ -152,11 +152,6 @@ author_profile: true
     <div class="collection-name">归绥杂记</div>
     <span class="collection-type">文集</span>
   </a>
-  <a class="collection-card" href="/creations/essays/序言/">
-    <div class="collection-icon">📋</div>
-    <div class="collection-name">序言</div>
-    <span class="collection-type">文章</span>
-  </a>
 </div>
 
 </div><!-- /文章 -->
