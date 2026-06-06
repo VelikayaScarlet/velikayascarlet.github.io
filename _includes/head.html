@@ -33,37 +33,41 @@
 </script>
 
 <script>
-  // [DEBUG] in-page anchor scroll
-  console.log('[anchor-js] script loaded');
+  // In-page anchor scroll (handles both same-page and cross-page)
   function scrollToAnchor(id) {
-    console.log('[anchor-js] scrollToAnchor id=' + id);
     var t = document.getElementById(id);
-    console.log('[anchor-js] target =', t);
     if (!t) return false;
     var m = document.querySelector('.masthead');
     var off = m ? m.getBoundingClientRect().height : 0;
     var y = t.getBoundingClientRect().top + window.pageYOffset - off - 8;
-    console.log('[anchor-js] scrolling to y=' + y);
-    window.scrollTo(0, y);
+    window.scrollTo(0, Math.max(0, y));
     return true;
   }
   document.addEventListener('click', function (e) {
-    console.log('[anchor-js] click on', e.target.tagName);
     var a = e.target && e.target.closest ? e.target.closest('a[href]') : null;
-    if (!a) { console.log('[anchor-js] no a'); return; }
+    if (!a) return;
     var href = a.getAttribute('href') || '';
-    var path = a.pathname || '';
-    console.log('[anchor-js] a href=' + href + ' path=' + path);
     if (href.charAt(0) !== '#' || href.length < 2) return;
-    var cur = location.pathname.replace(/\/$/, '') || '/';
+    // Cross-page? Only intercept on same page.
+    var cur = (location.pathname || '/').replace(/\/$/, '') || '/';
     var tgt = (a.pathname || '/').replace(/\/$/, '') || '/';
-    console.log('[anchor-js] cur=' + cur + ' tgt=' + tgt);
-    if (cur !== tgt) { console.log('[anchor-js] cross-page, skip'); return; }
+    if (cur !== tgt) return;
     if (scrollToAnchor(href.slice(1))) e.preventDefault();
   });
+  // On cross-page load, give layout time, then scroll.
+  // Re-attempt up to 20 times with 50ms gap (1s total) until target is in DOM and positioned.
+  function tryDelayedScroll(id, attempt) {
+    attempt = attempt || 0;
+    var t = document.getElementById(id);
+    if (t && t.getBoundingClientRect().top !== 0) {
+      scrollToAnchor(id);
+    } else if (attempt < 20) {
+      setTimeout(function () { tryDelayedScroll(id, attempt + 1); }, 50);
+    }
+  }
   window.addEventListener('load', function () {
     if (location.hash && location.hash.length > 1) {
-      setTimeout(function () { scrollToAnchor(location.hash.slice(1)); }, 100);
+      tryDelayedScroll(location.hash.slice(1));
     }
   });
 </script>
