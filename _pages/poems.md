@@ -1,47 +1,62 @@
 ---
 permalink: /poems/
-title: "Poems & Essays"
+title: "Poems"
 author_profile: true
 ---
 
 <style>
-/* 诗体排版 —— 仅作用于 .poems 容器内的元素，不影响其他页面 */
-.poems {
-  text-align: center;
+/* 诗词页 —— 两栏卡片网格，手机端自动变单栏 */
+.poems { text-align: center; }
+
+.poems-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1.8em 2.4em;
+  margin: 2.5em 0;
+  text-align: left;
 }
-.poems .poem {
-  margin: 2.5em auto;
-  max-width: 38em;            /* 控制行宽，仿古诗的"短行" */
-  font-family: Georgia, "Songti SC", "STSong", "SimSun", serif;
-  line-height: 1.9;
-  letter-spacing: 0.05em;
+
+.poem-card {
+  padding: 1.4em 1.6em;
+  border-left: 3px solid #c8a97e;
+  background: rgba(200, 169, 126, 0.05);
+  border-radius: 0 4px 4px 0;
+  break-inside: avoid;
 }
-.poems .poem-title {
+
+.poem-card-title {
   text-align: center;
-  font-size: 1.25em;
+  font-size: 1.15em;
   font-weight: bold;
-  margin-bottom: 0.4em;
-  letter-spacing: 0.2em;
+  letter-spacing: 0.15em;
+  margin-bottom: 0.35em;
+  font-family: Georgia, "Songti SC", "STSong", "SimSun", serif;
 }
-.poems .poem-meta {
+
+.poem-card-meta {
   text-align: center;
-  font-size: 0.85em;
+  font-size: 0.8em;
   color: #888;
-  margin-bottom: 1.2em;
   font-style: italic;
+  margin-bottom: 1em;
 }
-.poems .poem-body p {
-  text-indent: 2em;           /* 句首两字符缩进 */
-  margin: 0.3em 0;
+
+.poem-card-body {
+  text-align: center;
+  font-family: Georgia, "Songti SC", "STSong", "SimSun", serif;
+  line-height: 1.85;
+  letter-spacing: 0.04em;
+  color: #444;
 }
-.poems .poem-body .couplet {
-  text-indent: 0;             /* 对仗联可顶格或微调 */
+
+.poem-card-body p {
+  text-indent: 2em;
+  margin: 0.25em 0;
 }
-.poems hr.poem-sep {
-  border: 0;
-  border-top: 1px dashed #ccc;
-  width: 30%;
-  margin: 3em auto;
+
+/* 窄屏（手机）退化为单栏 */
+@media (max-width: 640px) {
+  .poems-grid { grid-template-columns: 1fr; }
 }
 </style>
 
@@ -49,48 +64,51 @@ author_profile: true
 
 <span class="anchor" id="poems-top"></span>
 
-# 📜 诗词与文章
+# 📜 诗词
 
-一些练笔。诗穷而后工 —— 落笔于困顿与远行之间。
+诗穷而后工 —— 落笔于困顿与远行之间。
 
----
+<div class="poems-grid">
 
-<div class="poem" id="poem-1">
-  <div class="poem-title">示例 · 无题</div>
-  <div class="poem-meta">2025 · 五言</div>
-  <div class="poem-body">
-    <p>把下面的内容替换成你自己的诗即可。</p>
-    <p>每句一行，用一对 &lt;p&gt; 包住；</p>
-    <p>删去 &lt;div class="couplet"&gt; 之外即可。</p>
-    <p>七言、律诗、词都按这个结构写。</p>
+  <div class="poem-card" id="poem-1">
+    <div class="poem-card-title">示例 · 无题</div>
+    <div class="poem-card-meta">2025 · 五言</div>
+    <div class="poem-card-body">
+      <p>把下面的内容替换成你自己的诗。</p>
+      <p>每句一行，用一对 &lt;p&gt; 包住。</p>
+      <p>七言、律诗、词都按这个结构写。</p>
+    </div>
   </div>
-</div>
 
-<hr class="poem-sep">
-
-<div class="poem" id="poem-2">
-  <div class="poem-title">示例 · 临江</div>
-  <div class="poem-meta">2025 · 七言</div>
-  <div class="poem-body">
-    <p>第二首的标题、日期、内容都在这个 div 里改。</p>
-    <p>每添加一首诗，复制 &lt;div class="poem"&gt;…&lt;/div&gt; 整个块。</p>
-    <p>中间用 &lt;hr class="poem-sep"&gt; 分隔，</p>
-    <p>id 改成 poem-3、poem-4… 方便以后做锚点。</p>
+  <div class="poem-card" id="poem-2">
+    <div class="poem-card-title">示例 · 临江</div>
+    <div class="poem-card-meta">2025 · 七言</div>
+    <div class="poem-card-body">
+      <p>第二首诗在这个 div 里改。</p>
+      <p>每加一首，复制整个 &lt;div class="poem-card"&gt; 块。</p>
+      <p>网格会自动排成两列。</p>
+    </div>
   </div>
-</div>
 
----
-
-# 📝 文章
-
-<div class="poem" id="essay-1">
-  <div class="poem-title">示例 · 文章标题</div>
-  <div class="poem-meta">2025-08-12</div>
-  <div class="poem-body">
-    <p>文章区放散文、随笔、读书笔记都可以。</p>
-    <p>用若干 &lt;p&gt; 段落书写，自动继承诗体的居中/缩进样式。</p>
-    <p>如果想换成普通左对齐正文，把外层 .poem 改名为 .essay，或者另起一个 .essay 容器写新 CSS。</p>
+  <div class="poem-card" id="poem-3">
+    <div class="poem-card-title">示例 · 第三首</div>
+    <div class="poem-card-meta">2025 · 词</div>
+    <div class="poem-card-body">
+      <p>第三首会自动换到下一行的左侧。</p>
+      <p>卡片高度不对齐也没关系，</p>
+      <p>CSS Grid 会按行自动排。</p>
+    </div>
   </div>
+
+  <div class="poem-card" id="poem-4">
+    <div class="poem-card-title">示例 · 第四首</div>
+    <div class="poem-card-meta">2025 · 绝句</div>
+    <div class="poem-card-body">
+      <p>第四首和第三首同在一行右侧。</p>
+      <p>卡片宽度会自适应页面。</p>
+    </div>
+  </div>
+
 </div>
 
 </div>
