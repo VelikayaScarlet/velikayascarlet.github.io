@@ -1,7 +1,7 @@
 ---
 layout: default
 title: "示例：第一篇文章"
-permalink: /essays/example-essay-1/
+permalink: /creations/example-essay-1/
 ---
 
 <style>
@@ -52,6 +52,6 @@ permalink: /essays/example-essay-1/
   <p>继续写第三段。任何 markdown 元素都能用，包括列表、引用、代码块、图片。</p>
 </div>
 
-<a class="essay-back" href="/essays/">← 返回文章列表</a>
+<a class="essay-back" href="/creations/">← 返回文章列表</a>
 
 </article>

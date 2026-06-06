@@ -1,7 +1,7 @@
 ---
 layout: default
 title: "示例：又一篇"
-permalink: /essays/example-essay-2/
+permalink: /creations/example-essay-2/
 ---
 
 <style>
@@ -51,6 +51,6 @@ permalink: /essays/example-essay-2/
   <p>每篇文章的样式都在它自己的 markdown 文件里维护 —— 不用动 _layouts / _sass。</p>
 </div>
 
-<a class="essay-back" href="/essays/">← 返回文章列表</a>
+<a class="essay-back" href="/creations/">← 返回文章列表</a>
 
 </article>

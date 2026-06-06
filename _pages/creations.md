@@ -1,11 +1,40 @@
 ---
-permalink: /poems/
-title: "Poems"
+permalink: /creations/
+title: "Creations"
 author_profile: true
 ---
 
 <style>
-/* 诗词页 —— 两栏卡片网格，每页 8 首（4 行 x 2 列） */
+/* ===== Tab 切换 ===== */
+.creations-tabs {
+  display: flex;
+  justify-content: center;
+  gap: 0.5em;
+  margin: 2em 0 1.5em;
+}
+.creations-tabs button {
+  padding: 0.5em 1.6em;
+  font-size: 1em;
+  font-family: inherit;
+  border: 1px solid #c8a97e;
+  background: #fff;
+  color: #6b4f2a;
+  border-radius: 3px;
+  cursor: pointer;
+  transition: all 0.15s;
+}
+.creations-tabs button:hover {
+  background: #f5efe3;
+}
+.creations-tabs button.active {
+  background: #c8a97e;
+  color: #fff;
+  font-weight: bold;
+}
+.creations-panel { display: none; }
+.creations-panel.active { display: block; }
+
+/* ===== 诗词：两栏卡片网格 ===== */
 .poems { text-align: center; }
 
 .poems-grid {
@@ -54,7 +83,7 @@ author_profile: true
   margin: 0.25em 0;
 }
 
-/* 分页 */
+/* 诗词分页 */
 .poems-pager {
   margin: 2.5em 0 1em;
   display: flex;
@@ -97,18 +126,79 @@ author_profile: true
 @media (max-width: 640px) {
   .poems-grid { grid-template-columns: 1fr; }
 }
+
+/* ===== 文章：列表卡片 ===== */
+.essays { max-width: 48em; margin: 0 auto; }
+
+.essay-card {
+  margin: 2em 0;
+  padding-bottom: 1.5em;
+  border-bottom: 1px dashed #ccc;
+}
+.essay-card:last-of-type { border-bottom: 0; }
+
+.essay-card-title {
+  font-size: 1.4em;
+  font-weight: bold;
+  margin-bottom: 0.3em;
+  font-family: Georgia, "Songti SC", "STSong", "SimSun", serif;
+  letter-spacing: 0.05em;
+}
+.essay-card-title a {
+  text-decoration: none;
+  color: inherit;
+  border-bottom: 1px solid transparent;
+  transition: border-color 0.15s;
+}
+.essay-card-title a:hover {
+  border-bottom-color: #c8a97e;
+  color: #6b4f2a;
+}
+
+.essay-card-meta {
+  font-size: 0.85em;
+  color: #888;
+  font-style: italic;
+  margin-bottom: 1em;
+}
+
+.essay-card-excerpt {
+  font-family: Georgia, "Songti SC", "STSong", "SimSun", serif;
+  line-height: 1.85;
+  color: #444;
+}
+.essay-card-excerpt p {
+  text-indent: 2em;
+  margin: 0.5em 0;
+}
+
+.essay-card-more {
+  display: inline-block;
+  margin-top: 0.8em;
+  font-size: 0.9em;
+  color: #6b4f2a;
+  text-decoration: none;
+  border-bottom: 1px dashed #6b4f2a;
+}
+.essay-card-more:hover { color: #c8a97e; }
 </style>
+
+<!-- ===== Tab 导航 ===== -->
+<div class="creations-tabs">
+  <button class="active" data-tab="poems">诗词</button>
+  <button data-tab="essays">文章</button>
+</div>
+
+<!-- ===== 诗词面板 ===== -->
+<div class="creations-panel active" id="panel-poems">
 
 <div class="poems">
 
 <span class="anchor" id="poems-top"></span>
 
-# 📜 诗词
-
-<!-- 卡片网格：每页最多 8 首。data-page="N" 给 N 页用，不写就归第 1 页 -->
 <div class="poems-grid" id="poems-grid">
 
-  <!-- 第 1 页：示例 8 首 -->
+  <!-- 第 1 页 -->
   <div class="poem-card" data-page="1">
     <div class="poem-card-title">示例 · 无题</div>
     <div class="poem-card-meta">2025 · 五言</div>
@@ -180,7 +270,7 @@ author_profile: true
     </div>
   </div>
 
-  <!-- 第 2 页：示例 8 首 -->
+  <!-- 第 2 页 -->
   <div class="poem-card" data-page="2">
     <div class="poem-card-title">示例 · 第九首</div>
     <div class="poem-card-meta">2023 · 古风</div>
@@ -247,7 +337,7 @@ author_profile: true
     </div>
   </div>
 
-  <!-- 不写 data-page 默认归第 1 页（向后兼容） -->
+  <!-- 不写 data-page 默认归第 1 页 -->
   <div class="poem-card">
     <div class="poem-card-title">示例 · 不带页码</div>
     <div class="poem-card-meta">——</div>
@@ -258,13 +348,63 @@ author_profile: true
 
 </div>
 
-<!-- 分页按钮（JS 自动生成） -->
+<!-- 分页按钮 -->
 <div class="poems-pager" id="poems-pager"></div>
 
 </div>
 
+</div><!-- /面板：诗词 -->
+
+<!-- ===== 文章面板 ===== -->
+<div class="creations-panel" id="panel-essays">
+
+<div class="essays">
+
+<span class="anchor" id="essays-top"></span>
+
+# 📝 文章
+
+散文、随笔、读书笔记，皆汇于此。
+
+<div class="essay-card" id="essay-1">
+  <div class="essay-card-title"><a href="/creations/example-essay-1/">示例：第一篇文章</a></div>
+  <div class="essay-card-meta">2025-08-12</div>
+  <div class="essay-card-excerpt">
+    <p>这里是文章的预览片段 —— 在列表页只显示前两三段。点标题进详情页看完整内容……</p>
+  </div>
+  <a class="essay-card-more" href="/creations/example-essay-1/">阅读全文 →</a>
+</div>
+
+<div class="essay-card" id="essay-2">
+  <div class="essay-card-title"><a href="/creations/example-essay-2/">示例：又一篇</a></div>
+  <div class="essay-card-meta">2025-09-01</div>
+  <div class="essay-card-excerpt">
+    <p>第二篇示例。列表页只显示摘要，详情页展开全部正文。</p>
+  </div>
+  <a class="essay-card-more" href="/creations/example-essay-2/">阅读全文 →</a>
+</div>
+
+</div>
+
+</div><!-- /面板：文章 -->
+
 <script>
 (function () {
+  // ---------- Tab 切换 ----------
+  var tabs = document.querySelectorAll('.creations-tabs button');
+  var panels = document.querySelectorAll('.creations-panel');
+
+  tabs.forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      var target = btn.getAttribute('data-tab');
+      tabs.forEach(function (b) { b.classList.remove('active'); });
+      panels.forEach(function (p) { p.classList.remove('active'); });
+      btn.classList.add('active');
+      document.getElementById('panel-' + target).classList.add('active');
+    });
+  });
+
+  // ---------- 诗词分页 ----------
   var grid = document.getElementById('poems-grid');
   var pager = document.getElementById('poems-pager');
   if (!grid || !pager) return;
@@ -272,7 +412,6 @@ author_profile: true
   var cards = Array.prototype.slice.call(grid.querySelectorAll('.poem-card'));
   var PER_PAGE = 8;
 
-  // 算出每个卡片所在的页（未标 data-page 的归第 1 页）
   var totalPages = 1;
   cards.forEach(function (c) {
     var p = parseInt(c.getAttribute('data-page'), 10);
@@ -288,7 +427,6 @@ author_profile: true
     Array.prototype.forEach.call(pager.querySelectorAll('button[data-pg]'), function (b) {
       b.classList.toggle('active', parseInt(b.getAttribute('data-pg'), 10) === page);
     });
-    // 滚动到顶（如果 URL 带 #poems-top 锚点，更柔和）
     var top = document.getElementById('poems-top');
     if (top) top.scrollIntoView({ behavior: 'smooth', block: 'start' });
   }
