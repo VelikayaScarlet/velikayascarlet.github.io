@@ -147,16 +147,16 @@ author_profile: true
 <div class="creations-panel" id="panel-essays">
 
 <div class="collections-grid">
-{% assign essays = site.pages | where_exp: "p", "p.path contains 'creations/essays/'" | sort: "path" | reverse %}
-{% for essay in essays %}
-  <a class="collection-card" href="{{ essay.url | relative_url }}">
+  <a class="collection-card" href="/creations/guisui-zaji/">
     <div class="collection-icon">📝</div>
-    <div class="collection-name">{{ essay.title }}</div>
+    <div class="collection-name">归绥杂记</div>
+    <span class="collection-type">文集</span>
+  </a>
+  <a class="collection-card" href="/creations/essays/序言/">
+    <div class="collection-icon">📋</div>
+    <div class="collection-name">序言</div>
     <span class="collection-type">文章</span>
   </a>
-{% else %}
-  <div class="empty-hint">暂无文集，敬请期待。</div>
-{% endfor %}
 </div>
 
 </div><!-- /文章 -->
