@@ -63,7 +63,7 @@ For Full Publications, see my Google Scholar.
 
   <li><span class="conf-badge conf-badge--acl">ACL 2026</span> <a href="https://scholar.google.com">CEDAR: A Chinese Evaluation Dataset for Computational Argumentation</a>. <strong>Tian Lan*</strong>, Jiang Li*, Rong Yan, Feilong Bao, Weihua Wang, Guanglai Gao, Xiangdong Su</li>
 
-  <li><span class="conf-badge conf-badge--acl">ACL 2026</span> <a href="https://scholar.google.com">Who Wrote This Line? Evaluating the Detection of LLM-Generated Classical Chinese Poetry</a>. Jiang Li*, <strong>Tian Lan*</strong>, Shanshan Wang, Dongxing Zhang, Dianqing Lin, Guanglai Gao, Derek F. Wong, Xiangdong Su <em>(Oral)</em></li>
+  <li><span class="conf-badge conf-badge--acl">ACL 2026</span> <a href="https://scholar.google.com">Who Wrote This Line? Evaluating the Detection of LLM-Generated Classical Chinese Poetry</a>. Jiang Li*, <strong>Tian Lan*</strong>, Shanshan Wang, Dongxing Zhang, Dianqing Lin, Guanglai Gao, Derek F. Wong, Xiangdong Su <span>(Oral)</span></li>
 
   <li><span class="conf-badge conf-badge--acl">ACL 2026</span> <a href="https://scholar.google.com">Exploring the Capability Boundaries of LLMs in Mastering of Chinese Chouxiang Language</a>. Dianqing Lin*, <strong>Tian Lan*</strong>, Jiali Zhu*, Jiang Li, Wei Chen, Xu Liu, Aruukhan, Xiangdong Su, Guanglai Gao</li>
 </ul>
@@ -85,15 +85,15 @@ For Full Publications, see my Google Scholar.
 <ul class="edu-list">
   <li>
     <span class="edu-logo"><img src="/images/kyotou.png" alt="Kyoto University"></span>
-    <span class="edu-info"><strong>Ph.D. Student</strong>, Kyoto University <em>(2026.10 – 2029.10 expected)</em><br><span class="edu-meta">Advisor: <a href="https:/murawaki.org">Assoc. Prof. Yugo Murawaki</a></span></span>
+    <span class="edu-info"><strong>Ph.D. Student</strong>, Kyoto University <span>(2026.10 – 2029.10 expected)</span><br><span class="edu-meta">Advisor: <a href="https:/murawaki.org">Assoc. Prof. Yugo Murawaki</a></span></span>
   </li>
   <li>
     <span class="edu-logo"><img src="/images/imu.png" alt="Inner Mongolia University"></span>
-    <span class="edu-info"><strong>M.Eng. in Software Engineering</strong>, Inner Mongolia University <em>(2023.09 – 2026.06)</em><br><span class="edu-meta">Graduated with Outstanding Graduate. Advisors: <a href="https://scholar.google.com/citations?hl=en&amp;user=kY7jo_sAAAAJ">Prof. Xiangdong Su</a>, <a href="https://scholar.google.com/citations?user=Auw0-XoAAAAJ&amp;hl=en">Prof. Guanglai Gao</a></span></span>
+    <span class="edu-info"><strong>M.Eng. in Software Engineering</strong>, Inner Mongolia University <span>(2023.09 – 2026.06)</span><br><span class="edu-meta">Graduated with Outstanding Graduate. Advisors: <a href="https://scholar.google.com/citations?hl=en&amp;user=kY7jo_sAAAAJ">Prof. Xiangdong Su</a>, <a href="https://scholar.google.com/citations?user=Auw0-XoAAAAJ&amp;hl=en">Prof. Guanglai Gao</a></span></span>
   </li>
   <li>
     <span class="edu-logo"><img src="/images/zzuli.png" alt="Zhengzhou University of Light Industry"></span>
-    <span class="edu-info"><strong>B.E. in Computer Science</strong>, Zhengzhou University of Light Industry <em>(2019.09 – 2023.06)</em><br><span class="edu-meta">Graduated with Outstanding Graduate.</span></span>
+    <span class="edu-info"><strong>B.E. in Computer Science</strong>, Zhengzhou University of Light Industry <span>(2019.09 – 2023.06)</span><br><span class="edu-meta">Graduated with Outstanding Graduate.</span></span>
   </li>
 </ul>
 

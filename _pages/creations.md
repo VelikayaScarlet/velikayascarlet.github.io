@@ -128,13 +128,13 @@ author_profile: true
 <div class="creations-panel active" id="panel-poems">
 
 <div class="collections-grid">
-  <a class="collection-card" href="/pdfs/poems/折光集.pdf" target="_blank">
+  <a class="collection-card" href="/creations/poems/折光集.pdf" target="_blank">
     <div class="collection-icon">📜</div>
     <div class="collection-name">折光集</div>
     <span class="collection-type">诗集</span>
   </a>
 
-  <a class="collection-card" href="/pdfs/poems/觅月集.pdf" target="_blank">
+  <a class="collection-card" href="/creations/poems/觅月集.pdf" target="_blank">
     <div class="collection-icon">🌙</div>
     <div class="collection-name">觅月集</div>
     <span class="collection-type">诗集</span>
@@ -147,7 +147,16 @@ author_profile: true
 <div class="creations-panel" id="panel-essays">
 
 <div class="collections-grid">
+{% assign essays = site.pages | where_exp: "p", "p.path contains 'creations/essays/'" | sort: "path" | reverse %}
+{% for essay in essays %}
+  <a class="collection-card" href="{{ essay.url | relative_url }}">
+    <div class="collection-icon">📝</div>
+    <div class="collection-name">{{ essay.title }}</div>
+    <span class="collection-type">文章</span>
+  </a>
+{% else %}
   <div class="empty-hint">暂无文集，敬请期待。</div>
+{% endfor %}
 </div>
 
 </div><!-- /文章 -->
