@@ -114,14 +114,28 @@ h1:before, .anchor:before {
 
 .page__content h1 {
     position: relative;
-    margin-top: 1.2em;
+    /* replace global h1::before scroll-offset with padding-top */
+    padding-top: $scroll_offset;
+    margin-top: -0.8em;
     margin-bottom: 0.7em;
     font-size: 1.45em;
     color: #3a4a5c;
     border-bottom: 1px solid #e8ecf0;
-    border-left: 4px solid $primary-color;
-    padding-bottom: 0.1em;
+    padding-bottom: 0.3em;
     padding-left: 0.65em;
+    /* accent bar — ::before is now free */
+    &::before {
+        content: '';
+        display: block;
+        position: absolute;
+        left: 0;
+        top: $scroll_offset;
+        height: 0.9em;
+        width: 4px;
+        margin: 0;
+        border-radius: 2px;
+        background: $primary-color;
+    }
 }
 
 /* ==========================================================================

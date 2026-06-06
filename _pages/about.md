@@ -61,11 +61,11 @@ For Full Publications, see my Google Scholar.
 
   <li><span class="conf-badge conf-badge--emnlp">EMNLP 2025</span> <a href="https://aclanthology.org/2025.emnlp-main.105/">F²Bench: An Open-ended Fairness Evaluation Benchmark for LLMs with Factuality Considerations</a>. <strong>Tian Lan</strong>, Jiang Li, Yemin Wang, Xu Liu, Xiangdong Su, Guanglai Gao</li>
 
-  <li><span class="conf-badge conf-badge--acl">ACL 2026</span> <a href="https://scholar.google.com">CEDAR: A Chinese Evaluation Dataset for Computational Argumentation</a>. <strong>Tian Lan*</strong>, Jiang Li*, Rong Yan, Feilong Bao, Weihua Wang, Guanglai Gao, Xiangdong Su.</li>
+  <li><span class="conf-badge conf-badge--acl">ACL 2026</span> <a href="https://scholar.google.com">CEDAR: A Chinese Evaluation Dataset for Computational Argumentation</a>. <strong>Tian Lan*</strong>, Jiang Li*, Rong Yan, Feilong Bao, Weihua Wang, Guanglai Gao, Xiangdong Su</li>
 
-  <li><span class="conf-badge conf-badge--acl">ACL 2026</span> <a href="https://scholar.google.com">Who Wrote This Line? Evaluating the Detection of LLM-Generated Classical Chinese Poetry</a>. Jiang Li*, <strong>Tian Lan*</strong>, Shanshan Wang, Dongxing Zhang, Dianqing Lin, Guanglai Gao, Derek F. Wong, Xiangdong Su. <em>(Oral)</em></li>
+  <li><span class="conf-badge conf-badge--acl">ACL 2026</span> <a href="https://scholar.google.com">Who Wrote This Line? Evaluating the Detection of LLM-Generated Classical Chinese Poetry</a>. Jiang Li*, <strong>Tian Lan*</strong>, Shanshan Wang, Dongxing Zhang, Dianqing Lin, Guanglai Gao, Derek F. Wong, Xiangdong Su <em>(Oral)</em></li>
 
-  <li><span class="conf-badge conf-badge--acl">ACL 2026</span> <a href="https://scholar.google.com">Exploring the Capability Boundaries of LLMs in Mastering of Chinese Chouxiang Language</a>. Dianqing Lin*, <strong>Tian Lan*</strong>, Jiali Zhu*, Jiang Li, Wei Chen, Xu Liu, Aruukhan, Xiangdong Su, Guanglai Gao.</li>
+  <li><span class="conf-badge conf-badge--acl">ACL 2026</span> <a href="https://scholar.google.com">Exploring the Capability Boundaries of LLMs in Mastering of Chinese Chouxiang Language</a>. Dianqing Lin*, <strong>Tian Lan*</strong>, Jiali Zhu*, Jiang Li, Wei Chen, Xu Liu, Aruukhan, Xiangdong Su, Guanglai Gao</li>
 </ul>
 
 
