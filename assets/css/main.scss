@@ -119,10 +119,20 @@ h1:before, .anchor:before {
     font-size: 1.45em;
     color: #3a4a5c;
     border-bottom: 1px solid #e8ecf0;
-    border-left: 4px solid $primary-color;
-    border-radius: 0 0 0 2px;
+    border-left: none;
+    border-radius: 0;
     padding-bottom: 0.35em;
     padding-left: 0.65em;
+    &::after {
+        content: '';
+        position: absolute;
+        left: 0;
+        top: 0.12em;
+        height: 0.85em;
+        width: 4px;
+        border-radius: 2px;
+        background: $primary-color;
+    }
 }
 
 /* ==========================================================================
