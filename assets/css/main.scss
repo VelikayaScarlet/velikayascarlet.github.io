@@ -107,3 +107,119 @@ h1:before, .anchor:before {
     background-color: #00369f;
     font-size: .8em;
 }
+
+/* ==========================================================================
+   Section Headings — left accent bar
+   ========================================================================== */
+
+.page__content h1 {
+    position: relative;
+    padding-left: 0.7em;
+    margin-top: 1.2em;
+    margin-bottom: 0.7em;
+    font-size: 1.45em;
+    color: #3a4a5c;
+    border-bottom: 1px solid #e8ecf0;
+    border-left: 4px solid $primary-color;
+    border-radius: 0 0 0 2px;
+    padding-bottom: 0.35em;
+    padding-left: 0.65em;
+}
+
+/* ==========================================================================
+   News list — date badge + content
+   ========================================================================== */
+
+.news-list {
+    list-style: none;
+    padding-left: 0;
+    margin: 1em 0;
+}
+.news-list li {
+    display: flex;
+    align-items: baseline;
+    gap: 0.8em;
+    margin-bottom: 0.55em;
+    padding: 0.45em 0;
+    border-bottom: 1px solid #f0f2f5;
+}
+.news-date {
+    flex-shrink: 0;
+    display: inline-block;
+    font-size: 0.82em;
+    font-weight: 600;
+    color: #fff;
+    background: $primary-color;
+    padding: 0.15em 0.6em;
+    border-radius: 3px;
+    min-width: 4.2em;
+    text-align: center;
+    white-space: nowrap;
+}
+.news-content {
+    line-height: 1.55;
+}
+
+/* ==========================================================================
+   Publication list — card style
+   ========================================================================== */
+
+.pub-list {
+    list-style: none;
+    padding-left: 0;
+    margin: 1em 0;
+}
+.pub-list li {
+    margin-bottom: 0.6em;
+    padding: 0.7em 0.9em;
+    background: #fafbfc;
+    border: 1px solid #eaecf0;
+    border-radius: 5px;
+    border-left: 3px solid $primary-color;
+    line-height: 1.6;
+    transition: border-color 0.15s, box-shadow 0.15s;
+    &:hover {
+        border-left-color: $accent-warm;
+        box-shadow: 0 1px 6px rgba(0,0,0,0.06);
+    }
+}
+
+/* Conference badge tag */
+.conf-badge {
+    display: inline-block;
+    font-size: 0.78em;
+    font-weight: 700;
+    letter-spacing: 0.02em;
+    color: #fff;
+    background: $primary-color;
+    padding: 0.12em 0.55em;
+    border-radius: 3px;
+    margin-right: 0.35em;
+    vertical-align: 1px;
+    white-space: nowrap;
+}
+.conf-badge--acl  { background: #8b1a1a; }   /* deep red */
+.conf-badge--emnlp { background: #b85c1a; }  /* rust */
+.conf-badge--icme  { background: #1a6b5a; }  /* teal */
+.conf-badge--other { background: #5b6e8a; }  /* slate */
+
+/* ==========================================================================
+   Honor list — subtle styling
+   ========================================================================== */
+
+.honor-list {
+    list-style: none;
+    padding-left: 0;
+}
+.honor-list li {
+    position: relative;
+    padding-left: 1.5em;
+    margin-bottom: 0.5em;
+    &::before {
+        content: '▸';
+        position: absolute;
+        left: 0;
+        color: $accent-warm;
+        font-weight: bold;
+    }
+}

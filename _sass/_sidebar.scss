@@ -12,12 +12,21 @@
 
   @include clearfix();
   margin-bottom: 1em;
+  padding: 1.2em 1em 0.8em 1em;
+  background: linear-gradient(135deg, #fafbfc 0%, #f5f7fa 100%);
+  border-radius: 6px;
+  border: 1px solid #e8ecf0;
 
   @include breakpoint($large) {
     @include span(2 of 12);
     opacity: 1;
     -webkit-transition: opacity 0.2s ease-in-out;
             transition: opacity 0.2s ease-in-out;
+    background: transparent;
+    border: none;
+    border-right: 3px solid #e8ecf0;
+    border-radius: 0;
+    padding: 0 1.2em 0 0;
 
     &:hover {
       opacity: 1;
@@ -97,8 +106,9 @@
     border-radius: 50%;
 
     @include breakpoint($large) {
-      padding: 5px;
-      border: 1px solid $border-color;
+      padding: 3px;
+      border: 2px solid $primary-color;
+      background: #fff;
     }
   }
 }
@@ -266,5 +276,27 @@
   }
   @include breakpoint($large) {
     display: none;
+  }
+}
+
+/* Sidebar social links hover — subtle left accent */
+.author__urls li {
+  padding-left: 0.4em;
+  border-left: 2px solid transparent;
+  @include breakpoint($large) {
+    transition: border-color 0.15s;
+    &:hover {
+      border-left-color: $primary-color;
+    }
+  }
+}
+
+.author__urls a {
+  @include breakpoint($large) {
+    transition: color 0.15s;
+    &:hover {
+      color: $primary-color !important;
+      text-decoration: none !important;
+    }
   }
 }
