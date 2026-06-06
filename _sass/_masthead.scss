@@ -7,6 +7,7 @@
   top: 0;
   background-color: white;
   border-bottom: 1px solid $border-color;
+  box-shadow: 0 1px 8px rgba(0, 0, 0, 0.04);
   -webkit-animation: intro 0.3s both;
           animation: intro 0.3s both;
   -webkit-animation-delay: 0.15s;
@@ -58,6 +59,12 @@
   &--lg {
     padding-right: 2em;
     font-weight: 700;
+  }
+
+  &--active a {
+    color: $primary-color;
+    border-bottom: 2px solid $primary-color;
+    padding-bottom: 2px;
   }
 }
 

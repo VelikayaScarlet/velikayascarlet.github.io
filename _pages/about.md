@@ -19,7 +19,7 @@ redirect_from:
 
 I am currently a master's student at the <a href="https://ccs.imu.edu.cn/">College of Computer Science</a>, Inner Mongolia University. Prior to this, I earned my bachelor's degree in Computer Science from Zhengzhou University of Light Industry in 2023. 
 
-In October 2026, I will start my research at the <a href="https://nlp.ist.i.kyoto-u.ac.jp/EN/">Language Media Lab</a> of Kyoto University, under the supervision of <a href="https:/murawaki.org">Yugo Murawaki</a>.
+In October 2026, I will start my research at the <a href="https://nlp.ist.i.kyoto-u.ac.jp/EN/">Language Media Lab</a> of Kyoto University, under the supervision of <a href="https://murawaki.org">Yugo Murawaki</a>.
 
 <!-- I am currently a Doctoral Student at the <a href="https://nlp.ist.i.kyoto-u.ac.jp/EN/">Language Media Lab (Former Kurohashi's Lab)</a>, Kyoto University, working under te supervision of <a href="murawaki.org">Murawaki Yugo</a>. Prior to this, I earned my master's degree at Inner Mongolia University and bachelor's degree at Zhengzhou University of Light Industry. -->
 
@@ -85,7 +85,7 @@ For Full Publications, see my Google Scholar.
 <ul class="edu-list">
   <li>
     <span class="edu-logo"><img src="/images/kyotou.png" alt="Kyoto University"></span>
-    <span class="edu-info"><strong>Ph.D. Student</strong>, Kyoto University <span>(2026.10 – 2029.10 expected)</span><br><span class="edu-meta">Advisor: <a href="https:/murawaki.org">Assoc. Prof. Yugo Murawaki</a></span></span>
+    <span class="edu-info"><strong>Ph.D. Student</strong>, Kyoto University <span>(2026.10 – 2029.10 expected)</span><br><span class="edu-meta">Advisor: <a href="https://murawaki.org">Assoc. Prof. Yugo Murawaki</a></span></span>
   </li>
   <li>
     <span class="edu-logo"><img src="/images/imu.png" alt="Inner Mongolia University"></span>

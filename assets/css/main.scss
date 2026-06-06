@@ -138,6 +138,15 @@ h1:before, .anchor:before {
     }
 }
 
+.page__content h2 {
+    padding-left: 0.65em;
+    border-left: 3px solid $accent-warm;
+    margin-top: 1.6em;
+    margin-bottom: 0.6em;
+    font-size: 1.2em;
+    color: #4a3a2a;
+}
+
 /* ==========================================================================
    News list — date badge + content
    ========================================================================== */
@@ -192,7 +201,8 @@ h1:before, .anchor:before {
     transition: border-color 0.15s, box-shadow 0.15s;
     &:hover {
         border-left-color: $accent-warm;
-        box-shadow: 0 1px 6px rgba(0,0,0,0.06);
+        box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+        transform: translateX(2px);
     }
 }
 
@@ -284,4 +294,128 @@ h1:before, .anchor:before {
     font-size: 0.88em;
     color: #888;
     margin-top: 0.15em;
+}
+
+/* ==========================================================================
+   Dark mode (prefers-color-scheme: dark)
+   ========================================================================== */
+
+@media (prefers-color-scheme: dark) {
+  body {
+    background: #1a1d22;
+    color: #c9cdd4;
+  }
+
+  /* -- masthead -- */
+  .masthead {
+    background-color: #242730;
+    border-bottom-color: #2d3139;
+    box-shadow: 0 1px 8px rgba(0, 0, 0, 0.3);
+  }
+  .masthead__menu-item a {
+    color: #a8adb5;
+  }
+  .masthead__menu-item--active a {
+    color: #8aafce;
+    border-bottom-color: #8aafce;
+  }
+  .masthead__menu-item a:hover {
+    color: #c9cdd4;
+  }
+
+  /* -- sidebar -- */
+  .sidebar {
+    background: transparent;
+    border-color: #2d3139;
+  }
+  .sidebar .author__name,
+  .sidebar .author__bio {
+    color: #dde1e8;
+  }
+  .author__urls a {
+    color: #a8adb5;
+  }
+  .author__urls a:hover {
+    color: #8aafce !important;
+  }
+  .author__urls li {
+    border-left-color: transparent;
+  }
+  .author__urls li:hover {
+    border-left-color: #8aafce;
+  }
+  .author__avatar img {
+    border-color: #3d424a;
+  }
+  .profile_box {
+    background: #242730;
+    border-color: #2d3139;
+  }
+
+  /* -- content area -- */
+  .page__content {
+    color: #c9cdd4;
+  }
+  .page__content h1 {
+    color: #dde1e8;
+    border-bottom-color: #2d3139;
+  }
+  .page__content h2 {
+    color: #cfbc99;
+  }
+  .page__content a {
+    color: #8aafce;
+  }
+  .page__content a:hover {
+    color: #a8c8e4;
+  }
+
+  /* -- publication cards -- */
+  .pub-list li {
+    background: #242730;
+    border-color: #2d3139;
+    border-left-color: #8aafce;
+  }
+  .pub-list li:hover {
+    border-left-color: #c8a97e;
+    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.3);
+  }
+  .conf-badge {
+    color: #fff;
+  }
+
+  /* -- news list -- */
+  .news-list li {
+    border-bottom-color: #2d3139;
+  }
+  .news-list .news-date {
+    color: #fff;
+  }
+
+  /* -- education -- */
+  .edu-info .edu-meta {
+    color: #889;
+  }
+
+  /* -- honor list -- */
+  .honor-list li::before {
+    color: #c8a97e;
+  }
+
+  /* -- hr / borders -- */
+  hr {
+    border-top-color: #2d3139;
+  }
+
+  /* -- general card-like backgrounds -- */
+  div[style*="background"] {
+    background: #242730 !important;
+  }
+
+  /* -- navicon (hamburger) -- */
+  .navicon,
+  .navicon::before,
+  .navicon::after {
+    background: #a8adb5;
+  }
 }

@@ -6,7 +6,9 @@
         <ul class="visible-links">
           <li class="masthead__menu-item masthead__menu-item--lg masthead__menu-home-item"><a href="/">Homepage</a></li>
           {% for link in site.data.navigation.main %}
-            <li class="masthead__menu-item"><a href="{{ domain }}{{ link.url }}">{{ link.title }}</a></li>
+            {% assign link_url = link.url | remove: '/' %}
+            {% assign page_url = page.url | remove: '/' %}
+            <li class="masthead__menu-item{% if link_url == page_url %} masthead__menu-item--active{% endif %}"><a href="{{ link.url }}">{{ link.title }}</a></li>
           {% endfor %}
         </ul>
         <ul class="hidden-links hidden"></ul>
