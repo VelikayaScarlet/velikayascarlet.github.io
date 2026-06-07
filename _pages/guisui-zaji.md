@@ -60,7 +60,7 @@ author_profile: true
 }
 </style>
 
-{% assign preface_page = site.pages | where: "url", "/creations/essays/序言/" | first %}
+{% assign preface_page = site.pages | where: "url", "/creations/essays/归绥杂记/序言/" | first %}
 <div class="preface-text">
 {{ preface_page.content | markdownify }}
 </div>
