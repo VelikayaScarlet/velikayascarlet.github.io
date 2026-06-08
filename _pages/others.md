@@ -5,8 +5,8 @@ author_profile: true
 ---
 
 <style>
-/* 柔和 sans-serif：PingFang (Mac) > Microsoft YaHei (Win) > 系统兜底 */
-.page__content {
+/* 柔和 sans-serif */
+.page {
   font-family: "PingFang SC", "Microsoft YaHei", "Hiragino Sans GB", sans-serif;
 }
 
@@ -29,7 +29,6 @@ author_profile: true
   padding: 0.85em 0.4em;
   text-decoration: none;
   color: #4a3728;
-  font-family: Georgia, "Songti SC", "STSong", serif;
   font-size: 1.05em;
   transition: all 0.2s;
 }
@@ -55,7 +54,6 @@ author_profile: true
 .friends-empty {
   color: #bbb;
   font-style: italic;
-  font-family: Georgia, "Songti SC", "STSong", serif;
   padding: 1em 0;
 }
 </style>

@@ -6,7 +6,7 @@ author_profile: true
 
 <style>
 /* 柔和 sans-serif */
-.page__content {
+.page {
   font-family: "PingFang SC", "Microsoft YaHei", "Hiragino Sans GB", sans-serif;
 }
 
