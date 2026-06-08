@@ -48,7 +48,7 @@ author_profile: true
   margin: 2em 0;
 }
 
-.collection-card {
+a.collection-card {
   display: block;
   text-decoration: none;
   color: inherit;
