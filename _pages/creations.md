@@ -163,6 +163,18 @@ author_profile: true
     <div class="collection-name">玻璃蒂克</div>
     <span class="collection-type">文集</span>
   </a>
+
+  <a class="collection-card" href="/creations/essays/别利语/别利语简述%5B18.7.A2%5D.pdf" target="_blank">
+    <div class="collection-icon">📖</div>
+    <div class="collection-name">别利语简述</div>
+    <span class="collection-type">语言</span>
+  </a>
+
+  <a class="collection-card" href="/creations/cmbpre/">
+    <div class="collection-icon">🎮</div>
+    <div class="collection-name">联合军前传</div>
+    <span class="collection-type">小说</span>
+  </a>
 </div>
 
 </div><!-- /文章 -->
