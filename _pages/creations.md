@@ -26,6 +26,7 @@ author_profile: true
   color: #6b4f2a;
   border-radius: 3px;
   cursor: pointer;
+  text-decoration: none;
   transition: all 0.15s;
 }
 .creations-tabs button:hover {
