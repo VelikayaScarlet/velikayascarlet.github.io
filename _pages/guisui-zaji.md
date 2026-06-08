@@ -110,3 +110,7 @@ author_profile: true
   </ul>
 </div>
 {% endif %}
+
+<div style="margin-top: 3em; padding-top: 1.5em; border-top: 1px solid #e8dccf; text-align: center;">
+  <a href="{{ '/creations/political/' | relative_url }}" style="font-family: Georgia, 'Songti SC', 'STSong', serif; font-size: 0.95em; color: #a08060; text-decoration: none; transition: color 0.15s;">🏛️ 玻璃蒂克 · 政治随笔</a>
+</div>

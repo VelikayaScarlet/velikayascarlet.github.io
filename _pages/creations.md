@@ -152,6 +152,12 @@ author_profile: true
     <div class="collection-name">归绥杂记</div>
     <span class="collection-type">文集</span>
   </a>
+
+  <a class="collection-card" href="/creations/political/">
+    <div class="collection-icon">🏛️</div>
+    <div class="collection-name">玻璃蒂克</div>
+    <span class="collection-type">文集</span>
+  </a>
 </div>
 
 </div><!-- /文章 -->
