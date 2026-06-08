@@ -175,6 +175,12 @@ author_profile: true
     <div class="collection-name">联合军前传</div>
     <span class="collection-type">小说</span>
   </a>
+
+  <a class="collection-card" href="/creations/essays/刘彬回忆录之我的大学/%E3%80%8A%E5%88%98%E5%BD%AC%E5%9B%9E%E5%BF%86%E5%BD%95%E2%80%94%E2%80%94%E6%88%91%E7%9A%84%E5%A4%A7%E5%AD%A6%E3%80%8B.pdf" target="_blank">
+    <div class="collection-icon">📝</div>
+    <div class="collection-name">刘彬回忆录——我的大学</div>
+    <span class="collection-type">回忆录</span>
+  </a>
 </div>
 
 </div><!-- /文章 -->
