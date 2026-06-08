@@ -5,6 +5,11 @@ author_profile: true
 ---
 
 <style>
+/* 柔和 sans-serif：PingFang (Mac) > Microsoft YaHei (Win) > 系统兜底 */
+.page__content {
+  font-family: "PingFang SC", "Microsoft YaHei", "Hiragino Sans GB", sans-serif;
+}
+
 .friends-list {
   list-style: none;
   padding: 0;

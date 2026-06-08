@@ -112,3 +112,5 @@ Workshop Reviewer: ACL StereACult
 I'm a Bilibili uploader (<a href="https://space.bilibili.com/23297003">Velikaya</a>), specializing in TNO-style superevent videos. I’m also passionate about language learning/constructing. 
 
 In moments shaped by life’s struggles—for poetry thrives on hardship—I craft classical Chinese poems.
+
+<hr style="margin-top:2em; border:none; border-top:1px solid #e8dccf;">

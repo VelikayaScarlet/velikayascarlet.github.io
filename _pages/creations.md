@@ -5,6 +5,11 @@ author_profile: true
 ---
 
 <style>
+/* 柔和 sans-serif */
+.page__content {
+  font-family: "PingFang SC", "Microsoft YaHei", "Hiragino Sans GB", sans-serif;
+}
+
 /* ===== Tab 切换 ===== */
 .creations-tabs {
   display: flex;
