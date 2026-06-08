@@ -4,6 +4,8 @@ title: "玻璃蒂克"
 author_profile: true
 ---
 
+{% include password-gate.html %}
+
 <style>
 /* 横条式章节列表 */
 .chapter-list {
