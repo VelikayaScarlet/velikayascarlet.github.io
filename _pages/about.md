@@ -54,7 +54,7 @@ My research interests include:
 
 # 📝 Selected Publications 
 
-For Full Publications, see my Google Scholar.
+For Full Publications, see my <a href='https://scholar.google.com/citations?user=IUd0Hj8AAAAJ'>Google Scholar</a> <span id='total_cit'></span>.
 
 <ul class="pub-list">
   <li><span class="conf-badge conf-badge--acl">ACL 2025</span> <a href="https://aclanthology.org/2025.findings-acl.313/">McBE: A Multi-task Chinese Bias Evaluation Benchmark for Large Language Models</a>. <strong>Tian Lan</strong>, Xiangdong Su, Xu Liu, Ruirui Wang, Ke Chang, Jiang Li, Guanglai Gao</li>
