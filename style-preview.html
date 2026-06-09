@@ -1,0 +1,789 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>风格预览 — Tian Lan's Homepage</title>
+<style>
+/* ===== RESET ===== */
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+
+/* ===== SWITCHER BAR ===== */
+#style-switcher {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 9999;
+  display: flex; align-items: center; justify-content: center; gap: 8px;
+  padding: 10px 16px;
+  background: rgba(0,0,0,.82); backdrop-filter: blur(8px);
+  flex-wrap: wrap;
+}
+#style-switcher button {
+  padding: 6px 18px; border: 1px solid #555; border-radius: 20px;
+  background: transparent; color: #ccc; cursor: pointer;
+  font-size: 13px; font-family: inherit; transition: all .2s;
+}
+#style-switcher button:hover { border-color: #aaa; color: #fff; }
+#style-switcher button.active { background: #fff; color: #000; border-color: #fff; font-weight: 600; }
+#style-switcher .sw-label { color: #888; font-size: 12px; margin-right: 4px; }
+
+/* ===== LAYOUT ===== */
+body { padding-top: 54px; transition: background .4s, color .4s; }
+.wrapper { display: flex; max-width: 1100px; margin: 0 auto; padding: 32px 24px 64px; gap: 40px; }
+.sidebar { width: 240px; flex-shrink: 0; transition: all .4s; }
+.main { flex: 1; min-width: 0; transition: all .4s; }
+
+/* masthead */
+.masthead { border-bottom: 1px solid; padding: 12px 24px; display: flex; gap: 20px; font-size: 14px; transition: all .4s; }
+.masthead a { text-decoration: none; transition: color .4s; }
+.masthead .home-link { font-weight: 700; }
+
+/* sidebar */
+.profile-box { text-align: center; }
+.profile-box .avatar { width: 120px; height: 120px; border-radius: 50%; object-fit: cover; margin-bottom: 12px; transition: all .4s; }
+.profile-box .name { font-size: 1.3em; font-weight: 700; margin-bottom: 4px; }
+.profile-box .bio { font-size: .82em; margin-bottom: 12px; }
+.profile-box .social-links { list-style: none; font-size: .82em; line-height: 1.9; }
+.profile-box .social-links a { text-decoration: none; transition: color .2s; }
+.profile-box .motto { font-size: .78em; margin-bottom: 10px; font-style: italic; }
+
+/* main content */
+h1 { font-size: 1.6em; margin-bottom: 14px; font-weight: 700; }
+h2 { font-size: 1.2em; margin: 28px 0 10px; padding-bottom: 4px; border-bottom: 1px solid; font-weight: 700; }
+p, li { font-size: .92em; line-height: 1.75; margin-bottom: 8px; }
+a { transition: color .2s; }
+
+/* research box */
+.research-box { padding: 14px 18px; border-left: 3px solid; border-radius: 0 4px 4px 0; margin: 16px 0; font-size: .9em; line-height: 1.85; }
+.research-box strong { display: block; margin-bottom: 6px; font-size: .95em; }
+
+/* news */
+.news-list { list-style: none; }
+.news-date { font-weight: 600; margin-right: 8px; font-size: .82em; }
+
+/* pubs */
+.pub-list { list-style: none; }
+.pub-list li { margin-bottom: 10px; }
+.conf-badge { display: inline-block; padding: 1px 8px; border-radius: 3px; font-size: .72em; font-weight: 700; margin-right: 6px; vertical-align: 1px; }
+
+/* education */
+.edu-list { list-style: none; }
+.edu-list li { display: flex; align-items: flex-start; gap: 12px; margin-bottom: 14px; }
+.edu-list img { width: 44px; height: 44px; border-radius: 6px; object-fit: contain; }
+.edu-meta { font-size: .82em; }
+
+/* footer divider */
+hr { border: none; border-top: 1px solid; margin-top: 28px; }
+
+/* ===== THEME 0: 当前风格 (warm academic, default) ===== */
+.theme-current {
+  --bg: #fff;
+  --text: #494e52;
+  --text-heading: #3a3a3a;
+  --muted: #888;
+  --border: #e8dccf;
+  --border-light: #ede4d5;
+  --accent: #c8a97e;
+  --accent-strong: #a08060;
+  --link: #2c5da8;
+  --link-hover: #1a3d6e;
+  --badge-bg: #e8f0f8;
+  --badge-text: #2c5da8;
+  --research-bg: #f8f9fb;
+  --research-border: #5b7a9a;
+  --masthead-bg: #fff;
+  --masthead-link: #494e52;
+  --masthead-link-hover: #5b7a9a;
+  --tagline-color: #a08060;
+  font-family: "Inter","PingFang SC","Microsoft YaHei",sans-serif;
+}
+.theme-current .sidebar { font-family: Georgia,"Songti SC","STSong",serif; }
+.theme-current .social-links a { color: #2c5da8; }
+.theme-current .social-links a:hover { color: #1a3d6e; }
+
+/* ===== THEME 1: 墨韵 Ink & Paper ===== */
+.theme-ink {
+  --bg: #faf7f0;
+  --text: #2b2118;
+  --text-heading: #1a1008;
+  --muted: #9b8c7c;
+  --border: #d4c8b8;
+  --border-light: #e5dbce;
+  --accent: #c83e2a;
+  --accent-strong: #a02e1c;
+  --link: #8b2500;
+  --link-hover: #5a1700;
+  --badge-bg: #f0e8db;
+  --badge-text: #8b2500;
+  --research-bg: #f7f2e8;
+  --research-border: #c83e2a;
+  --masthead-bg: #faf7f0;
+  --masthead-link: #2b2118;
+  --masthead-link-hover: #c83e2a;
+  --tagline-color: #c83e2a;
+  font-family: "Noto Serif CJK SC","Songti SC","STSong",Georgia,serif;
+}
+.theme-ink .avatar { border: 2px solid #c83e2a; }
+.theme-ink h2 { border-bottom-style: double; }
+.theme-ink .social-links a { color: #2b2118; }
+.theme-ink .social-links a:hover { color: #c83e2a; }
+
+/* ===== THEME 2: 暗色学术 Dark Academia ===== */
+.theme-dark {
+  --bg: #1e1814;
+  --text: #d4c8b8;
+  --text-heading: #e8dccf;
+  --muted: #8a7a68;
+  --border: #3a2e22;
+  --border-light: #2e241c;
+  --accent: #c8a050;
+  --accent-strong: #e0c070;
+  --link: #c8a050;
+  --link-hover: #e0c070;
+  --badge-bg: #2e241c;
+  --badge-text: #c8a050;
+  --research-bg: #241c15;
+  --research-border: #c8a050;
+  --masthead-bg: #1e1814;
+  --masthead-link: #d4c8b8;
+  --masthead-link-hover: #c8a050;
+  --tagline-color: #c8a050;
+  font-family: Georgia,"Songti SC","STSong",serif;
+}
+.theme-dark .avatar { border: 2px solid #c8a050; }
+.theme-dark h2 { border-bottom-color: #3a2e22; }
+.theme-dark .social-links a { color: #d4c8b8; }
+.theme-dark .social-links a:hover { color: #c8a050; }
+
+/* ===== THEME 3: 极简日式 Japanese Minimal ===== */
+.theme-minimal {
+  --bg: #fcfcfc;
+  --text: #4a4a4a;
+  --text-heading: #2a2a2a;
+  --muted: #b0b0b0;
+  --border: #e0e0e0;
+  --border-light: #eee;
+  --accent: #888;
+  --accent-strong: #555;
+  --link: #555;
+  --link-hover: #222;
+  --badge-bg: #f5f5f5;
+  --badge-text: #555;
+  --research-bg: #fafafa;
+  --research-border: #ddd;
+  --masthead-bg: #fcfcfc;
+  --masthead-link: #4a4a4a;
+  --masthead-link-hover: #222;
+  --tagline-color: #999;
+  font-family: "Hiragino Sans GB","PingFang SC","Microsoft YaHei",sans-serif;
+}
+.theme-minimal .sidebar { font-size: .88em; }
+.theme-minimal .avatar { border-radius: 4px; border: none; filter: grayscale(20%); }
+.theme-minimal h2 { font-weight: 400; border-bottom-width: 1px; letter-spacing: .04em; }
+.theme-minimal .social-links a { color: #888; }
+.theme-minimal .social-links a:hover { color: #333; }
+
+/* ===== THEME 4: TNO · 冷战二极管 ===== */
+.theme-tno {
+  --bg: #0c0f12;
+  --text: #b0bcc6;
+  --text-heading: #ccd8e2;
+  --muted: #5a6670;
+  --border: #1a2430;
+  --border-light: #141e28;
+  --accent: #2ea8c0;
+  --accent-strong: #4ed0e0;
+  --accent-red: #c84848;
+  --link: #2ea8c0;
+  --link-hover: #4ed0e0;
+  --badge-bg: #111820;
+  --badge-text: #2ea8c0;
+  --research-bg: #0f141a;
+  --research-border: #2ea8c0;
+  --masthead-bg: #0c0f12;
+  --masthead-link: #b0bcc6;
+  --masthead-link-hover: #2ea8c0;
+  --tagline-color: #2ea8c0;
+  font-family: "Rajdhani","Orbitron","Segoe UI","PingFang SC","Microsoft YaHei",sans-serif;
+  letter-spacing: .02em;
+}
+/* CRT scanline overlay */
+body.theme-tno::after {
+  content: ''; position: fixed; inset: 0; z-index: 99998; pointer-events: none;
+  background: repeating-linear-gradient(0deg, rgba(0,0,0,0) 0px, rgba(0,0,0,.03) 1px, rgba(0,0,0,0) 2px);
+}
+/* subtle vignette */
+body.theme-tno::before {
+  content: ''; position: fixed; inset: 0; z-index: 99997; pointer-events: none;
+  background: radial-gradient(ellipse at center, transparent 65%, rgba(0,0,0,.45) 100%);
+}
+.theme-tno .masthead {
+  border-bottom: 1px solid #1e2a36;
+  text-transform: uppercase; letter-spacing: .08em; font-size: 13px;
+  background: linear-gradient(180deg, #11161c 0%, #0c0f12 100%);
+}
+.theme-tno .masthead .home-link { color: #ccd8e2; }
+/* geometric corner accent on masthead */
+.theme-tno .masthead { position: relative; }
+.theme-tno .masthead::after {
+  content: ''; position: absolute; bottom: -1px; left: 0; width: 100%; height: 1px;
+  background: linear-gradient(90deg, #2ea8c0, transparent 20%, transparent 80%, #2ea8c0);
+}
+.theme-tno .avatar { border-radius: 2px; border: 1px solid #1e2a36; filter: grayscale(40%) brightness(.9); }
+.theme-tno h1 { font-weight: 400; letter-spacing: .04em; }
+.theme-tno h2 {
+  font-weight: 400; border-bottom: 1px solid #1a2430; letter-spacing: .06em;
+  text-transform: uppercase; font-size: 1em;
+  padding-bottom: 8px; margin-bottom: 16px;
+}
+.theme-tno .research-box { border-left: 2px solid var(--research-border); border-radius: 0; }
+.theme-tno .conf-badge { border-radius: 1px; text-transform: uppercase; letter-spacing: .06em; }
+.theme-tno .news-date { color: #2ea8c0; font-family: "Rajdhani","Orbitron",sans-serif; letter-spacing: .04em; }
+.theme-tno .social-links a { color: #8898a6; font-family: inherit; }
+.theme-tno .social-links a:hover { color: #2ea8c0; }
+.theme-tno .social-links { line-height: 2.2; }
+.theme-tno strong { color: #ccd8e2; font-weight: 500; }
+.theme-tno a em { color: #c84848; }
+
+/* ===== THEME 5: 蒸汽波 Vaporwave ===== */
+.theme-vapor {
+  --bg: #1a0a2e;
+  --text: #d4bcdc;
+  --text-heading: #f0d0f8;
+  --muted: #8a6a9a;
+  --border: #3a1a5e;
+  --border-light: #2a1050;
+  --accent: #f858b0;
+  --accent-strong: #ff80d0;
+  --accent-cyan: #40e0d0;
+  --link: #40e0d0;
+  --link-hover: #80f0e8;
+  --badge-bg: #2a1050;
+  --badge-text: #f858b0;
+  --research-bg: #1e0e38;
+  --research-border: #f858b0;
+  --masthead-bg: #1a0a2e;
+  --masthead-link: #d4bcdc;
+  --masthead-link-hover: #f858b0;
+  --tagline-color: #40e0d0;
+  font-family: "Comic Sans MS","KaiTi","STKaiti","PingFang SC",cursive;
+}
+/* neon glow on key elements */
+body.theme-vapor::before {
+  content: ''; position: fixed; inset: 0; z-index: 99997; pointer-events: none;
+  background: linear-gradient(180deg, rgba(248,88,176,.04) 0%, rgba(64,224,208,.04) 50%, rgba(128,0,255,.04) 100%);
+}
+.theme-vapor .masthead {
+  background: linear-gradient(90deg, #f858b0, #40e0d0, #8040ff);
+  border-bottom: none; font-weight: 700; letter-spacing: .05em;
+}
+.theme-vapor .masthead a { color: #fff; text-shadow: 0 0 6px rgba(255,255,255,.5); }
+.theme-vapor .masthead a:hover { color: #fff; text-shadow: 0 0 12px rgba(255,255,255,.9); }
+.theme-vapor .avatar { border-radius: 2px; border: 2px solid #f858b0; box-shadow: 0 0 16px rgba(248,88,176,.4); }
+.theme-vapor h1 {
+  background: linear-gradient(90deg, #f858b0, #40e0d0);
+  -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+  background-clip: text; font-weight: 700; font-size: 1.8em;
+}
+.theme-vapor h2 {
+  border-bottom: 2px solid; border-image: linear-gradient(90deg, #f858b0, #40e0d0) 1;
+  color: #f0d0f8; font-weight: 400; letter-spacing: .06em; font-style: italic;
+}
+.theme-vapor .research-box {
+  border-left: 3px solid #f858b0;
+  box-shadow: 0 0 20px rgba(248,88,176,.1);
+}
+.theme-vapor .news-date { color: #f858b0; font-weight: 700; }
+.theme-vapor .conf-badge { border-radius: 0; letter-spacing: .06em; font-style: italic; }
+.theme-vapor .social-links a { color: #c0a0d0; }
+.theme-vapor .social-links a:hover { color: #f858b0; text-shadow: 0 0 8px rgba(248,88,176,.6); }
+.theme-vapor strong { color: #f0d0f8; }
+.theme-vapor .motto { color: #40e0d0; text-shadow: 0 0 10px rgba(64,224,208,.5); }
+
+/* ===== THEME 6: Pornhub 风格 ===== */
+.theme-ph {
+  --bg: #0d0d0d;
+  --text: #e0e0e0;
+  --text-heading: #fff;
+  --muted: #999;
+  --border: #333;
+  --border-light: #222;
+  --accent: #f5971a;
+  --accent-strong: #ffb84d;
+  --link: #f5971a;
+  --link-hover: #ffb84d;
+  --badge-bg: #1a1a1a;
+  --badge-text: #f5971a;
+  --research-bg: #141414;
+  --research-border: #f5971a;
+  --masthead-bg: #1a1a1a;
+  --masthead-link: #e0e0e0;
+  --masthead-link-hover: #f5971a;
+  --tagline-color: #f5971a;
+  font-family: Arial,Helvetica,"PingFang SC","Microsoft YaHei",sans-serif;
+}
+.theme-ph .masthead {
+  background: #000; border-bottom: 2px solid #f5971a; font-weight: 700;
+  text-transform: uppercase; letter-spacing: .04em; font-size: 13px;
+}
+.theme-ph .masthead .home-link { color: #fff; }
+.theme-ph .avatar { border-radius: 4px; border: 2px solid #333; }
+.theme-ph h1 { font-weight: 900; text-transform: uppercase; letter-spacing: .02em; }
+.theme-ph h2 {
+  font-weight: 700; border-bottom: 2px solid #f5971a; padding-bottom: 6px;
+  text-transform: uppercase; font-size: 1em; letter-spacing: .04em;
+}
+.theme-ph .research-box { border-left: 4px solid #f5971a; border-radius: 0; }
+.theme-ph .conf-badge { border-radius: 2px; font-weight: 700; text-transform: uppercase; }
+.theme-ph .news-date { color: #f5971a; font-weight: 700; }
+.theme-ph .social-links a { color: #999; }
+.theme-ph .social-links a:hover { color: #f5971a; }
+.theme-ph strong { color: #fff; }
+
+/* ===== THEME 7: 控制台 Terminal ===== */
+.theme-console {
+  --bg: #0c0c0c;
+  --text: #33ff33;
+  --text-heading: #66ff66;
+  --muted: #1a8c1a;
+  --border: #1a3a1a;
+  --border-light: #0f200f;
+  --accent: #00ff00;
+  --accent-strong: #66ff66;
+  --link: #00cc00;
+  --link-hover: #66ff66;
+  --badge-bg: #0f200f;
+  --badge-text: #33ff33;
+  --research-bg: #0a150a;
+  --research-border: #33ff33;
+  --masthead-bg: #0c0c0c;
+  --masthead-link: #33ff33;
+  --masthead-link-hover: #66ff66;
+  --tagline-color: #00cc00;
+  font-family: "Consolas","Courier New","Source Code Pro",monospace;
+}
+.theme-console .masthead {
+  border-bottom: 1px solid #1a3a1a; font-size: 13px;
+  background: #080808;
+}
+.theme-console .masthead a::before { content: '$ '; color: #1a8c1a; }
+.theme-console .masthead .home-link::before { content: '~ '; color: #00cc00; }
+.theme-console .avatar { border-radius: 0; border: 1px solid #1a8c1a; filter: grayscale(100%) brightness(.7); }
+.theme-console h1::before { content: '> '; color: #1a8c1a; }
+.theme-console h2 { border-bottom: 1px dashed #1a3a1a; color: #66ff66; }
+.theme-console h2::before { content: '# '; color: #1a8c1a; }
+.theme-console .research-box { border-left: 2px solid #33ff33; border-radius: 0; }
+.theme-console .conf-badge { border-radius: 0; text-transform: none; }
+.theme-console .social-links a { color: #33ff33; }
+.theme-console .social-links a:hover { color: #66ff66; text-decoration: underline; }
+.theme-console strong { color: #66ff66; }
+.theme-console a { text-decoration: underline; }
+.theme-console a:hover { background: #1a3a1a; }
+/* blink cursor on h1 */
+.theme-console h1::after { content: '█'; color: #33ff33; animation: blink 1s step-end infinite; }
+@keyframes blink { 50% { opacity: 0; } }
+
+/* ===== THEME 8: 赛博朋克 Cyberpunk ===== */
+.theme-cyber {
+  --bg: #0a0a0a;
+  --text: #e0e0e0;
+  --text-heading: #fff;
+  --muted: #ff00ff;
+  --border: #ff00ff;
+  --border-light: #330033;
+  --accent: #ff006e;
+  --accent-strong: #ff3399;
+  --accent-cyan: #00f0ff;
+  --link: #00f0ff;
+  --link-hover: #80f8ff;
+  --badge-bg: #1a001a;
+  --badge-text: #ff006e;
+  --research-bg: #0d0d0d;
+  --research-border: #ff006e;
+  --masthead-bg: #000;
+  --masthead-link: #e0e0e0;
+  --masthead-link-hover: #ff006e;
+  --tagline-color: #ff006e;
+  font-family: "Rajdhani","Orbitron","PingFang SC",sans-serif;
+}
+body.theme-cyber::before {
+  content: ''; position: fixed; inset: 0; z-index: 99997; pointer-events: none;
+  background:
+    linear-gradient(0deg, rgba(255,0,110,.03) 0%, transparent 50%, rgba(0,240,255,.03) 100%);
+}
+.theme-cyber .masthead {
+  background: #000; border-bottom: 2px solid #ff006e;
+  box-shadow: 0 0 20px rgba(255,0,110,.3); text-transform: uppercase; letter-spacing: .08em;
+}
+.theme-cyber .masthead a { color: #fff; }
+.theme-cyber .masthead a:hover { color: #ff006e; text-shadow: 0 0 10px #ff006e; }
+.theme-cyber .avatar { border-radius: 0; border: 2px solid #00f0ff; box-shadow: 0 0 20px rgba(0,240,255,.4); }
+.theme-cyber h1 {
+  color: #fff; text-shadow: 0 0 10px #ff006e, 0 0 30px #ff006e;
+  text-transform: uppercase; letter-spacing: .1em; font-weight: 700;
+}
+.theme-cyber h2 {
+  border-bottom: 2px solid #ff006e; color: #00f0ff; text-transform: uppercase;
+  letter-spacing: .1em; text-shadow: 0 0 8px rgba(0,240,255,.5);
+}
+.theme-cyber .research-box { border-left: 3px solid #ff006e; box-shadow: 0 0 15px rgba(255,0,110,.15); }
+.theme-cyber .news-date { color: #ff006e; text-shadow: 0 0 6px rgba(255,0,110,.5); }
+.theme-cyber .conf-badge { border-radius: 0; text-transform: uppercase; letter-spacing: .06em; }
+.theme-cyber .social-links a { color: #aaa; }
+.theme-cyber .social-links a:hover { color: #00f0ff; text-shadow: 0 0 10px #00f0ff; }
+.theme-cyber strong { color: #ff006e; }
+
+/* ===== THEME 9: 孟菲斯 Memphis ===== */
+.theme-memphis {
+  --bg: #faf5f0;
+  --text: #2a2a2a;
+  --text-heading: #111;
+  --muted: #888;
+  --border: #111;
+  --border-light: #ddd;
+  --accent: #ff3366;
+  --accent-strong: #ff6688;
+  --link: #ff3366;
+  --link-hover: #cc0033;
+  --badge-bg: #ffe0e8;
+  --badge-text: #ff3366;
+  --research-bg: #fff;
+  --research-border: #00cccc;
+  --masthead-bg: #ffed4a;
+  --masthead-link: #111;
+  --masthead-link-hover: #ff3366;
+  --tagline-color: #ff3366;
+  font-family: "Comic Sans MS","KaiTi","STKaiti","PingFang SC",cursive;
+}
+.theme-memphis .masthead {
+  background: #ffed4a; border-bottom: 4px solid #111; font-weight: 900;
+  font-size: 14px; letter-spacing: -.02em;
+}
+.theme-memphis .masthead a { color: #111; }
+.theme-memphis .masthead a:hover { color: #ff3366; }
+/* geometric shapes */
+.theme-memphis body {
+  background-image:
+    radial-gradient(circle at 90% 10%, rgba(255,51,102,.15) 0%, transparent 30%),
+    radial-gradient(circle at 10% 90%, rgba(0,204,204,.15) 0%, transparent 30%);
+}
+.theme-memphis .avatar { border-radius: 50%; border: 4px solid #111; box-shadow: 6px 6px 0 #00cccc; }
+.theme-memphis h1 { font-weight: 900; color: #111; }
+.theme-memphis h2 {
+  font-weight: 900; border-bottom: 4px solid #111; display: inline-block; padding-bottom: 4px;
+}
+.theme-memphis .research-box {
+  border: 3px solid #111; border-radius: 0; box-shadow: 6px 6px 0 #ffed4a;
+  background: #fff;
+}
+.theme-memphis .conf-badge { border-radius: 0; border: 2px solid #111; font-weight: 700; }
+.theme-memphis .news-date { background: #ff3366; color: #fff; padding: 2px 8px; }
+.theme-memphis .social-links a { color: #111; font-weight: 600; }
+.theme-memphis .social-links a:hover { color: #ff3366; text-decoration: line-through; }
+
+/* ===== THEME 10: Y2K 炫彩 ===== */
+.theme-y2k {
+  --bg: #0a0a2e;
+  --text: #e8e8ff;
+  --text-heading: #fff;
+  --muted: #8888cc;
+  --border: #4488ff;
+  --border-light: #222266;
+  --accent: #ff44cc;
+  --accent-strong: #ff88ee;
+  --link: #44ddff;
+  --link-hover: #aaeeff;
+  --badge-bg: #1a1a44;
+  --badge-text: #ff44cc;
+  --research-bg: #0e0e33;
+  --research-border: #ff44cc;
+  --masthead-bg: #0a0a2e;
+  --masthead-link: #e8e8ff;
+  --masthead-link-hover: #ff44cc;
+  --tagline-color: #44ddff;
+  font-family: "Comic Sans MS","KaiTi","STKaiti","PingFang SC",cursive;
+}
+.theme-y2k .masthead {
+  background: linear-gradient(90deg, #ff44cc, #8844ff, #44ddff, #ff44cc);
+  background-size: 300% 100%; animation: y2k-shift 4s linear infinite;
+  border-bottom: 2px solid #ff44cc; font-weight: 900;
+}
+@keyframes y2k-shift { 100% { background-position: -300% 0; } }
+.theme-y2k .masthead a { color: #fff; text-shadow: 0 0 8px rgba(255,255,255,.6); }
+.theme-y2k .masthead a:hover { text-shadow: 0 0 16px #fff; }
+.theme-y2k .avatar { border-radius: 50%; border: 3px solid #ff44cc; box-shadow: 0 0 24px rgba(255,68,204,.5), 0 0 48px rgba(68,221,255,.3); }
+.theme-y2k h1 {
+  background: linear-gradient(90deg, #ff44cc, #8844ff, #44ddff);
+  -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+  background-clip: text; font-weight: 900; font-style: italic;
+}
+.theme-y2k h2 {
+  color: #44ddff; font-weight: 900; font-style: italic;
+  border-bottom: 2px solid; border-image: linear-gradient(90deg, #ff44cc, #44ddff) 1;
+  text-shadow: 0 0 12px rgba(68,221,255,.4);
+}
+.theme-y2k .research-box {
+  border: 2px solid #8844ff; border-radius: 12px;
+  box-shadow: 0 0 20px rgba(136,68,255,.2), inset 0 0 20px rgba(136,68,255,.05);
+  background: linear-gradient(135deg, rgba(255,68,204,.05), rgba(68,221,255,.05));
+}
+.theme-y2k .news-date { color: #ff44cc; font-weight: 900; }
+.theme-y2k .conf-badge { border-radius: 20px; font-style: italic; }
+.theme-y2k .social-links a { color: #8888cc; }
+.theme-y2k .social-links a:hover { color: #ff44cc; text-shadow: 0 0 12px rgba(255,68,204,.6); }
+.theme-y2k strong { color: #ff88ee; }
+
+/* ===== THEME 11: 苏维埃 Soviet ===== */
+.theme-soviet {
+  --bg: #d4cfc4;
+  --text: #1a1a1a;
+  --text-heading: #0a0a0a;
+  --muted: #6b5e4a;
+  --border: #8b0000;
+  --border-light: #c4bdb0;
+  --accent: #cc0000;
+  --accent-strong: #ff1a1a;
+  --accent-gold: #d4a017;
+  --link: #8b0000;
+  --link-hover: #cc0000;
+  --badge-bg: #e8dcc8;
+  --badge-text: #8b0000;
+  --research-bg: #e0d8c8;
+  --research-border: #cc0000;
+  --masthead-bg: #8b0000;
+  --masthead-link: #ffd700;
+  --masthead-link-hover: #fff;
+  --tagline-color: #8b0000;
+  font-family: "Georgia","Times New Roman","STSong","Songti SC",serif;
+}
+.theme-soviet .masthead {
+  background: linear-gradient(180deg, #8b0000 0%, #6a0000 100%);
+  border-bottom: 3px solid #d4a017; font-weight: 700;
+  text-transform: uppercase; letter-spacing: .1em;
+  font-family: "Georgia","Times New Roman",serif;
+}
+.theme-soviet .masthead a { color: #ffd700; }
+.theme-soviet .masthead a:hover { color: #fff; }
+/* Soviet star on home link */
+.theme-soviet .masthead .home-link::before { content: '★ '; color: #ffd700; }
+body.theme-soviet::before {
+  content: ''; position: fixed; inset: 0; z-index: 99997; pointer-events: none;
+  background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Ctext x='100' y='100' text-anchor='middle' dominant-baseline='central' font-size='60' opacity='.02'%3E☭%3C/text%3E%3C/svg%3E") repeat;
+}
+.theme-soviet .avatar { border-radius: 2px; border: 3px solid #8b0000; filter: grayscale(30%); }
+.theme-soviet h1 {
+  color: #8b0000; font-weight: 900; text-transform: uppercase;
+  letter-spacing: .06em; font-family: "Georgia","Times New Roman",serif;
+}
+.theme-soviet h2 {
+  font-weight: 900; border-bottom: 3px solid #cc0000; color: #6a0000;
+  text-transform: uppercase; letter-spacing: .08em;
+  font-family: "Georgia","Times New Roman",serif;
+}
+.theme-soviet .research-box {
+  border-left: 5px solid #cc0000; border-radius: 0;
+  background: #e0d8c8; box-shadow: 0 0 0 1px rgba(139,0,0,.2);
+}
+.theme-soviet .news-date { color: #cc0000; font-weight: 900; }
+.theme-soviet .conf-badge { border-radius: 0; font-weight: 700; text-transform: uppercase; letter-spacing: .04em; }
+.theme-soviet .social-links a { color: #4a3030; }
+.theme-soviet .social-links a:hover { color: #cc0000; }
+.theme-soviet strong { color: #8b0000; }
+.theme-soviet .motto { color: #8b0000; font-weight: 700; }
+/* red star decorators */
+.theme-soviet h2::before { content: '★ '; color: #cc0000; font-size: .8em; }
+
+/* ===== THEME 12: ACL 风格 ===== */
+.theme-acl {
+  --bg: #fff;
+  --text: #333;
+  --text-heading: #1a1a1a;
+  --muted: #777;
+  --border: #d0c8c8;
+  --border-light: #e8e0e0;
+  --accent: #7a2030;
+  --accent-strong: #5a1824;
+  --link: #3b5998;
+  --link-hover: #7a2030;
+  --badge-bg: #f5eef0;
+  --badge-text: #7a2030;
+  --research-bg: #fdf8f9;
+  --research-border: #7a2030;
+  --masthead-bg: #7a2030;
+  --masthead-link: #fff;
+  --masthead-link-hover: #e8c8cc;
+  --tagline-color: #7a2030;
+  font-family: "Times New Roman",Georgia,"STSong","Songti SC",serif;
+}
+.theme-acl .masthead {
+  background: #7a2030; color: #fff; font-weight: 700; font-size: 13px;
+  border-bottom: 3px solid #5a1824; letter-spacing: .04em;
+}
+.theme-acl .masthead a { color: #fff; }
+.theme-acl .masthead a:hover { color: #f0d0d4; }
+.theme-acl .avatar { border-radius: 4px; border: 3px solid #7a2030; }
+.theme-acl h1 { font-family: "Times New Roman",Georgia,serif; font-weight: 700; color: #5a1824; }
+.theme-acl h2 {
+  font-family: "Times New Roman",Georgia,serif; font-weight: 700;
+  border-bottom: 2px solid #7a2030; color: #5a1824; font-size: 1.15em;
+}
+.theme-acl .research-box {
+  border-left: 4px solid #7a2030; border-radius: 0;
+  font-family: "Times New Roman",Georgia,serif;
+}
+.theme-acl .conf-badge { border-radius: 2px; font-weight: 700; letter-spacing: .04em; }
+.theme-acl .news-date { color: #7a2030; font-weight: 700; }
+.theme-acl .social-links a { color: #3b5998; }
+.theme-acl .social-links a:hover { color: #7a2030; }
+.theme-acl .motto { color: #7a2030; font-style: italic; }
+.theme-acl .sidebar { font-family: "Times New Roman",Georgia,"STSong",serif; }
+
+/* ===== APPLY VARIABLES ===== */
+body { background: var(--bg); color: var(--text); }
+.masthead { background: var(--masthead-bg); border-bottom-color: var(--border); }
+.masthead a { color: var(--masthead-link); }
+.masthead a:hover { color: var(--masthead-link-hover); }
+h1,h2,h3 { color: var(--text-heading); }
+h2 { border-bottom-color: var(--border); }
+a { color: var(--link); }
+a:hover { color: var(--link-hover); }
+.profile-box .bio { color: var(--muted); }
+.profile-box .motto { color: var(--tagline-color); }
+.research-box { background: var(--research-bg); border-left-color: var(--research-border); }
+.news-date { color: var(--accent); }
+.conf-badge { background: var(--badge-bg); color: var(--badge-text); }
+.edu-meta { color: var(--muted); }
+hr { border-top-color: var(--border); }
+.social-links i, .social-links .emoji-icon { width: 18px; text-align: center; display: inline-block; }
+
+@media (max-width: 768px) {
+  .wrapper { flex-direction: column; padding: 20px 16px 40px; }
+  .sidebar { width: 100%; }
+}
+</style>
+</head>
+<body class="theme-current">
+
+<!-- style switcher -->
+<div id="style-switcher">
+  <span class="sw-label">风格预览:</span>
+  <button data-theme="theme-current" class="active">0 · 当前</button>
+  <button data-theme="theme-ink">1 · 墨韵</button>
+  <button data-theme="theme-dark">2 · 暗色学术</button>
+  <button data-theme="theme-minimal">3 · 极简日式</button>
+  <button data-theme="theme-tno">4 · TNO·冷战</button>
+  <button data-theme="theme-vapor">5 · 蒸汽波</button>
+  <button data-theme="theme-ph">6 · Pornhub</button>
+  <button data-theme="theme-console">7 · 控制台</button>
+  <button data-theme="theme-cyber">8 · 赛博朋克</button>
+  <button data-theme="theme-memphis">9 · 孟菲斯</button>
+  <button data-theme="theme-y2k">10 · Y2K炫彩</button>
+  <button data-theme="theme-soviet">11 · 苏维埃</button>
+  <button data-theme="theme-acl">12 · ACL</button>
+</div>
+
+<!-- masthead -->
+<nav class="masthead">
+  <a href="/" class="home-link">Homepage</a>
+  <a href="/#about-me">About Me</a>
+  <a href="/cv/">CV</a>
+  <a href="/creations/">Creations</a>
+  <a href="/links/">Links</a>
+</nav>
+
+<!-- content -->
+<div class="wrapper">
+
+  <!-- sidebar -->
+  <aside class="sidebar">
+    <div class="profile-box">
+      <img class="avatar" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Crect width='120' height='120' fill='%23d4c8b8'/%3E%3Ccircle cx='60' cy='45' r='22' fill='%23999'/%3E%3Cellipse cx='60' cy='95' rx='34' ry='24' fill='%23999'/%3E%3C/svg%3E" alt="avatar" onerror="this.style.background='#ddd'">
+      <div class="name">Tian Lan</div>
+      <div class="bio">College of Computer Science<br>Inner Mongolia University</div>
+      <div class="motto">"À la volonté du peuple,<br>Et à la santé du progrès."</div>
+      <ul class="social-links">
+        <li>📍 Hohhot, China</li>
+        <li><a href="mailto:velikayascarlet@gmail.com">✉ Email</a></li>
+        <li><a href="https://github.com/VelikayaScarlet">🔗 Github</a></li>
+        <li><a href="https://huggingface.co/Velikaya"><span class="emoji-icon">🤗</span> HuggingFace</a></li>
+        <li><a href="https://scholar.google.com/citations?user=IUd0Hj8AAAAJ">🎓 Google Scholar</a></li>
+        <li><a href="https://orcid.org/0009-0008-8365-4064">🔖 ORCID</a></li>
+        <li><a href="https://steamcommunity.com/id/lt9981806/">🎮 Steam</a></li>
+      </ul>
+    </div>
+  </aside>
+
+  <!-- main -->
+  <main class="main">
+    <h1>About Me</h1>
+
+    <p>I am currently a master's student at the <a href="https://ccs.imu.edu.cn/">College of Computer Science</a>, Inner Mongolia University. In October 2026, I will start my research at the <a href="https://nlp.ist.i.kyoto-u.ac.jp/EN/">Language Media Lab</a> of Kyoto University, under the supervision of <a href="https://murawaki.org">Yugo Murawaki</a>.</p>
+
+    <div class="research-box">
+      <strong>My research interests include:</strong>
+      (1) <strong>NLP &amp; Society</strong> — AI Fairness, Responsible AI, and Computational Social Science<br>
+      (2) <strong>Multilingual &amp; Multicultural AI</strong> — Multilingual systems, Low-resource Languages<br>
+      (3) <strong>Culture &amp; Creativity in LLMs</strong> — Literature and LLMs, and Subcultures in AI
+    </div>
+
+    <h2>🔥 News</h2>
+    <ul class="news-list">
+      <li><span class="news-date">2026.04</span> 🎉 8 papers (3 Main, 5 Findings) accepted by ACL 2026</li>
+      <li><span class="news-date">2026.03</span> 🎉 Two papers accepted by ICME 2026</li>
+      <li><span class="news-date">2025.08</span> 🎉 One paper accepted by EMNLP 2025</li>
+      <li><span class="news-date">2025.05</span> 🎉 Two papers accepted by ACL 2025</li>
+    </ul>
+
+    <h2>📝 Selected Publications</h2>
+    <ul class="pub-list">
+      <li><span class="conf-badge">ACL 2025</span> McBE: A Multi-task Chinese Bias Evaluation Benchmark for LLMs. <strong>Tian Lan</strong> et al.</li>
+      <li><span class="conf-badge">EMNLP 2025</span> F²Bench: An Open-ended Fairness Evaluation Benchmark for LLMs. <strong>Tian Lan</strong> et al.</li>
+      <li><span class="conf-badge">ACL 2026</span> CEDAR: A Chinese Evaluation Dataset for Computational Argumentation. <strong>Tian Lan*</strong> et al.</li>
+      <li><span class="conf-badge">ACL 2026</span> Who Wrote This Line? Evaluating Detection of LLM-Generated Classical Chinese Poetry. <strong>Tian Lan*</strong> et al. <em>(Oral)</em></li>
+    </ul>
+
+    <h2>🎓 Educations</h2>
+    <ul class="edu-list">
+      <li>
+        <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='44' height='44'%3E%3Crect width='44' height='44' fill='%23ddd'/%3E%3Ctext x='22' y='28' text-anchor='middle' font-size='20'%3E🏫%3C/text%3E%3C/svg%3E" alt="">
+        <span><strong>Ph.D. Student</strong>, Kyoto University <span class="edu-meta">(2026.10 – 2029.10 expected)</span><br><span class="edu-meta">Advisor: Assoc. Prof. Yugo Murawaki</span></span>
+      </li>
+      <li>
+        <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='44' height='44'%3E%3Crect width='44' height='44' fill='%23ddd'/%3E%3Ctext x='22' y='28' text-anchor='middle' font-size='20'%3E🏫%3C/text%3E%3C/svg%3E" alt="">
+        <span><strong>M.Eng. in Software Engineering</strong>, Inner Mongolia University <span class="edu-meta">(2023.09 – 2026.06)</span></span>
+      </li>
+    </ul>
+
+    <h2>🏆 Honors and Awards</h2>
+    <ul>
+      <li><strong>2025</strong>: National Scholarship, Graduate Academic Scholarship</li>
+      <li><strong>2023</strong>: Outstanding Graduate, Graduate Academic Scholarship</li>
+      <li><strong>2022</strong>: 2nd Prize (LanQiao Cup), Third-Class Scholarship</li>
+    </ul>
+
+    <hr>
+    <p style="font-size:.82em; color:var(--muted)">📍 Hohhot → Kyoto · 🎬 Bilibili: <a href="https://space.bilibili.com/23297003">Velikaya</a></p>
+  </main>
+</div>
+
+<script>
+(function() {
+  var btns = document.querySelectorAll('#style-switcher button');
+  var body = document.body;
+  var themes = ['theme-current','theme-ink','theme-dark','theme-minimal','theme-tno','theme-vapor','theme-ph','theme-console','theme-cyber','theme-memphis','theme-y2k','theme-soviet','theme-acl'];
+
+  btns.forEach(function(btn) {
+    btn.addEventListener('click', function() {
+      var theme = btn.getAttribute('data-theme');
+      // remove all theme classes
+      themes.forEach(function(t) { body.classList.remove(t); });
+      // add selected
+      body.classList.add(theme);
+      // update active button
+      btns.forEach(function(b) { b.classList.remove('active'); });
+      btn.classList.add('active');
+    });
+  });
+})();
+</script>
+
+</body>
+</html>
