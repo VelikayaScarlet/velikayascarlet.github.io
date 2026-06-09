@@ -1,6 +1,6 @@
 ---
-permalink: /others/
-title: "Others"
+permalink: /links/
+title: "Links"
 author_profile: true
 ---
 
@@ -73,4 +73,21 @@ author_profile: true
 </ul>
 {% else %}
 <p class="friends-empty">暂无友链。</p>
+{% endif %}
+
+## 🔗 Useful Links
+
+{% if site.data.useful_links %}
+<ul class="friends-list">
+  {% for link in site.data.useful_links %}
+    <li>
+      <a href="{{ link.url }}" target="_blank" rel="noopener noreferrer">
+        <span class="friend-name">{{ link.name }}</span>
+        <span class="friend-arrow">→</span>
+      </a>
+    </li>
+  {% endfor %}
+</ul>
+{% else %}
+<p class="friends-empty">暂无链接。</p>
 {% endif %}
