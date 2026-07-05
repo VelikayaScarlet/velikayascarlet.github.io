@@ -106,8 +106,8 @@ For Full Publications, see my <a href='https://scholar.google.com/citations?user
 # 📖 Academic Services
 
 <ul class="service-list">
-  <li><span class="service-badge service-badge--reviewer">Reviewer</span> ACL ARR, ACM MM</li>
-  <li><span class="service-badge service-badge--workshop">Workshop</span> ACL StereACult</li>
+  <li><span class="service-badge service-badge--reviewer">Conference Reviewer</span> ACL ARR, ACM MM</li>
+  <li><span class="service-badge service-badge--workshop">Workshop Reviewer</span> ACL StereACult</li>
 </ul>
 
 # 🚁 Beyond Academia
