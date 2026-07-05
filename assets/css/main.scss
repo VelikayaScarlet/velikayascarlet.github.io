@@ -323,8 +323,8 @@ h1:before, .anchor:before {
     border-radius: 3px;
     white-space: nowrap;
 }
-.service-badge--reviewer { background: #8b6b2e; }
-.service-badge--workshop  { background: #2d6a9f; }
+.service-badge--reviewer { background: $accent-warm; }
+.service-badge--workshop  { background: $accent-blue; }
 
 /* ==========================================================================
    Beyond Academia — emoji + text rows
