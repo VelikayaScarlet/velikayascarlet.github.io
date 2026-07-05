@@ -23,7 +23,7 @@ Prior to this, I obtained my Master's degree in Software Engineering from Inner 
 
 
 
-<!-- I am currently a Doctoral Student at the <a href="https://nlp.ist.i.kyoto-u.ac.jp/EN/">Language Media Lab (Former Kurohashi's Lab)</a>, Kyoto University, working under te supervision of <a href="murawaki.org">Murawaki Yugo</a>. Prior to this, I earned my master's degree at Inner Mongolia University and bachelor's degree at Zhengzhou University of Light Industry. -->
+<!-- I am currently a Doctoral Student at the <a href="https://nlp.ist.i.kyoto-u.ac.jp/EN/">Language Media Lab (Former Kurohashi's Lab)</a>, Kyoto University, working under the supervision of <a href="murawaki.org">Murawaki Yugo</a>. Prior to this, I earned my master's degree at Inner Mongolia University and bachelor's degree at Zhengzhou University of Light Industry. -->
 
 <div markdown="1" style="background: #f8f9fb; border-left: 3px solid #5b7a9a; border-radius: 4px; padding: 0.8em 1.2em; margin: 1em 0;">
 
@@ -74,12 +74,12 @@ For Full Publications, see my <a href='https://scholar.google.com/citations?user
 # 🏆 Honors and Awards
 
 <ul class="honor-list">
-  <li><strong>2026</strong>: Outstanding Graduate
+  <li><strong>2026</strong>: Outstanding Graduate</li>
   <li><strong>2025</strong>: <strong>National Scholarship</strong></li>
   <li><strong>2023</strong>: Outstanding Graduate</li>
 </ul>
 
-# 🎓 Educations
+# 🎓 Education
 
 <ul class="edu-list">
   <li>
@@ -108,7 +108,7 @@ Conference Reviewer: ACL ARR, ACM MM
 
 Workshop Reviewer: ACL StereACult
 
-# 🚁 Beyond Academics
+# 🚁 Beyond Academia
 I'm a Bilibili uploader (<a href="https://space.bilibili.com/23297003">Velikaya</a>), specializing in TNO-style superevent videos. I’m also passionate about language learning/constructing. 
 
 In moments shaped by life’s struggles—for poetry thrives on hardship—I craft classical Chinese poems.
