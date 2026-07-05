@@ -74,12 +74,10 @@ For Full Publications, see my <a href='https://scholar.google.com/citations?user
 # 🏆 Honors and Awards
 
 <ul class="honor-list">
-  <li><strong>2025</strong>: <strong>National Scholarship</strong>, Graduate Academic Scholarship</li>
-  <li><strong>2023</strong>: Outstanding Graduate, Graduate Academic Scholarship</li>
-  <li><strong>2022</strong>: 2nd Prize (LanQiao Cup), Third-Class Scholarship, "Three Good Student"</li>
-  <li><strong>2021</strong>: Outstanding Student Ind. Scholarship, Third-Class Scholarship, "Three Good Student"</li>
-  <li><strong>2020</strong>: Second-Class Scholarship</li>
-  <li><strong>2019</strong>: 3rd Prize (Xunfei Cup English Speaking)</li>
+  <li><strong>2026</strong>: Outstanding Graduate
+  <li><strong>2025</strong>: <strong>National Scholarship</strong></li>
+  <li><strong>2023</strong>: Outstanding Graduate</li>
+
 </ul>
 
 # 🎓 Educations
