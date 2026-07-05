@@ -29,11 +29,11 @@ Prior to this, I obtained my Master's degree in Software Engineering from Inner 
 
 My research interests include:
 
-**(1) NLP & Society** — AI Fairness, Responsible AI, and Computational Social Science
+**1️⃣ NLP & Society** — AI Fairness, Responsible AI, and Computational Social Science
 
-**(2) Multilingual & Multicultural AI** — Multilingual systems, Low-resource Languages
+**2️⃣ Multilingual & Multicultural AI** — Multilingual systems, Low-resource Languages
 
-**(3) Culture & Creativity in LLMs** — Literature and LLMs, and Subcultures in AI
+**3️⃣ Culture & Creativity in LLMs** — Literature and LLMs, and Subcultures in AI
 
 </div>
 
@@ -104,13 +104,25 @@ For Full Publications, see my <a href='https://scholar.google.com/citations?user
 - *2019.05 - 2020.02*, [Lorem](https://github.com/), China. -->
 
 # 📖 Academic Services
-Conference Reviewer: ACL ARR, ACM MM
-
-Workshop Reviewer: ACL StereACult
+<ul class="service-list">
+  <li><span class="service-badge service-badge--reviewer">Reviewer</span> ACL ARR, ACM MM</li>
+  <li><span class="service-badge service-badge--workshop">Workshop</span> ACL StereACult</li>
+</ul>
 
 # 🚁 Beyond Academia
-I'm a Bilibili uploader (<a href="https://space.bilibili.com/23297003">Velikaya</a>), specializing in TNO-style superevent videos. I’m also passionate about language learning/constructing. 
 
-In moments shaped by life’s struggles—for poetry thrives on hardship—I craft classical Chinese poems.
+<div class="beyond-list">
+
+<div class="beyond-item">
+<span class="beyond-emoji">🎬</span>
+<span class="beyond-text">I’m a Bilibili uploader (<a href="https://space.bilibili.com/23297003">Velikaya</a>), specializing in TNO-style superevent videos. I’m also passionate about language learning/constructing.</span>
+</div>
+
+<div class="beyond-item">
+<span class="beyond-emoji">📜</span>
+<span class="beyond-text">In moments shaped by life’s struggles—for poetry thrives on hardship—I craft classical Chinese poems (See <strong>Creations</strong>).</span>
+</div>
+
+</div>
 
 <hr style="margin-top:2em; border:none; border-top:1px solid #e8dccf;">

@@ -297,6 +297,64 @@ h1:before, .anchor:before {
 }
 
 /* ==========================================================================
+   Service list — tiny role badges
+   ========================================================================== */
+
+.service-list {
+    list-style: none;
+    padding-left: 0;
+    margin: 1em 0;
+}
+.service-list li {
+    display: flex;
+    align-items: baseline;
+    gap: 0.7em;
+    margin-bottom: 0.6em;
+    line-height: 1.55;
+}
+.service-badge {
+    flex-shrink: 0;
+    display: inline-block;
+    font-size: 0.78em;
+    font-weight: 700;
+    letter-spacing: 0.02em;
+    color: #fff;
+    padding: 0.12em 0.55em;
+    border-radius: 3px;
+    white-space: nowrap;
+}
+.service-badge--reviewer { background: #8b6b2e; }
+.service-badge--workshop  { background: #2d6a9f; }
+
+/* ==========================================================================
+   Beyond Academia — emoji + text rows
+   ========================================================================== */
+
+.beyond-list {
+    margin: 1em 0;
+}
+.beyond-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.8em;
+    margin-bottom: 0.8em;
+    padding: 0.7em 0.9em;
+    background: #fafbfc;
+    border: 1px solid #eaecf0;
+    border-radius: 5px;
+    border-left: 3px solid $accent-warm;
+    line-height: 1.6;
+}
+.beyond-emoji {
+    flex-shrink: 0;
+    font-size: 1.2em;
+    line-height: 1.4;
+}
+.beyond-text {
+    flex: 1;
+}
+
+/* ==========================================================================
    Dark mode (prefers-color-scheme: dark)
    ========================================================================== */
 
@@ -400,6 +458,18 @@ h1:before, .anchor:before {
   /* -- honor list -- */
   .honor-list li::before {
     color: #c8a97e;
+  }
+
+  /* -- service list -- */
+  .service-list li {
+    color: #c9cdd4;
+  }
+
+  /* -- beyond list -- */
+  .beyond-item {
+    background: #242730;
+    border-color: #2d3139;
+    border-left-color: #c8a97e;
   }
 
   /* -- hr / borders -- */
