@@ -107,7 +107,7 @@ For Full Publications, see my <a href='https://scholar.google.com/citations?user
 - *2019.05 - 2020.02*, [Lorem](https://github.com/), China. -->
 
 # 📖 Academic Services
-Conference Reviewer: ACM MM
+Conference Reviewer: ACL ARR, ACM MM
 
 Workshop Reviewer: ACL StereACult
 # 🚁 Beyond Academics
