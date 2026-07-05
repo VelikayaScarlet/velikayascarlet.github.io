@@ -77,7 +77,6 @@ For Full Publications, see my <a href='https://scholar.google.com/citations?user
   <li><strong>2026</strong>: Outstanding Graduate
   <li><strong>2025</strong>: <strong>National Scholarship</strong></li>
   <li><strong>2023</strong>: Outstanding Graduate</li>
-
 </ul>
 
 # 🎓 Educations
@@ -108,6 +107,7 @@ For Full Publications, see my <a href='https://scholar.google.com/citations?user
 Conference Reviewer: ACL ARR, ACM MM
 
 Workshop Reviewer: ACL StereACult
+
 # 🚁 Beyond Academics
 I'm a Bilibili uploader (<a href="https://space.bilibili.com/23297003">Velikaya</a>), specializing in TNO-style superevent videos. I’m also passionate about language learning/constructing. 
 
