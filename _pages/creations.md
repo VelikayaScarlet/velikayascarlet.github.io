@@ -134,15 +134,15 @@ a.collection-card {
 <div class="creations-panel active" id="panel-poems">
 
 <div class="collections-grid">
-  <a class="collection-card" href="/creations/poems/折光集.pdf" target="_blank">
-    <div class="collection-icon">💫</div>
-    <div class="collection-name">折光集</div>
-    <span class="collection-type">诗集</span>
-  </a>
-
   <a class="collection-card" href="/creations/poems/觅月集.pdf" target="_blank">
     <div class="collection-icon">🌙</div>
     <div class="collection-name">觅月集</div>
+    <span class="collection-type">诗集</span>
+  </a>
+
+  <a class="collection-card" href="/creations/poems/折光集.pdf" target="_blank">
+    <div class="collection-icon">💫</div>
+    <div class="collection-name">折光集</div>
     <span class="collection-type">诗集</span>
   </a>
 
