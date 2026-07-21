@@ -145,6 +145,12 @@ a.collection-card {
     <div class="collection-name">觅月集</div>
     <span class="collection-type">诗集</span>
   </a>
+
+  <a class="collection-card" href="/creations/poems/东海集.pdf" target="_blank">
+    <div class="collection-icon">🌊</div>
+    <div class="collection-name">东海集</div>
+    <span class="collection-type">诗集</span>
+  </a>
 </div>
 
 </div><!-- /诗词 -->
