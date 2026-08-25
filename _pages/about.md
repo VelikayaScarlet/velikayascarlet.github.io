@@ -29,11 +29,11 @@ Prior to this, I obtained my Master's degree in Software Engineering from Inner 
 
 My research interests include:
 
-**1️⃣ NLP & Society** — AI Fairness, Responsible AI, and Computational Social Science
+**1️⃣ NLP & Society** — AI Fairness, Social/Culture Awareness
 
 **2️⃣ Multilingual & Multicultural AI** — Multilingual systems, Low-resource Languages
 
-**3️⃣ Culture & Creativity in LLMs** — Literature and LLMs, and Subcultures in AI
+**3️⃣ Poems in LLMs** — Classical and Modern Chinese Poems x LLMs
 
 </div>
 
