@@ -31,7 +31,7 @@ My research interests include:
 
 **1️⃣ NLP & Society** — AI Fairness, Social and Cultural Awareness
 
-**2️⃣ Multilingual & Multicultural AI** — Multilingual and Low-resource Language Systems 
+**2️⃣ Multilingual** — Multilingual and Low-resource Language Systems 
 
 **3️⃣ Poems in LLMs** — Classical and Modern Chinese Poems x LLMs
 
