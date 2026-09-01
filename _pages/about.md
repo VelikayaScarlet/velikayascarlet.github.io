@@ -29,7 +29,7 @@ Prior to this, I obtained my Master's degree in Software Engineering from Inner 
 
 My research interests include:
 
-**1️⃣ NLP & Society** — AI Fairness, Social and Cultural Awareness
+**1️⃣ NLP & Society** — AI Fairness, (Sub)Cultures, and Social Awareness
 
 **2️⃣ Multilingual** — Multilingual and Low-resource Language Systems 
 
