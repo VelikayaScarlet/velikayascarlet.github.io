@@ -46,8 +46,8 @@ My research interests include:
 # 🔥 News
 
 <ul class="news-list">
-  <li><span class="news-date">2026.08</span> <span class="news-content">🎉🎉 Two papers about narrative generation and multimodal sarcasm detection have been accepted by AACL-IJCNLP!</span></li>
-  <li><span class="news-date">2026.08</span> <span class="news-content">🎉🎉 One paper about agent-based debiasing has been accepted by EMNLP!</span></li>
+  <li><span class="news-date">2026.09</span> <span class="news-content">🎉🎉 Two papers about narrative generation and multimodal sarcasm detection have been accepted by AACL-IJCNLP 2026!</span></li>
+  <li><span class="news-date">2026.08</span> <span class="news-content">🎉🎉 One paper about agent-based debiasing has been accepted by EMNLP 2026!</span></li>
   <li><span class="news-date">2026.07</span> <span class="news-content">🎉🎉 One paper about Songci machine translation has been accepted by Data Intelligence (SCI CAS Q2)!</span></li>
   <li><span class="news-date">2026.04</span> <span class="news-content">🎉🎉 8 papers (3 Main and 5 Findings) have been accepted by ACL 2026!</span></li>
   <li><span class="news-date">2026.03</span> <span class="news-content">🎉🎉 Two papers about handwritten mathematical expression recognition &amp; multimodal KG Completion have been accepted by ICME 2026!</span></li>
