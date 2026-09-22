@@ -90,6 +90,9 @@ author_profile: false
 
         <div class="creation-shelf__group">
           <p class="creation-shelf__label">文章与故事</p>
+          <a class="creation-work" href="{{ '/creations/stories/yexing/' | relative_url }}">
+            <span class="creation-work__mark creation-work__mark--rose">物</span><span class="creation-work__name">事物替我们说话</span><span class="creation-work__type">8 篇</span>
+          </a>
           <a class="creation-work" href="{{ '/creations/guisui-zaji/' | relative_url }}">
             <span class="creation-work__mark creation-work__mark--rose">归</span><span class="creation-work__name">归绥杂记</span><span class="creation-work__type">{{ diary_posts.size }} 篇</span>
           </a>
@@ -116,9 +119,11 @@ author_profile: false
   var heroTitle = document.getElementById('creation-hero-title');
   var heroLines = [
     // 《觅月集》
-    '不乘飞机不坐船，我随烟雨入江天',
-    '烟柳画桥三吴会，乘风极目望汤汤',
-    '怡逢海内升平世，璀璨星河拱凤城',
+    '千思万绪都为梦，由她来去随缘',
+    '往今皆伴水，风雨落花天',
+    '倚枕斜看风掠叶，神思遥拾落花声',
+    '万般情难了，酒醒泪光莹',
+    '欲把前尘归梦里，笔停又念当年意',
 
     // 《折光集》
     '一笺一页一乾坤',
