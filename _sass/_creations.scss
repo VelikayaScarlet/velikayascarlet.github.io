@@ -1,0 +1,373 @@
+/* Creations uses a standalone editorial layout. Other site pages are unaffected. */
+.creations-site {
+  --creation-ink: #20242a;
+  --creation-muted: #68717c;
+  --creation-line: #dfe3e8;
+  --creation-paper: #ffffff;
+  --creation-canvas: #f5f6f8;
+  --creation-accent: #365f80;
+  --creation-accent-soft: #e8eff5;
+  --creation-rose: #99596a;
+  margin: 0;
+  color: var(--creation-ink);
+  background: var(--creation-canvas);
+}
+
+.creations-site .masthead {
+  position: relative;
+  z-index: 20;
+}
+
+.creation-hero {
+  position: relative;
+  min-height: calc(100vh - 64px);
+  display: grid;
+  place-items: center;
+  overflow: hidden;
+  color: #fff;
+  background-image: var(--hero-image);
+  background-position: center;
+  background-size: cover;
+}
+
+.creation-hero::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgba(10, 21, 29, 0.38);
+}
+
+.creation-hero__content {
+  position: relative;
+  z-index: 1;
+  width: min(820px, calc(100% - 40px));
+  text-align: center;
+  text-shadow: 0 2px 20px rgba(0, 0, 0, 0.45);
+}
+
+.creation-hero__eyebrow {
+  margin: 0 0 14px;
+  font-size: 0.75rem;
+  font-weight: 800;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+}
+
+.creation-hero h1 {
+  margin: 0;
+  color: #fff;
+  border: 0;
+  font-family: Georgia, "Songti SC", "STSong", serif;
+  font-size: 3rem;
+  font-weight: 600;
+  line-height: 1.2;
+}
+
+.creation-hero__subtitle {
+  margin: 18px 0 0;
+  color: rgba(255, 255, 255, 0.92);
+  font-family: Georgia, "Songti SC", "STSong", serif;
+  font-size: 1.05rem;
+}
+
+.creation-hero__scroll {
+  position: absolute;
+  z-index: 2;
+  left: 50%;
+  bottom: 28px;
+  width: 44px;
+  height: 44px;
+  display: grid;
+  place-items: center;
+  border: 1px solid rgba(255, 255, 255, 0.7);
+  border-radius: 50%;
+  color: #fff;
+  background: rgba(8, 18, 25, 0.28);
+  font-size: 1.35rem;
+  text-decoration: none;
+  transform: translateX(-50%);
+  transition: background 0.2s ease, transform 0.2s ease;
+}
+
+.creation-hero__scroll:hover {
+  color: #fff;
+  background: rgba(8, 18, 25, 0.58);
+  transform: translate(-50%, 3px);
+}
+
+.creation-blog {
+  scroll-margin-top: 20px;
+}
+
+.creation-blog__header,
+.creation-blog__layout {
+  width: min(1180px, calc(100% - 40px));
+  margin-right: auto;
+  margin-left: auto;
+}
+
+.creation-blog__header {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 32px;
+  align-items: end;
+  padding: 58px 0 30px;
+  border-bottom: 1px solid var(--creation-line);
+}
+
+.creation-blog__eyebrow {
+  margin: 0 0 8px;
+  color: var(--creation-accent);
+  font-size: 0.75rem;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.creation-blog__header h2 {
+  margin: 0;
+  color: var(--creation-ink);
+  font-family: Georgia, "Songti SC", "STSong", serif;
+  font-size: 2.2rem;
+  line-height: 1.25;
+}
+
+.creation-blog__intro {
+  max-width: 650px;
+  margin: 12px 0 0;
+  color: var(--creation-muted);
+  font-family: Georgia, "Songti SC", "STSong", serif;
+  font-size: 0.95rem;
+  line-height: 1.85;
+}
+
+.creation-summary {
+  display: flex;
+  gap: 24px;
+  margin: 0;
+}
+
+.creation-summary div { min-width: 58px; }
+.creation-summary dt { color: var(--creation-ink); font-size: 1.25rem; font-weight: 750; }
+.creation-summary dd { margin: 3px 0 0; color: var(--creation-muted); font-size: 0.75rem; }
+
+.creation-blog__layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1.75fr) minmax(260px, 0.8fr);
+  gap: 52px;
+  align-items: start;
+  padding: 38px 0 80px;
+}
+
+.creation-section-heading {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  margin-bottom: 8px;
+}
+
+.creation-section-heading h2,
+.creation-shelf h2 {
+  margin: 0;
+  color: var(--creation-ink);
+  font-size: 1.05rem;
+}
+
+.creation-year-filter {
+  display: flex;
+  gap: 4px;
+}
+
+.creation-year-filter button {
+  padding: 5px 9px;
+  border: 0;
+  border-radius: 4px;
+  color: var(--creation-muted);
+  background: transparent;
+  cursor: pointer;
+  font: inherit;
+  font-size: 0.78rem;
+}
+
+.creation-year-filter button:hover,
+.creation-year-filter button.is-active {
+  color: var(--creation-accent);
+  background: var(--creation-accent-soft);
+}
+
+.creation-year-filter button.is-active { font-weight: 700; }
+
+.creation-post-list { border-top: 1px solid var(--creation-line); }
+
+.creation-post {
+  display: grid;
+  grid-template-columns: 92px minmax(0, 1fr);
+  gap: 24px;
+  padding: 26px 0;
+  border-bottom: 1px solid var(--creation-line);
+}
+
+.creation-post[hidden] { display: none; }
+
+.creation-post time {
+  color: var(--creation-muted);
+  font-family: "SFMono-Regular", Consolas, monospace;
+  font-size: 0.75rem;
+}
+
+.creation-post__meta {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  margin-bottom: 7px;
+  color: var(--creation-muted);
+  font-size: 0.75rem;
+}
+
+.creation-post__collection {
+  color: var(--creation-accent);
+  font-weight: 700;
+}
+
+.creation-post h3 {
+  margin: 0 0 9px;
+  font-family: Georgia, "Songti SC", "STSong", serif;
+  font-size: 1.3rem;
+  line-height: 1.35;
+}
+
+.creation-post h3 a {
+  color: var(--creation-ink);
+  text-decoration: none;
+}
+
+.creation-post h3 a:hover { color: var(--creation-accent); }
+
+.creation-post__excerpt {
+  margin: 0;
+  color: #555d66;
+  font-family: Georgia, "Songti SC", "STSong", serif;
+  font-size: 0.9rem;
+  line-height: 1.75;
+}
+
+.creation-post__more {
+  display: inline-block;
+  margin-top: 11px;
+  color: var(--creation-accent);
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-decoration: none;
+}
+
+.creation-shelf {
+  position: sticky;
+  top: 24px;
+  padding-left: 26px;
+  border-left: 1px solid var(--creation-line);
+}
+
+.creation-shelf__intro {
+  margin: 5px 0 18px;
+  color: var(--creation-muted);
+  font-size: 0.75rem;
+  line-height: 1.6;
+}
+
+.creation-shelf__group { margin-top: 24px; }
+
+.creation-shelf__label {
+  margin: 0 0 7px;
+  color: var(--creation-muted);
+  font-size: 0.68rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.creation-work {
+  display: grid;
+  grid-template-columns: 34px minmax(0, 1fr) auto;
+  gap: 10px;
+  align-items: center;
+  padding: 11px 0;
+  border-bottom: 1px solid var(--creation-line);
+  color: var(--creation-ink);
+  text-decoration: none;
+}
+
+.creation-work:hover { color: var(--creation-accent); }
+
+.creation-work__mark {
+  width: 30px;
+  height: 36px;
+  display: grid;
+  place-items: center;
+  color: #fff;
+  background: var(--creation-accent);
+  font-family: Georgia, "Songti SC", serif;
+  font-size: 0.75rem;
+  font-weight: 700;
+}
+
+.creation-work__mark--rose { background: var(--creation-rose); }
+.creation-work__mark--ink { background: #444b54; }
+
+.creation-work__name {
+  overflow: hidden;
+  font-family: Georgia, "Songti SC", "STSong", serif;
+  font-size: 0.9rem;
+  font-weight: 700;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.creation-work__type { color: var(--creation-muted); font-size: 0.68rem; }
+
+@media (max-width: 820px) {
+  .creation-blog__header,
+  .creation-blog__layout { grid-template-columns: 1fr; }
+
+  .creation-summary { justify-content: flex-start; }
+
+  .creation-shelf {
+    position: static;
+    padding: 28px 0 0;
+    border-top: 1px solid var(--creation-line);
+    border-left: 0;
+  }
+}
+
+@media (max-width: 560px) {
+  .creation-hero { min-height: calc(100vh - 54px); }
+  .creation-hero h1 { font-size: 2.1rem; }
+  .creation-hero__subtitle { font-size: 0.92rem; }
+
+  .creation-blog__header,
+  .creation-blog__layout { width: min(100% - 28px, 1180px); }
+
+  .creation-blog__header { padding-top: 42px; }
+  .creation-blog__header h2 { font-size: 1.7rem; }
+
+  .creation-post {
+    grid-template-columns: 1fr;
+    gap: 7px;
+  }
+
+  .creation-year-filter button { padding: 5px 6px; }
+}
+
+@media (prefers-color-scheme: dark) {
+  .creations-site {
+    --creation-ink: #e2e5e9;
+    --creation-muted: #9da4ad;
+    --creation-line: #343941;
+    --creation-paper: #22262d;
+    --creation-canvas: #1a1d22;
+    --creation-accent: #8aafce;
+    --creation-accent-soft: #293744;
+    --creation-rose: #bd8292;
+  }
+
+  .creation-post__excerpt { color: #bdc2c9; }
+}

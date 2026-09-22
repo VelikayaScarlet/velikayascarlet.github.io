@@ -4,8 +4,6 @@ title: "玻璃蒂克"
 author_profile: true
 ---
 
-{% include password-gate.html %}
-
 <style>
 /* 横条式章节列表 */
 .chapter-list {
@@ -41,12 +39,4 @@ author_profile: true
 }
 </style>
 
-{% assign essays = site.pages | where_exp: "p", "p.path contains 'creations/essays/玻璃蒂克/'" | sort: "path" %}
-
-<ul class="chapter-list">
-  {% for essay in essays %}
-    <li><a href="{{ essay.url | relative_url }}">
-      <span class="chap-num">{{ forloop.index }}</span>{{ essay.title }}
-    </a></li>
-  {% endfor %}
-</ul>
+{% include encrypted-content.html payload="/assets/encrypted/political.json" title="玻璃蒂克" %}

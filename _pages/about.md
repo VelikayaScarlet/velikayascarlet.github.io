@@ -54,7 +54,7 @@ My research interests include:
   <li><span class="news-date">2025.08</span> <span class="news-content">🎉🎉 One paper about acupoint localization has been accepted by Frontiers in Physiology (JCR Q1)!</span></li>
   <li><span class="news-date">2025.08</span> <span class="news-content">🎉🎉 One paper about open-ended fairness evaluation has been accepted by EMNLP 2025!</span></li>
   <li><span class="news-date">2025.07</span> <span class="news-content">🎉🎉 One paper about multimodal sarcasm detection has been accepted by Data Intelligence (SCI CAS Q2)!</span></li>
-  <li><span class="news-date">2025.05</span> <span class="news-content">🎉🎉 Two papers about Chinese bias evaluation &amp; KG embeddings has been accepted by ACL 2025!</span></li>
+  <li><span class="news-date">2025.05</span> <span class="news-content">🎉🎉 Two papers about Chinese bias evaluation &amp; KG embeddings have been accepted by ACL 2025!</span></li>
 </ul>
 
 # 📝 Selected Publications 
@@ -66,11 +66,11 @@ For Full Publications, see my <a href='https://scholar.google.com/citations?user
 
   <li><span class="conf-badge conf-badge--emnlp">EMNLP 2025</span> <a href="https://aclanthology.org/2025.emnlp-main.105/">F²Bench: An Open-ended Fairness Evaluation Benchmark for LLMs with Factuality Considerations</a>. <strong>Tian Lan</strong>, Jiang Li, Yemin Wang, Xu Liu, Xiangdong Su, Guanglai Gao</li>
 
-  <li><span class="conf-badge conf-badge--acl">ACL 2026</span> <a href="https://scholar.google.com">CEDAR: A Chinese Evaluation Dataset for Computational Argumentation</a>. <strong>Tian Lan*</strong>, Jiang Li*, Rong Yan, Feilong Bao, Weihua Wang, Guanglai Gao, Xiangdong Su</li>
+  <li><span class="conf-badge conf-badge--acl">ACL 2026</span> <a href="https://aclanthology.org/2026.acl-long.238/">CEDAR: A Chinese Evaluation Dataset for Computational Argumentation</a>. <strong>Tian Lan*</strong>, Jiang Li*, Rong Yan, Feilong Bao, Weihua Wang, Guanglai Gao, Xiangdong Su</li>
 
-  <li><span class="conf-badge conf-badge--acl">ACL 2026</span> <a href="https://scholar.google.com">Who Wrote This Line? Evaluating the Detection of LLM-Generated Classical Chinese Poetry</a>. Jiang Li*, <strong>Tian Lan*</strong>, Shanshan Wang, Dongxing Zhang, Dianqing Lin, Guanglai Gao, Derek F. Wong, Xiangdong Su <span>(Oral)</span></li>
+  <li><span class="conf-badge conf-badge--acl">ACL 2026</span> <a href="https://aclanthology.org/2026.acl-long.245/">Who Wrote This Line? Evaluating the Detection of LLM-Generated Classical Chinese Poetry</a>. Jiang Li*, <strong>Tian Lan*</strong>, Shanshan Wang, Dongxing Zhang, Dianqing Lin, Guanglai Gao, Derek F. Wong, Xiangdong Su <span>(Oral)</span></li>
 
-  <li><span class="conf-badge conf-badge--acl">ACL 2026</span> <a href="https://scholar.google.com">Exploring the Capability Boundaries of LLMs in Mastering of Chinese Chouxiang Language</a>. Dianqing Lin*, <strong>Tian Lan*</strong>, Jiali Zhu*, Jiang Li, Wei Chen, Xu Liu, Aruukhan, Xiangdong Su, Guanglai Gao</li>
+  <li><span class="conf-badge conf-badge--acl">ACL 2026</span> <a href="https://aclanthology.org/2026.findings-acl.128/">Exploring the Capability Boundaries of LLMs in Mastering of Chinese Chouxiang Language</a>. Dianqing Lin*, <strong>Tian Lan*</strong>, Jiali Zhu*, Jiang Li, Wei Chen, Xu Liu, Aruukhan, Xiangdong Su, Hongxu Hou, Guanglai Gao</li>
 </ul>
 
 

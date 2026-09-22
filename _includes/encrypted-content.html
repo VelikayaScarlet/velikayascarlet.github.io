@@ -1,0 +1,120 @@
+<div class="encrypted-content" data-payload-url="{{ include.payload | relative_url }}">
+  <div class="encrypted-content__prompt">
+    <h2>{{ include.title | default: "受保护内容" }}</h2>
+    <p>请输入密码以继续阅读</p>
+    <form class="encrypted-content__form">
+      <input class="encrypted-content__password" type="password" autocomplete="current-password" placeholder="密码" required>
+      <button type="submit">解密</button>
+    </form>
+    <p class="encrypted-content__status" role="status"></p>
+  </div>
+  <div class="encrypted-content__body" hidden></div>
+</div>
+
+<style>
+.encrypted-content__prompt {
+  max-width: 360px;
+  margin: 3rem auto;
+  text-align: center;
+  font-family: Georgia, "Songti SC", "STSong", serif;
+}
+.encrypted-content__prompt h2 {
+  margin-bottom: 0.35rem;
+  color: #4a3728;
+  font-size: 1.3rem;
+  font-weight: normal;
+}
+.encrypted-content__prompt > p {
+  color: #777;
+  font-size: 0.9rem;
+}
+.encrypted-content__form {
+  display: flex;
+  gap: 0.6rem;
+  margin-top: 1.25rem;
+}
+.encrypted-content__password {
+  min-width: 0;
+  flex: 1;
+  padding: 0.65rem 0.8rem;
+  border: 1px solid #d5c8b0;
+  border-radius: 4px;
+  font: inherit;
+}
+.encrypted-content__form button {
+  padding: 0.65rem 1rem;
+  border: 0;
+  border-radius: 4px;
+  background: #4a3728;
+  color: #fff;
+  cursor: pointer;
+  font: inherit;
+}
+.encrypted-content__status {
+  min-height: 1.4em;
+  color: #b33 !important;
+}
+</style>
+
+<script>
+(function () {
+  const container = document.currentScript.previousElementSibling.previousElementSibling;
+  const form = container.querySelector(".encrypted-content__form");
+  const input = container.querySelector(".encrypted-content__password");
+  const status = container.querySelector(".encrypted-content__status");
+  const prompt = container.querySelector(".encrypted-content__prompt");
+  const body = container.querySelector(".encrypted-content__body");
+  const payloadUrl = container.dataset.payloadUrl;
+
+  function fromBase64(value) {
+    return Uint8Array.from(atob(value), (character) => character.charCodeAt(0));
+  }
+
+  async function deriveKey(password, payload) {
+    const keyMaterial = await crypto.subtle.importKey(
+      "raw",
+      new TextEncoder().encode(password),
+      "PBKDF2",
+      false,
+      ["deriveKey"],
+    );
+
+    return crypto.subtle.deriveKey(
+      {
+        name: "PBKDF2",
+        hash: "SHA-256",
+        salt: fromBase64(payload.salt),
+        iterations: payload.iterations,
+      },
+      keyMaterial,
+      { name: "AES-GCM", length: 256 },
+      false,
+      ["decrypt"],
+    );
+  }
+
+  form.addEventListener("submit", async (event) => {
+    event.preventDefault();
+    status.textContent = "正在解密……";
+
+    try {
+      const response = await fetch(payloadUrl, { cache: "no-store" });
+      if (!response.ok) throw new Error("Unable to load encrypted content");
+      const payload = await response.json();
+      const key = await deriveKey(input.value, payload);
+      const plaintext = await crypto.subtle.decrypt(
+        { name: "AES-GCM", iv: fromBase64(payload.iv) },
+        key,
+        fromBase64(payload.ciphertext),
+      );
+
+      body.innerHTML = new TextDecoder().decode(plaintext);
+      body.hidden = false;
+      prompt.remove();
+    } catch (error) {
+      status.textContent = "密码错误，或加密内容无法读取。";
+      input.select();
+    }
+  });
+})();
+</script>
