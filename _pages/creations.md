@@ -11,7 +11,7 @@ author_profile: false
   <section class="creation-hero" style="--hero-image: url('{{ '/images/creations-hero.webp' | relative_url }}');" aria-labelledby="creation-hero-title">
     <div class="creation-hero__content">
       <p class="creation-hero__eyebrow">Creations / 写作</p>
-      <h1 id="creation-hero-title">文字留下来的地方</h1>
+      <h1 id="creation-hero-title">一笺一页一乾坤</h1>
       <p class="creation-hero__subtitle">诗词、随笔与未完成的世界</p>
     </div>
     <a class="creation-hero__scroll" href="#writing" aria-label="向下阅读文章">↓</a>
@@ -113,6 +113,57 @@ author_profile: false
 
 <script>
 (function () {
+  var heroTitle = document.getElementById('creation-hero-title');
+  var heroLines = [
+    // 《觅月集》
+    '不乘飞机不坐船，我随烟雨入江天',
+    '烟柳画桥三吴会，乘风极目望汤汤',
+    '怡逢海内升平世，璀璨星河拱凤城',
+
+    // 《折光集》
+    '一笺一页一乾坤',
+    '认取河山，刻作星霜记',
+    '谁知今夜泪，与雨共稠浓',
+    '岁岁东风似旧时',
+    '低吟一曲送春词',
+    '半世光阴针脚里，织成多少春秋',
+
+    // 《东海集》
+    '开时明月满西窗',
+    '满城灯火是君留',
+    '何时圆月上回廊',
+    '看君眉眼是支歌',
+    '可渡相思去枕前',
+    '一篙烟雨一篙星',
+    '浦江灯火渐分明',
+    '春风不管前尘事，吹落高枝几片樱',
+    '重逢初见处，你我尚无诗'
+  ];
+
+  if (heroTitle) {
+    var previousIndex = -1;
+    try {
+      var storedIndex = sessionStorage.getItem('creation-hero-line');
+      if (storedIndex !== null) {
+        previousIndex = Number(storedIndex);
+      }
+    } catch (error) {
+      previousIndex = -1;
+    }
+
+    var lineIndex = Math.floor(Math.random() * heroLines.length);
+    if (lineIndex === previousIndex && heroLines.length > 1) {
+      lineIndex = (lineIndex + 1 + Math.floor(Math.random() * (heroLines.length - 1))) % heroLines.length;
+    }
+
+    heroTitle.textContent = heroLines[lineIndex];
+    try {
+      sessionStorage.setItem('creation-hero-line', String(lineIndex));
+    } catch (error) {
+      // The random title still works when browser storage is unavailable.
+    }
+  }
+
   var buttons = document.querySelectorAll('[data-creation-year]');
   var posts = document.querySelectorAll('[data-creation-post-year]');
 
