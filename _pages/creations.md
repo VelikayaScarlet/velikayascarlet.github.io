@@ -6,6 +6,7 @@ author_profile: false
 ---
 
 {% assign diary_posts = site.pages | where_exp: "p", "p.path contains 'creations/essays/归绥杂记/'" | where_exp: "p", "p.title != '序言'" | sort: "path" | reverse %}
+{% assign creation_posts = site.pages | where: "creation_feed", true | sort: "date" | reverse %}
 
 <main>
   <section class="creation-hero" style="--hero-image: url('{{ '/images/creations-hero.webp' | relative_url }}');" aria-labelledby="creation-hero-title">
@@ -37,6 +38,7 @@ author_profile: false
           <h2 id="creation-posts-title">文章</h2>
           <div class="creation-year-filter" aria-label="按年份筛选文章">
             <button class="is-active" type="button" data-creation-year="all">全部</button>
+            <button type="button" data-creation-year="2026">2026</button>
             <button type="button" data-creation-year="2025">2025</button>
             <button type="button" data-creation-year="2024">2024</button>
             <button type="button" data-creation-year="2023">2023</button>
@@ -44,10 +46,9 @@ author_profile: false
         </div>
 
         <div class="creation-post-list">
-          {% for post in diary_posts %}
-            {% assign short_year = post.title | slice: 0, 2 %}
-            {% assign full_year = '20' | append: short_year %}
-            {% assign month = post.title | slice: 3, 2 %}
+          {% for post in creation_posts %}
+            {% assign full_year = post.date | date: '%Y' %}
+            {% assign month = post.date | date: '%m' %}
             {% assign rendered_content = post.content | markdownify %}
             {% assign excerpt_parts = rendered_content | split: '</strong>' %}
             {% if excerpt_parts.size > 1 %}
@@ -59,11 +60,11 @@ author_profile: false
               <time datetime="{{ full_year }}-{{ month }}">{{ full_year }}.{{ month }}</time>
               <div>
                 <div class="creation-post__meta">
-                  <span class="creation-post__collection">归绥杂记</span>
-                  <span>随笔</span>
+                  <span class="creation-post__collection">{% if post.story_collection %}{{ post.story_collection }}{% else %}归绥杂记{% endif %}</span>
+                  <span>{% if post.creation_kind == 'short-story' %}短篇{% else %}随笔{% endif %}</span>
                 </div>
-                <h3><a href="{{ post.url | relative_url }}">{{ full_year }} 年 {{ month }} 月</a></h3>
-                <p class="creation-post__excerpt">{{ excerpt_source | strip_html | strip_newlines | truncate: 138 }}</p>
+                <h3><a href="{{ post.url | relative_url }}">{% if post.creation_kind == 'short-story' %}{{ post.title }}{% else %}{{ full_year }} 年 {{ month }} 月{% endif %}</a></h3>
+                <p class="creation-post__excerpt">{% if post.creation_excerpt %}{{ post.creation_excerpt }}{% else %}{{ excerpt_source | strip_html | strip_newlines | truncate: 138 }}{% endif %}</p>
                 <a class="creation-post__more" href="{{ post.url | relative_url }}">阅读全文 →</a>
               </div>
             </article>
