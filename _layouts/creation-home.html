@@ -8,9 +8,9 @@ layout: compress
     {% include head.html %}
     {% include head/custom.html %}
   </head>
-  <body class="creations-site">
+  <body class="creations-site{% if page.hide_nav %} creation-home-site{% endif %}">
     {% include browser-upgrade.html %}
-    {% include masthead.html %}
+    {% unless page.hide_nav %}{% include masthead.html %}{% endunless %}
     {{ content }}
     {% include scripts.html %}
   </body>
