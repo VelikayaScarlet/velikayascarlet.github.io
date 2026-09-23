@@ -75,11 +75,13 @@ hide_nav: true
       </section>
 
       <section class="creation-widget creation-archive-widget">
-        <header class="creation-widget__title"><h2>归档</h2><span>Archive</span></header>
+        <header class="creation-widget__title"><h2>创作年表</h2><span>Timeline</span></header>
         <a href="#writing" data-creation-archive-year="2026"><span>2026</span><b data-creation-count="2026">0</b></a>
         <a href="#writing" data-creation-archive-year="2025"><span>2025</span><b data-creation-count="2025">0</b></a>
         <a href="#writing" data-creation-archive-year="2024"><span>2024</span><b data-creation-count="2024">0</b></a>
         <a href="#writing" data-creation-archive-year="2023"><span>2023</span><b data-creation-count="2023">0</b></a>
+        <a href="{{ '/creations/liubin-memoir/' | relative_url }}"><span>2018—2022</span><b>回忆录</b></a>
+        <a href="{{ '/creations/cmbpre/' | relative_url }}"><span>2014</span><b>小说</b></a>
       </section>
     </aside>
   </div>
