@@ -22,6 +22,9 @@
       {% if author.location %}
         <li><i class="fa fa-fw fa-map-marker" aria-hidden="true"></i> {{ author.location }}</li>
       {% endif %}
+      {% if page.url == '/' %}
+        <li><a href="https://mapmyvisitors.com/web/1bz2b" target="_blank" rel="noopener noreferrer"><i class="fas fa-fw fa-eye" aria-hidden="true"></i> <span id="profile-views-count">Loading...</span> Profile Views</a></li>
+      {% endif %}
       {% if author.employer %}
         <li><i class="fa fa-fw fa-map-marker" aria-hidden="true"></i> {{ author.employer }}</li>
       {% endif %}

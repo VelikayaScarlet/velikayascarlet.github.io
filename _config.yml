@@ -68,6 +68,7 @@ include:
 exclude:
   - docs
   - google_scholar_crawler
+  - profile_views
   - "*.sublime-project"
   - "*.sublime-workspace"
   - .asset-cache
