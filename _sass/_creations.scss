@@ -222,7 +222,7 @@
 
 .creation-post {
   display: grid;
-  grid-template-columns: 92px minmax(0, 1fr);
+  grid-template-columns: 72px minmax(0, 1fr);
   gap: 24px;
   padding: 24px 20px;
   border: 1px solid transparent;
@@ -240,14 +240,25 @@
 .creation-post[hidden] { display: none; }
 
 .creation-post time {
-  width: fit-content;
-  padding: 4px 7px;
-  border: 1px solid var(--creation-line);
-  border-radius: 3px;
+  align-self: start;
+  display: grid;
+  gap: 2px;
+  padding: 2px 12px 4px 0;
+  border-right: 2px solid var(--creation-rose);
   color: var(--creation-muted);
-  background: var(--creation-paper);
   font-family: "SFMono-Regular", Consolas, monospace;
-  font-size: 0.75rem;
+  line-height: 1;
+}
+
+.creation-post time span {
+  font-size: 0.68rem;
+  letter-spacing: 0.04em;
+}
+
+.creation-post time strong {
+  color: var(--creation-ink);
+  font-size: 1.35rem;
+  font-weight: 500;
 }
 
 .creation-post__meta {
@@ -676,6 +687,18 @@
     gap: 7px;
     padding: 20px 12px;
   }
+
+  .creation-post time {
+    display: flex;
+    gap: 5px;
+    align-items: baseline;
+    width: fit-content;
+    padding: 0 0 5px;
+    border-right: 0;
+    border-bottom: 2px solid var(--creation-rose);
+  }
+
+  .creation-post time strong { font-size: 0.9rem; }
 
   .creation-year-filter button { padding: 5px 6px; }
 

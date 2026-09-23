@@ -58,7 +58,7 @@ author_profile: false
               {% assign excerpt_source = rendered_content %}
             {% endif %}
             <article class="creation-post" data-creation-post-year="{{ full_year }}">
-              <time datetime="{{ full_year }}-{{ month }}">{{ full_year }}.{{ month }}</time>
+              <time datetime="{{ full_year }}-{{ month }}"><span>{{ full_year }}</span><strong>{{ month }}</strong></time>
               <div>
                 <div class="creation-post__meta">
                   <span class="creation-post__collection">{% if post.story_collection %}{{ post.story_collection }}{% else %}归绥杂记{% endif %}</span>
