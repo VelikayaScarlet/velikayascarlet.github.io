@@ -6,6 +6,7 @@ author_profile: false
 ---
 
 {% assign diary_posts = site.pages | where_exp: "p", "p.path contains 'creations/essays/归绥杂记/'" | where_exp: "p", "p.title != '序言'" | sort: "path" | reverse %}
+{% assign story_posts = site.pages | where: "story_collection", "事物替我们说话" %}
 {% assign creation_posts = site.pages | where: "creation_feed", true | sort: "date" | reverse %}
 
 <main>
@@ -79,35 +80,35 @@ author_profile: false
         <div class="creation-shelf__group">
           <p class="creation-shelf__label">诗词</p>
           <a class="creation-work" href="{{ '/creations/poems/觅月集.pdf' | relative_url }}" target="_blank" rel="noopener">
-            <span class="creation-work__mark">觅</span><span class="creation-work__name">觅月集</span><span class="creation-work__type">PDF</span>
+            <span class="creation-work__name">觅月集</span><span class="creation-work__type">PDF</span>
           </a>
           <a class="creation-work" href="{{ '/creations/poems/折光集.pdf' | relative_url }}" target="_blank" rel="noopener">
-            <span class="creation-work__mark">折</span><span class="creation-work__name">折光集</span><span class="creation-work__type">PDF</span>
+            <span class="creation-work__name">折光集</span><span class="creation-work__type">PDF</span>
           </a>
           <a class="creation-work" href="{{ '/creations/poems/东海集.pdf' | relative_url }}" target="_blank" rel="noopener">
-            <span class="creation-work__mark">东</span><span class="creation-work__name">东海集</span><span class="creation-work__type">PDF</span>
+            <span class="creation-work__name">东海集</span><span class="creation-work__type">PDF</span>
           </a>
         </div>
 
         <div class="creation-shelf__group">
           <p class="creation-shelf__label">文章与故事</p>
           <a class="creation-work" href="{{ '/creations/stories/yexing/' | relative_url }}">
-            <span class="creation-work__mark creation-work__mark--rose">物</span><span class="creation-work__name">事物替我们说话</span><span class="creation-work__type">8 篇</span>
+            <span class="creation-work__name">事物替我们说话</span><span class="creation-work__type">{{ story_posts.size }} 篇</span>
           </a>
           <a class="creation-work" href="{{ '/creations/guisui-zaji/' | relative_url }}">
-            <span class="creation-work__mark creation-work__mark--rose">归</span><span class="creation-work__name">归绥杂记</span><span class="creation-work__type">{{ diary_posts.size }} 篇</span>
+            <span class="creation-work__name">归绥杂记</span><span class="creation-work__type">{{ diary_posts.size }} 篇</span>
           </a>
           <a class="creation-work" href="{{ '/creations/cmbpre/' | relative_url }}">
-            <span class="creation-work__mark creation-work__mark--ink">联</span><span class="creation-work__name">联合军前传</span><span class="creation-work__type">小说</span>
+            <span class="creation-work__name">联合军前传</span><span class="creation-work__type">小说</span>
           </a>
           <a class="creation-work" href="{{ '/creations/political/' | relative_url }}">
-            <span class="creation-work__mark creation-work__mark--ink">玻</span><span class="creation-work__name">玻璃蒂克</span><span class="creation-work__type">受保护</span>
+            <span class="creation-work__name">玻璃蒂克</span><span class="creation-work__type">受保护</span>
           </a>
-          <a class="creation-work" href="{{ '/creations/essays/别利语/别利语简述%5B18.7.A2%5D.pdf' | relative_url }}" target="_blank" rel="noopener">
-            <span class="creation-work__mark creation-work__mark--rose">别</span><span class="creation-work__name">别利语简述</span><span class="creation-work__type">语言</span>
+          <a class="creation-work" href="{{ '/creations/bielian/' | relative_url }}">
+            <span class="creation-work__name">别利语简述</span><span class="creation-work__type">语言</span>
           </a>
-          <a class="creation-work" href="{{ '/creations/essays/刘彬回忆录之我的大学/%E3%80%8A%E5%88%98%E5%BD%AC%E5%9B%9E%E5%BF%86%E5%BD%95%E2%80%94%E2%80%94%E6%88%91%E7%9A%84%E5%A4%A7%E5%AD%A6%E3%80%8B.pdf' | relative_url }}" target="_blank" rel="noopener">
-            <span class="creation-work__mark">忆</span><span class="creation-work__name">刘彬回忆录——我的大学</span><span class="creation-work__type">回忆录</span>
+          <a class="creation-work" href="{{ '/creations/liubin-memoir/' | relative_url }}">
+            <span class="creation-work__name">刘彬回忆录——我的大学</span><span class="creation-work__type">回忆录</span>
           </a>
         </div>
       </aside>

@@ -2,6 +2,15 @@
 layout: compress
 ---
 
+{% assign story_pages = site.pages | where: "story_collection", page.story_collection | sort: "story_index" %}
+{% assign story_total = story_pages.size %}
+{% assign previous_index = page.story_index | minus: 1 %}
+{% assign next_index = page.story_index | plus: 1 %}
+{% for story in story_pages %}
+  {% if story.story_index == previous_index %}{% assign previous_story = story %}{% endif %}
+  {% if story.story_index == next_index %}{% assign next_story = story %}{% endif %}
+{% endfor %}
+
 <!doctype html>
 <html lang="zh-CN" class="no-js">
   <head>
@@ -19,9 +28,9 @@ layout: compress
           <span aria-hidden="true">/</span>
           <a href="{{ '/creations/stories/yexing/' | relative_url }}">{{ page.story_collection }}</a>
         </nav>
-        <p class="creation-reader__progress-label">{{ page.story_index }} / {{ page.story_total }}</p>
+        <p class="creation-reader__progress-label">{{ page.story_index }} / {{ story_total }}</p>
         <div class="creation-reader__progress" aria-hidden="true">
-          <span style="width: {{ page.story_index | times: 100 | divided_by: page.story_total }}%"></span>
+          <span style="width: {{ page.story_index | times: 100 | divided_by: story_total }}%"></span>
         </div>
       </header>
 
@@ -31,16 +40,16 @@ layout: compress
 
       <nav class="creation-story-nav" aria-label="篇章导航">
         <div>
-          {% if page.previous_url %}
+          {% if previous_story %}
             <span>上一篇</span>
-            <a href="{{ page.previous_url | relative_url }}">{{ page.previous_title }}</a>
+            <a href="{{ previous_story.url | relative_url }}">{{ previous_story.title }}</a>
           {% endif %}
         </div>
         <a class="creation-story-nav__index" href="{{ '/creations/stories/yexing/' | relative_url }}">返回目录</a>
         <div class="creation-story-nav__next">
-          {% if page.next_url %}
+          {% if next_story %}
             <span>下一篇</span>
-            <a href="{{ page.next_url | relative_url }}">{{ page.next_title }}</a>
+            <a href="{{ next_story.url | relative_url }}">{{ next_story.title }}</a>
           {% endif %}
         </div>
       </nav>

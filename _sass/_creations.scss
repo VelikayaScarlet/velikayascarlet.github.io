@@ -290,31 +290,16 @@
 
 .creation-work {
   display: grid;
-  grid-template-columns: 34px minmax(0, 1fr) auto;
-  gap: 10px;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 16px;
   align-items: center;
-  padding: 11px 0;
+  padding: 13px 2px;
   border-bottom: 1px solid var(--creation-line);
   color: var(--creation-ink);
   text-decoration: none;
 }
 
 .creation-work:hover { color: var(--creation-accent); }
-
-.creation-work__mark {
-  width: 30px;
-  height: 36px;
-  display: grid;
-  place-items: center;
-  color: #fff;
-  background: var(--creation-accent);
-  font-family: Georgia, "Songti SC", serif;
-  font-size: 0.75rem;
-  font-weight: 700;
-}
-
-.creation-work__mark--rose { background: var(--creation-rose); }
-.creation-work__mark--ink { background: #444b54; }
 
 .creation-work__name {
   overflow: hidden;
@@ -409,6 +394,42 @@
 .creation-story-list span { font-size: 0.72rem; }
 .creation-story-list strong { font-size: 1.12rem; }
 .creation-story-list small { font-size: 0.82rem; line-height: 1.7; }
+
+.creation-story-list--dated a {
+  grid-template-columns: 72px 180px minmax(0, 1fr);
+}
+
+.creation-protected-panel {
+  padding: 8px 0 32px;
+  border-top: 1px solid var(--creation-line);
+  border-bottom: 1px solid var(--creation-line);
+}
+
+.creation-document-link {
+  display: grid;
+  grid-template-columns: 56px minmax(0, 1fr) auto;
+  gap: 20px;
+  align-items: center;
+  padding: 28px 4px;
+  border-top: 1px solid var(--creation-line);
+  border-bottom: 1px solid var(--creation-line);
+}
+
+.creation-document-link > span {
+  color: var(--creation-muted);
+  font-family: "SFMono-Regular", Consolas, monospace;
+  font-size: 0.72rem;
+}
+
+.creation-document-link div { display: grid; gap: 6px; }
+.creation-document-link strong { font-size: 1.12rem; }
+.creation-document-link small { color: var(--creation-muted); font-size: 0.82rem; }
+.creation-document-link a {
+  color: var(--creation-accent);
+  font-size: 0.82rem;
+  font-weight: 700;
+  text-decoration: none;
+}
 
 .creation-reader {
   width: min(100% - 40px, 820px);
@@ -578,7 +599,11 @@
     gap: 8px 12px;
   }
 
+  .creation-story-list--dated a { grid-template-columns: 58px minmax(0, 1fr); }
+
   .creation-story-list small { grid-column: 2; }
+  .creation-document-link { grid-template-columns: 42px minmax(0, 1fr); }
+  .creation-document-link > a { grid-column: 2; }
   .creation-story-prose > h1:first-child { font-size: 2.25rem; }
   .creation-story-prose p { font-size: 1rem; line-height: 1.9; }
 

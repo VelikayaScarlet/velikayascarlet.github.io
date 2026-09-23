@@ -14,18 +14,18 @@
 <style>
 .encrypted-content__prompt {
   max-width: 360px;
-  margin: 3rem auto;
+  margin: 2.5rem auto;
   text-align: center;
-  font-family: Georgia, "Songti SC", "STSong", serif;
+  font-family: Inter, "PingFang SC", "Microsoft YaHei", sans-serif;
 }
 .encrypted-content__prompt h2 {
   margin-bottom: 0.35rem;
-  color: #4a3728;
+  color: var(--creation-ink, #20242a);
   font-size: 1.3rem;
-  font-weight: normal;
+  font-weight: 650;
 }
 .encrypted-content__prompt > p {
-  color: #777;
+  color: var(--creation-muted, #68717c);
   font-size: 0.9rem;
 }
 .encrypted-content__form {
@@ -37,15 +37,17 @@
   min-width: 0;
   flex: 1;
   padding: 0.65rem 0.8rem;
-  border: 1px solid #d5c8b0;
+  border: 1px solid var(--creation-line, #dfe3e8);
   border-radius: 4px;
+  color: var(--creation-ink, #20242a);
+  background: var(--creation-paper, #fff);
   font: inherit;
 }
 .encrypted-content__form button {
   padding: 0.65rem 1rem;
   border: 0;
   border-radius: 4px;
-  background: #4a3728;
+  background: var(--creation-accent, #365f80);
   color: #fff;
   cursor: pointer;
   font: inherit;
