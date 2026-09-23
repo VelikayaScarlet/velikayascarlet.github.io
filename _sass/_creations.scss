@@ -4,7 +4,7 @@
   --creation-muted: #68717c;
   --creation-line: #dfe3e8;
   --creation-paper: #ffffff;
-  --creation-canvas: #f5f6f8;
+  --creation-canvas: #f1f3f5;
   --creation-accent: #365f80;
   --creation-accent-soft: #e8eff5;
   --creation-rose: #99596a;
@@ -116,6 +116,22 @@
   border-bottom: 1px solid var(--creation-line);
 }
 
+.creation-blog__header::before {
+  content: "";
+  align-self: stretch;
+  width: 4px;
+  grid-row: 1;
+  grid-column: 1;
+  margin-right: -20px;
+  background: var(--creation-rose);
+}
+
+.creation-blog__header > div:first-child {
+  grid-row: 1;
+  grid-column: 1;
+  padding-left: 18px;
+}
+
 .creation-blog__eyebrow {
   margin: 0 0 8px;
   color: var(--creation-accent);
@@ -198,20 +214,38 @@
 
 .creation-year-filter button.is-active { font-weight: 700; }
 
-.creation-post-list { border-top: 1px solid var(--creation-line); }
+.creation-post-list {
+  display: grid;
+  gap: 8px;
+  padding-top: 10px;
+}
 
 .creation-post {
   display: grid;
   grid-template-columns: 92px minmax(0, 1fr);
   gap: 24px;
-  padding: 26px 0;
-  border-bottom: 1px solid var(--creation-line);
+  padding: 24px 20px;
+  border: 1px solid transparent;
+  border-radius: 6px;
+  transition: border-color 0.2s ease, background 0.2s ease, box-shadow 0.2s ease, transform 0.2s ease;
+}
+
+.creation-post:hover {
+  border-color: var(--creation-line);
+  background: var(--creation-paper);
+  box-shadow: 0 10px 24px rgba(24, 35, 45, 0.06);
+  transform: translateY(-1px);
 }
 
 .creation-post[hidden] { display: none; }
 
 .creation-post time {
+  width: fit-content;
+  padding: 4px 7px;
+  border: 1px solid var(--creation-line);
+  border-radius: 3px;
   color: var(--creation-muted);
+  background: var(--creation-paper);
   font-family: "SFMono-Regular", Consolas, monospace;
   font-size: 0.75rem;
 }
@@ -226,7 +260,10 @@
 }
 
 .creation-post__collection {
+  padding: 2px 7px;
+  border-radius: 999px;
   color: var(--creation-accent);
+  background: var(--creation-accent-soft);
   font-weight: 700;
 }
 
@@ -266,8 +303,11 @@
 .creation-shelf {
   position: sticky;
   top: 24px;
-  padding-left: 26px;
-  border-left: 1px solid var(--creation-line);
+  padding: 24px;
+  border: 1px solid var(--creation-line);
+  border-radius: 6px;
+  background: var(--creation-paper);
+  box-shadow: 0 14px 34px rgba(24, 35, 45, 0.05);
 }
 
 .creation-shelf__intro {
@@ -288,18 +328,43 @@
   text-transform: uppercase;
 }
 
-.creation-work {
-  display: grid;
-  grid-template-columns: minmax(0, 1fr) auto;
-  gap: 16px;
-  align-items: center;
-  padding: 13px 2px;
-  border-bottom: 1px solid var(--creation-line);
-  color: var(--creation-ink);
-  text-decoration: none;
+.creation-shelf__label::after {
+  content: "";
+  display: inline-block;
+  width: 28px;
+  height: 2px;
+  margin: 0 0 3px 9px;
+  background: var(--creation-rose);
 }
 
-.creation-work:hover { color: var(--creation-accent); }
+.creation-work {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto 12px;
+  gap: 12px;
+  align-items: center;
+  margin-bottom: 8px;
+  padding: 13px 12px 13px 15px;
+  border: 1px solid var(--creation-line);
+  border-left: 3px solid var(--creation-accent);
+  border-radius: 5px;
+  background: var(--creation-canvas);
+  color: var(--creation-ink);
+  text-decoration: none;
+  transition: border-color 0.2s ease, background 0.2s ease, transform 0.2s ease;
+}
+
+.creation-work::after {
+  content: "›";
+  color: var(--creation-muted);
+  font-size: 1rem;
+}
+
+.creation-work:hover {
+  border-color: var(--creation-accent);
+  color: var(--creation-accent);
+  background: var(--creation-paper);
+  transform: translateX(3px);
+}
 
 .creation-work__name {
   overflow: hidden;
@@ -310,7 +375,14 @@
   white-space: nowrap;
 }
 
-.creation-work__type { color: var(--creation-muted); font-size: 0.68rem; }
+.creation-work__type {
+  padding: 3px 7px;
+  border-radius: 999px;
+  color: var(--creation-muted);
+  background: var(--creation-paper);
+  font-size: 0.66rem;
+  white-space: nowrap;
+}
 
 /* Short-story index and focused reading pages. */
 .creation-story-index {
@@ -320,8 +392,20 @@
 }
 
 .creation-story-index__header {
+  position: relative;
   max-width: 700px;
   margin-bottom: 54px;
+  padding-left: 22px;
+}
+
+.creation-story-index__header::before {
+  content: "";
+  position: absolute;
+  top: 4px;
+  bottom: 4px;
+  left: 0;
+  width: 4px;
+  background: var(--creation-rose);
 }
 
 .creation-story-index__eyebrow {
@@ -360,9 +444,10 @@
 }
 
 .creation-story-list {
+  display: grid;
+  gap: 10px;
   margin: 0;
   padding: 0;
-  border-top: 1px solid var(--creation-line);
   list-style: none;
 }
 
@@ -373,16 +458,20 @@
   grid-template-columns: 48px 180px minmax(0, 1fr);
   gap: 20px;
   align-items: baseline;
-  padding: 24px 4px;
-  border-bottom: 1px solid var(--creation-line);
+  padding: 22px 18px;
+  border: 1px solid var(--creation-line);
+  border-radius: 6px;
   color: var(--creation-ink);
+  background: var(--creation-paper);
   text-decoration: none;
-  transition: color 0.2s ease, padding-left 0.2s ease;
+  transition: color 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease, transform 0.2s ease;
 }
 
 .creation-story-list a:hover {
-  padding-left: 12px;
+  border-color: var(--creation-accent);
   color: var(--creation-accent);
+  box-shadow: 0 10px 24px rgba(24, 35, 45, 0.06);
+  transform: translateX(4px);
 }
 
 .creation-story-list span,
@@ -411,8 +500,11 @@
   gap: 20px;
   align-items: center;
   padding: 28px 4px;
-  border-top: 1px solid var(--creation-line);
-  border-bottom: 1px solid var(--creation-line);
+  border: 1px solid var(--creation-line);
+  border-left: 4px solid var(--creation-accent);
+  border-radius: 6px;
+  background: var(--creation-paper);
+  box-shadow: 0 10px 24px rgba(24, 35, 45, 0.05);
 }
 
 .creation-document-link > span {
@@ -564,9 +656,7 @@
 
   .creation-shelf {
     position: static;
-    padding: 28px 0 0;
-    border-top: 1px solid var(--creation-line);
-    border-left: 0;
+    padding: 22px;
   }
 }
 
@@ -584,6 +674,7 @@
   .creation-post {
     grid-template-columns: 1fr;
     gap: 7px;
+    padding: 20px 12px;
   }
 
   .creation-year-filter button { padding: 5px 6px; }
@@ -592,6 +683,7 @@
   .creation-reader { width: min(100% - 28px, 980px); }
 
   .creation-story-index { padding-top: 48px; }
+  .creation-story-index__header { padding-left: 16px; }
   .creation-story-index__header h1 { font-size: 2.35rem; }
 
   .creation-story-list a {
