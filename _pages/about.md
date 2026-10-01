@@ -17,7 +17,7 @@ redirect_from:
 
 <span class='anchor' id='about-me'></span>
 
-In October 2026, I will start my research at the <a href="https://nlp.ist.i.kyoto-u.ac.jp/EN/">Language Media Lab</a> of Kyoto University, under the supervision of <a href="https://murawaki.org">Yugo Murawaki</a>.
+I am a Ph.D. student at the <a href="https://nlp.ist.i.kyoto-u.ac.jp/EN/">Language Media Lab</a> of Kyoto University, under the supervision of <a href="https://murawaki.org">Yugo Murawaki</a>.
 
 Prior to this, I obtained my Master's degree in Software Engineering from Inner Mongolia University (2026) and my Bachelor's degree in Computer Science from Zhengzhou University of Light Industry (2023).
 
