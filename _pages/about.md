@@ -125,7 +125,7 @@ For Full Publications, see my <a href='https://scholar.google.com/citations?user
 
 <div class="beyond-item">
 <span class="beyond-emoji">📜</span>
-<span class="beyond-text">In moments shaped by life’s struggles—for poetry thrives on hardship—I craft classical Chinese poems (See <strong>Creations</strong>).</span>
+<span class="beyond-text">Whenever something moves me, I also enjoy writing classical Chinese poetry (See <strong>Creations</strong>).</span>
 </div>
 
 </div>
