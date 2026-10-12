@@ -6,7 +6,6 @@ author_profile: false
 hide_nav: true
 ---
 
-{% assign creation_posts = site.pages | where: "creation_feed", true | sort: "date" | reverse %}
 
 <main class="creation-home-page">
   <section class="creation-banner" style="--hero-image: url('{{ '/images/creations-hero-v2.png' | relative_url }}');" aria-labelledby="creation-hero-title">
@@ -17,44 +16,7 @@ hide_nav: true
     </div>
   </section>
 
-  <div class="creation-home-layout" id="writing">
-    <section class="creation-feed" aria-labelledby="creation-posts-title">
-      <header class="creation-feed__tools">
-        <h2 id="creation-posts-title">文章</h2>
-        <div class="creation-year-filter" aria-label="按年份筛选文章">
-          <button class="is-active" type="button" data-creation-year="all">全部</button>
-          <button type="button" data-creation-year="2026">2026</button>
-          <button type="button" data-creation-year="2025">2025</button>
-          <button type="button" data-creation-year="2024">2024</button>
-          <button type="button" data-creation-year="2023">2023</button>
-        </div>
-      </header>
-
-      <div class="creation-post-list">
-        {% for post in creation_posts %}
-          {% assign full_year = post.date | date: '%Y' %}
-          {% assign month = post.date | date: '%m' %}
-          {% assign day = post.date | date: '%d' %}
-          <article class="creation-post" data-creation-post-year="{{ full_year }}">
-            <time datetime="{{ post.date | date: '%Y-%m-%d' }}"><strong>{{ day }}</strong><span>{{ full_year }}.{{ month }}</span></time>
-            <a href="{{ post.url | relative_url }}">
-              <small>{% if post.story_collection %}{{ post.story_collection }}{% else %}归绥杂记{% endif %} · {% if post.creation_kind == 'short-story' %}短篇{% else %}随笔{% endif %}</small>
-              <h3>{% if post.creation_kind == 'short-story' %}{{ post.title }}{% else %}{{ full_year }} 年 {{ month }} 月{% endif %}</h3>
-            </a>
-          </article>
-        {% endfor %}
-      </div>
-
-      <nav class="creation-pagination" aria-label="文章分页">
-        <span data-creation-page-info>第 1 / 1 页</span>
-        <div>
-          <button type="button" data-creation-page="prev">上一页</button>
-          <button type="button" data-creation-page="next">下一页</button>
-        </div>
-      </nav>
-    </section>
-
-    <aside class="creation-sidebar">
+  <section class="creation-collections" aria-label="创作栏目">
       <section class="creation-widget creation-widget--books">
         <header class="creation-widget__title"><h2>诗集</h2><span>Collections</span></header>
         <div class="creation-book-row">
@@ -74,16 +36,25 @@ hide_nav: true
         <a class="creation-library-link" href="{{ '/creations/liubin-memoir/' | relative_url }}"><b>刘彬回忆录——我的大学</b><span>回忆录</span></a>
       </section>
 
-      <section class="creation-widget creation-archive-widget">
-        <header class="creation-widget__title"><h2>创作年表</h2><span>Timeline</span></header>
-        <a href="#writing" data-creation-archive-year="2026"><span>2026</span><b data-creation-count="2026">0</b></a>
-        <a href="#writing" data-creation-archive-year="2025"><span>2025</span><b data-creation-count="2025">0</b></a>
-        <a href="#writing" data-creation-archive-year="2024"><span>2024</span><b data-creation-count="2024">0</b></a>
-        <a href="#writing" data-creation-archive-year="2023"><span>2023</span><b data-creation-count="2023">0</b></a>
-        <a href="{{ '/creations/liubin-memoir/' | relative_url }}"><span>2018—2022</span><b>回忆录</b></a>
-        <a href="{{ '/creations/cmbpre/' | relative_url }}"><span>2014</span><b>小说</b></a>
-      </section>
-    </aside>
+  </section>
+
+  <div class="creation-home-layout creation-home-layout--timeline" id="writing">
+    <section class="creation-feed" aria-labelledby="creation-posts-title">
+      <header class="creation-feed__tools">
+        <h2 id="creation-posts-title">更新</h2>
+        <div class="creation-year-filter" aria-label="按更新年份筛选"></div>
+      </header>
+      <div class="creation-post-list creation-update-list" aria-live="polite">
+        <p class="creation-update-status">正在加载更新…</p>
+      </div>
+      <nav class="creation-pagination" aria-label="更新分页" hidden>
+        <span data-creation-page-info></span>
+        <div>
+          <button type="button" data-creation-page="prev">上一页</button>
+          <button type="button" data-creation-page="next">下一页</button>
+        </div>
+      </nav>
+    </section>
   </div>
 
   <footer class="creation-home-footer">Creations · 2023—2026</footer>
@@ -124,58 +95,110 @@ hide_nav: true
     try { sessionStorage.setItem('creation-hero-line', String(lineIndex)); } catch (error) {}
   }
 
-  var posts = Array.prototype.slice.call(document.querySelectorAll('[data-creation-post-year]'));
-  var yearButtons = Array.prototype.slice.call(document.querySelectorAll('[data-creation-year]'));
-  var pageButtons = Array.prototype.slice.call(document.querySelectorAll('[data-creation-page]'));
+
+  var list = document.querySelector('.creation-update-list');
+  var filters = document.querySelector('.creation-year-filter');
+  var pagination = document.querySelector('.creation-pagination');
   var pageInfo = document.querySelector('[data-creation-page-info]');
-  var perPage = 10;
+  var pageButtons = Array.prototype.slice.call(document.querySelectorAll('[data-creation-page]'));
+  var updates = [];
   var currentPage = 1;
   var currentYear = 'all';
+  var perPage = 10;
+  var baseUrl = {{ site.baseurl | default: '' | jsonify }};
 
-  function renderPosts() {
-    var matching = posts.filter(function (post) {
-      return currentYear === 'all' || post.getAttribute('data-creation-post-year') === currentYear;
+  function render() {
+    var matching = updates.filter(function (item) {
+      return currentYear === 'all' || item.date.slice(0, 4) === currentYear;
     });
-    var totalPages = Math.max(1, Math.ceil(matching.length / perPage));
-    currentPage = Math.min(currentPage, totalPages);
-    var start = (currentPage - 1) * perPage;
-    posts.forEach(function (post) { post.hidden = true; });
-    matching.slice(start, start + perPage).forEach(function (post) { post.hidden = false; });
-    if (pageInfo) pageInfo.textContent = '第 ' + currentPage + ' / ' + totalPages + ' 页';
-    pageButtons.forEach(function (button) {
-      var direction = button.getAttribute('data-creation-page');
-      button.disabled = direction === 'prev' ? currentPage === 1 : currentPage === totalPages;
+    var pages = Math.max(1, Math.ceil(matching.length / perPage));
+    currentPage = Math.max(1, Math.min(currentPage, pages));
+    list.replaceChildren();
+    matching.slice((currentPage - 1) * perPage, currentPage * perPage).forEach(function (item) {
+      var article = document.createElement('article');
+      article.className = 'creation-post creation-update';
+      var time = document.createElement('time');
+      time.dateTime = item.date;
+      var day = document.createElement('strong');
+      day.textContent = item.date.slice(8, 10);
+      var month = document.createElement('span');
+      month.textContent = item.date.slice(0, 7).replace('-', '.');
+      time.append(day, month);
+      var link = document.createElement('a');
+      link.href = baseUrl + item.url;
+      var heading = document.createElement('h3');
+      heading.textContent = item.title;
+      var label = document.createElement('small');
+      label.textContent = '更新';
+      link.append(label, heading);
+      article.append(time, link);
+      list.append(article);
     });
+    if (!matching.length) {
+      var empty = document.createElement('p');
+      empty.className = 'creation-update-status';
+      empty.textContent = '暂无更新';
+      list.append(empty);
+    }
+    pagination.hidden = matching.length <= perPage;
+    pageInfo.textContent = '第 ' + currentPage + ' / ' + pages + ' 页';
+    pageButtons[0].disabled = currentPage === 1;
+    pageButtons[1].disabled = currentPage === pages;
   }
 
-  yearButtons.forEach(function (button) {
-    button.addEventListener('click', function () {
-      currentYear = button.getAttribute('data-creation-year');
-      currentPage = 1;
-      yearButtons.forEach(function (item) { item.classList.toggle('is-active', item === button); });
-      renderPosts();
+  function setup(data) {
+    updates = data.updates.filter(function (item) {
+      return typeof item.date === 'string' && /^\\d{4}-\\d{2}-\\d{2}T/.test(item.date) &&
+        typeof item.title === 'string' && typeof item.url === 'string' &&
+        item.url.indexOf('/creations/') === 0;
+    }).sort(function (a, b) { return b.date.localeCompare(a.date); });
+    var years = Array.from(new Set(updates.map(function (item) { return item.date.slice(0, 4); })));
+    filters.replaceChildren();
+    ['all'].concat(years).forEach(function (year) {
+      var button = document.createElement('button');
+      button.type = 'button';
+      button.textContent = year === 'all' ? '全部' : year;
+      button.classList.toggle('is-active', year === currentYear);
+      button.addEventListener('click', function () {
+        currentYear = year;
+        currentPage = 1;
+        Array.prototype.forEach.call(filters.children, function (other) {
+          other.classList.toggle('is-active', other === button);
+        });
+        render();
+      });
+      filters.append(button);
     });
-  });
+    render();
+  }
 
   pageButtons.forEach(function (button) {
     button.addEventListener('click', function () {
       currentPage += button.getAttribute('data-creation-page') === 'next' ? 1 : -1;
-      renderPosts();
+      render();
       document.getElementById('writing').scrollIntoView({ behavior: 'smooth', block: 'start' });
     });
   });
 
-  document.querySelectorAll('[data-creation-archive-year]').forEach(function (link) {
-    var year = link.getAttribute('data-creation-archive-year');
-    var count = posts.filter(function (post) { return post.getAttribute('data-creation-post-year') === year; }).length;
-    var countTarget = document.querySelector('[data-creation-count="' + year + '"]');
-    if (countTarget) countTarget.textContent = count;
-    link.addEventListener('click', function () {
-      var target = document.querySelector('[data-creation-year="' + year + '"]');
-      if (target) target.click();
-    });
-  });
+  async function getUpdates(url) {
+    var response = await fetch(url, { cache: 'no-store' });
+    if (!response.ok) throw new Error('Timeline unavailable');
+    var data = await response.json();
+    if (!Array.isArray(data.updates)) throw new Error('Invalid timeline');
+    return data;
+  }
 
-  renderPosts();
+  (async function () {
+    try {
+      setup(await getUpdates('https://raw.githubusercontent.com/VelikayaScarlet/velikayascarlet.github.io/creation-updates/creation-updates.json'));
+    } catch (error) {
+      try {
+        setup(await getUpdates({{ '/assets/data/creation-updates.json' | relative_url | jsonify }}));
+      } catch (fallbackError) {
+        list.textContent = '更新记录暂时无法加载';
+      }
+    }
+  })();
+
 })();
 </script>

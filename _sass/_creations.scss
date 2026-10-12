@@ -265,6 +265,25 @@
 }
 
 /* Creation home: compact literary blog. */
+.creation-collections { width: min(1060px, calc(100% - 32px)); margin: 0 auto 28px; display: grid; grid-template-columns: minmax(240px, 0.8fr) minmax(0, 1.8fr); gap: 28px; }
+.creation-collections .creation-widget { padding: 0; border: 0; border-radius: 0; background: none; box-shadow: none; }
+.creation-collections .creation-library-link { min-height: 48px; }
+.creation-collections .creation-library-link b { white-space: normal; font-family: "Microsoft YaHei", sans-serif; font-size: 0.82rem; }
+.creation-collections .creation-widget:not(.creation-widget--books) { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); column-gap: 24px; }
+.creation-collections .creation-widget__title { grid-column: 1 / -1; }
+.creation-home-layout.creation-home-layout--timeline { display: block; }
+.creation-home-layout--timeline .creation-feed { padding: 0; border: 0; border-radius: 0; background: none; box-shadow: none; }
+.creation-update-list { position: relative; padding-left: 15px; border-left: 1px solid var(--home-line); }
+.creation-home-site .creation-update { position: relative; }
+.creation-home-site .creation-update::before { display: block; position: absolute; top: 38px; bottom: auto; left: -19px; width: 7px; height: 7px; border-radius: 50%; background: var(--home-green); transform: none; }
+.creation-update-status { padding: 20px 0; color: var(--home-muted); font-size: 0.8rem; }
+.creation-home-layout--timeline .creation-feed__tools { flex-wrap: wrap; gap: 12px; }
+.creation-home-layout--timeline .creation-year-filter { flex-wrap: wrap; }
+.creation-pagination[hidden] { display: none; }
+@media (max-width: 760px) {
+  .creation-collections { width: calc(100% - 20px); grid-template-columns: 1fr; gap: 24px; }
+  .creation-home-layout--timeline .creation-feed { padding: 0; }
+}
 .creation-home-site {
   --home-page: #eef1f2;
   --home-paper: #fff;

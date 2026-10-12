@@ -1,0 +1,45 @@
+name: Update Creation Timeline
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'creations/poems/**'
+      - 'creations/stories/**'
+      - 'creations/essays/**'
+      - 'assets/encrypted/political.json'
+      - 'scripts/creation-updates.py'
+      - '.github/workflows/creation_updates.yaml'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: creation-updates
+  cancel-in-progress: false
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Build timeline from content history
+        run: python scripts/creation-updates.py --output /tmp/creation-updates.json
+      - name: Publish timeline data
+        run: |
+          mkdir /tmp/creation-timeline
+          cd /tmp/creation-timeline
+          cp /tmp/creation-updates.json .
+          git init
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add creation-updates.json
+          git commit -m "Update creation timeline"
+          git push "https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${GITHUB_REPOSITORY}.git" HEAD:creation-updates --force
+
