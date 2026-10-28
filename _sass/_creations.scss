@@ -376,3 +376,41 @@
   .creation-home-site .creation-book { height: 145px; }
   .creation-home-footer { width: calc(100% - 24px); }
 }
+
+/* Creation landing page: readable collections and updates. */
+.creation-home-site .creation-collections {
+  grid-template-columns: minmax(280px, 1fr) minmax(0, 1.5fr);
+  gap: 36px;
+  margin-bottom: 38px;
+}
+.creation-home-site .creation-widget__title { margin-bottom: 14px; }
+.creation-home-site .creation-widget__title h2,
+.creation-home-site .creation-feed__tools h2 { font-size: 1.22rem; }
+.creation-home-site .creation-widget__title span { font-size: 0.7rem; }
+.creation-home-site .creation-book-row { gap: 10px; }
+.creation-home-site .creation-book { height: 140px; }
+.creation-home-site .creation-book b { font-size: 1.24rem; }
+.creation-home-site .creation-book i { font-size: 0.7rem; }
+.creation-home-site .creation-library-link { min-height: 55px; gap: 12px; }
+.creation-home-site .creation-library-link b {
+  font-size: 1rem;
+  line-height: 1.5;
+  overflow: visible;
+  white-space: normal;
+}
+.creation-home-site .creation-library-link span { font-size: 0.72rem; white-space: nowrap; }
+.creation-home-site .creation-year-filter button { font-size: 0.8rem; }
+.creation-home-site .creation-post time span { font-size: 0.68rem; }
+.creation-home-site .creation-post small { font-size: 0.75rem; }
+.creation-home-site .creation-post h3 { font-size: 1.16rem; }
+.creation-home-site .creation-pagination { font-size: 0.8rem; }
+.creation-home-site .creation-home-layout--timeline { margin-bottom: 44px; }
+
+@media (max-width: 760px) {
+  .creation-home-site .creation-collections { grid-template-columns: 1fr; gap: 26px; margin-bottom: 32px; }
+  .creation-home-site .creation-book { height: 135px; }
+  .creation-home-site .creation-library-link { min-height: 52px; }
+}
+@media (max-width: 420px) {
+  .creation-collections .creation-widget:not(.creation-widget--books) { grid-template-columns: 1fr; }
+}

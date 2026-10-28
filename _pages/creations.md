@@ -148,7 +148,7 @@ hide_nav: true
 
   function setup(data) {
     updates = data.updates.filter(function (item) {
-      return typeof item.date === 'string' && /^\\d{4}-\\d{2}-\\d{2}T/.test(item.date) &&
+      return typeof item.date === 'string' && /^\d{4}-\d{2}-\d{2}T/.test(item.date) &&
         typeof item.title === 'string' && typeof item.url === 'string' &&
         item.url.indexOf('/creations/') === 0;
     }).sort(function (a, b) { return b.date.localeCompare(a.date); });
