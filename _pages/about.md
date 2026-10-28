@@ -74,6 +74,16 @@ For Full Publications, see my <a href='https://scholar.google.com/citations?user
   <li><span class="conf-badge conf-badge--acl">ACL 2026</span> <a href="https://aclanthology.org/2026.findings-acl.128/">Exploring the Capability Boundaries of LLMs in Mastering of Chinese Chouxiang Language</a>. Dianqing Lin*, <strong>Tian Lan*</strong>, Jiali Zhu*, Jiang Li, Wei Chen, Xu Liu, Aruukhan, Xiangdong Su, Hongxu Hou, Guanglai Gao</li>
 </ul>
 
+### Preprints
+
+<ul class="pub-list">
+  <li><span class="conf-badge conf-badge--other">arXiv 2026</span> <a href="https://arxiv.org/abs/2610.20785">APRiL: An Open-ended Benchmark for Chinese Social Awareness in Large Language Models</a>. <strong>Tian Lan</strong>, Han Zhang, Shanshan Wang, Yahan Yu, Jiang Li, Yugo Murawaki</li>
+
+  <li><span class="conf-badge conf-badge--other">arXiv 2026</span> <a href="https://arxiv.org/abs/2610.01696">Acmite: Mitigating Gender Bias in LLMs through Concept-Guided Mutual Information</a>. <strong>Tian Lan</strong>, Xiaoqing Cheng, Han Zhang, Jiang Li</li>
+
+  <li><span class="conf-badge conf-badge--other">arXiv 2026</span> <a href="https://arxiv.org/abs/2608.21827">Do Large Language Models Perform Well on Comprehending Poetic Logic in Modern Chinese Poetry?</a> <strong>Tian Lan</strong>, Shanshan Wang, Zehua Duo, Jiang Li, Guanglai Gao, Derek F. Wong, Xiangdong Su</li>
+</ul>
+
 
 # 🏆 Honors and Awards
 
