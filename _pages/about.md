@@ -81,7 +81,7 @@ For Full Publications, see my <a href='https://scholar.google.com/citations?user
 
   <li><span class="conf-badge conf-badge--other">arXiv 2026</span> <a href="https://arxiv.org/abs/2610.01696">Acmite: Mitigating Gender Bias in LLMs through Concept-Guided Mutual Information</a>. <strong>Tian Lan</strong>, Xiaoqing Cheng, Han Zhang, Jiang Li</li>
 
-  <li><span class="conf-badge conf-badge--other">arXiv 2026</span> <a href="https://arxiv.org/abs/2608.21827">Do Large Language Models Perform Well on Comprehending Poetic Logic in Modern Chinese Poetry?</a> <strong>Tian Lan</strong>, Shanshan Wang, Zehua Duo, Jiang Li, Guanglai Gao, Derek F. Wong, Xiangdong Su</li>
+  <li><span class="conf-badge conf-badge--other">arXiv 2026</span> <a href="https://arxiv.org/abs/2608.21827">Do Large Language Models Perform Well on Comprehending Poetic Logic in Modern Chinese Poetry?</a> <strong>Tian Lan*</strong>, Shanshan Wang*, Zehua Duo, Jiang Li, Guanglai Gao, Derek F. Wong, Xiangdong Su</li>
 </ul>
 
 

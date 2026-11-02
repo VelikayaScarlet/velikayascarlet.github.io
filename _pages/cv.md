@@ -57,7 +57,7 @@ Bachelor of Engineering in Computer Science
 
 - **Tian Lan**, Han Zhang, Shanshan Wang, Yahan Yu, Jiang Li, Yugo Murawaki. [**APRiL: An Open-ended Benchmark for Chinese Social Awareness in Large Language Models.**](https://arxiv.org/abs/2610.20785) *arXiv preprint, 2026.*
 - **Tian Lan**, Xiaoqing Cheng, Han Zhang, Jiang Li. [**Acmite: Mitigating Gender Bias in LLMs through Concept-Guided Mutual Information.**](https://arxiv.org/abs/2610.01696) *arXiv preprint, 2026.*
-- **Tian Lan**, Shanshan Wang, Zehua Duo, Jiang Li, Guanglai Gao, Derek F. Wong, Xiangdong Su. [**Do Large Language Models Perform Well on Comprehending Poetic Logic in Modern Chinese Poetry?**](https://arxiv.org/abs/2608.21827) *arXiv preprint, 2026.*
+- **Tian Lan\***, Shanshan Wang\*, Zehua Duo, Jiang Li, Guanglai Gao, Derek F. Wong, Xiangdong Su. [**Do Large Language Models Perform Well on Comprehending Poetic Logic in Modern Chinese Poetry?**](https://arxiv.org/abs/2608.21827) *arXiv preprint, 2026.*
 
 ## Awards
 
