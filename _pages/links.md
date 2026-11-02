@@ -58,7 +58,7 @@ author_profile: true
 }
 </style>
 
-## 🔗 Friend Links
+## 🔗 People
 
 {% if site.data.friends %}
 <ul class="friends-list">
