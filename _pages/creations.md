@@ -23,6 +23,7 @@ hide_nav: true
           <a class="creation-book creation-book--moon" href="{{ '/creations/poems/觅月集.pdf' | relative_url }}" target="_blank" rel="noopener"><i>01</i><b>觅月集</b></a>
           <a class="creation-book creation-book--light" href="{{ '/creations/poems/折光集.pdf' | relative_url }}" target="_blank" rel="noopener"><i>02</i><b>折光集</b></a>
           <a class="creation-book creation-book--sea" href="{{ '/creations/poems/东海集.pdf' | relative_url }}" target="_blank" rel="noopener"><i>03</i><b>东海集</b></a>
+          <a class="creation-book creation-book--luoshang" href="{{ '/creations/poems/洛上集.pdf' | relative_url }}" target="_blank" rel="noopener"><i>04</i><b>洛上集</b></a>
         </div>
       </section>
 
@@ -32,8 +33,16 @@ hide_nav: true
         <a class="creation-library-link" href="{{ '/creations/guisui-zaji/' | relative_url }}"><b>归绥杂记</b><span>随笔</span></a>
         <a class="creation-library-link" href="{{ '/creations/cmbpre/' | relative_url }}"><b>联合军前传</b><span>小说</span></a>
         <a class="creation-library-link" href="{{ '/creations/political/' | relative_url }}"><b>玻璃蒂克</b><span>受保护</span></a>
-        <a class="creation-library-link" href="{{ '/creations/bielian/' | relative_url }}"><b>别利语简述</b><span>语言</span></a>
         <a class="creation-library-link" href="{{ '/creations/liubin-memoir/' | relative_url }}"><b>刘彬回忆录——我的大学</b><span>回忆录</span></a>
+        <a class="creation-library-link" href="{{ '/creations/interviews/xinshi/' | relative_url }}"><b>十年心事付江花</b><span>访谈</span></a>
+        <a class="creation-library-link" href="{{ '/creations/interviews/atypical/' | relative_url }}"><b>晴岚的非典型恋爱自述</b><span>访谈</span></a>
+      </section>
+
+      <section class="creation-widget creation-widget--languages">
+        <header class="creation-widget__title"><h2>语言档案</h2><span>Languages</span></header>
+        <a class="creation-library-link" href="{{ '/creations/languages/honghe/grammar/' | relative_url }}"><b>红河语语法</b><span>语法</span></a>
+        <a class="creation-library-link" href="{{ '/creations/languages/honghe/phonology/' | relative_url }}"><b>红河语音系与拼写</b><span>音系</span></a>
+        <a class="creation-library-link" href="{{ '/creations/bielian/' | relative_url }}"><b>别利语简述</b><span>PDF</span></a>
       </section>
 
   </section>

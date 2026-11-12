@@ -45,7 +45,7 @@ My research interests include:
 
 # 🔥 News
 
-<ul class="news-list">
+<ul class="news-list" tabindex="0" aria-label="News updates">
   <li><span class="news-date">2026.09</span> <span class="news-content">🎉🎉 One paper about LLM pruning has been accepted by NeurIPS 2026!</span></li>
   <li><span class="news-date">2026.09</span> <span class="news-content">🎉🎉 One paper about narrative generation has been accepted by AACL-IJCNLP 2026!</span></li>
   <li><span class="news-date">2026.08</span> <span class="news-content">🎉🎉 One paper about agent-based debiasing has been accepted by EMNLP 2026!</span></li>

@@ -7,6 +7,10 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
 GROUPS = [
+    ("creations/essays/访谈/心事.md", "十年心事付江花", "/creations/interviews/xinshi/"),
+    ("creations/essays/访谈/非典型.md", "晴岚的非典型恋爱自述", "/creations/interviews/atypical/"),
+    ("creations/essays/红河语/语法.md", "红河语语法", "/creations/languages/honghe/grammar/"),
+    ("creations/essays/红河语/音系草案.md", "红河语音系与拼写", "/creations/languages/honghe/phonology/"),
     ("creations/stories/", "事物替我们说话", "/creations/stories/yexing/"),
     ("creations/essays/归绥杂记/", "归绥杂记", "/creations/guisui-zaji/"),
     ("creations/essays/联合军前传/", "联合军前传", "/creations/cmbpre/"),
