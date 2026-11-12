@@ -7,82 +7,86 @@ hide_nav: true
 ---
 
 
-<main class="creation-home-page">
-  <section class="creation-banner" style="--hero-image: url('{{ '/images/creations-hero-v2.png' | relative_url }}');" aria-labelledby="creation-hero-title">
-    <div class="creation-banner__image" aria-hidden="true"></div>
-    <div class="creation-banner__copy">
-      <p>创作</p>
+<link rel="stylesheet" href="{{ '/assets/css/creation-folio.css' | relative_url }}">
+<main class="creation-folio" lang="zh-CN">
+  <section class="folio-hero" aria-labelledby="creation-hero-title" style="--folio-landscape: url('{{ '/images/creations-hero-v2.png' | relative_url }}');">
+    <div class="folio-hero-inner">
+      <p class="folio-imprint">创作</p>
       <h1 id="creation-hero-title">重逢初见处，你我尚无诗</h1>
     </div>
   </section>
-
-  <div class="creation-editorial">
-  <section class="creation-collections" aria-label="创作栏目">
-      <section class="creation-widget creation-widget--books">
-        <header class="creation-widget__title"><h2>诗集</h2></header>
-        <div class="creation-book-row">
-          <a class="creation-book creation-book--moon" href="{{ '/creations/poems/觅月集.pdf' | relative_url }}" target="_blank" rel="noopener"><i>01</i><b>觅月集</b></a>
-          <a class="creation-book creation-book--light" href="{{ '/creations/poems/折光集.pdf' | relative_url }}" target="_blank" rel="noopener"><i>02</i><b>折光集</b></a>
-          <a class="creation-book creation-book--sea" href="{{ '/creations/poems/东海集.pdf' | relative_url }}" target="_blank" rel="noopener"><i>03</i><b>东海集</b></a>
-          <a class="creation-book creation-book--luoshang" href="{{ '/creations/poems/洛上集.pdf' | relative_url }}" target="_blank" rel="noopener"><i>04</i><b>洛上集</b></a>
-        </div>
-      </section>
-
-      <section class="creation-widget creation-widget--library" id="library">
-        <header class="creation-widget__title"><h2>文库</h2></header>
-        <div class="creation-index-groups">
-          <div class="creation-index-group"><h3>小说</h3>
-            <a class="creation-library-link" href="{{ '/creations/stories/yexing/' | relative_url }}"><b>事物替我们说话</b></a>
-            <a class="creation-library-link" href="{{ '/creations/cmbpre/' | relative_url }}"><b>联合军前传</b></a>
-          </div>
-          <div class="creation-index-group"><h3>随笔与回忆录</h3>
-            <a class="creation-library-link" href="{{ '/creations/guisui-zaji/' | relative_url }}"><b>归绥杂记</b></a>
-            <a class="creation-library-link" href="{{ '/creations/liubin-memoir/' | relative_url }}"><b>刘彬回忆录——我的大学</b></a>
-            <a class="creation-library-link" href="{{ '/creations/political/' | relative_url }}"><b>玻璃蒂克</b><span>受保护</span></a>
-          </div>
-          <div class="creation-index-group"><h3>访谈</h3>
-            <a class="creation-library-link" href="{{ '/creations/interviews/xinshi/' | relative_url }}"><b>十年心事付江花</b></a>
-            <a class="creation-library-link" href="{{ '/creations/interviews/atypical/' | relative_url }}"><b>晴岚的非典型恋爱自述</b></a>
-          </div>
-        </div>
-      </section>
-
-      <section class="creation-widget creation-widget--languages">
-        <header class="creation-widget__title"><h2>语言档案</h2></header>
-        <div class="creation-index-groups creation-index-groups--languages">
-          <div class="creation-index-group"><h3>红河语</h3>
-            <a class="creation-library-link" href="{{ '/creations/languages/honghe/grammar/' | relative_url }}"><b>红河语语法</b></a>
-            <a class="creation-library-link" href="{{ '/creations/languages/honghe/phonology/' | relative_url }}"><b>红河语音系与拼写</b></a>
-          </div>
-          <div class="creation-index-group"><h3>别利语</h3>
-            <a class="creation-library-link" href="{{ '/creations/bielian/' | relative_url }}"><b>别利语简述</b><span>PDF</span></a>
-          </div>
-        </div>
-      </section>
-
-  </section>
-
-  <div class="creation-home-layout creation-home-layout--timeline" id="writing">
-    <section class="creation-feed" aria-labelledby="creation-posts-title">
-      <header class="creation-feed__tools">
-        <h2 id="creation-posts-title">更新</h2>
-        <div class="creation-year-filter" aria-label="按更新年份筛选"></div>
-      </header>
-      <div class="creation-post-list creation-update-list" aria-live="polite">
-        <p class="creation-update-status">正在加载更新…</p>
+  <nav class="folio-nav" aria-label="创作栏目">
+    <a href="#collections">诗集</a><a href="#library">文库</a><a href="#languages">语言档案</a><a href="#writing">更新</a>
+  </nav>
+  <div class="folio-body">
+    <section class="folio-section" id="collections" aria-labelledby="folio-books-title">
+      <header class="folio-heading"><span aria-hidden="true">01</span><h2 id="folio-books-title">诗集</h2></header>
+      <div class="folio-books">
+        <a class="folio-book folio-book--1" href="{{ '/creations/poems/觅月集.pdf' | relative_url }}" target="_blank" rel="noopener">
+          <span class="folio-book-mark" aria-hidden="true"><svg viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M41 10a25 25 0 1 0 18 37A25 25 0 0 1 41 10Z"/><path d="M52 13v12m-6-6h12"/></svg></span>
+          <span class="folio-book-title"><small>01</small><b>觅月集</b></span>
+          <span class="folio-arrow" aria-hidden="true">↗</span>
+        </a>
+        <a class="folio-book folio-book--2" href="{{ '/creations/poems/折光集.pdf' | relative_url }}" target="_blank" rel="noopener">
+          <span class="folio-book-mark" aria-hidden="true"><svg viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M32 9 58 52H6Z"/><path d="m1 34 20 1 14 3 28-10m-28 10 28 7m-28-7 21 19"/></svg></span>
+          <span class="folio-book-title"><small>02</small><b>折光集</b></span>
+          <span class="folio-arrow" aria-hidden="true">↗</span>
+        </a>
+        <a class="folio-book folio-book--3" href="{{ '/creations/poems/东海集.pdf' | relative_url }}" target="_blank" rel="noopener">
+          <span class="folio-book-mark" aria-hidden="true"><svg viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 42c9-10 17-10 27 0s18 10 31 0M3 53c9-10 17-10 27 0s18 10 31 0"/><path d="M17 34a15 15 0 1 1 30 0"/></svg></span>
+          <span class="folio-book-title"><small>03</small><b>东海集</b></span>
+          <span class="folio-arrow" aria-hidden="true">↗</span>
+        </a>
+        <a class="folio-book folio-book--4" href="{{ '/creations/poems/洛上集.pdf' | relative_url }}" target="_blank" rel="noopener">
+          <span class="folio-book-mark" aria-hidden="true"><svg viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M2 51 24 19l12 17 9-13 17 28M12 51l12-17 10 17"/><path d="M41 10h17"/></svg></span>
+          <span class="folio-book-title"><small>04</small><b>洛上集</b></span>
+          <span class="folio-arrow" aria-hidden="true">↗</span>
+        </a>
       </div>
+    </section>
+    <section class="folio-section" id="library" aria-labelledby="folio-library-title">
+      <header class="folio-heading"><span aria-hidden="true">02</span><h2 id="folio-library-title">文库</h2></header>
+      <div class="folio-groups folio-groups--library">
+<div class="folio-group"><h3>小说</h3>
+<a class="folio-link" href="{{ '/creations/stories/yexing/' | relative_url }}"><b>事物替我们说话</b></a>
+            <a class="folio-link" href="{{ '/creations/cmbpre/' | relative_url }}"><b>联合军前传</b></a>
+</div>
+<div class="folio-group"><h3>随笔与回忆录</h3>
+<a class="folio-link" href="{{ '/creations/guisui-zaji/' | relative_url }}"><b>归绥杂记</b></a>
+            <a class="folio-link" href="{{ '/creations/liubin-memoir/' | relative_url }}"><b>刘彬回忆录——我的大学</b></a>
+            <a class="folio-link" href="{{ '/creations/political/' | relative_url }}"><b>玻璃蒂克</b><span>受保护</span></a>
+</div>
+<div class="folio-group"><h3>访谈</h3>
+<a class="folio-link" href="{{ '/creations/interviews/xinshi/' | relative_url }}"><b>十年心事付江花</b></a>
+            <a class="folio-link" href="{{ '/creations/interviews/atypical/' | relative_url }}"><b>晴岚的非典型恋爱自述</b></a>
+</div>
+      </div>
+    </section>
+    <section class="folio-section" id="languages" aria-labelledby="folio-language-title">
+      <header class="folio-heading"><span aria-hidden="true">03</span><h2 id="folio-language-title">语言档案</h2></header>
+      <div class="folio-groups folio-groups--languages">
+<div class="folio-group"><h3>红河语</h3>
+<a class="folio-link" href="{{ '/creations/languages/honghe/grammar/' | relative_url }}"><b>红河语语法</b></a>
+            <a class="folio-link" href="{{ '/creations/languages/honghe/phonology/' | relative_url }}"><b>红河语音系与拼写</b></a>
+</div>
+<div class="folio-group"><h3>别利语</h3>
+<a class="folio-link" href="{{ '/creations/bielian/' | relative_url }}"><b>别利语简述</b><span>PDF</span></a>
+</div>
+      </div>
+    </section>
+    <section class="folio-section" id="writing" aria-labelledby="creation-posts-title">
+      <div class="folio-updates-head">
+        <header class="folio-heading"><span aria-hidden="true">04</span><h2 id="creation-posts-title">更新</h2></header>
+        <div class="creation-year-filter" aria-label="按更新年份筛选"></div>
+      </div>
+      <div class="creation-update-list" aria-live="polite"><p class="creation-update-status">正在加载更新…</p></div>
       <nav class="creation-pagination" aria-label="更新分页" hidden>
         <span data-creation-page-info></span>
-        <div>
-          <button type="button" data-creation-page="prev">上一页</button>
-          <button type="button" data-creation-page="next">下一页</button>
-        </div>
+        <div><button type="button" data-creation-page="prev">上一页</button><button type="button" data-creation-page="next">下一页</button></div>
       </nav>
     </section>
+    <footer class="folio-footer">Creations · 2023—2026</footer>
   </div>
-  </div>
-
-  <footer class="creation-home-footer">Creations · 2023—2026</footer>
 </main>
 
 <script>
@@ -129,7 +133,7 @@ hide_nav: true
   var updates = [];
   var currentPage = 1;
   var currentYear = 'all';
-  var perPage = 10;
+  var perPage = 5;
   var baseUrl = {{ site.baseurl | default: '' | jsonify }};
 
   function render() {
@@ -141,7 +145,7 @@ hide_nav: true
     list.replaceChildren();
     matching.slice((currentPage - 1) * perPage, currentPage * perPage).forEach(function (item) {
       var article = document.createElement('article');
-      article.className = 'creation-post creation-update';
+      article.className = 'folio-update';
       var time = document.createElement('time');
       time.dateTime = item.date;
       var day = document.createElement('strong');
