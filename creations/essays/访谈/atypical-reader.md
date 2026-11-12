@@ -12,7 +12,7 @@ author_profile: false
     <a href="{{ '/creations/' | relative_url }}">← 返回 Creations</a>
   </header>
   <article class="creation-story-prose">
-    {% capture source %}{% include_relative 非典型.md %}{% endcapture %}
+    {% capture source %}{% include_relative atypical-source.md %}{% endcapture %}
     {{ source | markdownify }}
   </article>
 </main>

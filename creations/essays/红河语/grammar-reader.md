@@ -11,8 +11,9 @@ author_profile: false
     <h1>红河语语法</h1>
     <a href="{{ '/creations/' | relative_url }}">← 返回 Creations</a>
   </header>
-  <article class="creation-story-prose">
-    {% capture source %}{% include_relative 语法.md %}{% endcapture %}
-    {{ source | markdownify }}
-  </article>
+  <div class="creation-document-link">
+    <span>PDF</span>
+    <div><strong>红河语语法</strong></div>
+    <a href="{{ '/creations/essays/红河语/红河语语法.pdf' | relative_url }}" target="_blank" rel="noopener">打开 PDF →</a>
+  </div>
 </main>
