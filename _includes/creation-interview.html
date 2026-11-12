@@ -1,0 +1,14 @@
+<main class="creation-story-index creation-interview-page">
+  <header class="creation-story-index__header">
+    <p class="creation-story-index__eyebrow">访谈</p>
+    <h1>{{ page.title | escape }}</h1>
+    <a href="{{ '/creations/#library' | relative_url }}">← 返回文库</a>
+  </header>
+  <article class="creation-story-prose creation-interview">
+    {% assign lines = include.source | newline_to_br | split: '<br />' %}
+    {% capture dialogue %}{% for raw_line in lines %}{% assign line = raw_line | strip %}{% assign speaker = line | slice: 0, 3 %}{% if speaker == '记者：' or speaker == '晴岚：' %}{% assign speech = line | remove_first: speaker | strip %}<strong class="interview-speaker{% if speaker == '记者：' %} interview-question{% endif %}">{{ speaker }}</strong> {{ speech }}{% elsif line != page.title %}{{ line }}{% endif %}
+
+{% endfor %}{% endcapture %}
+    {{ dialogue | markdownify }}
+  </article>
+</main>

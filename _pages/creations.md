@@ -16,9 +16,10 @@ hide_nav: true
     </div>
   </section>
 
+  <div class="creation-editorial">
   <section class="creation-collections" aria-label="创作栏目">
       <section class="creation-widget creation-widget--books">
-        <header class="creation-widget__title"><h2>诗集</h2><span>Collections</span></header>
+        <header class="creation-widget__title"><h2>诗集</h2></header>
         <div class="creation-book-row">
           <a class="creation-book creation-book--moon" href="{{ '/creations/poems/觅月集.pdf' | relative_url }}" target="_blank" rel="noopener"><i>01</i><b>觅月集</b></a>
           <a class="creation-book creation-book--light" href="{{ '/creations/poems/折光集.pdf' | relative_url }}" target="_blank" rel="noopener"><i>02</i><b>折光集</b></a>
@@ -27,22 +28,36 @@ hide_nav: true
         </div>
       </section>
 
-      <section class="creation-widget">
-        <header class="creation-widget__title"><h2>文库</h2><span>Library</span></header>
-        <a class="creation-library-link" href="{{ '/creations/stories/yexing/' | relative_url }}"><b>事物替我们说话</b><span>短篇</span></a>
-        <a class="creation-library-link" href="{{ '/creations/guisui-zaji/' | relative_url }}"><b>归绥杂记</b><span>随笔</span></a>
-        <a class="creation-library-link" href="{{ '/creations/cmbpre/' | relative_url }}"><b>联合军前传</b><span>小说</span></a>
-        <a class="creation-library-link" href="{{ '/creations/political/' | relative_url }}"><b>玻璃蒂克</b><span>受保护</span></a>
-        <a class="creation-library-link" href="{{ '/creations/liubin-memoir/' | relative_url }}"><b>刘彬回忆录——我的大学</b><span>回忆录</span></a>
-        <a class="creation-library-link" href="{{ '/creations/interviews/xinshi/' | relative_url }}"><b>十年心事付江花</b><span>访谈</span></a>
-        <a class="creation-library-link" href="{{ '/creations/interviews/atypical/' | relative_url }}"><b>晴岚的非典型恋爱自述</b><span>访谈</span></a>
+      <section class="creation-widget creation-widget--library" id="library">
+        <header class="creation-widget__title"><h2>文库</h2></header>
+        <div class="creation-index-groups">
+          <div class="creation-index-group"><h3>小说</h3>
+            <a class="creation-library-link" href="{{ '/creations/stories/yexing/' | relative_url }}"><b>事物替我们说话</b></a>
+            <a class="creation-library-link" href="{{ '/creations/cmbpre/' | relative_url }}"><b>联合军前传</b></a>
+          </div>
+          <div class="creation-index-group"><h3>随笔与回忆录</h3>
+            <a class="creation-library-link" href="{{ '/creations/guisui-zaji/' | relative_url }}"><b>归绥杂记</b></a>
+            <a class="creation-library-link" href="{{ '/creations/liubin-memoir/' | relative_url }}"><b>刘彬回忆录——我的大学</b></a>
+            <a class="creation-library-link" href="{{ '/creations/political/' | relative_url }}"><b>玻璃蒂克</b><span>受保护</span></a>
+          </div>
+          <div class="creation-index-group"><h3>访谈</h3>
+            <a class="creation-library-link" href="{{ '/creations/interviews/xinshi/' | relative_url }}"><b>十年心事付江花</b></a>
+            <a class="creation-library-link" href="{{ '/creations/interviews/atypical/' | relative_url }}"><b>晴岚的非典型恋爱自述</b></a>
+          </div>
+        </div>
       </section>
 
       <section class="creation-widget creation-widget--languages">
-        <header class="creation-widget__title"><h2>语言档案</h2><span>Languages</span></header>
-        <a class="creation-library-link" href="{{ '/creations/languages/honghe/grammar/' | relative_url }}"><b>红河语语法</b><span>语法</span></a>
-        <a class="creation-library-link" href="{{ '/creations/languages/honghe/phonology/' | relative_url }}"><b>红河语音系与拼写</b><span>音系</span></a>
-        <a class="creation-library-link" href="{{ '/creations/bielian/' | relative_url }}"><b>别利语简述</b><span>PDF</span></a>
+        <header class="creation-widget__title"><h2>语言档案</h2></header>
+        <div class="creation-index-groups creation-index-groups--languages">
+          <div class="creation-index-group"><h3>红河语</h3>
+            <a class="creation-library-link" href="{{ '/creations/languages/honghe/grammar/' | relative_url }}"><b>红河语语法</b></a>
+            <a class="creation-library-link" href="{{ '/creations/languages/honghe/phonology/' | relative_url }}"><b>红河语音系与拼写</b></a>
+          </div>
+          <div class="creation-index-group"><h3>别利语</h3>
+            <a class="creation-library-link" href="{{ '/creations/bielian/' | relative_url }}"><b>别利语简述</b><span>PDF</span></a>
+          </div>
+        </div>
       </section>
 
   </section>
@@ -64,6 +79,7 @@ hide_nav: true
         </div>
       </nav>
     </section>
+  </div>
   </div>
 
   <footer class="creation-home-footer">Creations · 2023—2026</footer>
@@ -137,9 +153,7 @@ hide_nav: true
       link.href = baseUrl + item.url;
       var heading = document.createElement('h3');
       heading.textContent = item.title;
-      var label = document.createElement('small');
-      label.textContent = '更新';
-      link.append(label, heading);
+      link.append(heading);
       article.append(time, link);
       list.append(article);
     });
@@ -159,7 +173,8 @@ hide_nav: true
     updates = data.updates.filter(function (item) {
       return typeof item.date === 'string' && /^\d{4}-\d{2}-\d{2}T/.test(item.date) &&
         typeof item.title === 'string' && typeof item.url === 'string' &&
-        item.url.indexOf('/creations/') === 0;
+        item.url.indexOf('/creations/') === 0 &&
+        item.url.indexOf('/creations/languages/') !== 0 && item.url !== '/creations/bielian/';
     }).sort(function (a, b) { return b.date.localeCompare(a.date); });
     var years = Array.from(new Set(updates.map(function (item) { return item.date.slice(0, 4); })));
     filters.replaceChildren();
