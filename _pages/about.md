@@ -62,26 +62,82 @@ My research interests include:
 
 For Full Publications, see my <a href='https://scholar.google.com/citations?user=IUd0Hj8AAAAJ'>Google Scholar</a> <a href='https://scholar.google.com/citations?user=IUd0Hj8AAAAJ'><img src="https://img.shields.io/endpoint?url={{ url | url_encode }}&logo=Google%20Scholar&labelColor=f6f6f6&color=9cf&style=flat&label=citations"></a>.
 
-<ul class="pub-list">
-  <li><span class="conf-badge conf-badge--acl">ACL 2025</span> <a href="https://aclanthology.org/2025.findings-acl.313/">McBE: A Multi-task Chinese Bias Evaluation Benchmark for Large Language Models</a>. <strong>Tian Lan</strong>, Xiangdong Su, Xu Liu, Ruirui Wang, Ke Chang, Jiang Li, Guanglai Gao</li>
+<ul class="publication-showcase">
+  <li class="publication-row">
+    <a class="publication-figure" href="{{ '/images/publications/mcbe.png' | relative_url }}"><img src="{{ '/images/publications/mcbe.png' | relative_url }}" alt="Figure from the mcbe paper" loading="lazy" width="204" height="122"></a>
+    <div class="publication-citation">
+      <span class="publication-venue publication-venue--acl">ACL 2025</span>
+      <h3 class="publication-title"><a href="https://aclanthology.org/2025.findings-acl.313/">McBE: A Multi-task Chinese Bias Evaluation Benchmark for Large Language Models</a></h3>
+      <p class="publication-authors"><strong>Tian Lan</strong>, Xiangdong Su, Xu Liu, Ruirui Wang, Ke Chang, Jiang Li, Guanglai Gao</p>
+    </div>
+  </li>
 
-  <li><span class="conf-badge conf-badge--emnlp">EMNLP 2025</span> <a href="https://aclanthology.org/2025.emnlp-main.105/">F²Bench: An Open-ended Fairness Evaluation Benchmark for LLMs with Factuality Considerations</a>. <strong>Tian Lan</strong>, Jiang Li, Yemin Wang, Xu Liu, Xiangdong Su, Guanglai Gao</li>
+  <li class="publication-row">
+    <a class="publication-figure" href="{{ '/images/publications/f2bench.png' | relative_url }}"><img src="{{ '/images/publications/f2bench.png' | relative_url }}" alt="Figure from the f2bench paper" loading="lazy" width="204" height="122"></a>
+    <div class="publication-citation">
+      <span class="publication-venue publication-venue--emnlp">EMNLP 2025</span>
+      <h3 class="publication-title"><a href="https://aclanthology.org/2025.emnlp-main.105/">F²Bench: An Open-ended Fairness Evaluation Benchmark for LLMs with Factuality Considerations</a></h3>
+      <p class="publication-authors"><strong>Tian Lan</strong>, Jiang Li, Yemin Wang, Xu Liu, Xiangdong Su, Guanglai Gao</p>
+    </div>
+  </li>
 
-  <li><span class="conf-badge conf-badge--acl">ACL 2026</span> <a href="https://aclanthology.org/2026.acl-long.238/">CEDAR: A Chinese Evaluation Dataset for Computational Argumentation</a>. <strong>Tian Lan*</strong>, Jiang Li*, Rong Yan, Feilong Bao, Weihua Wang, Guanglai Gao, Xiangdong Su</li>
+  <li class="publication-row">
+    <a class="publication-figure" href="{{ '/images/publications/cedar.png' | relative_url }}"><img src="{{ '/images/publications/cedar.png' | relative_url }}" alt="Figure from the cedar paper" loading="lazy" width="204" height="122"></a>
+    <div class="publication-citation">
+      <span class="publication-venue publication-venue--acl">ACL 2026</span>
+      <h3 class="publication-title"><a href="https://aclanthology.org/2026.acl-long.238/">CEDAR: A Chinese Evaluation Dataset for Computational Argumentation</a></h3>
+      <p class="publication-authors"><strong>Tian Lan*</strong>, Jiang Li*, Rong Yan, Feilong Bao, Weihua Wang, Guanglai Gao, Xiangdong Su</p>
+    </div>
+  </li>
 
-  <li><span class="conf-badge conf-badge--acl">ACL 2026</span> <a href="https://aclanthology.org/2026.acl-long.245/">Who Wrote This Line? Evaluating the Detection of LLM-Generated Classical Chinese Poetry</a>. Jiang Li*, <strong>Tian Lan*</strong>, Shanshan Wang, Dongxing Zhang, Dianqing Lin, Guanglai Gao, Derek F. Wong, Xiangdong Su <span>(Oral)</span></li>
+  <li class="publication-row">
+    <a class="publication-figure" href="{{ '/images/publications/changan.png' | relative_url }}"><img src="{{ '/images/publications/changan.png' | relative_url }}" alt="Figure from the changan paper" loading="lazy" width="204" height="122"></a>
+    <div class="publication-citation">
+      <span class="publication-venue publication-venue--acl">ACL 2026</span>
+      <h3 class="publication-title"><a href="https://aclanthology.org/2026.acl-long.245/">Who Wrote This Line? Evaluating the Detection of LLM-Generated Classical Chinese Poetry</a></h3>
+      <p class="publication-authors">Jiang Li*, <strong>Tian Lan*</strong>, Shanshan Wang, Dongxing Zhang, Dianqing Lin, Guanglai Gao, Derek F. Wong, Xiangdong Su <span>(Oral)</span></p>
+    </div>
+  </li>
 
-  <li><span class="conf-badge conf-badge--acl">ACL 2026</span> <a href="https://aclanthology.org/2026.findings-acl.128/">Exploring the Capability Boundaries of LLMs in Mastering of Chinese Chouxiang Language</a>. Dianqing Lin*, <strong>Tian Lan*</strong>, Jiali Zhu*, Jiang Li, Wei Chen, Xu Liu, Aruukhan, Xiangdong Su, Hongxu Hou, Guanglai Gao</li>
+  <li class="publication-row">
+    <a class="publication-figure" href="{{ '/images/publications/chouxiang.png' | relative_url }}"><img src="{{ '/images/publications/chouxiang.png' | relative_url }}" alt="Figure from the chouxiang paper" loading="lazy" width="204" height="122"></a>
+    <div class="publication-citation">
+      <span class="publication-venue publication-venue--acl">ACL 2026</span>
+      <h3 class="publication-title"><a href="https://aclanthology.org/2026.findings-acl.128/">Exploring the Capability Boundaries of LLMs in Mastering of Chinese Chouxiang Language</a></h3>
+      <p class="publication-authors">Dianqing Lin*, <strong>Tian Lan*</strong>, Jiali Zhu*, Jiang Li, Wei Chen, Xu Liu, Aruukhan, Xiangdong Su, Hongxu Hou, Guanglai Gao</p>
+    </div>
+  </li>
 </ul>
 
 ### Preprints
 
-<ul class="pub-list">
-  <li><span class="conf-badge conf-badge--other">arXiv 2026</span> <a href="https://arxiv.org/abs/2610.20785">APRiL: An Open-ended Benchmark for Chinese Social Awareness in Large Language Models</a>. <strong>Tian Lan</strong>, Han Zhang, Shanshan Wang, Yahan Yu, Jiang Li, Yugo Murawaki</li>
+<ul class="publication-showcase">
+  <li class="publication-row">
+    <a class="publication-figure" href="{{ '/images/publications/april.png' | relative_url }}"><img src="{{ '/images/publications/april.png' | relative_url }}" alt="Figure from the april paper" loading="lazy" width="204" height="122"></a>
+    <div class="publication-citation">
+      <span class="publication-venue publication-venue--other">arXiv 2026</span>
+      <h3 class="publication-title"><a href="https://arxiv.org/abs/2610.20785">APRiL: An Open-ended Benchmark for Chinese Social Awareness in Large Language Models</a></h3>
+      <p class="publication-authors"><strong>Tian Lan</strong>, Han Zhang, Shanshan Wang, Yahan Yu, Jiang Li, Yugo Murawaki</p>
+    </div>
+  </li>
 
-  <li><span class="conf-badge conf-badge--other">arXiv 2026</span> <a href="https://arxiv.org/abs/2610.01696">Acmite: Mitigating Gender Bias in LLMs through Concept-Guided Mutual Information</a>. <strong>Tian Lan</strong>, Xiaoqing Cheng, Han Zhang, Jiang Li</li>
+  <li class="publication-row">
+    <a class="publication-figure" href="{{ '/images/publications/acmite.png' | relative_url }}"><img src="{{ '/images/publications/acmite.png' | relative_url }}" alt="Figure from the acmite paper" loading="lazy" width="204" height="122"></a>
+    <div class="publication-citation">
+      <span class="publication-venue publication-venue--other">arXiv 2026</span>
+      <h3 class="publication-title"><a href="https://arxiv.org/abs/2610.01696">Acmite: Mitigating Gender Bias in LLMs through Concept-Guided Mutual Information</a></h3>
+      <p class="publication-authors"><strong>Tian Lan</strong>, Xiaoqing Cheng, Han Zhang, Jiang Li</p>
+    </div>
+  </li>
 
-  <li><span class="conf-badge conf-badge--other">arXiv 2026</span> <a href="https://arxiv.org/abs/2608.21827">Do Large Language Models Perform Well on Comprehending Poetic Logic in Modern Chinese Poetry?</a> <strong>Tian Lan*</strong>, Shanshan Wang*, Zehua Duo, Jiang Li, Guanglai Gao, Derek F. Wong, Xiangdong Su</li>
+  <li class="publication-row">
+    <a class="publication-figure" href="{{ '/images/publications/peony.png' | relative_url }}"><img src="{{ '/images/publications/peony.png' | relative_url }}" alt="Figure from the peony paper" loading="lazy" width="204" height="122"></a>
+    <div class="publication-citation">
+      <span class="publication-venue publication-venue--other">arXiv 2026</span>
+      <h3 class="publication-title"><a href="https://arxiv.org/abs/2608.21827">Do Large Language Models Perform Well on Comprehending Poetic Logic in Modern Chinese Poetry?</a></h3>
+      <p class="publication-authors"><strong>Tian Lan*</strong>, Shanshan Wang*, Zehua Duo, Jiang Li, Guanglai Gao, Derek F. Wong, Xiangdong Su</p>
+    </div>
+  </li>
 </ul>
 
 
@@ -95,16 +151,19 @@ For Full Publications, see my <a href='https://scholar.google.com/citations?user
 
 # 🎓 Education
 
-<ul class="edu-list">
+<ul class="edu-list edu-timeline">
   <li>
+    <span class="edu-year" aria-hidden="true">2026</span>
     <span class="edu-logo"><img src="/images/kyotou.png" alt="Kyoto University"></span>
     <span class="edu-info"><strong>Ph.D. Student</strong>, Kyoto University <span>(2026.10 – 2029.10 expected)</span><br><span class="edu-meta">Advisor: <a href="https://murawaki.org">Assoc. Prof. Yugo Murawaki</a></span></span>
   </li>
   <li>
+    <span class="edu-year" aria-hidden="true">2023</span>
     <span class="edu-logo"><img src="/images/imu.png" alt="Inner Mongolia University"></span>
     <span class="edu-info"><strong>M.Eng. in Software Engineering</strong>, Inner Mongolia University <span>(2023.09 – 2026.06)</span><br><span class="edu-meta">Graduated with Outstanding Graduate. Advisors: <a href="https://scholar.google.com/citations?hl=en&amp;user=kY7jo_sAAAAJ">Prof. Xiangdong Su</a>, <a href="https://scholar.google.com/citations?user=Auw0-XoAAAAJ&amp;hl=en">Prof. Guanglai Gao</a></span></span>
   </li>
   <li>
+    <span class="edu-year" aria-hidden="true">2019</span>
     <span class="edu-logo"><img src="/images/zzuli.png" alt="Zhengzhou University of Light Industry"></span>
     <span class="edu-info"><strong>B.E. in Computer Science</strong>, Zhengzhou University of Light Industry <span>(2019.09 – 2023.06)</span><br><span class="edu-meta">Graduated with Outstanding Graduate.</span></span>
   </li>

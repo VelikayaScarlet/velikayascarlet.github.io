@@ -225,6 +225,75 @@ h1:before, .anchor:before {
 .conf-badge--icme  { background: #1a6b5a; }  /* teal */
 .conf-badge--other { background: #5b6e8a; }  /* slate */
 
+.page__content .publication-showcase {
+    list-style: none;
+    margin: 12px 0 0;
+    padding: 0;
+
+    .publication-row {
+        display: flex;
+        align-items: center;
+        gap: 24px;
+        min-width: 0;
+        margin: 0;
+        padding: 16px 0;
+        border-top: 1px dotted #ccd3d8;
+    }
+    .publication-figure {
+        flex: 0 0 Min(218px, 34%);
+        min-width: 0;
+        display: block;
+        padding: 6px;
+        border: 1px solid #e2e6e9;
+        border-radius: 4px;
+        background: #fff;
+        &:hover, &:focus-visible { border-color: #7697aa; }
+        img { display: block; width: 100%; height: 122px; object-fit: contain; }
+    }
+    .publication-citation {
+        min-width: 0;
+        font-family: Inter, "Helvetica Neue", "Segoe UI", Arial, sans-serif;
+    }
+    .publication-venue {
+        display: inline-block;
+        color: #36506a;
+        background: #edf2f7;
+        padding: 1px 7px;
+        border-radius: 3px;
+        font-size: 12px;
+        font-weight: 650;
+    }
+    .publication-venue--emnlp { color: #734431; background: #faeee7; }
+    .publication-venue--other { color: #375e54; background: #eaf3ef; }
+    .publication-title {
+        margin: 5px 0 4px;
+        font-family: "Segoe UI Variable Text", "Segoe UI", system-ui, sans-serif;
+        font-size: 16px;
+        line-height: 1.4;
+        font-weight: 600;
+        a { color: #242424; text-decoration: none; }
+        a:hover, a:focus-visible { color: #205780; text-decoration: underline; }
+    }
+    .publication-authors {
+        margin: 0;
+        font-size: 13px;
+        line-height: 1.4;
+        font-style: italic;
+        color: #3e4247;
+    }
+    @media (max-width: 560px) {
+        .publication-row { gap: 11px; align-items: flex-start; }
+        .publication-figure { flex-basis: 31%; padding: 3px; img { height: 72px; } }
+        .publication-title { font-size: 14px; }
+    }
+    @media (prefers-color-scheme: dark) {
+        .publication-row { border-color: #444b56; }
+        .publication-title a { color: #e9edf2; }
+        .publication-title a:hover, .publication-title a:focus-visible { color: #a8c8e4; }
+        .publication-authors { color: #c7cdd5; }
+    }
+}
+
 /* ==========================================================================
    Honor list — subtle styling
    ========================================================================== */
@@ -294,6 +363,58 @@ h1:before, .anchor:before {
     font-size: 0.88em;
     color: #888;
     margin-top: 0.15em;
+}
+
+.page__content .edu-timeline {
+    padding-left: 0;
+    --education-rail: #b7c6d7;
+    --education-dot: #54769a;
+    --education-year: #45627f;
+    --education-year-bg: #f0f4f8;
+
+    > li {
+        position: relative;
+        display: grid;
+        grid-template-columns: 3.2rem auto minmax(0, 1fr);
+        gap: 0.85em;
+        align-items: start;
+        padding: 0 0 0.9em;
+        margin: 0;
+
+        &::before, &::after { content: ""; position: absolute; }
+        &::before {
+            inset: 0.72rem auto -0.72rem 3.59rem;
+            border-left: 1px solid var(--education-rail);
+        }
+        &::after {
+            top: 0.47rem;
+            left: 3.35rem;
+            width: 0.48rem;
+            height: 0.48rem;
+            border: 1px solid var(--education-rail);
+            border-radius: 50%;
+            background: var(--education-dot);
+        }
+        &:last-child::before { display: none; }
+    }
+    .edu-year {
+        justify-self: start;
+        margin-top: 0.1em;
+        padding: 1px 5px;
+        border: 1px solid var(--education-rail);
+        border-radius: 4px;
+        background: var(--education-year-bg);
+        color: var(--education-year);
+        font-size: 0.72em;
+        font-weight: 600;
+        font-variant-numeric: tabular-nums;
+    }
+    @media (prefers-color-scheme: dark) {
+        --education-rail: #506276;
+        --education-dot: #91b1d2;
+        --education-year: #cfdfed;
+        --education-year-bg: #282f39;
+    }
 }
 
 /* ==========================================================================
