@@ -46,12 +46,12 @@
   letter-spacing: 0;
 }
 .folio-nav { display: flex; flex-wrap: wrap; gap: 8px 26px; align-items: center; border-bottom: 1px solid var(--folio-rule); padding-block: 10px; }
-.folio-nav a { padding-block: 3px; font-size: 0.8rem; color: var(--folio-muted); }
+.folio-nav a { padding-block: 4px; font-size: 1rem; color: var(--folio-muted); }
 .folio-nav a:hover { color: var(--folio-red); text-decoration: underline; text-underline-offset: 4px; }
 .folio-section { margin-block: 24px; scroll-margin-top: 14px; }
 .folio-heading { display: flex; align-items: baseline; gap: 9px; margin: 0 0 10px; }
-.folio-heading > span { color: var(--folio-red); font: 650 0.72rem/1 Consolas, monospace; }
-.folio-heading h2 { margin: 0; padding: 0; border: 0; color: var(--folio-ink); font-size: 1.15rem; line-height: 1.3; }
+.folio-heading > span { color: var(--folio-red); font: 650 0.85rem/1 Consolas, monospace; }
+.folio-heading h2 { margin: 0; padding: 0; border: 0; color: var(--folio-ink); font-size: 1.4rem; line-height: 1.3; }
 .folio-books { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 8px; }
 .creation-folio .folio-book {
   display: grid;
@@ -69,11 +69,10 @@
 .folio-book--2 { --book-ink: #8b4d16; --book-paper: #fbefcf; }
 .folio-book--3 { --book-ink: #1d6254; --book-paper: #e4f1e9; }
 .folio-book--4 { --book-ink: #8d3b32; --book-paper: #f6e7e3; }
-.folio-book-mark { display: block; width: 38px; }
-.folio-book-mark svg { display: block; width: 100%; height: auto; }
+.folio-book-mark { display: block; width: 38px; font: 1.65rem/1 "Apple Color Emoji", "Segoe UI Emoji", "Noto Color Emoji", sans-serif; text-align: center; }
 .folio-book-title { display: grid; gap: 2px; }
 .folio-book-title small { font: 0.69rem Consolas, monospace; }
-.folio-book-title b { font: 700 1rem/1.35 "Kaiti SC", STKaiti, KaiTi, "Microsoft YaHei", serif; }
+.folio-book-title b { font: 600 1.1rem/1.35 "PingFang SC", "Microsoft YaHei UI", "Noto Sans SC", sans-serif; }
 .folio-arrow { font: 0.8rem Arial, sans-serif; }
 .folio-book:hover b, .folio-link:hover b { text-decoration: underline; text-underline-offset: 4px; }
 .folio-groups { display: grid; gap: 0 18px; border-top: 1px solid var(--folio-rule); }
@@ -82,27 +81,28 @@
 .folio-group { min-width: 0; padding: 9px 0 0; }
 .folio-group + .folio-group { padding-left: 14px; border-left: 1px solid var(--folio-rule); }
 .folio-groups--languages .folio-group { padding: 9px 12px 3px; }
-.folio-group h3 { margin: 0 0 4px; color: var(--folio-teal); font-size: 0.75rem; line-height: 1.4; }
+.folio-group h3 { margin: 0 0 4px; color: var(--folio-teal); font-size: 0.95rem; line-height: 1.4; }
 .creation-folio .folio-link {
   display: flex;
   align-items: baseline;
   justify-content: space-between;
   gap: 6px;
-  padding: 6px 0;
+  padding: 9px 0;
   border-bottom: 1px solid var(--folio-rule);
-  font-size: 0.81rem;
+  font-size: 1.05rem;
   line-height: 1.45;
 }
 .folio-link b { min-width: 0; font-weight: 500; overflow-wrap: anywhere; }
-.folio-link span { color: var(--folio-muted); font-size: 0.62rem; white-space: nowrap; }
+.folio-link span { color: var(--folio-muted); font-size: 0.8rem; white-space: nowrap; }
 .folio-link:last-child { border-bottom: 0; }
 .folio-updates-head { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: baseline; gap: 4px 12px; }
 .folio-updates-head .creation-year-filter { flex-wrap: wrap; }
+.folio-updates-head .creation-year-filter button { font-size: 0.95rem; }
 .creation-folio .folio-update { display: grid; grid-template-columns: 84px minmax(0, 1fr); gap: 10px; align-items: baseline; border-top: 1px solid var(--folio-rule); }
-.folio-update time { display: flex; align-items: baseline; gap: 5px; color: var(--folio-muted); font: 0.69rem Consolas, monospace; }
+.folio-update time { display: flex; align-items: baseline; gap: 5px; color: var(--folio-muted); font: 0.85rem Consolas, monospace; }
 .folio-update time strong { color: var(--folio-teal); }
 .folio-update > a { display: block; padding: 7px 0; }
-.folio-update h3 { margin: 0; color: var(--folio-ink); font-size: 0.81rem; line-height: 1.4; }
+.folio-update h3 { margin: 0; color: var(--folio-ink); font-size: 1.05rem; line-height: 1.4; }
 .folio-update > a:hover h3 { color: var(--folio-red); }
 .creation-folio .creation-pagination[hidden] { display: none; }
 .folio-footer { border-top: 1px solid var(--folio-rule); padding: 12px 0 22px; color: var(--folio-muted); font: 0.69rem Consolas, monospace; }
@@ -116,6 +116,6 @@
   .folio-groups--library .folio-group + .folio-group { padding-left: 0; border-left: 0; border-top: 1px solid var(--folio-rule); }
 }
 @media (max-width: 390px) {
-  .folio-book-mark { width: 27px; }
+  .folio-book-mark { width: 27px; font-size: 1.35rem; }
   .creation-folio .folio-book { padding-inline: 6px; gap: 5px; }
 }

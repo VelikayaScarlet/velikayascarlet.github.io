@@ -197,6 +197,14 @@
 .creation-story-nav a { color: var(--creation-accent); font-family: "Songti SC", STSong, serif; font-size: 0.82rem; font-weight: 700; text-decoration: none; }
 .creation-story-nav__index { align-self: center; }
 .creation-article-prose > p:first-of-type strong { display: block; margin-bottom: 30px; color: var(--creation-muted); font-size: 0.78rem; font-weight: 700; text-align: left; }
+.creation-story-prose.creation-article-prose--compact-title > h1:first-child {
+  margin-bottom: 24px;
+  padding-bottom: 13px;
+  font-family: "PingFang SC", "Microsoft YaHei UI", "Noto Sans SC", sans-serif;
+  font-size: 1.8rem;
+  font-weight: 600;
+  line-height: 1.35;
+}
 .creation-article-return { width: min(100%, 740px); margin: 70px auto 0; padding-top: 25px; border-top: 1px solid var(--creation-ink); }
 .creation-article-return a { color: var(--creation-accent); font-size: 0.78rem; font-weight: 700; text-decoration: none; }
 

@@ -26,12 +26,17 @@ layout: compress
       <header class="creation-reader__header creation-reader__header--article">
         <nav class="creation-reader__breadcrumb" aria-label="阅读路径">
           <a href="{{ '/creations/' | relative_url }}">Creations</a>
-          <span aria-hidden="true">/</span>
-          <a href="{{ creation_collection_url | relative_url }}">{{ creation_collection }}</a>
+          {% if page.compact_title %}
+            <span aria-hidden="true">/</span>
+            <a href="{{ '/creations/#settings' | relative_url }}">设定</a>
+          {% elsif creation_collection_url != '/creations/' %}
+            <span aria-hidden="true">/</span>
+            <a href="{{ creation_collection_url | relative_url }}">{{ creation_collection }}</a>
+          {% endif %}
         </nav>
       </header>
 
-      <article class="creation-story-prose creation-article-prose">
+      <article class="creation-story-prose creation-article-prose{% if page.compact_title %} creation-article-prose--compact-title{% endif %}">
         <h1>{{ page.title }}</h1>
         {{ content }}
       </article>

@@ -16,29 +16,29 @@ hide_nav: true
     </div>
   </section>
   <nav class="folio-nav" aria-label="创作栏目">
-    <a href="#collections">诗集</a><a href="#library">文库</a><a href="#languages">语言档案</a><a href="#writing">更新</a>
+    <a href="#collections">诗集</a><a href="#library">文库</a><a href="#languages">语言档案</a><a href="#settings">设定</a><a href="#writing">更新</a>
   </nav>
   <div class="folio-body">
     <section class="folio-section" id="collections" aria-labelledby="folio-books-title">
       <header class="folio-heading"><span aria-hidden="true">01</span><h2 id="folio-books-title">诗集</h2></header>
       <div class="folio-books">
         <a class="folio-book folio-book--1" href="{{ '/creations/poems/觅月集.pdf' | relative_url }}" target="_blank" rel="noopener">
-          <span class="folio-book-mark" aria-hidden="true"><svg viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M41 10a25 25 0 1 0 18 37A25 25 0 0 1 41 10Z"/><path d="M52 13v12m-6-6h12"/></svg></span>
+          <span class="folio-book-mark" aria-hidden="true">🌙</span>
           <span class="folio-book-title"><small>01</small><b>觅月集</b></span>
           <span class="folio-arrow" aria-hidden="true">↗</span>
         </a>
         <a class="folio-book folio-book--2" href="{{ '/creations/poems/折光集.pdf' | relative_url }}" target="_blank" rel="noopener">
-          <span class="folio-book-mark" aria-hidden="true"><svg viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M32 9 58 52H6Z"/><path d="m1 34 20 1 14 3 28-10m-28 10 28 7m-28-7 21 19"/></svg></span>
+          <span class="folio-book-mark" aria-hidden="true">☀️</span>
           <span class="folio-book-title"><small>02</small><b>折光集</b></span>
           <span class="folio-arrow" aria-hidden="true">↗</span>
         </a>
         <a class="folio-book folio-book--3" href="{{ '/creations/poems/东海集.pdf' | relative_url }}" target="_blank" rel="noopener">
-          <span class="folio-book-mark" aria-hidden="true"><svg viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 42c9-10 17-10 27 0s18 10 31 0M3 53c9-10 17-10 27 0s18 10 31 0"/><path d="M17 34a15 15 0 1 1 30 0"/></svg></span>
+          <span class="folio-book-mark" aria-hidden="true">🌊</span>
           <span class="folio-book-title"><small>03</small><b>东海集</b></span>
           <span class="folio-arrow" aria-hidden="true">↗</span>
         </a>
         <a class="folio-book folio-book--4" href="{{ '/creations/poems/洛上集.pdf' | relative_url }}" target="_blank" rel="noopener">
-          <span class="folio-book-mark" aria-hidden="true"><svg viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M2 51 24 19l12 17 9-13 17 28M12 51l12-17 10 17"/><path d="M41 10h17"/></svg></span>
+          <span class="folio-book-mark" aria-hidden="true">⛰️</span>
           <span class="folio-book-title"><small>04</small><b>洛上集</b></span>
           <span class="folio-arrow" aria-hidden="true">↗</span>
         </a>
@@ -66,17 +66,23 @@ hide_nav: true
       <header class="folio-heading"><span aria-hidden="true">03</span><h2 id="folio-language-title">语言档案</h2></header>
       <div class="folio-groups folio-groups--languages">
 <div class="folio-group"><h3>红河语</h3>
-<a class="folio-link" href="{{ '/creations/languages/honghe/grammar/' | relative_url }}"><b>红河语语法</b></a>
-            <a class="folio-link" href="{{ '/creations/languages/honghe/phonology/' | relative_url }}"><b>红河语音系与拼写</b></a>
+            <a class="folio-link" href="{{ '/creations/essays/红河语/红河语语法.pdf' | relative_url }}"><b>红河语语法</b><span>PDF</span></a>
+            <a class="folio-link" href="{{ '/creations/essays/红河语/红河语发音.pdf' | relative_url }}"><b>红河语音系与拼写</b><span>PDF</span></a>
 </div>
 <div class="folio-group"><h3>别利语</h3>
 <a class="folio-link" href="{{ '/creations/bielian/' | relative_url }}"><b>别利语简述</b><span>PDF</span></a>
 </div>
       </div>
     </section>
+    <section class="folio-section" id="settings" aria-labelledby="folio-settings-title">
+      <header class="folio-heading"><span aria-hidden="true">04</span><h2 id="folio-settings-title">设定</h2></header>
+      <div class="folio-groups">
+        <a class="folio-link" href="{{ '/creations/settings/identity-number/' | relative_url }}"><b>新版身份证号码设定</b></a>
+      </div>
+    </section>
     <section class="folio-section" id="writing" aria-labelledby="creation-posts-title">
       <div class="folio-updates-head">
-        <header class="folio-heading"><span aria-hidden="true">04</span><h2 id="creation-posts-title">更新</h2></header>
+        <header class="folio-heading"><span aria-hidden="true">05</span><h2 id="creation-posts-title">更新</h2></header>
         <div class="creation-year-filter" aria-label="按更新年份筛选"></div>
       </div>
       <div class="creation-update-list" aria-live="polite"><p class="creation-update-status">正在加载更新…</p></div>
