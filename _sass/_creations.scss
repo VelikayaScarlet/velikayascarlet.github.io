@@ -217,6 +217,25 @@
 
   code { font-size: inherit; }
 }
+.creation-story-prose .identity-calculator {
+  margin: 1.75em 0;
+  padding: 1em;
+  border: 1px solid var(--creation-line);
+  border-radius: 6px;
+  font-family: "PingFang SC", "Microsoft YaHei UI", "Noto Sans SC", sans-serif;
+}
+.identity-calculator h3 { margin: 0 0 0.4em; }
+.creation-story-prose .identity-calculator p { font-size: 0.9rem; line-height: 1.6; text-align: left; }
+.identity-calculator__fields {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 185px), 1fr));
+  gap: 0.8em;
+}
+.identity-calculator__fields label { display: grid; gap: 0.3em; margin: 0; min-width: 0; font-size: 0.9rem; }
+.identity-calculator__fields :is(input, select) { width: 100%; min-width: 0; margin: 0; font: inherit; }
+.identity-calculator__actions { display: flex; flex-wrap: wrap; align-items: center; gap: 0.75em; margin-top: 0.85em; }
+.identity-calculator__actions button { padding: 0.45em 0.8em; border: 1px solid var(--creation-accent); border-radius: 4px; background: transparent; color: var(--creation-accent); font: inherit; cursor: pointer; }
+.identity-calculator__actions output[data-valid] { font: 600 1.15rem/1.5 Consolas, monospace; }
 .creation-article-return { width: min(100%, 740px); margin: 70px auto 0; padding-top: 25px; border-top: 1px solid var(--creation-ink); }
 .creation-article-return a { color: var(--creation-accent); font-size: 0.78rem; font-weight: 700; text-decoration: none; }
 

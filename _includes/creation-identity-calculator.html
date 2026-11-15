@@ -1,0 +1,56 @@
+<section id="identity-calculator" class="identity-calculator" aria-labelledby="identity-calculator-title">
+  <h3 id="identity-calculator-title">试算新版号码</h3>
+  <p id="identity-calculator-note">输入只在当前浏览器中计算。本工具不会上传或保存输入，也不联网查重；结果仅为设定演示，不是正式证件号码。</p>
+  <div class="identity-calculator__fields">
+    <label>省级登记地区
+      <select data-province autocomplete="off">
+        <option value="">请选择</option>
+        <option value="11">11 北京</option>
+        <option value="12">12 天津</option>
+        <option value="13">13 河北</option>
+        <option value="14">14 山西</option>
+        <option value="15">15 内蒙古</option>
+        <option value="21">21 辽宁</option>
+        <option value="22">22 吉林</option>
+        <option value="23">23 黑龙江</option>
+        <option value="31">31 上海</option>
+        <option value="32">32 江苏</option>
+        <option value="33">33 浙江</option>
+        <option value="34">34 安徽</option>
+        <option value="35">35 福建</option>
+        <option value="36">36 江西</option>
+        <option value="37">37 山东</option>
+        <option value="41">41 河南</option>
+        <option value="42">42 湖北</option>
+        <option value="43">43 湖南</option>
+        <option value="44">44 广东</option>
+        <option value="45">45 广西</option>
+        <option value="46">46 海南</option>
+        <option value="50">50 重庆</option>
+        <option value="51">51 四川</option>
+        <option value="52">52 贵州</option>
+        <option value="53">53 云南</option>
+        <option value="54">54 西藏</option>
+        <option value="61">61 陕西</option>
+        <option value="62">62 甘肃</option>
+        <option value="63">63 青海</option>
+        <option value="64">64 宁夏</option>
+        <option value="65">65 新疆</option>
+        <option value="71">71 台湾</option>
+        <option value="81">81 香港</option>
+        <option value="82">82 澳门</option>
+      </select>
+    </label>
+    <label>出生日期
+      <input data-birth type="date" min="1900-01-01" max="6498-08-18" autocomplete="off">
+    </label>
+    <label>首次登记时间戳（可选）
+      <input data-timestamp type="text" inputmode="numeric" autocomplete="off" maxlength="17" placeholder="Unix 毫秒；留空用当前时间">
+    </label>
+  </div>
+  <div class="identity-calculator__actions">
+    <button type="button" data-generate aria-describedby="identity-calculator-note">生成示例</button>
+    <output data-result aria-live="polite"></output>
+  </div>
+</section>
+<script src="{{ '/assets/js/creation-identity-calculator.js' | relative_url }}" defer></script>
