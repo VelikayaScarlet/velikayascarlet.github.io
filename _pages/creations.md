@@ -16,7 +16,14 @@ hide_nav: true
     </div>
   </section>
   <nav class="folio-nav" aria-label="创作栏目">
-    <a href="#collections">诗集</a><a href="#library">文库</a><a href="#languages">语言档案</a><a href="#settings">设定</a><a href="#writing">更新</a>
+    <div class="folio-nav-links">
+      <a href="#collections">诗集</a><a href="#library">文库</a><a href="#languages">语言档案</a><a href="#settings">设定</a><a href="#writing">更新</a>
+    </div>
+    <select id="folio-theme" aria-label="页面配色">
+      <option value="default">默认</option>
+      <option value="day">昼间</option>
+      <option value="night">夜间</option>
+    </select>
   </nav>
   <div class="folio-body">
     <section class="folio-section" id="collections" aria-labelledby="folio-books-title">
@@ -78,6 +85,7 @@ hide_nav: true
       <header class="folio-heading"><span aria-hidden="true">04</span><h2 id="folio-settings-title">设定</h2></header>
       <div class="folio-groups">
         <a class="folio-link" href="{{ '/creations/settings/identity-number/' | relative_url }}"><b>新版身份证号码设定</b></a>
+        <a class="folio-link" href="{{ '/creations/settings/army-organization/' | relative_url }}"><b>陆军编制与军衔</b></a>
       </div>
     </section>
     <section class="folio-section" id="writing" aria-labelledby="creation-posts-title">
@@ -97,6 +105,18 @@ hide_nav: true
 
 <script>
 (function () {
+  var theme = document.getElementById('folio-theme');
+  var folio = document.querySelector('.creation-folio');
+  try {
+    var savedTheme = localStorage.getItem('creation-folio-theme');
+    if (savedTheme === 'day' || savedTheme === 'night') theme.value = savedTheme;
+  } catch (error) {}
+  folio.dataset.theme = theme.value;
+  theme.addEventListener('change', function () {
+    folio.dataset.theme = theme.value;
+    try { localStorage.setItem('creation-folio-theme', theme.value); } catch (error) {}
+  });
+
   var heroTitle = document.getElementById('creation-hero-title');
   var heroLines = [
     '千思万绪都为梦，由她来去随缘',

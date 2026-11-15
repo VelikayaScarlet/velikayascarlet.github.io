@@ -5,15 +5,39 @@
   --folio-rule: #d1ddda;
   --folio-teal: #17665d;
   --folio-red: #9d3e32;
+  --folio-language-paper: #edf5f1;
   --folio-width: 1040px;
   background: var(--folio-paper);
   color: var(--folio-ink);
   min-height: 100vh;
   font-family: "Noto Sans SC", "Microsoft YaHei", sans-serif;
 }
+.creation-folio[data-theme="day"] {
+  --folio-paper: #fff;
+  --folio-ink: #232629;
+  --folio-muted: #525960;
+  --folio-rule: #d9dde0;
+  --folio-language-paper: #f3f4f5;
+  color-scheme: light;
+}
+.creation-folio[data-theme="night"] {
+  --folio-paper: #202223;
+  --folio-ink: #ececea;
+  --folio-muted: #b7bfbc;
+  --folio-rule: #454d49;
+  --folio-teal: #8ed7c2;
+  --folio-red: #ffa99b;
+  --folio-language-paper: #283631;
+  color-scheme: dark;
+}
+.creation-folio[data-theme="night"] .folio-hero { box-shadow: inset 0 0 0 100vmax rgb(10 22 21 / 72%); }
+.creation-folio[data-theme="night"] .folio-book--1 { --book-ink: #b2d9e5; --book-paper: #28393e; }
+.creation-folio[data-theme="night"] .folio-book--2 { --book-ink: #f1ce91; --book-paper: #3c3225; }
+.creation-folio[data-theme="night"] .folio-book--3 { --book-ink: #9fd5c4; --book-paper: #263b35; }
+.creation-folio[data-theme="night"] .folio-book--4 { --book-ink: #eab3a7; --book-paper: #3e302e; }
 .creation-folio *, .creation-folio *::before, .creation-folio *::after { box-sizing: border-box; }
 .creation-folio a { color: inherit; text-decoration: none; }
-.creation-folio a:focus-visible, .creation-folio button:focus-visible { outline: 2px solid var(--folio-teal); outline-offset: 3px; }
+.creation-folio :is(a, button, select):focus-visible { outline: 2px solid var(--folio-teal); outline-offset: 3px; }
 .folio-hero {
   display: flex;
   align-items: center;
@@ -45,7 +69,9 @@
   text-shadow: 0 2px 10px #123531;
   letter-spacing: 0;
 }
-.folio-nav { display: flex; flex-wrap: wrap; gap: 8px 26px; align-items: center; border-bottom: 1px solid var(--folio-rule); padding-block: 10px; }
+.folio-nav { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 8px 18px; align-items: center; border-bottom: 1px solid var(--folio-rule); padding-block: 10px; }
+.folio-nav-links { display: flex; flex-wrap: wrap; gap: 5px 18px; align-items: center; }
+.creation-folio #folio-theme { width: auto; margin: 0; padding: 4px 8px; border: 1px solid var(--folio-rule); border-radius: 4px; background: var(--folio-paper); color: var(--folio-ink); font: inherit; font-size: 0.9rem; }
 .folio-nav a { padding-block: 4px; font-size: 1rem; color: var(--folio-muted); }
 .folio-nav a:hover { color: var(--folio-red); text-decoration: underline; text-underline-offset: 4px; }
 .folio-section { margin-block: 24px; scroll-margin-top: 14px; }
@@ -77,7 +103,7 @@
 .folio-book:hover b, .folio-link:hover b { text-decoration: underline; text-underline-offset: 4px; }
 .folio-groups { display: grid; gap: 0 18px; border-top: 1px solid var(--folio-rule); }
 .folio-groups--library { grid-template-columns: repeat(3, minmax(0, 1fr)); }
-.folio-groups--languages { grid-template-columns: repeat(2, minmax(0, 1fr)); background: #edf5f1; }
+.folio-groups--languages { grid-template-columns: repeat(2, minmax(0, 1fr)); background: var(--folio-language-paper); }
 .folio-group { min-width: 0; padding: 9px 0 0; }
 .folio-group + .folio-group { padding-left: 14px; border-left: 1px solid var(--folio-rule); }
 .folio-groups--languages .folio-group { padding: 9px 12px 3px; }
@@ -98,6 +124,9 @@
 .folio-updates-head { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: baseline; gap: 4px 12px; }
 .folio-updates-head .creation-year-filter { flex-wrap: wrap; }
 .folio-updates-head .creation-year-filter button { font-size: 0.95rem; }
+.creation-folio .folio-updates-head .creation-year-filter button { color: var(--folio-muted); }
+.creation-folio .folio-updates-head .creation-year-filter button:is(:hover, .is-active) { color: var(--folio-red); border-bottom-color: var(--folio-red); }
+.creation-folio :is(.creation-update-status, .creation-pagination) { color: var(--folio-muted); }
 .creation-folio .folio-update { display: grid; grid-template-columns: 84px minmax(0, 1fr); gap: 10px; align-items: baseline; border-top: 1px solid var(--folio-rule); }
 .folio-update time { display: flex; align-items: baseline; gap: 5px; color: var(--folio-muted); font: 0.85rem Consolas, monospace; }
 .folio-update time strong { color: var(--folio-teal); }
