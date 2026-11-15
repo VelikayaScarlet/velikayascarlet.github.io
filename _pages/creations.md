@@ -70,7 +70,7 @@ hide_nav: true
             <a class="folio-link" href="{{ '/creations/essays/红河语/红河语发音.pdf' | relative_url }}"><b>红河语音系与拼写</b><span>PDF</span></a>
 </div>
 <div class="folio-group"><h3>别利语</h3>
-<a class="folio-link" href="{{ '/creations/bielian/' | relative_url }}"><b>别利语简述</b><span>PDF</span></a>
+<a class="folio-link" href="{{ '/creations/essays/别利语/别利语简述%5B18.7.A2%5D.pdf' | relative_url }}"><b>别利语简述</b><span>PDF</span></a>
 </div>
       </div>
     </section>

@@ -93,7 +93,7 @@
   line-height: 1.45;
 }
 .folio-link b { min-width: 0; font-weight: 500; overflow-wrap: anywhere; }
-.folio-link span { color: var(--folio-muted); font-size: 0.8rem; white-space: nowrap; }
+.folio-link span { color: var(--folio-muted); font-size: 0.9rem; white-space: nowrap; }
 .folio-link:last-child { border-bottom: 0; }
 .folio-updates-head { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: baseline; gap: 4px 12px; }
 .folio-updates-head .creation-year-filter { flex-wrap: wrap; }

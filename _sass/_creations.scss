@@ -154,9 +154,9 @@
 .creation-story-index__header { position: relative; max-width: 760px; margin-bottom: 62px; padding: 0 0 28px 24px; border-bottom: 1px solid var(--creation-ink); }
 .creation-story-index__header::before { content: ""; position: absolute; top: 2px; bottom: 28px; left: 0; width: 4px; background: var(--creation-accent); }
 .creation-story-index__eyebrow { margin: 0 0 12px; color: var(--creation-accent); font-family: "SFMono-Regular", Consolas, monospace; font-size: 0.66rem; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; }
-.creation-story-index__header h1 { margin: 0 0 18px; border: 0; font-family: "FZKai-Z03", "Kaiti SC", KaiTi, serif; font-size: 3.5rem; font-weight: 400; line-height: 1.2; }
+.creation-story-index__header h1 { margin: 0 0 18px; border: 0; font-family: "FZKai-Z03", "Kaiti SC", KaiTi, serif; font-size: 2.35rem; font-weight: 400; line-height: 1.35; }
 .creation-story-index__header > p:not(.creation-story-index__eyebrow) { margin: 0 0 20px; color: var(--creation-muted); font-family: "Songti SC", STSong, Georgia, serif; font-size: 1rem; line-height: 1.9; }
-.creation-story-index__header > a { color: var(--creation-accent); font-size: 0.72rem; font-weight: 700; text-decoration: none; }
+.creation-story-index__header > a { color: var(--creation-accent); font-size: 0.9rem; font-weight: 700; text-decoration: none; }
 .creation-story-list { display: grid; margin: 0; padding: 0; border-top: 1px solid var(--creation-line); list-style: none; }
 .creation-story-list li { margin: 0; }
 .creation-story-list a { display: grid; grid-template-columns: 54px 190px minmax(0, 1fr); gap: 22px; align-items: baseline; padding: 25px 14px 25px 0; border-bottom: 1px solid var(--creation-line); color: var(--creation-ink); text-decoration: none; transition: padding 0.2s ease, color 0.2s ease, background 0.2s ease; }
@@ -265,7 +265,7 @@
   .creation-story-index, .creation-reader { width: min(100% - 28px, 1040px); }
   .creation-story-index { padding-top: 55px; }
   .creation-story-index__header { padding-left: 18px; }
-  .creation-story-index__header h1 { font-size: 2.55rem; }
+  .creation-story-index__header h1 { font-size: 1.85rem; }
   .creation-story-list a, .creation-story-list--dated a { grid-template-columns: 42px minmax(0, 1fr); gap: 8px 12px; }
   .creation-story-list small { grid-column: 2; }
   .creation-document-link { grid-template-columns: 42px minmax(0, 1fr); }
