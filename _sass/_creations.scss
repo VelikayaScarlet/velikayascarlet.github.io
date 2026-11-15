@@ -205,6 +205,18 @@
   font-weight: 600;
   line-height: 1.35;
 }
+.creation-article-prose--compact-title :is(div.highlighter-rouge, figure.highlight) {
+  padding: 0.65em 0.9em;
+
+  &::before { content: none; }
+}
+.creation-article-prose--compact-title pre {
+  margin: 0;
+  font-size: 1rem;
+  line-height: 1.6;
+
+  code { font-size: inherit; }
+}
 .creation-article-return { width: min(100%, 740px); margin: 70px auto 0; padding-top: 25px; border-top: 1px solid var(--creation-ink); }
 .creation-article-return a { color: var(--creation-accent); font-size: 0.78rem; font-weight: 700; text-decoration: none; }
 
