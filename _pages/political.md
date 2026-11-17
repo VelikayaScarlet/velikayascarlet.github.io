@@ -10,7 +10,6 @@ author_profile: false
     <p class="creation-story-index__eyebrow">Protected Essays / 随笔</p>
     <h1>玻璃蒂克</h1>
     <p>受密码保护的政治与社会随笔。</p>
-    <a href="{{ '/creations/' | relative_url }}">← 返回 Creations</a>
   </header>
 
   <section class="creation-protected-panel">

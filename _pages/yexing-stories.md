@@ -12,7 +12,6 @@ author_profile: false
     <p class="creation-story-index__eyebrow">Short Stories / 短篇</p>
     <h1>事物替我们说话</h1>
     <p>一些彼此独立、又隐约相连的故事。关于友谊、亲密关系，以及那些没能被及时说出来的话。</p>
-    <a href="{{ '/creations/' | relative_url }}">← 返回 Creations</a>
   </header>
 
   <ol class="creation-story-list">

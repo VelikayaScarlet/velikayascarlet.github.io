@@ -10,7 +10,6 @@ author_profile: false
     <p class="creation-story-index__eyebrow">Constructed Language / 人造语言</p>
     <h1>别利语简述</h1>
     <p>关于别利语语音、文字与语法系统的简要说明。</p>
-    <a href="{{ '/creations/' | relative_url }}">← 返回 Creations</a>
   </header>
 
   <div class="creation-document-link">

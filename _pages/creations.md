@@ -7,8 +7,7 @@ hide_nav: true
 ---
 
 
-<link rel="stylesheet" href="{{ '/assets/css/creation-folio.css' | relative_url }}">
-<main class="creation-folio" data-theme="default" lang="zh-CN">
+<main class="creation-folio" lang="zh-CN">
   <header class="folio-hero">
     <img class="folio-scenery" src="{{ '/images/creations-color-print.jpg' | relative_url }}" alt="" fetchpriority="high">
     <div class="folio-hero-inner">
@@ -18,14 +17,7 @@ hide_nav: true
           <button id="folio-next-background" type="button" aria-label="切换背景" title="切换背景">
             <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 22H6a4 4 0 0 1-4-4V6"/><rect x="6" y="2" width="16" height="16" rx="3"/><circle cx="11" cy="7" r="1"/><path d="m6 14 3-2 3 2 4-4 6 5"/></svg>
           </button>
-          <div class="folio-theme-control">
-            <select id="folio-theme" aria-label="页面配色" title="页面配色">
-              <option value="default">默认</option>
-              <option value="day">昼间</option>
-              <option value="night">夜间</option>
-            </select>
-            <svg viewBox="0 0 16 16" width="14" height="14" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m4.5 6.5 3.5 3.5 3.5-3.5"/></svg>
-          </div>
+          {% include creation-theme-control.html %}
         </div>
       </div>
       <div class="folio-title">
@@ -126,23 +118,13 @@ hide_nav: true
         </div>
       </div>
     </section>
-    <footer class="folio-footer"><span>Creations · 2023–2026</span><a href="#">回到顶部 <span aria-hidden="true">↑</span></a></footer>
+    <footer class="folio-footer"><span>Creations · 2014–2026</span><a href="#">回到顶部 <span aria-hidden="true">↑</span></a></footer>
   </div>
 </main>
 
 <script>
 (function () {
-  var theme = document.getElementById('folio-theme');
   var folio = document.querySelector('.creation-folio');
-  try {
-    var savedTheme = localStorage.getItem('creation-folio-theme');
-    if (savedTheme === 'day' || savedTheme === 'night') theme.value = savedTheme;
-  } catch (error) {}
-  folio.dataset.theme = theme.value;
-  theme.addEventListener('change', function () {
-    folio.dataset.theme = theme.value;
-    try { localStorage.setItem('creation-folio-theme', theme.value); } catch (error) {}
-  });
 
   var scenery = folio.querySelector('.folio-scenery');
   var backgrounds = [

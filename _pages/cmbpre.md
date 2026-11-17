@@ -11,7 +11,6 @@ author_profile: false
     <p class="creation-story-index__eyebrow">Novel / 小说</p>
     <h1>联合军前传</h1>
     <p>一部未完成的科幻小说旧稿，以及它留下的后续构想。</p>
-    <a href="{{ '/creations/' | relative_url }}">← 返回 Creations</a>
   </header>
 
   <ol class="creation-story-list">

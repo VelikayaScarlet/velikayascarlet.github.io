@@ -2,7 +2,6 @@
   <header class="creation-story-index__header">
     <p class="creation-story-index__eyebrow">访谈</p>
     <h1>{{ page.title | escape }}</h1>
-    <a href="{{ '/creations/#library' | relative_url }}">← 返回文库</a>
   </header>
   <article class="creation-story-prose creation-interview">
     {% assign lines = include.source | newline_to_br | split: '<br />' %}

@@ -1,0 +1,12 @@
+<header class="creation-reader-bar">
+  <div class="creation-reader-bar__inner">
+    <nav aria-label="阅读路径">
+      <a href="{{ '/creations/' | relative_url }}">Creations</a>
+      {% if include.section_url and include.section_title %}
+        <span aria-hidden="true">/</span>
+        <a href="{{ include.section_url | relative_url }}">{{ include.section_title | escape }}</a>
+      {% endif %}
+    </nav>
+    {% include creation-theme-control.html %}
+  </div>
+</header>

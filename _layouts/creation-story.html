@@ -16,18 +16,14 @@ layout: compress
   <head>
     {% include head.html %}
     {% include head/custom.html %}
+    {% include creation-folio-head.html %}
   </head>
-  <body class="creations-site creation-reading-site">
+  <body class="creations-site creation-detail">
     {% include browser-upgrade.html %}
-    {% include masthead.html %}
+    {% include creation-reader-bar.html section_url="/creations/stories/yexing/" section_title=page.story_collection %}
 
     <main class="creation-reader">
       <header class="creation-reader__header">
-        <nav class="creation-reader__breadcrumb" aria-label="阅读路径">
-          <a href="{{ '/creations/' | relative_url }}">Creations</a>
-          <span aria-hidden="true">/</span>
-          <a href="{{ '/creations/stories/yexing/' | relative_url }}">{{ page.story_collection }}</a>
-        </nav>
         <p class="creation-reader__progress-label">{{ page.story_index }} / {{ story_total }}</p>
         <div class="creation-reader__progress" aria-hidden="true">
           <span style="width: {{ page.story_index | times: 100 | divided_by: story_total }}%"></span>

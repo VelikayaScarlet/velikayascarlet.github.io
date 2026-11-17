@@ -12,7 +12,6 @@ author_profile: false
     <p class="creation-story-index__eyebrow">Notes / 随笔</p>
     <h1>归绥杂记</h1>
     <p>研究生期间的生活、研究与日常记录。</p>
-    <a href="{{ '/creations/' | relative_url }}">← 返回 Creations</a>
   </header>
 
   <ol class="creation-story-list creation-story-list--dated">

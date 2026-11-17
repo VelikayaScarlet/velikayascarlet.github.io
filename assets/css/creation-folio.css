@@ -4,7 +4,7 @@
   font-weight: 400;
   font-display: swap;
 }
-.creation-folio {
+:is(.creation-folio, .creation-detail) {
   --folio-page: #fbfaf6;
   --folio-ink: #202b32;
   --folio-muted: #515e66;
@@ -20,11 +20,11 @@
   color-scheme: light;
   font: 16px/1.55 "PingFang SC", "Microsoft YaHei UI", "Noto Sans SC", system-ui, sans-serif;
 }
-.creation-folio[data-theme="day"] {
+[data-creation-theme="day"] :is(.creation-folio, .creation-detail) {
   --folio-page: #fff;
   --folio-wash: #ebf3f9;
 }
-.creation-folio[data-theme="night"] {
+[data-creation-theme="night"] :is(.creation-folio, .creation-detail) {
   --folio-page: #202829;
   --folio-ink: #fff8e8;
   --folio-muted: #c4cdd0;
@@ -36,7 +36,15 @@
 }
 .creation-folio *, .creation-folio *::before, .creation-folio *::after { box-sizing: border-box; }
 .creation-folio a { color: inherit; text-decoration: none; }
-.creation-folio :is(a, button, select):focus-visible { outline: 2px solid var(--folio-blue); outline-offset: 3px; }
+:is(.creation-folio, .creation-detail) :is(a, button, select, input):focus-visible { outline: 2px solid var(--folio-blue); outline-offset: 3px; }
+.creation-detail {
+  --creation-ink: var(--folio-ink);
+  --creation-muted: var(--folio-muted);
+  --creation-line: var(--folio-line);
+  --creation-paper: var(--folio-page);
+  --creation-accent: var(--folio-red);
+  background-image: none;
+}
 .folio-hero {
   position: relative;
   isolation: isolate;
@@ -98,7 +106,7 @@
 }
 .folio-theme-control svg { position: absolute; right: 10px; top: 13px; pointer-events: none; }
 .folio-imprint { color: #9e2c21; font: 750 14px/1.3 var(--folio-mono); }
-.creation-folio #folio-theme {
+:is(.creation-folio, .creation-detail) #folio-theme {
   appearance: none;
   width: auto;
   min-height: 40px;
@@ -114,6 +122,29 @@
 }
 .creation-folio .folio-hero-controls :is(#folio-next-background, #folio-theme):hover { background: #e9f0f4; }
 .creation-folio .folio-hero-controls :is(#folio-next-background, #folio-theme):focus-visible { outline-offset: -2px; }
+.creation-reader-bar { border-bottom: 3px solid var(--folio-red); }
+.creation-reader-bar__inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 14px;
+  width: min(1100px, calc(100% - 36px));
+  min-height: 60px;
+  margin-inline: auto;
+  padding-block: 7px;
+}
+.creation-reader-bar nav { display: flex; flex-wrap: wrap; align-items: baseline; gap: 2px 9px; color: var(--folio-muted); }
+.creation-reader-bar a { color: var(--folio-blue); font-family: var(--folio-literary); text-decoration: none; }
+.creation-reader-bar a:first-of-type { font: 600 14px/1.4 var(--folio-mono); }
+.creation-reader-bar a:hover { text-decoration: underline; text-underline-offset: 3px; }
+.creation-detail .folio-theme-control::before { content: none; }
+.creation-detail #folio-theme {
+  border: 1px solid var(--folio-line);
+  border-radius: 22px;
+  background: var(--folio-wash);
+  color: var(--folio-ink);
+  color-scheme: inherit;
+}
 .folio-title { max-width: min(45%, 400px); }
 .folio-title h1 {
   margin: 0;

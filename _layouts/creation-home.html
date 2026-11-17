@@ -3,14 +3,21 @@ layout: compress
 ---
 
 <!doctype html>
-<html lang="en" class="no-js">
+<html lang="zh-CN" class="no-js">
   <head>
     {% include head.html %}
     {% include head/custom.html %}
+    {% include creation-folio-head.html %}
   </head>
-  <body class="creations-site{% if page.hide_nav %} creation-home-site{% endif %}">
+  <body class="creations-site{% if page.permalink == '/creations/' %} creation-home-site{% else %} creation-detail{% endif %}">
     {% include browser-upgrade.html %}
-    {% unless page.hide_nav %}{% include masthead.html %}{% endunless %}
+    {% unless page.permalink == '/creations/' %}
+      {% if page.permalink contains '/creations/languages/' or page.permalink == '/creations/bielian/' %}
+        {% include creation-reader-bar.html section_url="/creations/#languages" section_title="语言档案" %}
+      {% else %}
+        {% include creation-reader-bar.html section_url="/creations/#library" section_title="文库" %}
+      {% endif %}
+    {% endunless %}
     {{ content }}
     {% include scripts.html %}
   </body>

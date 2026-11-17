@@ -1,0 +1,22 @@
+<link rel="stylesheet" href="{{ '/assets/css/creation-folio.css' | relative_url }}">
+<script>
+(function () {
+  var root = document.documentElement;
+  var theme = 'default';
+  try {
+    var saved = localStorage.getItem('creation-folio-theme');
+    if (saved === 'day' || saved === 'night') theme = saved;
+  } catch (error) {}
+  root.dataset.creationTheme = theme;
+
+  document.addEventListener('DOMContentLoaded', function () {
+    var select = document.getElementById('folio-theme');
+    if (!select) return;
+    select.value = theme;
+    select.addEventListener('change', function () {
+      root.dataset.creationTheme = select.value;
+      try { localStorage.setItem('creation-folio-theme', select.value); } catch (error) {}
+    });
+  });
+})();
+</script>

@@ -10,7 +10,6 @@ author_profile: false
     <p class="creation-story-index__eyebrow">Memoir / 回忆录</p>
     <h1>刘彬回忆录——我的大学</h1>
     <p>关于大学生活、成长与旧日时光的个人回忆。</p>
-    <a href="{{ '/creations/' | relative_url }}">← 返回 Creations</a>
   </header>
 
   <div class="creation-document-link">
