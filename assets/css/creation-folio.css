@@ -12,8 +12,6 @@
   --folio-red: #b12f24;
   --folio-line: #cbd2d4;
   --folio-wash: #e4eef8;
-  --folio-feature: #f8dd7b;
-  --folio-feature-ink: #3d290d;
   --folio-mono: ui-monospace, "SFMono-Regular", Consolas, monospace;
   --folio-literary: "Creations WenKai", "LXGW WenKai", "Kaiti SC", STKaiti, KaiTi, serif;
   min-height: 100vh;
@@ -34,7 +32,6 @@
   --folio-red: #ffb2a1;
   --folio-line: #586368;
   --folio-wash: #2e3d43;
-  --folio-feature: #edc263;
   color-scheme: dark;
 }
 .creation-folio *, .creation-folio *::before, .creation-folio *::after { box-sizing: border-box; }
@@ -69,32 +66,54 @@
   padding-block: 20px;
 }
 .folio-tools { display: flex; align-items: center; justify-content: space-between; gap: 12px; }
-.folio-hero-controls { display: flex; align-items: stretch; gap: 6px; }
+.folio-hero-controls {
+  display: flex;
+  align-items: center;
+  border: 1px solid #d3d9dd;
+  border-radius: 22px;
+  background: #fffcf3f2;
+  box-shadow: 0 2px 10px rgb(38 54 66 / 10%);
+  color: #263642;
+}
 .creation-folio #folio-next-background {
   display: grid;
   place-items: center;
-  width: 36px;
+  width: 42px;
+  min-height: 40px;
+  margin: 0;
   padding: 0;
-  border: 1px solid #b5b4a8;
-  border-radius: 4px;
-  background: #fffaf1;
-  color: #263642;
+  border: 0;
+  border-radius: 21px 0 0 21px;
+  background: transparent;
+  color: inherit;
   cursor: pointer;
 }
-.creation-folio #folio-next-background:hover { background: #e8eff7; }
+.folio-theme-control { position: relative; }
+.folio-theme-control::before {
+  position: absolute;
+  inset: 10px auto 10px 0;
+  border-left: 1px solid #cdd4d7;
+  content: "";
+  pointer-events: none;
+}
+.folio-theme-control svg { position: absolute; right: 10px; top: 13px; pointer-events: none; }
 .folio-imprint { color: #9e2c21; font: 750 14px/1.3 var(--folio-mono); }
 .creation-folio #folio-theme {
+  appearance: none;
   width: auto;
+  min-height: 40px;
   margin: 0;
-  padding: 4px 9px;
-  border: 1px solid #b5b4a8;
-  border-radius: 4px;
-  background: #fffaf1;
-  color: #263642;
+  padding: 0 28px 0 12px;
+  border: 0;
+  border-radius: 0 21px 21px 0;
+  background: transparent;
+  color: inherit;
   color-scheme: light;
-  font: inherit;
-  font-size: 14px;
+  font: 14px/1.3 var(--folio-literary);
+  cursor: pointer;
 }
+.creation-folio .folio-hero-controls :is(#folio-next-background, #folio-theme):hover { background: #e9f0f4; }
+.creation-folio .folio-hero-controls :is(#folio-next-background, #folio-theme):focus-visible { outline-offset: -2px; }
 .folio-title { max-width: min(45%, 400px); }
 .folio-title h1 {
   margin: 0;
@@ -157,22 +176,83 @@
 .folio-update h3 { margin: 0; color: inherit; font-family: inherit; font-size: 16px; font-weight: 500; line-height: 1.4; overflow-wrap: anywhere; }
 .folio-update time { color: var(--folio-muted); font: 13px/1.3 var(--folio-mono); }
 .folio-update a:hover h3 { text-decoration: underline; text-underline-offset: 4px; }
-.folio-update:first-child {
+.folio-update--feature {
   grid-row: span 4;
   border: 0;
-  background: var(--folio-feature);
-  color: var(--folio-feature-ink);
+  border-radius: 6px;
+  background: var(--folio-wash);
 }
-.folio-update:first-child a {
-  grid-template-columns: minmax(0, 1fr) auto;
-  grid-template-rows: auto 1fr;
-  gap: 13px 8px;
-  min-height: 166px;
-  padding: 17px 20px;
+.folio-update--feature a {
+  grid-template-columns: minmax(0, 2fr) minmax(0, 3fr);
+  gap: 6px;
+  min-height: 176px;
+  padding: 12px 14px;
+  border-radius: inherit;
 }
-.folio-update:first-child time { grid-column: 1 / -1; color: inherit; }
-.folio-update:first-child h3 { align-self: end; font-family: var(--folio-literary); font-size: 24px; font-weight: 400; }
-.folio-update:first-child .folio-arrow { align-self: end; }
+.folio-feature-info { display: grid; justify-items: start; gap: 5px; }
+.folio-update--feature h3 { font-family: var(--folio-literary); font-size: 24px; font-weight: 400; }
+.folio-feature-action { display: inline-flex; flex-wrap: wrap; align-items: center; gap: 2px 6px; color: var(--folio-blue); font: 14px/1.4 var(--folio-literary); }
+.folio-book-stage { display: grid; place-items: center; min-width: 0; perspective: 650px; pointer-events: none; }
+.folio-book-volume {
+  position: relative;
+  width: min(44%, 108px);
+  aspect-ratio: 4 / 5;
+  transform-style: preserve-3d;
+}
+.folio-book-page, .folio-book-front, .folio-book-verso {
+  display: grid;
+  place-items: center;
+  position: absolute;
+  inset: 0;
+  padding: 5px;
+  border: 1px solid #d3c8b4;
+  border-radius: 1px 4px 4px 1px;
+}
+.folio-book-page {
+  padding: 5px 6px 5px 9px;
+  background: #f9f3e7;
+  color: #544a3e;
+  box-shadow: 2px 2px 0 #d2c7b2, 4px 5px 9px rgb(26 34 43 / 22%), inset 3px 0 #ded5c3;
+}
+.folio-book-page-date {
+  display: block;
+  max-width: 100%;
+  padding-block: 5px;
+  border-block: 1px solid #cfc2ad;
+  font: 10px/1.3 var(--folio-mono);
+  text-align: center;
+  overflow-wrap: anywhere;
+}
+.folio-book-cover {
+  position: absolute;
+  inset: 0;
+  transform: rotateY(0deg);
+  transform-origin: left center;
+  transform-style: preserve-3d;
+}
+.folio-book-front, .folio-book-verso { backface-visibility: hidden; }
+.folio-book-front {
+  overflow: hidden;
+  border-color: #526e7e;
+  border-left-width: 3px;
+  background: #335667;
+  color: #fff6e7;
+  text-align: center;
+}
+.folio-book-front img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+.folio-book-jacket-title { min-width: 0; max-width: 100%; font: 14px/1.25 var(--folio-literary); overflow-wrap: anywhere; }
+.folio-book-verso {
+  transform: rotateY(180deg);
+  background: #ebdfca;
+  box-shadow: inset -3px 0 #cabea6;
+}
+.folio-book-verso::before { width: 75%; height: 80%; border: 1px solid #cfc2ad; content: ""; }
+.folio-update--feature a:focus-visible .folio-book-volume { transform: translateX(43%); }
+.folio-update--feature a:focus-visible .folio-book-cover { transform: rotateY(-154deg); }
+@media (hover: hover) {
+  .folio-update--feature a:hover .folio-book-volume { transform: translateX(43%); }
+  .folio-update--feature a:hover .folio-book-cover { transform: rotateY(-154deg); }
+}
 .folio-update:only-child { grid-column: 1 / -1; grid-row: auto; }
 .folio-arrow { font: 17px/1.25 system-ui, sans-serif; }
 .creation-folio .creation-update-status {
@@ -288,8 +368,9 @@
   .folio-title h1 { font-size: 19px; }
   .folio-news { padding-top: 23px; }
   .creation-folio .creation-update-list { grid-template-columns: minmax(0, 1fr); }
-  .folio-update:first-child { grid-row: auto; margin-bottom: 4px; }
-  .folio-update:first-child a { min-height: 109px; }
+  .folio-update--feature { grid-row: auto; margin-bottom: 4px; }
+  .folio-update--feature a { min-height: 132px; }
+  .folio-update--feature h3 { font-size: 21px; }
   .folio-chapter { grid-template-columns: minmax(0, 1fr); gap: 11px; padding-block: 19px; }
   .creation-folio .folio-poetry { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; }
   .creation-folio .folio-poetry a { padding: 8px 10px; }
@@ -298,6 +379,7 @@
 }
 
 @media (prefers-reduced-motion: no-preference) {
+  .folio-book-cover, .folio-book-volume { transition: transform 480ms cubic-bezier(.25, .7, .3, 1); }
   .folio-poetry a { transition: transform 180ms ease-out, box-shadow 180ms ease-out; }
   .folio-poetry a:is(:hover, :focus-visible) { transform: translateY(-4px); box-shadow: 0 5px 12px rgb(32 43 50 / 13%); }
   .folio-poetry.is-revealed li { animation: folio-book-enter 420ms ease-out both; }

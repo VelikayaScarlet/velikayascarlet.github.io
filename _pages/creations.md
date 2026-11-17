@@ -16,13 +16,16 @@ hide_nav: true
         <span class="folio-imprint" aria-hidden="true">CREATIONS</span>
         <div class="folio-hero-controls">
           <button id="folio-next-background" type="button" aria-label="切换背景" title="切换背景">
-            <svg viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="16" rx="2"/><circle cx="9" cy="9" r="1.5"/><path d="m3 17 5-4 3 2 4-5 6 6"/></svg>
+            <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 22H6a4 4 0 0 1-4-4V6"/><rect x="6" y="2" width="16" height="16" rx="3"/><circle cx="11" cy="7" r="1"/><path d="m6 14 3-2 3 2 4-4 6 5"/></svg>
           </button>
-          <select id="folio-theme" aria-label="页面配色">
-            <option value="default">默认</option>
-            <option value="day">昼间</option>
-            <option value="night">夜间</option>
-          </select>
+          <div class="folio-theme-control">
+            <select id="folio-theme" aria-label="页面配色" title="页面配色">
+              <option value="default">默认</option>
+              <option value="day">昼间</option>
+              <option value="night">夜间</option>
+            </select>
+            <svg viewBox="0 0 16 16" width="14" height="14" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m4.5 6.5 3.5 3.5 3.5-3.5"/></svg>
+          </div>
         </div>
       </div>
       <div class="folio-title">
@@ -39,6 +42,17 @@ hide_nav: true
         <div class="creation-year-filter" aria-label="按更新年份筛选"></div>
       </header>
       <div class="creation-update-list" aria-live="polite"><p class="creation-update-status">正在加载更新…</p></div>
+      <template id="folio-feature-book">
+        <span class="folio-book-stage" aria-hidden="true">
+          <span class="folio-book-volume">
+            <span class="folio-book-page"><span class="folio-book-page-date"></span></span>
+            <span class="folio-book-cover">
+              <span class="folio-book-front"><span class="folio-book-jacket-title"></span></span>
+              <span class="folio-book-verso"></span>
+            </span>
+          </span>
+        </span>
+      </template>
       <nav class="creation-pagination" aria-label="更新分页" hidden>
         <span data-creation-page-info></span>
         <div><button type="button" data-creation-page="prev">上一页</button><button type="button" data-creation-page="next">下一页</button></div>
@@ -224,6 +238,36 @@ hide_nav: true
   var currentYear = 'all';
   var perPage = 5;
   var baseUrl = {{ site.baseurl | default: '' | jsonify }};
+  var bookTemplate = document.getElementById('folio-feature-book');
+  var coverSources = new Map();
+  folio.querySelectorAll('.folio-poetry a').forEach(function (link) {
+    var cover = link.querySelector('.folio-cover-art');
+    if (cover) coverSources.set(link.href, cover.src);
+  });
+
+  function featureUpdate(link, time, heading, arrow) {
+    var info = document.createElement('div');
+    info.className = 'folio-feature-info';
+    var action = document.createElement('span');
+    action.className = 'folio-feature-action';
+    action.append('阅读作品', arrow);
+    info.append(time, heading, action);
+
+    var book = bookTemplate.content.firstElementChild.cloneNode(true);
+    book.querySelector('.folio-book-page-date').textContent = time.textContent;
+    var jacket = book.querySelector('.folio-book-jacket-title');
+    jacket.textContent = heading.textContent;
+    var coverSrc = coverSources.get(link.href);
+    if (coverSrc) {
+      var art = document.createElement('img');
+      art.alt = '';
+      art.decoding = 'async';
+      art.addEventListener('load', function () { jacket.hidden = true; }, { once: true });
+      art.src = coverSrc;
+      jacket.after(art);
+    }
+    link.append(info, book);
+  }
 
   function render() {
     var matching = updates.filter(function (item) {
@@ -232,7 +276,7 @@ hide_nav: true
     var pages = Math.max(1, Math.ceil(matching.length / perPage));
     currentPage = Math.max(1, Math.min(currentPage, pages));
     list.replaceChildren();
-    matching.slice((currentPage - 1) * perPage, currentPage * perPage).forEach(function (item) {
+    matching.slice((currentPage - 1) * perPage, currentPage * perPage).forEach(function (item, index) {
       var article = document.createElement('article');
       article.className = 'folio-update';
       var time = document.createElement('time');
@@ -246,7 +290,12 @@ hide_nav: true
       arrow.className = 'folio-arrow';
       arrow.setAttribute('aria-hidden', 'true');
       arrow.textContent = '→';
-      link.append(time, heading, arrow);
+      if (index === 0) {
+        article.classList.add('folio-update--feature');
+        featureUpdate(link, time, heading, arrow);
+      } else {
+        link.append(time, heading, arrow);
+      }
       article.append(link);
       list.append(article);
     });
