@@ -8,98 +8,111 @@ hide_nav: true
 
 
 <link rel="stylesheet" href="{{ '/assets/css/creation-folio.css' | relative_url }}">
-<main class="creation-folio" lang="zh-CN">
-  <section class="folio-hero" aria-labelledby="creation-hero-title" style="--folio-landscape: url('{{ '/images/creations-hero-v2.png' | relative_url }}');">
+<main class="creation-folio" data-theme="default" lang="zh-CN">
+  <header class="folio-hero">
+    <img class="folio-scenery" src="{{ '/images/creations-color-print.jpg' | relative_url }}" alt="" fetchpriority="high">
     <div class="folio-hero-inner">
-      <p class="folio-imprint">创作</p>
-      <h1 id="creation-hero-title">重逢初见处，你我尚无诗</h1>
+      <div class="folio-tools">
+        <span class="folio-imprint" aria-hidden="true">CREATIONS</span>
+        <div class="folio-hero-controls">
+          <button id="folio-next-background" type="button" aria-label="切换背景" title="切换背景">
+            <svg viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="16" rx="2"/><circle cx="9" cy="9" r="1.5"/><path d="m3 17 5-4 3 2 4-5 6 6"/></svg>
+          </button>
+          <select id="folio-theme" aria-label="页面配色">
+            <option value="default">默认</option>
+            <option value="day">昼间</option>
+            <option value="night">夜间</option>
+          </select>
+        </div>
+      </div>
+      <div class="folio-title">
+        <h1 id="creation-hero-title">重逢初见处，你我尚无诗</h1>
+      </div>
+      <a class="folio-down" href="#writing" aria-label="查看最新更新"><span aria-hidden="true">↓</span></a>
     </div>
-  </section>
-  <nav class="folio-nav" aria-label="创作栏目">
-    <div class="folio-nav-links">
-      <a href="#collections">诗集</a><a href="#library">文库</a><a href="#languages">语言档案</a><a href="#settings">设定</a><a href="#writing">更新</a>
-    </div>
-    <select id="folio-theme" aria-label="页面配色">
-      <option value="default">默认</option>
-      <option value="day">昼间</option>
-      <option value="night">夜间</option>
-    </select>
-  </nav>
+  </header>
+
   <div class="folio-body">
-    <section class="folio-section" id="collections" aria-labelledby="folio-books-title">
-      <header class="folio-heading"><span aria-hidden="true">01</span><h2 id="folio-books-title">诗集</h2></header>
-      <div class="folio-books">
-        <a class="folio-book folio-book--1" href="{{ '/creations/poems/觅月集.pdf' | relative_url }}" target="_blank" rel="noopener">
-          <span class="folio-book-mark" aria-hidden="true">🌙</span>
-          <span class="folio-book-title"><small>01</small><b>觅月集</b></span>
-          <span class="folio-arrow" aria-hidden="true">↗</span>
-        </a>
-        <a class="folio-book folio-book--2" href="{{ '/creations/poems/折光集.pdf' | relative_url }}" target="_blank" rel="noopener">
-          <span class="folio-book-mark" aria-hidden="true">☀️</span>
-          <span class="folio-book-title"><small>02</small><b>折光集</b></span>
-          <span class="folio-arrow" aria-hidden="true">↗</span>
-        </a>
-        <a class="folio-book folio-book--3" href="{{ '/creations/poems/东海集.pdf' | relative_url }}" target="_blank" rel="noopener">
-          <span class="folio-book-mark" aria-hidden="true">🌊</span>
-          <span class="folio-book-title"><small>03</small><b>东海集</b></span>
-          <span class="folio-arrow" aria-hidden="true">↗</span>
-        </a>
-        <a class="folio-book folio-book--4" href="{{ '/creations/poems/洛上集.pdf' | relative_url }}" target="_blank" rel="noopener">
-          <span class="folio-book-mark" aria-hidden="true">⛰️</span>
-          <span class="folio-book-title"><small>04</small><b>洛上集</b></span>
-          <span class="folio-arrow" aria-hidden="true">↗</span>
-        </a>
-      </div>
-    </section>
-    <section class="folio-section" id="library" aria-labelledby="folio-library-title">
-      <header class="folio-heading"><span aria-hidden="true">02</span><h2 id="folio-library-title">文库</h2></header>
-      <div class="folio-groups folio-groups--library">
-<div class="folio-group"><h3>小说</h3>
-<a class="folio-link" href="{{ '/creations/stories/yexing/' | relative_url }}"><b>事物替我们说话</b></a>
-            <a class="folio-link" href="{{ '/creations/cmbpre/' | relative_url }}"><b>联合军前传</b></a>
-</div>
-<div class="folio-group"><h3>随笔与回忆录</h3>
-<a class="folio-link" href="{{ '/creations/guisui-zaji/' | relative_url }}"><b>归绥杂记</b></a>
-            <a class="folio-link" href="{{ '/creations/liubin-memoir/' | relative_url }}"><b>刘彬回忆录——我的大学</b></a>
-            <a class="folio-link" href="{{ '/creations/political/' | relative_url }}"><b>玻璃蒂克</b><span>受保护</span></a>
-</div>
-<div class="folio-group"><h3>访谈</h3>
-<a class="folio-link" href="{{ '/creations/interviews/xinshi/' | relative_url }}"><b>十年心事付江花</b></a>
-            <a class="folio-link" href="{{ '/creations/interviews/atypical/' | relative_url }}"><b>晴岚的非典型恋爱自述</b></a>
-</div>
-      </div>
-    </section>
-    <section class="folio-section" id="languages" aria-labelledby="folio-language-title">
-      <header class="folio-heading"><span aria-hidden="true">03</span><h2 id="folio-language-title">语言档案</h2></header>
-      <div class="folio-groups folio-groups--languages">
-<div class="folio-group"><h3>红河语</h3>
-            <a class="folio-link" href="{{ '/creations/essays/红河语/红河语语法.pdf' | relative_url }}"><b>红河语语法</b><span>PDF</span></a>
-            <a class="folio-link" href="{{ '/creations/essays/红河语/红河语发音.pdf' | relative_url }}"><b>红河语音系与拼写</b><span>PDF</span></a>
-</div>
-<div class="folio-group"><h3>别利语</h3>
-<a class="folio-link" href="{{ '/creations/essays/别利语/别利语简述%5B18.7.A2%5D.pdf' | relative_url }}"><b>别利语简述</b><span>PDF</span></a>
-</div>
-      </div>
-    </section>
-    <section class="folio-section" id="settings" aria-labelledby="folio-settings-title">
-      <header class="folio-heading"><span aria-hidden="true">04</span><h2 id="folio-settings-title">设定</h2></header>
-      <div class="folio-groups">
-        <a class="folio-link" href="{{ '/creations/settings/identity-number/' | relative_url }}"><b>新版身份证号码设定</b></a>
-        <a class="folio-link" href="{{ '/creations/settings/army-organization/' | relative_url }}"><b>陆军编制与军衔</b></a>
-      </div>
-    </section>
-    <section class="folio-section" id="writing" aria-labelledby="creation-posts-title">
-      <div class="folio-updates-head">
-        <header class="folio-heading"><span aria-hidden="true">05</span><h2 id="creation-posts-title">更新</h2></header>
+    <section class="folio-news" id="writing" aria-labelledby="creation-posts-title">
+      <header class="folio-updates-head">
+        <h2 id="creation-posts-title">最新更新</h2>
         <div class="creation-year-filter" aria-label="按更新年份筛选"></div>
-      </div>
+      </header>
       <div class="creation-update-list" aria-live="polite"><p class="creation-update-status">正在加载更新…</p></div>
       <nav class="creation-pagination" aria-label="更新分页" hidden>
         <span data-creation-page-info></span>
         <div><button type="button" data-creation-page="prev">上一页</button><button type="button" data-creation-page="next">下一页</button></div>
       </nav>
     </section>
-    <footer class="folio-footer">Creations · 2023—2026</footer>
+
+    <nav class="folio-contents" aria-label="作品目录">
+      <a href="#collections">诗集</a><a href="#library">文库</a><a href="#languages">语言档案</a><a href="#settings">设定</a>
+    </nav>
+
+    <section class="folio-chapter folio-chapter--books" id="collections" aria-labelledby="folio-collections-title">
+      <header class="folio-chapter-title">
+        <span aria-hidden="true">01</span><h2 id="folio-collections-title">诗集</h2>
+      </header>
+      <div class="folio-chapter-content">
+        <ol class="folio-poetry">
+          <li><a href="{{ '/creations/poems/觅月集.pdf' | relative_url }}" target="_blank" rel="noopener"><img class="folio-cover-art" src="{{ '/images/creations-book-moon.jpg' | relative_url }}" alt="" width="640" height="800" loading="lazy" decoding="async"><span class="folio-row-index" aria-hidden="true">01</span><b>觅月集</b><span class="folio-arrow" aria-hidden="true">↗</span></a></li>
+          <li><a href="{{ '/creations/poems/折光集.pdf' | relative_url }}" target="_blank" rel="noopener"><img class="folio-cover-art" src="{{ '/images/creations-book-light.jpg' | relative_url }}" alt="" width="640" height="800" loading="lazy" decoding="async"><span class="folio-row-index" aria-hidden="true">02</span><b>折光集</b><span class="folio-arrow" aria-hidden="true">↗</span></a></li>
+          <li><a href="{{ '/creations/poems/东海集.pdf' | relative_url }}" target="_blank" rel="noopener"><img class="folio-cover-art" src="{{ '/images/creations-book-sea.jpg' | relative_url }}" alt="" width="640" height="800" loading="lazy" decoding="async"><span class="folio-row-index" aria-hidden="true">03</span><b>东海集</b><span class="folio-arrow" aria-hidden="true">↗</span></a></li>
+          <li><a href="{{ '/creations/poems/洛上集.pdf' | relative_url }}" target="_blank" rel="noopener"><img class="folio-cover-art" src="{{ '/images/creations-book-kyoto.jpg' | relative_url }}" alt="" width="640" height="800" loading="lazy" decoding="async"><span class="folio-row-index" aria-hidden="true">04</span><b>洛上集</b><span class="folio-arrow" aria-hidden="true">↗</span></a></li>
+        </ol>
+      </div>
+    </section>
+    <section class="folio-chapter" id="library" aria-labelledby="folio-library-title">
+      <header class="folio-chapter-title">
+        <span aria-hidden="true">02</span><h2 id="folio-library-title">文库</h2>
+      </header>
+      <div class="folio-chapter-content">
+        <div class="folio-group">
+          <h3>小说</h3>
+          <a class="folio-link" href="{{ '/creations/stories/yexing/' | relative_url }}"><b>事物替我们说话</b></a>
+          <a class="folio-link" href="{{ '/creations/cmbpre/' | relative_url }}"><b>联合军前传</b></a>
+        </div>
+        <div class="folio-group">
+          <h3>随笔与回忆录</h3>
+          <a class="folio-link" href="{{ '/creations/guisui-zaji/' | relative_url }}"><b>归绥杂记</b></a>
+          <a class="folio-link" href="{{ '/creations/liubin-memoir/' | relative_url }}"><b>刘彬回忆录——我的大学</b></a>
+          <a class="folio-link" href="{{ '/creations/political/' | relative_url }}"><b>玻璃蒂克</b><span>受保护</span></a>
+        </div>
+        <div class="folio-group">
+          <h3>访谈</h3>
+          <a class="folio-link" href="{{ '/creations/interviews/xinshi/' | relative_url }}"><b>十年心事付江花</b></a>
+          <a class="folio-link" href="{{ '/creations/interviews/atypical/' | relative_url }}"><b>晴岚的非典型恋爱自述</b></a>
+        </div>
+      </div>
+    </section>
+    <section class="folio-chapter" id="languages" aria-labelledby="folio-languages-title">
+      <header class="folio-chapter-title">
+        <span aria-hidden="true">03</span><h2 id="folio-languages-title">语言档案</h2>
+      </header>
+      <div class="folio-chapter-content">
+        <div class="folio-group">
+          <h3>红河语</h3>
+          <a class="folio-link" href="{{ '/creations/essays/红河语/红河语语法.pdf' | relative_url }}"><b>红河语语法</b><span>PDF</span></a>
+          <a class="folio-link" href="{{ '/creations/essays/红河语/红河语发音.pdf' | relative_url }}"><b>红河语音系与拼写</b><span>PDF</span></a>
+        </div>
+        <div class="folio-group">
+          <h3>别利语</h3>
+          <a class="folio-link" href="{{ '/creations/essays/别利语/别利语简述%5B18.7.A2%5D.pdf' | relative_url }}"><b>别利语简述</b><span>PDF</span></a>
+        </div>
+      </div>
+    </section>
+    <section class="folio-chapter" id="settings" aria-labelledby="folio-settings-title">
+      <header class="folio-chapter-title">
+        <span aria-hidden="true">04</span><h2 id="folio-settings-title">设定</h2>
+      </header>
+      <div class="folio-chapter-content">
+        <div class="folio-group">
+          <a class="folio-link" href="{{ '/creations/settings/identity-number/' | relative_url }}"><b>新版身份证号码设定</b></a>
+          <a class="folio-link" href="{{ '/creations/settings/army-organization/' | relative_url }}"><b>陆军编制与军衔</b></a>
+        </div>
+      </div>
+    </section>
+    <footer class="folio-footer"><span>Creations · 2023–2026</span><a href="#">回到顶部 <span aria-hidden="true">↑</span></a></footer>
   </div>
 </main>
 
@@ -116,6 +129,56 @@ hide_nav: true
     folio.dataset.theme = theme.value;
     try { localStorage.setItem('creation-folio-theme', theme.value); } catch (error) {}
   });
+
+  var scenery = folio.querySelector('.folio-scenery');
+  var backgrounds = [
+    {{ '/images/creations-color-print.jpg' | relative_url | jsonify }},
+    {{ '/images/creations-mist-train.jpg' | relative_url | jsonify }},
+    {{ '/images/creations-rain-window.jpg' | relative_url | jsonify }},
+    {{ '/images/creations-letter-and-grapes.jpg' | relative_url | jsonify }}
+  ];
+  var previousBackground = -1;
+  try {
+    var stored = sessionStorage.getItem('creation-hero-background');
+    if (stored !== null) previousBackground = Number(stored);
+  } catch (error) {}
+  var choices = backgrounds.map(function (_, i) { return i; }).filter(function (i) { return i !== previousBackground; });
+  var backgroundIndex = choices[Math.floor(Math.random() * choices.length)];
+
+  var pendingImage;
+  var sceneryAnimation;
+  var reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+
+  function showBackground(index, animate) {
+    backgroundIndex = index;
+    var image = new Image();
+    pendingImage = image;
+    image.onload = function () {
+      if (pendingImage !== image) return;
+      scenery.src = image.src;
+      try { sessionStorage.setItem('creation-hero-background', String(index)); } catch (error) {}
+      if (!animate || reduceMotion.matches || !scenery.animate) return;
+      if (sceneryAnimation) sceneryAnimation.cancel();
+      sceneryAnimation = scenery.animate([{ opacity: 0.65 }, { opacity: 1 }], { duration: 320, easing: 'ease-out' });
+    };
+    image.src = backgrounds[index];
+  }
+
+  showBackground(backgroundIndex);
+  document.getElementById('folio-next-background').addEventListener('click', function () {
+    showBackground((backgroundIndex + 1) % backgrounds.length, true);
+  });
+
+  if (!reduceMotion.matches && 'IntersectionObserver' in window) {
+    var poetry = folio.querySelector('.folio-poetry');
+    var shelfObserver = new IntersectionObserver(function (entries) {
+      if (entries.some(function (entry) { return entry.isIntersecting; })) {
+        poetry.classList.add('is-revealed');
+        shelfObserver.disconnect();
+      }
+    }, { threshold: 0.15 });
+    shelfObserver.observe(poetry);
+  }
 
   var heroTitle = document.getElementById('creation-hero-title');
   var heroLines = [
@@ -174,17 +237,17 @@ hide_nav: true
       article.className = 'folio-update';
       var time = document.createElement('time');
       time.dateTime = item.date;
-      var day = document.createElement('strong');
-      day.textContent = item.date.slice(8, 10);
-      var month = document.createElement('span');
-      month.textContent = item.date.slice(0, 7).replace('-', '.');
-      time.append(day, month);
+      time.textContent = item.date.slice(0, 10).replace(/-/g, '.');
       var link = document.createElement('a');
       link.href = baseUrl + item.url;
       var heading = document.createElement('h3');
       heading.textContent = item.title;
-      link.append(heading);
-      article.append(time, link);
+      var arrow = document.createElement('span');
+      arrow.className = 'folio-arrow';
+      arrow.setAttribute('aria-hidden', 'true');
+      arrow.textContent = '→';
+      link.append(time, heading, arrow);
+      article.append(link);
       list.append(article);
     });
     if (!matching.length) {
@@ -213,11 +276,13 @@ hide_nav: true
       button.type = 'button';
       button.textContent = year === 'all' ? '全部' : year;
       button.classList.toggle('is-active', year === currentYear);
+      button.setAttribute('aria-pressed', String(year === currentYear));
       button.addEventListener('click', function () {
         currentYear = year;
         currentPage = 1;
         Array.prototype.forEach.call(filters.children, function (other) {
           other.classList.toggle('is-active', other === button);
+          other.setAttribute('aria-pressed', String(other === button));
         });
         render();
       });
