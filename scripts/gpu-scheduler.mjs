@@ -13,7 +13,7 @@ export default {
         "User-Agent": "gpu-weekly-scheduler",
         "X-GitHub-Api-Version": "2026-03-10",
       },
-      body: JSON.stringify({ ref: "main" }),
+      body: JSON.stringify({ ref: "main", inputs: { source: "cloudflare" } }),
       signal: AbortSignal.timeout(15000),
     });
     if (!response.ok) throw new Error(`GitHub dispatch rejected (HTTP ${response.status})`);

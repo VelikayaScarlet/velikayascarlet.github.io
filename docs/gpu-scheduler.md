@@ -17,12 +17,13 @@ dashboard, store data, or host an HTTP endpoint.
    ```
 
    Paste the token at the secret prompt, not into a file or command argument.
-4. Verify a new `workflow_dispatch` run without clicking Run workflow.
+4. Verify a new `GPU weekly usage (cloudflare)` run without clicking Run workflow.
    It should run the same job and update the data branch if the source is fresh.
    Cloudflare cron changes can take up to 15 minutes to propagate.
 5. After verifying the Worker, set the GitHub repository Actions variable
    `GPU_EXTERNAL_SCHEDULER` to `true` so native schedule events skip the job.
    Manual triggers and pushes to collector files still work.
 
-The scheduled minutes are 02, 07, ..., 57. Neither service requires your
-computer to stay on. If the token expires, rotate the Worker secret.
+Cloudflare dispatches every three minutes and samples are weighted by three
+minutes. The native GitHub fallback uses five minutes. Neither service requires
+your computer to stay on. If the token expires, rotate the Worker secret.

@@ -68,7 +68,7 @@ author_profile: false
   </div>
   <details class="gpu-board__notes">
     <summary>统计口径</summary>
-    <p>每 5 分钟采样，日本时间周一归零。首次采到账号占用显存就自动上榜，同卡多进程按账号汇总，漏采不补算。</p>
+    <p>Cloudflare 模式每 3 分钟采样，GitHub 原生备用模式每 5 分钟。日本时间周一归零；同卡多进程按账号汇总，漏采不补算。</p>
     <p>显存小时 = 实际占用显存 × 时间。H100 等效小时 = 相对 H100 SXM 的理论算力 × 个人占整卡显存比例 × 时间。优先按非稀疏 BF16 折算，旧卡用 FP16 Tensor 或 FP32 峰值。</p>
     <p>规格来源：<a href="https://resources.nvidia.com/en-us-hopper-architecture">Hopper</a>、<a href="https://www.nvidia.com/en-au/data-center/h100/">H100 NVL</a>、<a href="https://images.nvidia.com/data-center/a100/a100-datasheet.pdf">A100</a>、<a href="https://www.nvidia.com/en-gb/data-center/l40s/">L40S</a>、<a href="https://www.nvidia.com/content/dam/en-zz/Solutions/design-visualization/support-guide/NVIDIA-L40-Datasheet-January-2023.pdf">L40</a>、<a href="https://www.nvidia.com/content/dam/en-zz/Solutions/design-visualization/quadro-product-literature/pdf/NVIDIA-RTX-Blackwell-PRO-GPU-Architecture-v1_1.pdf">RTX 系列</a>。</p>
   </details>

@@ -1,6 +1,7 @@
 """Accumulate weekly GPU usage by account from the public dashboard."""
 
 import json
+import os
 import re
 import sys
 from collections import Counter
@@ -46,10 +47,11 @@ LEGACY_PEAK = {
 }
 
 
-def tally(cards, previous, now):
+def tally(cards, previous, now, sample_minutes=SAMPLE_MINUTES):
     year, week, _ = now.isocalendar()
     label = f"{year}-W{week:02d}"
-    slot = int(now.timestamp()) // (60 * SAMPLE_MINUTES)
+    slot_width = 60 * sample_minutes
+    slot_start = int(now.timestamp()) // slot_width * slot_width
     last_source = previous.get("source_time", "")
     timestamps = []
     current = Counter()
@@ -81,7 +83,7 @@ def tally(cards, previous, now):
             current[nickname] += mib
             if score and 0 < mib <= capacity:
                 rated[nickname] += mib
-                equivalent[nickname] += score / H100_SXM_BF16 * (mib / capacity) * SAMPLE_MINUTES / 60
+                equivalent[nickname] += score / H100_SXM_BF16 * (mib / capacity) * sample_minutes / 60
 
     totals = {
         row["nickname"]: {
@@ -93,29 +95,33 @@ def tally(cards, previous, now):
         for row in previous.get("ranking", [])
         if previous.get("week") == label and previous.get("identity") == "account"
     }
-    last_slot = previous.get("slot", -1)
+    # The previous schema stored the index of a five-minute bucket.
+    last_slot_end = previous.get("slot_end", (previous.get("slot", -1) + 1) * 300)
     newest = max(timestamps, default="")
-    if newest > last_source and slot > last_slot:
-        last_slot, last_source = slot, newest
+    if newest > last_source and slot_start >= last_slot_end:
+        last_slot_end, last_source = slot_start + slot_width, newest
         for nickname, mib in current.items():
             if mib:
                 row = totals.setdefault(nickname, {
                     "nickname": nickname, "mib_minutes": 0,
                     "rated_mib_minutes": 0, "h100_hours": 0,
                 })
-                row["mib_minutes"] += mib * SAMPLE_MINUTES
-                row["rated_mib_minutes"] += rated[nickname] * SAMPLE_MINUTES
+                row["mib_minutes"] += mib * sample_minutes
+                row["rated_mib_minutes"] += rated[nickname] * sample_minutes
                 row["h100_hours"] += equivalent[nickname]
     return {
         "week": label,
         "identity": "account",
-        "slot": last_slot,
+        "slot_end": last_slot_end,
         "source_time": last_source,
         "ranking": sorted(totals.values(), key=lambda row: (-row["mib_minutes"], row["nickname"])),
     }
 
 
 def main(state_path, output_path):
+    sample_minutes = int(os.getenv("GPU_SAMPLE_MINUTES", str(SAMPLE_MINUTES)))
+    if sample_minutes not in (3, 5):
+        raise ValueError("Unsupported sampling interval")
     previous = json.loads(state_path.read_text(encoding="utf-8")) if state_path.exists() else {}
     with urlopen(SOURCE, timeout=20) as response:
         html = response.read(16 * 1024 * 1024).decode("utf-8")
@@ -123,7 +129,7 @@ def main(state_path, output_path):
     if not match:
         raise ValueError("Dashboard snapshot missing")
     cards = json.loads(match.group(1))
-    output = tally(cards, previous, datetime.now(JST))
+    output = tally(cards, previous, datetime.now(JST), sample_minutes)
     output_path.write_text(json.dumps(output, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
     print("Weekly snapshot processed.")
 
