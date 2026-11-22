@@ -53,10 +53,14 @@ author_profile: false
     <div id="gpu-period-totals" class="gpu-period-totals"></div>
     <div class="gpu-daily-plot">
     <div class="gpu-daily-controls">
-      <div class="gpu-daily-range" role="group" aria-label="时间范围">
-        <button type="button" data-gpu-days="0" aria-pressed="true">今日逐小时</button>
-        <button type="button" data-gpu-days="7" aria-pressed="false">7 Days</button>
-        <button type="button" data-gpu-days="30" aria-pressed="false">30 Days</button>
+      <div class="gpu-daily-range">
+        <input type="range" id="gpu-daily-range" min="0" max="2" step="1" value="0"
+          aria-label="时间范围" aria-valuetext="今日逐小时">
+        <div class="gpu-daily-stops">
+          <button type="button" data-gpu-stop="0" aria-pressed="true">今日逐小时</button>
+          <button type="button" data-gpu-stop="1" aria-pressed="false">7 Days</button>
+          <button type="button" data-gpu-stop="2" aria-pressed="false">30 Days</button>
+        </div>
       </div>
     </div>
     <p id="gpu-daily-unit" aria-live="polite"></p>
@@ -90,4 +94,4 @@ author_profile: false
     <p>规格来源：<a href="https://resources.nvidia.com/en-us-hopper-architecture">Hopper</a>、<a href="https://www.nvidia.com/en-au/data-center/h100/">H100 NVL</a>、<a href="https://images.nvidia.com/data-center/a100/a100-datasheet.pdf">A100</a>、<a href="https://www.nvidia.com/en-gb/data-center/l40s/">L40S</a>、<a href="https://www.nvidia.com/content/dam/en-zz/Solutions/design-visualization/support-guide/NVIDIA-L40-Datasheet-January-2023.pdf">L40</a>、<a href="https://www.nvidia.com/content/dam/en-zz/Solutions/design-visualization/quadro-product-literature/pdf/NVIDIA-RTX-Blackwell-PRO-GPU-Architecture-v1_1.pdf">RTX 系列</a>。</p>
   </details>
 </section>
-<script src="{{ '/assets/js/gpu-weekly-board.js' | relative_url }}?v=10" defer></script>
+<script src="{{ '/assets/js/gpu-weekly-board.js' | relative_url }}?v=11" defer></script>

@@ -54,7 +54,8 @@ async function loadBoard() {
   var displayed = '';
   var daily = {};
   var days = 0;
-  var ranges = document.querySelectorAll('[data-gpu-days]');
+  var slider = document.getElementById('gpu-daily-range');
+  var stops = Array.from(document.querySelectorAll('[data-gpu-stop]'));
   var chart = document.getElementById('gpu-daily-chart');
   var legendDaily = document.getElementById('gpu-daily-legend');
   var periodTotals = document.getElementById('gpu-period-totals');
@@ -142,7 +143,9 @@ async function loadBoard() {
       );
     }
     points.forEach(function (point, index) {
-      if (index === points.length - 1 || (days === 7 ? index % 2 === 0 : index % (days ? 7 : 6) === 0)) {
+      var step = days === 7 ? 2 : days ? 7 : 6;
+      var last = points.length - 1;
+      if (index === last || (index % step === 0 && x(last) - x(index) >= 65)) {
         svg.append(svgNode('text', { x: x(index), y: 218, 'text-anchor': 'middle' },
           days ? point.key.slice(5) : point.key.slice(11) + ':00'));
       }
@@ -179,11 +182,19 @@ async function loadBoard() {
     });
     chart.append(svg);
   }
-  ranges.forEach(function (button) {
+  function changeRange() {
+    var index = slider.valueAsNumber;
+    days = [0, 7, 30][index];
+    slider.setAttribute('aria-valuetext', stops[index].textContent);
+    stops.forEach(function (item, i) { item.setAttribute('aria-pressed', i === index); });
+    renderDaily();
+  }
+
+  slider.addEventListener('input', changeRange);
+  stops.forEach(function (button) {
     button.addEventListener('click', function () {
-      days = Number(button.dataset.gpuDays);
-      ranges.forEach(function (item) { item.setAttribute('aria-pressed', item === button); });
-      renderDaily();
+      slider.value = button.dataset.gpuStop;
+      changeRange();
     });
   });
   renderDaily();
