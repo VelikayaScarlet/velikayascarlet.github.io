@@ -1,19 +1,22 @@
 ---
 permalink: /gpu-usage/
 title: "GPU Weekly Usage"
+layout: gpu-board
 author_profile: false
 ---
 
-<link rel="stylesheet" href="{{ '/assets/css/gpu-usage.css' | relative_url }}">
-<section class="gpu-board" lang="zh-CN" aria-label="进入 GPU 周榜" id="gpu-board-gate">
+<section class="gpu-board gpu-board--locked" lang="zh-CN" aria-label="进入 GPU 周榜" id="gpu-board-gate">
   <header class="gpu-board__mast">
     <div>
       <p class="gpu-board__source">KYOTO UNIVERSITY / KUEE</p>
-      <h2>GPU 周榜</h2>
+      <h1>GPU 周榜</h1>
     </div>
-    <svg class="gpu-board__chip" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
-      <rect x="10" y="10" width="28" height="28" rx="4"/><rect x="16" y="16" width="16" height="16" rx="2"/>
-      <path d="M16 4v6m8-6v6m8-6v6m0 28v6m-8-6v6m-8-6v6M4 16h6m-6 8h6m-6 8h6m28 0h6m-6-8h6m-6-8h6"/>
+    <svg class="gpu-board__chip" width="170" height="120" viewBox="0 0 170 120" fill="none" aria-hidden="true">
+      <path class="gpu-board__trace" d="M6 31h33l14 14h9M6 60h56m-56 29h33l14-14h9m46-30h9l14-14h33m-56 29h56m-56 15h9l14 14h33M85 8v29m0 46v29"/>
+      <rect x="62" y="37" width="46" height="46" rx="5" stroke="currentColor"/>
+      <rect x="72" y="47" width="26" height="26" rx="3" fill="currentColor" fill-opacity=".12" stroke="currentColor"/>
+      <path d="M80 60h10m-5-5v10" stroke="currentColor"/>
+      <circle cx="6" cy="31" r="3" fill="currentColor"/><circle cx="164" cy="89" r="3" fill="currentColor"/>
     </svg>
   </header>
   <form class="gpu-board__gate">
@@ -29,7 +32,7 @@ author_profile: false
   <header class="gpu-board__mast">
     <div>
       <p class="gpu-board__source">KYOTO UNIVERSITY / KUEE</p>
-      <h2>GPU 周榜</h2>
+      <h1>GPU 周榜</h1>
     </div>
     <div class="gpu-board__meta">
       <span class="gpu-board__week" id="gpu-board-week">本周 · JST</span>
@@ -45,6 +48,7 @@ author_profile: false
     </div>
     <p id="gpu-week-status" role="status">正在读取周榜…</p>
   </div>
+  <div class="gpu-board__leaders" id="gpu-board-leaders" aria-label="前三名" hidden></div>
   <table id="gpu-week-ranking" aria-label="本周 GPU 占用排名" hidden>
     <thead>
       <tr>
@@ -55,6 +59,13 @@ author_profile: false
     </thead>
     <tbody></tbody>
   </table>
+  <div class="gpu-board__legend" id="gpu-board-legend" hidden>
+    <span>相对榜首</span>
+    <span data-band="high">高分 ≥75%</span>
+    <span data-band="mid">中分 40–75%</span>
+    <span data-band="mid-low">中低分 15–40%</span>
+    <span data-band="low">低分 &lt;15%</span>
+  </div>
   <details class="gpu-board__notes">
     <summary>统计口径</summary>
     <p>每 5 分钟采样，日本时间周一归零。首次采到账号占用显存就自动上榜，同卡多进程按账号汇总，漏采不补算。</p>
@@ -62,4 +73,4 @@ author_profile: false
     <p>规格来源：<a href="https://resources.nvidia.com/en-us-hopper-architecture">Hopper</a>、<a href="https://www.nvidia.com/en-au/data-center/h100/">H100 NVL</a>、<a href="https://images.nvidia.com/data-center/a100/a100-datasheet.pdf">A100</a>、<a href="https://www.nvidia.com/en-gb/data-center/l40s/">L40S</a>、<a href="https://www.nvidia.com/content/dam/en-zz/Solutions/design-visualization/support-guide/NVIDIA-L40-Datasheet-January-2023.pdf">L40</a>、<a href="https://www.nvidia.com/content/dam/en-zz/Solutions/design-visualization/quadro-product-literature/pdf/NVIDIA-RTX-Blackwell-PRO-GPU-Architecture-v1_1.pdf">RTX 系列</a>。</p>
   </details>
 </section>
-<script src="{{ '/assets/js/gpu-weekly-board.js' | relative_url }}" defer></script>
+<script src="{{ '/assets/js/gpu-weekly-board.js' | relative_url }}?v=4" defer></script>

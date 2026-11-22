@@ -41,6 +41,7 @@ async function loadBoard() {
   var week = document.getElementById('gpu-board-week');
   var table = document.getElementById('gpu-week-ranking');
   var body = table.tBodies[0];
+  var leaders = document.getElementById('gpu-board-leaders');
   var sort = 'memory';
   var items = [];
   var controls = document.querySelectorAll('[data-gpu-sort]');
@@ -49,6 +50,40 @@ async function loadBoard() {
 
   function complete(item) {
     return item.mib_minutes > 0 && item.rated_mib_minutes === item.mib_minutes;
+  }
+
+  function metric(item) {
+    return sort === 'memory' ? item.mib_minutes : item.h100_hours;
+  }
+
+  function band(value, best) {
+    var ratio = value / best;
+    if (ratio >= 0.75) return 'high';
+    if (ratio >= 0.4) return 'mid';
+    if (ratio >= 0.15) return 'mid-low';
+    return 'low';
+  }
+
+  function renderLeaders(ranked, best) {
+    var eligible = (sort === 'memory' ? ranked : ranked.filter(complete)).slice(0, 3);
+    leaders.replaceChildren();
+    leaders.hidden = eligible.length === 0;
+    eligible.forEach(function (item, index) {
+      var slot = document.createElement('div');
+      var place = document.createElement('span');
+      var name = document.createElement('strong');
+      var score = document.createElement('span');
+      slot.dataset.band = band(metric(item), best);
+      place.className = 'gpu-board__leader-place';
+      place.textContent = String(index + 1).padStart(2, '0');
+      name.textContent = item.nickname;
+      score.className = 'gpu-board__leader-score';
+      score.textContent = sort === 'memory'
+        ? number.format(item.mib_minutes / (1024 * 60)) + ' GiB·h'
+        : number.format(item.h100_hours) + ' H100·h';
+      slot.append(place, name, score);
+      leaders.append(slot);
+    });
   }
 
   function render() {
@@ -67,15 +102,18 @@ async function loadBoard() {
       }
       return b.mib_minutes - a.mib_minutes || a.nickname.localeCompare(b.nickname);
     });
-    body.replaceChildren();
     var best = sort === 'memory'
       ? ranked[0]?.mib_minutes
       : complete(ranked[0] || {}) ? ranked[0].h100_hours : 0;
+    renderLeaders(ranked, best);
+    body.replaceChildren();
     ranked.forEach(function (item, index) {
       var row = body.insertRow();
       var rank = document.createElement('span');
       var isRanked = sort === 'memory' || complete(item);
-      rank.className = 'gpu-board__rank' + (isRanked && index < 3 ? ' is-top' : '');
+      var value = metric(item);
+      if (isRanked && best > 0) row.dataset.band = band(value, best);
+      rank.className = 'gpu-board__rank';
       rank.textContent = isRanked ? String(index + 1) : '—';
       row.insertCell().append(rank);
       row.insertCell().textContent = item.nickname;
@@ -93,7 +131,6 @@ async function loadBoard() {
       }
       var active = sort === 'memory' ? memory : compute;
       active.classList.add('is-selected');
-      var value = sort === 'memory' ? item.mib_minutes : item.h100_hours;
       if (isRanked && best > 0) {
         var track = document.createElement('span');
         var fill = document.createElement('span');
@@ -129,6 +166,7 @@ async function loadBoard() {
     }).format(new Date(data.source_time));
     render();
     table.hidden = false;
+    document.getElementById('gpu-board-legend').hidden = false;
   } catch (error) {
     status.textContent = '周榜暂时无法读取。';
   }

@@ -1,0 +1,24 @@
+---
+layout: compress
+---
+
+<!doctype html>
+<html lang="zh-CN" class="no-js">
+  <head>
+    {% include head.html %}
+    {% include head/custom.html %}
+    <link rel="stylesheet" href="{{ '/assets/css/gpu-usage.css' | relative_url }}?v=4">
+    <style>
+      #gpu-board-gate[hidden], #gpu-board-content[hidden] { display: none !important; }
+    </style>
+  </head>
+  <body class="gpu-site">
+    {% include browser-upgrade.html %}
+    <main class="gpu-shell">
+      <nav class="gpu-shell__nav" aria-label="返回链接">
+        <a href="{{ '/links/' | relative_url }}"><span aria-hidden="true">←</span> Links</a>
+      </nav>
+      {{ content }}
+    </main>
+  </body>
+</html>

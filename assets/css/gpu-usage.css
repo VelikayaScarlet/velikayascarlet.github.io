@@ -1,13 +1,25 @@
+.gpu-site { margin: 0; min-height: 100vh; background: #faf9f5; }
+.gpu-shell { width: min(1080px, calc(100% - 48px)); margin-inline: auto; padding-bottom: 40px; }
+.gpu-shell__nav { display: flex; align-items: center; min-height: 52px; margin-bottom: 10px; border-bottom: 1px solid #d8e1d9; }
+.gpu-shell__nav a { color: #006953; font-size: 14px; font-weight: 650; text-decoration: none; }
+.gpu-shell__nav a:hover { text-decoration: underline; }
 .gpu-board {
   --gpu-bg: #fff;
-  --gpu-surface: #eff4f9;
-  --gpu-ink: #182130;
-  --gpu-muted: #526478;
-  --gpu-line: #d6e0ec;
-  --gpu-accent: #174f94;
-  --gpu-selected: #dceafa;
-  --gpu-warm: #a9422c;
-  --gpu-warm-wash: #fff0e8;
+  --gpu-surface: #f1f7f5;
+  --gpu-ink: #182d2a;
+  --gpu-muted: #4e6660;
+  --gpu-line: #d4e2dd;
+  --gpu-accent: #006953;
+  --gpu-selected: #ddf4ec;
+  --gpu-warm: #8d4217;
+  --gpu-warm-wash: #ffedc9;
+  --gpu-mid-low: #24588d;
+  --gpu-mid-low-wash: #e8f1fa;
+  --gpu-low: #596465;
+  --gpu-low-wash: #ecf0ee;
+  --gpu-console: #102c29;
+  --gpu-signal: #a0f2cf;
+  --gpu-mono: ui-monospace, "SFMono-Regular", Consolas, monospace;
   color: var(--gpu-ink);
 }
 .gpu-board__mast, .gpu-board__toolbar, .gpu-board__meta {
@@ -19,22 +31,30 @@
 }
 .gpu-board__mast {
   flex-wrap: nowrap;
-  padding: 22px 26px;
-  border-top: 4px solid var(--gpu-accent);
-  background: var(--gpu-selected);
+  min-height: 140px;
+  padding: 24px 30px;
+  border-top: 4px solid #e6ad54;
+  border-radius: 6px 6px 0 0;
+  background: var(--gpu-console);
+  color: #f4fbf7;
 }
-.gpu-board__mast h2 {
+.gpu-board__mast h1 {
   margin: 0;
   padding: 0;
   border: 0;
-  color: var(--gpu-ink);
-  font-family: Georgia, "Songti SC", SimSun, serif;
-  font-size: 36px;
+  color: inherit;
+  font-family: "Songti SC", SimSun, Georgia, serif;
+  font-size: 46px;
   font-weight: 700;
   line-height: 1.2;
 }
-.gpu-board .gpu-board__source { margin: 0 0 8px; color: var(--gpu-accent); font: 650 12px/1.35 ui-monospace, Consolas, monospace; }
-.gpu-board__chip { width: 64px; height: 64px; flex: none; color: var(--gpu-accent); }
+.gpu-board__mast h1::before { content: none; }
+.gpu-board .gpu-board__source { margin: 0 0 12px; color: var(--gpu-signal); font: 600 12px/1.35 var(--gpu-mono); }
+.gpu-board__chip { width: 170px; max-width: 36%; height: auto; flex: none; color: var(--gpu-signal); }
+.gpu-board__trace { stroke: currentColor; stroke-width: 1.5; stroke-dasharray: 5 3; opacity: .62; }
+.gpu-board--locked { max-width: 660px; margin: 0 auto; }
+.gpu-board--locked .gpu-board__mast { min-height: 190px; }
+.gpu-board--locked .gpu-board__mast h1 { font-size: 52px; }
 .gpu-board__meta { justify-content: flex-end; gap: 7px; }
 .gpu-board #gpu-board-lock {
   display: grid;
@@ -42,18 +62,20 @@
   height: 34px;
   place-items: center;
   padding: 0;
-  border: 1px solid var(--gpu-line);
+  border: 1px solid #52776d;
   border-radius: 5px;
-  background: var(--gpu-bg);
-  color: var(--gpu-accent);
+  background: transparent;
+  color: var(--gpu-signal);
   cursor: pointer;
 }
 .gpu-board[hidden] { display: none; }
 .gpu-board__gate {
-  max-width: 470px;
-  margin: 24px 0 0;
-  padding: 0 0 18px;
-  border-bottom: 1px solid var(--gpu-line);
+  margin: 0;
+  padding: 24px 30px 17px;
+  border: 1px solid var(--gpu-line);
+  border-top: 0;
+  border-radius: 0 0 6px 6px;
+  background: var(--gpu-bg);
 }
 .gpu-board__gate label { display: block; margin-bottom: 8px; font-size: 14px; font-weight: 650; }
 .gpu-board__gate-controls { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 8px; }
@@ -72,12 +94,13 @@
 .gpu-board__week {
   padding: 5px 9px;
   border-radius: 5px;
-  background: var(--gpu-surface);
-  color: var(--gpu-muted);
-  font: 13px/1.4 ui-monospace, Consolas, monospace;
+  border: 1px solid #52776d;
+  background: #1d3c35;
+  color: #d2eee1;
+  font: 13px/1.4 var(--gpu-mono);
   font-variant-numeric: tabular-nums;
 }
-.gpu-board__toolbar { padding: 18px 0 12px; }
+.gpu-board__toolbar { padding: 20px 0 14px; }
 .gpu-board__sort { display: inline-flex; flex-wrap: wrap; gap: 5px; }
 .gpu-board__sort button {
   padding: 7px 10px;
@@ -93,6 +116,26 @@
 .gpu-board__sort button[aria-pressed="true"] { border-color: var(--gpu-accent); background: var(--gpu-accent); color: var(--gpu-bg); font-weight: 650; }
 .gpu-board :is(button, summary):focus-visible { outline: 2px solid var(--gpu-accent); outline-offset: 2px; }
 .gpu-board #gpu-week-status { margin: 0; color: var(--gpu-muted); font-size: 13px; }
+.gpu-board__leaders {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 1px;
+  margin-bottom: 20px;
+  border-bottom: 1px solid var(--gpu-line);
+  background: var(--gpu-line);
+}
+.gpu-board__leaders[hidden] { display: none; }
+.gpu-board__leaders > div {
+  display: grid;
+  gap: 4px;
+  min-width: 0;
+  padding: 12px 15px 13px;
+  border-top: 3px solid var(--gpu-band, var(--gpu-accent));
+  background: var(--gpu-band-bg, var(--gpu-surface));
+}
+.gpu-board__leaders strong { overflow-wrap: anywhere; font-size: 17px; }
+.gpu-board__leader-place { color: var(--gpu-band, var(--gpu-accent)); font: 700 23px/1.2 var(--gpu-mono); }
+.gpu-board__leader-score { color: var(--gpu-muted); font: 600 12px/1.4 var(--gpu-mono); overflow-wrap: anywhere; }
 .gpu-board table { display: table; width: 100%; margin: 0; table-layout: fixed; border-collapse: collapse; }
 .gpu-board table[hidden] { display: none; }
 .gpu-board :is(th, td) { padding: 13px 12px; vertical-align: middle; border: 0; border-bottom: 1px solid var(--gpu-line); overflow-wrap: anywhere; }
@@ -101,40 +144,70 @@
 .gpu-board th:first-child { width: 9%; }
 .gpu-board th:nth-child(2) { width: 39%; }
 .gpu-board :is(th, td):nth-child(n+3) { text-align: right; font-variant-numeric: tabular-nums; }
+.gpu-board td:nth-child(n+3) { font-family: var(--gpu-mono); }
 .gpu-board [aria-sort] { color: var(--gpu-accent); }
 .gpu-board :is(th, td) small { display: block; margin-top: 2px; color: var(--gpu-muted); font-size: 11px; font-weight: 400; }
 .gpu-board td { height: 56px; font-size: 16px; }
 .gpu-board tbody tr:nth-child(even) { background: var(--gpu-surface); }
 .gpu-board td:nth-child(2) { font-weight: 650; }
 .gpu-board tr:hover td { background: var(--gpu-surface); }
-.gpu-board td.is-selected { color: var(--gpu-accent); font-weight: 650; }
+.gpu-board td.is-selected { color: var(--gpu-band, var(--gpu-accent)); font-weight: 650; }
 .gpu-board__rank { display: inline-grid; place-items: center; min-width: 26px; min-height: 25px; color: var(--gpu-muted); font-size: 13px; font-variant-numeric: tabular-nums; }
-.gpu-board__rank.is-top { border-radius: 4px; background: var(--gpu-selected); color: var(--gpu-accent); font-weight: 700; }
-.gpu-board tr:first-child .gpu-board__rank.is-top { background: var(--gpu-warm-wash); color: var(--gpu-warm); }
+.gpu-board tr[data-band] .gpu-board__rank { border-radius: 4px; background: var(--gpu-band-bg); color: var(--gpu-band); font-weight: 650; }
 .gpu-board__track { display: block; width: min(88px, 100%); height: 3px; margin: 5px 0 0 auto; background: var(--gpu-line); }
-.gpu-board__track span { display: block; height: 100%; background: var(--gpu-accent); }
+.gpu-board__track span { display: block; height: 100%; background: var(--gpu-band, var(--gpu-accent)); }
+.gpu-board [data-band="high"] { --gpu-band: var(--gpu-warm); --gpu-band-bg: var(--gpu-warm-wash); }
+.gpu-board [data-band="mid"] { --gpu-band: var(--gpu-accent); --gpu-band-bg: var(--gpu-selected); }
+.gpu-board [data-band="mid-low"] { --gpu-band: var(--gpu-mid-low); --gpu-band-bg: var(--gpu-mid-low-wash); }
+.gpu-board [data-band="low"] { --gpu-band: var(--gpu-low); --gpu-band-bg: var(--gpu-low-wash); }
+.gpu-board__legend { display: flex; flex-wrap: wrap; align-items: center; gap: 6px 12px; margin-top: 12px; color: var(--gpu-muted); font-size: 12px; }
+.gpu-board__legend[hidden] { display: none; }
+.gpu-board__legend [data-band]::before {
+  display: inline-block;
+  width: 8px;
+  height: 8px;
+  margin-inline-end: 5px;
+  border-radius: 2px;
+  background: var(--gpu-band);
+  content: "";
+}
 .gpu-board__notes { margin-top: 18px; border-top: 1px solid var(--gpu-line); padding: 12px 0; color: var(--gpu-muted); font-size: 14px; }
 .gpu-board__notes summary { color: var(--gpu-ink); cursor: pointer; }
 .gpu-board__notes p { margin: 9px 0 0; }
 @media (max-width: 520px) {
-  .gpu-board__mast { padding: 16px 12px; }
-  .gpu-board__mast h2 { font-size: 27px; }
-  .gpu-board__chip { width: 48px; height: 48px; }
+  .gpu-shell { width: calc(100% - 28px); }
+  .gpu-board__mast, .gpu-board--locked .gpu-board__mast { padding: 16px 12px; min-height: 105px; }
+  .gpu-board__mast h1 { font-size: 27px; }
+  .gpu-board--locked .gpu-board__mast h1 { font-size: 34px; }
+  .gpu-board__gate { padding-inline: 12px; }
+  .gpu-board__leaders > div { padding-inline: 7px; }
+  .gpu-board__leaders strong { font-size: 14px; }
   .gpu-board th:first-child { width: 13%; }
   .gpu-board th:nth-child(2) { width: 33%; }
   .gpu-board :is(th, td) { padding: 8px 4px; }
   .gpu-board td { font-size: 14px; }
 }
+@media (prefers-reduced-motion: no-preference) {
+  .gpu-board__trace { animation: gpu-signal-trace 2.8s linear infinite; }
+  @keyframes gpu-signal-trace { to { stroke-dashoffset: -24; } }
+}
 @media (prefers-color-scheme: dark) {
+  .gpu-site { background: #14211e; }
+  .gpu-shell__nav { border-color: #415a53; }
+  .gpu-shell__nav a { color: #9be6c9; }
   .gpu-board {
-    --gpu-bg: #19212b;
-    --gpu-surface: #232f3c;
-    --gpu-ink: #f0f5fb;
-    --gpu-muted: #b9c7d9;
-    --gpu-line: #3b4c60;
-    --gpu-accent: #a5d1ff;
-    --gpu-selected: #263d57;
-    --gpu-warm: #ffb49d;
-    --gpu-warm-wash: #4c302c;
+    --gpu-bg: #162522;
+    --gpu-surface: #223431;
+    --gpu-ink: #eef8f4;
+    --gpu-muted: #bbd2c9;
+    --gpu-line: #415a53;
+    --gpu-accent: #9be6c9;
+    --gpu-selected: #2d5046;
+    --gpu-warm: #ffd38d;
+    --gpu-warm-wash: #463b29;
+    --gpu-mid-low: #a9cefa;
+    --gpu-mid-low-wash: #293e55;
+    --gpu-low: #c3cfcc;
+    --gpu-low-wash: #384541;
   }
 }
