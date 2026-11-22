@@ -20,7 +20,11 @@
   --gpu-console: #102c29;
   --gpu-signal: #a0f2cf;
   --gpu-mono: ui-monospace, "SFMono-Regular", Consolas, monospace;
+  --gpu-text: "Segoe UI", "PingFang SC", "Microsoft YaHei UI", sans-serif;
+  --gpu-title: "Songti SC", "Noto Serif CJK SC", "SimSun", serif;
+  --gpu-number: "Segoe UI", "Helvetica Neue", Arial, sans-serif;
   color: var(--gpu-ink);
+  font-family: var(--gpu-text);
 }
 .gpu-board__mast, .gpu-board__toolbar, .gpu-board__meta {
   display: flex;
@@ -43,7 +47,7 @@
   padding: 0;
   border: 0;
   color: inherit;
-  font-family: "Songti SC", SimSun, Georgia, serif;
+  font-family: var(--gpu-title);
   font-size: 46px;
   font-weight: 700;
   line-height: 1.2;
@@ -134,8 +138,8 @@
   background: var(--gpu-band-bg, var(--gpu-surface));
 }
 .gpu-board__leaders strong { overflow-wrap: anywhere; font-size: 17px; }
-.gpu-board__leader-place { color: var(--gpu-band, var(--gpu-accent)); font: 700 23px/1.2 var(--gpu-mono); }
-.gpu-board__leader-score { color: var(--gpu-muted); font: 600 12px/1.4 var(--gpu-mono); overflow-wrap: anywhere; }
+.gpu-board__leader-place { color: var(--gpu-band, var(--gpu-accent)); font: 700 23px/1.2 var(--gpu-number); font-variant-numeric: tabular-nums; }
+.gpu-board__leader-score { color: var(--gpu-muted); font: 600 12px/1.4 var(--gpu-number); font-variant-numeric: tabular-nums; overflow-wrap: anywhere; }
 .gpu-board table { display: table; width: 100%; margin: 0; table-layout: fixed; border-collapse: collapse; }
 .gpu-board table[hidden] { display: none; }
 .gpu-board :is(th, td) { padding: 13px 12px; vertical-align: middle; border: 0; border-bottom: 1px solid var(--gpu-line); overflow-wrap: anywhere; }
@@ -144,7 +148,7 @@
 .gpu-board th:first-child { width: 9%; }
 .gpu-board th:nth-child(2) { width: 39%; }
 .gpu-board :is(th, td):nth-child(n+3) { text-align: right; font-variant-numeric: tabular-nums; }
-.gpu-board td:nth-child(n+3) { font-family: var(--gpu-mono); }
+.gpu-board td:nth-child(n+3) { font-family: var(--gpu-number); }
 .gpu-board [aria-sort] { color: var(--gpu-accent); }
 .gpu-board :is(th, td) small { display: block; margin-top: 2px; color: var(--gpu-muted); font-size: 11px; font-weight: 400; }
 .gpu-board td { height: 56px; font-size: 16px; }
@@ -264,7 +268,8 @@
 }
 
 .gpu-period-totals section div {
-  font: 1.75rem/1.5 var(--gpu-mono);
+  font: 600 1.75rem/1.5 var(--gpu-number);
+  font-variant-numeric: tabular-nums;
   color: var(--gpu-ink);
   overflow-wrap: anywhere;
 }
@@ -367,7 +372,8 @@
 
 #gpu-daily-chart text {
   fill: var(--gpu-muted);
-  font: 17px var(--gpu-mono);
+  font: 17px var(--gpu-number);
+  font-variant-numeric: tabular-nums;
 }
 
 #gpu-daily-chart line {
@@ -415,7 +421,7 @@
 }
 
 #gpu-board-content .gpu-board__mast h1 {
-  font: 850 2.9rem/1.08 system-ui, sans-serif;
+  font: 600 2.9rem/1.15 var(--gpu-title);
 }
 
 #gpu-board-content .gpu-board__source {
