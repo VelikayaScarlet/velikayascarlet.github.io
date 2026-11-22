@@ -72,5 +72,14 @@ author_profile: false
     <p>显存小时 = 实际占用显存 × 时间。H100 等效小时 = 相对 H100 SXM 的理论算力 × 个人占整卡显存比例 × 时间。优先按非稀疏 BF16 折算，旧卡用 FP16 Tensor 或 FP32 峰值。</p>
     <p>规格来源：<a href="https://resources.nvidia.com/en-us-hopper-architecture">Hopper</a>、<a href="https://www.nvidia.com/en-au/data-center/h100/">H100 NVL</a>、<a href="https://images.nvidia.com/data-center/a100/a100-datasheet.pdf">A100</a>、<a href="https://www.nvidia.com/en-gb/data-center/l40s/">L40S</a>、<a href="https://www.nvidia.com/content/dam/en-zz/Solutions/design-visualization/support-guide/NVIDIA-L40-Datasheet-January-2023.pdf">L40</a>、<a href="https://www.nvidia.com/content/dam/en-zz/Solutions/design-visualization/quadro-product-literature/pdf/NVIDIA-RTX-Blackwell-PRO-GPU-Architecture-v1_1.pdf">RTX 系列</a>。</p>
   </details>
+  <section class="gpu-daily" aria-labelledby="gpu-daily-title">
+    <h2 id="gpu-daily-title">个人 GPU 日用量</h2>
+    <div class="gpu-daily-controls">
+      <label>集群账号 <select id="gpu-daily-account"></select></label>
+      <label>时间范围 <select id="gpu-daily-range"><option value="7">近 7 天</option><option value="30">近 30 天</option></select></label>
+    </div>
+    <p id="gpu-daily-unit" aria-live="polite"></p>
+    <ol id="gpu-daily-chart" aria-label="逐日用量"></ol>
+  </section>
 </section>
-<script src="{{ '/assets/js/gpu-weekly-board.js' | relative_url }}?v=6" defer></script>
+<script src="{{ '/assets/js/gpu-weekly-board.js' | relative_url }}?v=7" defer></script>

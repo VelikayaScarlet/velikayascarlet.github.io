@@ -52,6 +52,56 @@ async function loadBoard() {
   var revision = '';
   var currentData;
   var displayed = '';
+  var daily = {};
+  var account = document.getElementById('gpu-daily-account');
+  var range = document.getElementById('gpu-daily-range');
+  var chart = document.getElementById('gpu-daily-chart');
+  var dailyUnit = document.getElementById('gpu-daily-unit');
+
+  function renderDaily() {
+    var dates = Object.keys(daily);
+    var names = new Set(items.map(function (row) { return row.nickname; }));
+    dates.forEach(function (date) {
+      daily[date].forEach(function (row) { names.add(row.nickname); });
+    });
+    var selected = account.value;
+    account.replaceChildren();
+    Array.from(names).sort().forEach(function (name) { account.add(new Option(name, name)); });
+    if (names.has(selected)) account.value = selected;
+    account.disabled = !names.size;
+    chart.replaceChildren();
+    dailyUnit.textContent = !dates.length ? '暂无逐日数据。' :
+      (sort === 'memory' ? '显存小时（GiB·h）' : 'H100 等效小时') + ' · JST · — 表示无数据';
+    if (!account.value || !dates.length) return;
+    var today = new Date(Date.now() + 9 * 3600000);
+    var points = Array.from({ length: Number(range.value) }, function (_, index) {
+      var date = new Date(today.getTime() - index * 86400000).toISOString().slice(0, 10);
+      var rows = daily[date];
+      var row = rows && rows.find(function (item) { return item.nickname === account.value; });
+      var value = !rows ? null : !row ? 0 : sort === 'memory'
+        ? row.mib_minutes / (1024 * 60)
+        : row.rated_mib_minutes ? row.h100_hours : null;
+      return { date: date, value: value, partial: sort === 'compute' && row && value !== null && !complete(row) };
+    });
+    var max = Math.max(0, ...points.map(function (point) { return point.value || 0; }));
+    points.forEach(function (point) {
+      var li = document.createElement('li');
+      var date = document.createElement('time');
+      var bar = document.createElement('span');
+      var value = document.createElement('span');
+      date.dateTime = date.textContent = point.date;
+      bar.className = 'gpu-daily-bar';
+      bar.setAttribute('aria-hidden', 'true');
+      bar.style.setProperty('--fill', (max ? 100 * (point.value || 0) / max : 0) + '%');
+      value.textContent = point.value === null ? '—' : number.format(point.value) + (point.partial ? '（部分）' : '');
+      li.append(date, bar, value);
+      chart.append(li);
+    });
+  }
+
+  account.addEventListener('change', renderDaily);
+  range.addEventListener('change', renderDaily);
+  renderDaily();
 
   function complete(item) {
     return item.mib_minutes > 0 && item.rated_mib_minutes === item.mib_minutes;
@@ -92,6 +142,7 @@ async function loadBoard() {
   }
 
   function render() {
+    renderDaily();
     controls.forEach(function (button) {
       button.setAttribute('aria-pressed', String(button.dataset.gpuSort === sort));
     });
@@ -179,10 +230,11 @@ async function loadBoard() {
       var data = currentData;
       var sampled = new Date(data.source_time);
       week.textContent = data.week + ' · JST';
-      var snapshot = data.week + '/' + data.source_time;
+      var snapshot = sha;
       if (snapshot !== displayed) {
         displayed = snapshot;
         items = data.ranking;
+        daily = data.daily || {};
         render();
         table.hidden = items.length === 0;
         legend.hidden = table.hidden;

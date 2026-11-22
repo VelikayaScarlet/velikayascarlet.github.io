@@ -57,6 +57,7 @@ def tally(cards, previous, now, sample_minutes=SAMPLE_MINUTES):
     current = Counter()
     rated = Counter()
     equivalent = Counter()
+    by_day = {}
     for card in cards.values():
         timestamp = card.get("timestamp", "")
         try:
@@ -80,10 +81,15 @@ def tally(cards, previous, now, sample_minutes=SAMPLE_MINUTES):
             if isinstance(account, str) and account.strip() and memory:
                 card_usage[account.strip()] += int(memory.group(1))
         for nickname, mib in card_usage.items():
+            day_memory, day_rated, day_compute = by_day.setdefault(timestamp[:10], (Counter(), Counter(), Counter()))
             current[nickname] += mib
+            day_memory[nickname] += mib
             if score and 0 < mib <= capacity:
                 rated[nickname] += mib
-                equivalent[nickname] += score / H100_SXM_BF16 * (mib / capacity) * sample_minutes / 60
+                day_rated[nickname] += mib
+                hours = score / H100_SXM_BF16 * (mib / capacity) * sample_minutes / 60
+                equivalent[nickname] += hours
+                day_compute[nickname] += hours
 
     totals = {
         row["nickname"]: {
@@ -98,22 +104,37 @@ def tally(cards, previous, now, sample_minutes=SAMPLE_MINUTES):
     # The previous schema stored the index of a five-minute bucket.
     last_slot_end = previous.get("slot_end", (previous.get("slot", -1) + 1) * 300)
     newest = max(timestamps, default="")
-    if newest > last_source and slot_start >= last_slot_end:
-        last_slot_end, last_source = slot_start + slot_width, newest
-        for nickname, mib in current.items():
+    cutoff = (now.date() - timedelta(days=29)).isoformat()
+    daily = {
+        date: rows for date, rows in previous.get("daily", {}).items()
+        if date >= cutoff and previous.get("identity") == "account"
+    }
+
+    def accumulate(rows, memory, rated_memory, compute):
+        for nickname, mib in memory.items():
             if mib:
-                row = totals.setdefault(nickname, {
+                row = rows.setdefault(nickname, {
                     "nickname": nickname, "mib_minutes": 0,
                     "rated_mib_minutes": 0, "h100_hours": 0,
                 })
                 row["mib_minutes"] += mib * sample_minutes
-                row["rated_mib_minutes"] += rated[nickname] * sample_minutes
-                row["h100_hours"] += equivalent[nickname]
+                row["rated_mib_minutes"] += rated_memory[nickname] * sample_minutes
+                row["h100_hours"] += compute[nickname]
+
+    if newest > last_source and slot_start >= last_slot_end:
+        last_slot_end, last_source = slot_start + slot_width, newest
+        accumulate(totals, current, rated, equivalent)
+        for date in {stamp[:10] for stamp in timestamps if stamp > previous.get("source_time", "")}:
+            rows = {row["nickname"]: dict(row) for row in daily.get(date, [])}
+            if date in by_day:
+                accumulate(rows, *by_day[date])
+            daily[date] = list(rows.values())
     return {
         "week": label,
         "identity": "account",
         "slot_end": last_slot_end,
         "source_time": last_source,
+        "daily": daily,
         "ranking": sorted(totals.values(), key=lambda row: (-row["mib_minutes"], row["nickname"])),
     }
 

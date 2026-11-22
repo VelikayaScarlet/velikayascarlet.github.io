@@ -211,3 +211,64 @@
     --gpu-low-wash: #384541;
   }
 }
+.gpu-daily {
+  margin-top: 2rem;
+  padding-top: 1rem;
+  border-top: 2px solid var(--gpu-accent);
+}
+
+.gpu-daily-controls {
+  display: flex;
+  flex-wrap: wrap;
+  gap: .75rem 1.25rem;
+}
+
+.gpu-daily-controls select {
+  max-width: 100%;
+  padding: .35rem .55rem;
+  color: var(--gpu-ink);
+  background: var(--gpu-surface);
+  border: 1px solid var(--gpu-line);
+  border-radius: 4px;
+  font: inherit;
+}
+
+#gpu-daily-unit {
+  color: var(--gpu-muted);
+}
+
+#gpu-daily-chart {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  font: .84rem/1.5 var(--gpu-mono);
+}
+
+#gpu-daily-chart li {
+  display: grid;
+  grid-template-columns: 10ch minmax(0, 1fr) minmax(6ch, auto);
+  align-items: center;
+  gap: .65rem;
+  padding: .4rem 0;
+  border-bottom: 1px solid var(--gpu-line);
+}
+
+#gpu-daily-chart li span:last-child {
+  text-align: right;
+}
+
+.gpu-daily-bar {
+  position: relative;
+  height: .45rem;
+  background: var(--gpu-surface);
+  border-radius: 4px;
+}
+
+.gpu-daily-bar::before {
+  content: "";
+  display: block;
+  width: var(--fill);
+  height: 100%;
+  border-radius: inherit;
+  background: var(--gpu-accent);
+}
