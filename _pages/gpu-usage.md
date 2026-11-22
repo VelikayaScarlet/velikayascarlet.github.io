@@ -73,13 +73,18 @@ author_profile: false
     <p>规格来源：<a href="https://resources.nvidia.com/en-us-hopper-architecture">Hopper</a>、<a href="https://www.nvidia.com/en-au/data-center/h100/">H100 NVL</a>、<a href="https://images.nvidia.com/data-center/a100/a100-datasheet.pdf">A100</a>、<a href="https://www.nvidia.com/en-gb/data-center/l40s/">L40S</a>、<a href="https://www.nvidia.com/content/dam/en-zz/Solutions/design-visualization/support-guide/NVIDIA-L40-Datasheet-January-2023.pdf">L40</a>、<a href="https://www.nvidia.com/content/dam/en-zz/Solutions/design-visualization/quadro-product-literature/pdf/NVIDIA-RTX-Blackwell-PRO-GPU-Architecture-v1_1.pdf">RTX 系列</a>。</p>
   </details>
   <section class="gpu-daily" aria-labelledby="gpu-daily-title">
-    <h2 id="gpu-daily-title">个人 GPU 日用量</h2>
+    <h2 id="gpu-daily-title">GPU 用量趋势</h2>
+    <div id="gpu-period-totals" class="gpu-period-totals"></div>
     <div class="gpu-daily-controls">
-      <label>集群账号 <select id="gpu-daily-account"></select></label>
-      <label>时间范围 <select id="gpu-daily-range"><option value="7">近 7 天</option><option value="30">近 30 天</option></select></label>
+      <div class="gpu-daily-range" role="group" aria-label="时间范围">
+        <button type="button" data-gpu-days="0" aria-pressed="true">今日逐小时</button>
+        <button type="button" data-gpu-days="7" aria-pressed="false">7 Days</button>
+        <button type="button" data-gpu-days="30" aria-pressed="false">30 Days</button>
+      </div>
     </div>
     <p id="gpu-daily-unit" aria-live="polite"></p>
-    <ol id="gpu-daily-chart" aria-label="逐日用量"></ol>
+    <div id="gpu-daily-chart"></div>
+    <ul id="gpu-daily-legend" class="gpu-daily-legend" aria-label="集群账号"></ul>
   </section>
 </section>
-<script src="{{ '/assets/js/gpu-weekly-board.js' | relative_url }}?v=7" defer></script>
+<script src="{{ '/assets/js/gpu-weekly-board.js' | relative_url }}?v=9" defer></script>

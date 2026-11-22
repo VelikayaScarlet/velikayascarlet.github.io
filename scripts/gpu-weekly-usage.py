@@ -57,8 +57,16 @@ def tally(cards, previous, now, sample_minutes=SAMPLE_MINUTES):
     current = Counter()
     rated = Counter()
     equivalent = Counter()
-    by_day = {}
+    by_hour = {}
+    capacity_mib = 0
+    capacity_h100 = 0
     for card in cards.values():
+        model = str(card.get("name", "")).removeprefix("NVIDIA ").strip()
+        score = DENSE_BF16.get(model) or LEGACY_PEAK.get(model)
+        capacity = MIB.fullmatch(str(card.get("mem_total", "")))
+        capacity = int(capacity.group(1)) if capacity else 0
+        capacity_mib += capacity
+        capacity_h100 += (score or 0) / H100_SXM_BF16
         timestamp = card.get("timestamp", "")
         try:
             sampled = datetime.fromisoformat(timestamp.replace("/", "-")).replace(tzinfo=JST)
@@ -70,10 +78,7 @@ def tally(cards, previous, now, sample_minutes=SAMPLE_MINUTES):
         timestamps.append(timestamp)
         if timestamp <= last_source:
             continue
-        model = str(card.get("name", "")).removeprefix("NVIDIA ").strip()
-        score = DENSE_BF16.get(model) or LEGACY_PEAK.get(model)
-        capacity = MIB.fullmatch(str(card.get("mem_total", "")))
-        capacity = int(capacity.group(1)) if capacity else 0
+        hour_memory, hour_rated, hour_compute = by_hour.setdefault(timestamp[:13], (Counter(), Counter(), Counter()))
         card_usage = Counter()
         for process in card.get("processes", []):
             account = process.get("user")
@@ -81,15 +86,14 @@ def tally(cards, previous, now, sample_minutes=SAMPLE_MINUTES):
             if isinstance(account, str) and account.strip() and memory:
                 card_usage[account.strip()] += int(memory.group(1))
         for nickname, mib in card_usage.items():
-            day_memory, day_rated, day_compute = by_day.setdefault(timestamp[:10], (Counter(), Counter(), Counter()))
             current[nickname] += mib
-            day_memory[nickname] += mib
+            hour_memory[nickname] += mib
             if score and 0 < mib <= capacity:
                 rated[nickname] += mib
-                day_rated[nickname] += mib
+                hour_rated[nickname] += mib
                 hours = score / H100_SXM_BF16 * (mib / capacity) * sample_minutes / 60
                 equivalent[nickname] += hours
-                day_compute[nickname] += hours
+                hour_compute[nickname] += hours
 
     totals = {
         row["nickname"]: {
@@ -104,11 +108,12 @@ def tally(cards, previous, now, sample_minutes=SAMPLE_MINUTES):
     # The previous schema stored the index of a five-minute bucket.
     last_slot_end = previous.get("slot_end", (previous.get("slot", -1) + 1) * 300)
     newest = max(timestamps, default="")
-    cutoff = (now.date() - timedelta(days=29)).isoformat()
+    cutoff = (now.date() - timedelta(days=30)).isoformat()
     daily = {
         date: rows for date, rows in previous.get("daily", {}).items()
         if date >= cutoff and previous.get("identity") == "account"
     }
+    hourly = {hour: rows for hour, rows in previous.get("hourly", {}).items() if hour[:10] >= cutoff}
 
     def accumulate(rows, memory, rated_memory, compute):
         for nickname, mib in memory.items():
@@ -124,10 +129,13 @@ def tally(cards, previous, now, sample_minutes=SAMPLE_MINUTES):
     if newest > last_source and slot_start >= last_slot_end:
         last_slot_end, last_source = slot_start + slot_width, newest
         accumulate(totals, current, rated, equivalent)
-        for date in {stamp[:10] for stamp in timestamps if stamp > previous.get("source_time", "")}:
+        for hour, usage in by_hour.items():
+            date = hour[:10]
+            hour_rows = {row["nickname"]: dict(row) for row in hourly.get(hour, [])}
+            accumulate(hour_rows, *usage)
+            hourly[hour] = list(hour_rows.values())
             rows = {row["nickname"]: dict(row) for row in daily.get(date, [])}
-            if date in by_day:
-                accumulate(rows, *by_day[date])
+            accumulate(rows, *usage)
             daily[date] = list(rows.values())
     return {
         "week": label,
@@ -135,6 +143,8 @@ def tally(cards, previous, now, sample_minutes=SAMPLE_MINUTES):
         "slot_end": last_slot_end,
         "source_time": last_source,
         "daily": daily,
+        "hourly": hourly,
+        "capacity": {"mib": capacity_mib, "h100": capacity_h100} if capacity_mib else previous.get("capacity"),
         "ranking": sorted(totals.values(), key=lambda row: (-row["mib_minutes"], row["nickname"])),
     }
 

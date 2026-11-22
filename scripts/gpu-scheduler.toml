@@ -6,3 +6,6 @@ preview_urls = false
 
 [triggers]
 crons = ["*/3 * * * *"]
+
+[observability]
+enabled = true

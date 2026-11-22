@@ -53,54 +53,129 @@ async function loadBoard() {
   var currentData;
   var displayed = '';
   var daily = {};
-  var account = document.getElementById('gpu-daily-account');
-  var range = document.getElementById('gpu-daily-range');
+  var days = 0;
+  var ranges = document.querySelectorAll('[data-gpu-days]');
   var chart = document.getElementById('gpu-daily-chart');
+  var legendDaily = document.getElementById('gpu-daily-legend');
+  var periodTotals = document.getElementById('gpu-period-totals');
   var dailyUnit = document.getElementById('gpu-daily-unit');
 
-  function renderDaily() {
-    var dates = Object.keys(daily);
-    var names = new Set(items.map(function (row) { return row.nickname; }));
-    dates.forEach(function (date) {
-      daily[date].forEach(function (row) { names.add(row.nickname); });
-    });
-    var selected = account.value;
-    account.replaceChildren();
-    Array.from(names).sort().forEach(function (name) { account.add(new Option(name, name)); });
-    if (names.has(selected)) account.value = selected;
-    account.disabled = !names.size;
-    chart.replaceChildren();
-    dailyUnit.textContent = !dates.length ? '暂无逐日数据。' :
-      (sort === 'memory' ? '显存小时（GiB·h）' : 'H100 等效小时') + ' · JST · — 表示无数据';
-    if (!account.value || !dates.length) return;
-    var today = new Date(Date.now() + 9 * 3600000);
-    var points = Array.from({ length: Number(range.value) }, function (_, index) {
-      var date = new Date(today.getTime() - index * 86400000).toISOString().slice(0, 10);
-      var rows = daily[date];
-      var row = rows && rows.find(function (item) { return item.nickname === account.value; });
-      var value = !rows ? null : !row ? 0 : sort === 'memory'
-        ? row.mib_minutes / (1024 * 60)
-        : row.rated_mib_minutes ? row.h100_hours : null;
-      return { date: date, value: value, partial: sort === 'compute' && row && value !== null && !complete(row) };
-    });
-    var max = Math.max(0, ...points.map(function (point) { return point.value || 0; }));
-    points.forEach(function (point) {
-      var li = document.createElement('li');
-      var date = document.createElement('time');
-      var bar = document.createElement('span');
-      var value = document.createElement('span');
-      date.dateTime = date.textContent = point.date;
-      bar.className = 'gpu-daily-bar';
-      bar.setAttribute('aria-hidden', 'true');
-      bar.style.setProperty('--fill', (max ? 100 * (point.value || 0) / max : 0) + '%');
-      value.textContent = point.value === null ? '—' : number.format(point.value) + (point.partial ? '（部分）' : '');
-      li.append(date, bar, value);
-      chart.append(li);
+  function svgNode(tag, attrs, label) {
+    var node = document.createElementNS('http://www.w3.org/2000/svg', tag);
+    Object.entries(attrs).forEach(function ([key, value]) { node.setAttribute(key, value); });
+    if (label !== undefined) node.textContent = label;
+    return node;
+  }
+
+  function usage(row) {
+    return sort === 'memory' ? row.mib_minutes / (1024 * 60) : row.h100_hours;
+  }
+
+  function renderTotals(date) {
+    periodTotals.replaceChildren();
+    var day = new Date(date + 'T00:00:00Z');
+    var weekStart = new Date(day.getTime() - ((day.getUTCDay() + 6) % 7) * 86400000);
+    var month = date.slice(0, 7);
+    var source = Date.parse(currentData?.source_time);
+    var startOfWeek = weekStart.toISOString().slice(0, 10);
+    var sampleDate = currentData?.source_time?.slice(0, 10);
+    var capacity = currentData?.capacity;
+    var rate = sort === 'memory' ? capacity?.mib / 1024 : capacity?.h100;
+    var monthDays = Object.keys(daily).filter(function (key) { return key.startsWith(month) && key <= date; });
+    [
+      ['今日', date, daily[date]],
+      ['本周', startOfWeek, sampleDate >= startOfWeek && sampleDate <= date ? items : null],
+      ['本月', month + '-01', monthDays.length ? monthDays.flatMap(function (key) { return daily[key]; }) : null]
+    ].forEach(function ([label, start, rows]) {
+      var section = document.createElement('section');
+      var title = document.createElement('strong');
+      var total = document.createElement('div');
+      var ceiling = document.createElement('small');
+      var elapsed = (source - Date.parse(start + 'T00:00:00+09:00')) / 3600000;
+      title.textContent = label;
+      total.textContent = rows ? number.format(rows.reduce(function (sum, row) { return sum + usage(row); }, 0)) : '—';
+      ceiling.textContent = '理论最大值 ' + (rate > 0 && elapsed >= 0 ? number.format(rate * elapsed) : '—');
+      section.append(title, total, ceiling);
+      periodTotals.append(section);
     });
   }
 
-  account.addEventListener('change', renderDaily);
-  range.addEventListener('change', renderDaily);
+  function renderDaily() {
+    chart.replaceChildren();
+    legendDaily.replaceChildren();
+    var today = new Date(Date.now() + 9 * 3600000);
+    var date = today.toISOString().slice(0, 10);
+    renderTotals(date);
+    var unit = sort === 'memory' ? '显存小时（GiB·h）' : 'H100 等效小时（已折算卡）';
+    var points = Array.from({ length: days || 24 }, function (_, index) {
+      var key = days ? new Date(today.getTime() - (days - 1 - index) * 86400000).toISOString().slice(0, 10)
+        : date + 'T' + String(index).padStart(2, '0');
+      return { key: key, rows: days ? daily[key] : currentData?.hourly?.[key] };
+    });
+    dailyUnit.textContent = unit + ' · JST · 仅累计已采集数据；上限按当前卡量及截至最近采样的时长估算。';
+    if (!points.some(function (point) { return point.rows; })) {
+      chart.textContent = '这个时间范围还没有采样记录。';
+      return;
+    }
+    var names = Array.from(new Set(points.flatMap(function (point) {
+      return (point.rows || []).map(function (row) { return row.nickname; });
+    }))).sort();
+    if (!names.length) {
+      chart.textContent = '该时间范围内没有记录到 GPU 占用。';
+      return;
+    }
+    var svg = svgNode('svg', { viewBox: '0 0 620 230', role: 'group', 'aria-label': '所有账号 GPU 用量折线图' });
+    var max = Math.max(1, ...points.flatMap(function (point) { return (point.rows || []).map(usage); }));
+    var x = function (i) { return 76 + i * 509 / (points.length - 1); };
+    var y = function (value) { return 190 - 165 * value / max; };
+    for (var i = 0; i <= 4; i += 1) {
+      var value = max * i / 4;
+      svg.append(
+        svgNode('line', { x1: x(0), x2: x(points.length - 1), y1: y(value), y2: y(value) }),
+        svgNode('text', { x: 66, y: y(value), 'text-anchor': 'end', dy: '.35em' }, number.format(value))
+      );
+    }
+    points.forEach(function (point, index) {
+      if (index === points.length - 1 || (days === 7 ? index % 2 === 0 : index % (days ? 7 : 6) === 0)) {
+        svg.append(svgNode('text', { x: x(index), y: 218, 'text-anchor': 'middle' },
+          days ? point.key.slice(5) : point.key.slice(11) + ':00'));
+      }
+    });
+    names.forEach(function (name, index) {
+      var color = 'hsl(' + (index * 137.508 + 161) % 360 + ' 68% 35%)';
+      var path = '';
+      var dots = [];
+      var connected = false;
+      points.forEach(function (point, i) {
+        var row = point.rows?.find(function (entry) { return entry.nickname === name; });
+        if (!point.rows || (sort === 'compute' && row && !row.rated_mib_minutes)) {
+          connected = false;
+          return;
+        }
+        var value = row ? usage(row) : 0;
+        path += (connected ? ' L' : ' M') + x(i) + ' ' + y(value);
+        connected = true;
+        var label = name + ' · ' + point.key.replace('T', ' ') + (days ? '' : ':00') + ' · ' + number.format(value);
+        if (sort === 'compute' && row && !complete(row)) label += '（部分折算）';
+        var dot = svgNode('circle', { cx: x(i), cy: y(value), r: 4, fill: color, tabindex: 0, 'aria-label': label });
+        dot.append(svgNode('title', {}, label));
+        dots.push(dot);
+      });
+      svg.append(svgNode('path', { d: path, fill: 'none', stroke: color }), ...dots);
+      var key = document.createElement('li');
+      key.style.setProperty('--series', color);
+      key.textContent = name;
+      legendDaily.append(key);
+    });
+    chart.append(svg);
+  }
+  ranges.forEach(function (button) {
+    button.addEventListener('click', function () {
+      days = Number(button.dataset.gpuDays);
+      ranges.forEach(function (item) { item.setAttribute('aria-pressed', item === button); });
+      renderDaily();
+    });
+  });
   renderDaily();
 
   function complete(item) {
