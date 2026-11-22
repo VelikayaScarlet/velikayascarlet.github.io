@@ -212,36 +212,89 @@
   }
 }
 .gpu-daily {
-  margin-top: 2rem;
-  padding-top: 1rem;
-  border-top: 2px solid var(--gpu-accent);
+  margin-block: 1.5rem 2.5rem;
+  color-scheme: light dark;
 }
 
-.gpu-daily-controls {
+.gpu-daily-heading {
   display: flex;
-  flex-wrap: wrap;
-  gap: .75rem 1.25rem;
+  align-items: center;
+  justify-content: space-between;
+  gap: .75rem;
+  margin-bottom: .85rem;
+}
+
+.gpu-daily-heading h2, .gpu-ranking-heading {
+  font-size: 1.35rem;
+  margin: 0;
+}
+
+.gpu-ranking-heading {
+  margin-bottom: .75rem;
+}
+
+.gpu-daily-heading span {
+  font: .75rem var(--gpu-mono);
+  color: var(--gpu-muted);
+  border: 1px solid var(--gpu-line);
+  border-radius: 4px;
+  padding: .27rem .45rem;
 }
 
 .gpu-period-totals {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(min(100%, 12rem), 1fr));
-  gap: .75rem;
+  gap: 1px;
   margin-bottom: 1rem;
+  background: var(--gpu-line);
+  border: 1px solid var(--gpu-line);
+  border-radius: 8px;
+  overflow: hidden;
 }
 
 .gpu-period-totals section {
-  padding: .75rem 1rem;
-  border-top: 2px solid var(--gpu-accent);
+  min-width: 0;
+  padding: .85rem 1.1rem;
   background: var(--gpu-surface);
 }
 
+.gpu-period-totals section strong {
+  color: var(--gpu-muted);
+  font-size: .85rem;
+}
+
 .gpu-period-totals section div {
-  font: 1.5rem/1.55 var(--gpu-mono);
+  font: 1.75rem/1.5 var(--gpu-mono);
+  color: var(--gpu-ink);
+  overflow-wrap: anywhere;
 }
 
 .gpu-period-totals small {
   color: var(--gpu-muted);
+}
+
+.gpu-period-track {
+  display: block;
+  height: 3px;
+  margin: .25rem 0 .45rem;
+  border-radius: 2px;
+  background: var(--gpu-line);
+}
+
+.gpu-period-track::before {
+  content: "";
+  display: block;
+  width: var(--fill);
+  height: 100%;
+  border-radius: inherit;
+  background: var(--gpu-accent);
+}
+
+.gpu-daily-plot {
+  border: 1px solid var(--gpu-line);
+  border-radius: 8px;
+  background: var(--gpu-bg);
+  padding: clamp(.7rem, 2%, 1.25rem);
 }
 
 .gpu-daily-legend {
@@ -250,6 +303,8 @@
   gap: .4rem 1rem;
   padding: 0;
   list-style: none;
+  margin: .65rem 0 0;
+  font-size: .86rem;
 }
 
 .gpu-daily-legend li::before {
@@ -264,18 +319,25 @@
 
 #gpu-daily-unit {
   color: var(--gpu-muted);
+  font-size: .82rem;
+  margin: .8rem 0;
 }
 
 .gpu-daily-range {
   display: inline-flex;
-  gap: .25rem;
+  flex-wrap: wrap;
+  gap: 2px;
+  padding: 3px;
+  background: var(--gpu-surface);
+  border: 1px solid var(--gpu-line);
+  border-radius: 6px;
 }
 
 .gpu-daily-range button {
   padding: .35rem .65rem;
-  border: 1px solid var(--gpu-line);
+  border: 1px solid transparent;
   border-radius: 4px;
-  background: var(--gpu-bg);
+  background: transparent;
   color: var(--gpu-ink);
   font: inherit;
   cursor: pointer;
@@ -290,9 +352,7 @@
 #gpu-daily-chart svg {
   display: block;
   width: 100%;
-  max-width: 820px;
-  background: var(--gpu-surface);
-  border-radius: 4px;
+  height: auto;
 }
 
 #gpu-daily-chart text {
@@ -302,6 +362,7 @@
 
 #gpu-daily-chart line {
   stroke: var(--gpu-line);
+  stroke-dasharray: 3 4;
 }
 
 #gpu-daily-chart path {

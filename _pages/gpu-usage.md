@@ -48,6 +48,23 @@ author_profile: false
     </div>
     <p id="gpu-week-status" role="status">正在读取周榜…</p>
   </div>
+  <section class="gpu-daily" aria-labelledby="gpu-daily-title">
+    <header class="gpu-daily-heading"><h2 id="gpu-daily-title">GPU 用量趋势</h2><span>JST</span></header>
+    <div id="gpu-period-totals" class="gpu-period-totals"></div>
+    <div class="gpu-daily-plot">
+    <div class="gpu-daily-controls">
+      <div class="gpu-daily-range" role="group" aria-label="时间范围">
+        <button type="button" data-gpu-days="0" aria-pressed="true">今日逐小时</button>
+        <button type="button" data-gpu-days="7" aria-pressed="false">7 Days</button>
+        <button type="button" data-gpu-days="30" aria-pressed="false">30 Days</button>
+      </div>
+    </div>
+    <p id="gpu-daily-unit" aria-live="polite"></p>
+    <div id="gpu-daily-chart"></div>
+    <ul id="gpu-daily-legend" class="gpu-daily-legend" aria-label="集群账号"></ul>
+    </div>
+  </section>
+  <h2 class="gpu-ranking-heading">本周排名</h2>
   <div class="gpu-board__leaders" id="gpu-board-leaders" aria-label="前三名" hidden></div>
   <table id="gpu-week-ranking" aria-label="本周 GPU 占用排名" hidden>
     <thead>
@@ -72,19 +89,5 @@ author_profile: false
     <p>显存小时 = 实际占用显存 × 时间。H100 等效小时 = 相对 H100 SXM 的理论算力 × 个人占整卡显存比例 × 时间。优先按非稀疏 BF16 折算，旧卡用 FP16 Tensor 或 FP32 峰值。</p>
     <p>规格来源：<a href="https://resources.nvidia.com/en-us-hopper-architecture">Hopper</a>、<a href="https://www.nvidia.com/en-au/data-center/h100/">H100 NVL</a>、<a href="https://images.nvidia.com/data-center/a100/a100-datasheet.pdf">A100</a>、<a href="https://www.nvidia.com/en-gb/data-center/l40s/">L40S</a>、<a href="https://www.nvidia.com/content/dam/en-zz/Solutions/design-visualization/support-guide/NVIDIA-L40-Datasheet-January-2023.pdf">L40</a>、<a href="https://www.nvidia.com/content/dam/en-zz/Solutions/design-visualization/quadro-product-literature/pdf/NVIDIA-RTX-Blackwell-PRO-GPU-Architecture-v1_1.pdf">RTX 系列</a>。</p>
   </details>
-  <section class="gpu-daily" aria-labelledby="gpu-daily-title">
-    <h2 id="gpu-daily-title">GPU 用量趋势</h2>
-    <div id="gpu-period-totals" class="gpu-period-totals"></div>
-    <div class="gpu-daily-controls">
-      <div class="gpu-daily-range" role="group" aria-label="时间范围">
-        <button type="button" data-gpu-days="0" aria-pressed="true">今日逐小时</button>
-        <button type="button" data-gpu-days="7" aria-pressed="false">7 Days</button>
-        <button type="button" data-gpu-days="30" aria-pressed="false">30 Days</button>
-      </div>
-    </div>
-    <p id="gpu-daily-unit" aria-live="polite"></p>
-    <div id="gpu-daily-chart"></div>
-    <ul id="gpu-daily-legend" class="gpu-daily-legend" aria-label="集群账号"></ul>
-  </section>
 </section>
-<script src="{{ '/assets/js/gpu-weekly-board.js' | relative_url }}?v=9" defer></script>
+<script src="{{ '/assets/js/gpu-weekly-board.js' | relative_url }}?v=10" defer></script>

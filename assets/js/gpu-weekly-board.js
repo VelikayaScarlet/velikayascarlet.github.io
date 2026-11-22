@@ -91,11 +91,17 @@ async function loadBoard() {
       var title = document.createElement('strong');
       var total = document.createElement('div');
       var ceiling = document.createElement('small');
+      var track = document.createElement('span');
       var elapsed = (source - Date.parse(start + 'T00:00:00+09:00')) / 3600000;
+      var actual = rows?.reduce(function (sum, row) { return sum + usage(row); }, 0);
+      var limit = rate > 0 && elapsed >= 0 ? rate * elapsed : null;
       title.textContent = label;
-      total.textContent = rows ? number.format(rows.reduce(function (sum, row) { return sum + usage(row); }, 0)) : '—';
-      ceiling.textContent = '理论最大值 ' + (rate > 0 && elapsed >= 0 ? number.format(rate * elapsed) : '—');
-      section.append(title, total, ceiling);
+      total.textContent = actual === undefined ? '—' : number.format(actual);
+      ceiling.textContent = '理论上限 ' + (limit === null ? '—' : number.format(limit));
+      track.className = 'gpu-period-track';
+      track.setAttribute('aria-hidden', 'true');
+      track.style.setProperty('--fill', Math.min(100, limit ? (actual || 0) / limit * 100 : 0) + '%');
+      section.append(title, total, track, ceiling);
       periodTotals.append(section);
     });
   }
@@ -142,7 +148,8 @@ async function loadBoard() {
       }
     });
     names.forEach(function (name, index) {
-      var color = 'hsl(' + (index * 137.508 + 161) % 360 + ' 68% 35%)';
+      var hue = (index * 137.508 + 161) % 360;
+      var color = 'light-dark(hsl(' + hue + ' 68% 35%), hsl(' + hue + ' 77% 72%))';
       var path = '';
       var dots = [];
       var connected = false;
@@ -158,10 +165,13 @@ async function loadBoard() {
         var label = name + ' · ' + point.key.replace('T', ' ') + (days ? '' : ':00') + ' · ' + number.format(value);
         if (sort === 'compute' && row && !complete(row)) label += '（部分折算）';
         var dot = svgNode('circle', { cx: x(i), cy: y(value), r: 4, fill: color, tabindex: 0, 'aria-label': label });
+        dot.style.fill = color;
         dot.append(svgNode('title', {}, label));
         dots.push(dot);
       });
-      svg.append(svgNode('path', { d: path, fill: 'none', stroke: color }), ...dots);
+      var line = svgNode('path', { d: path, fill: 'none' });
+      line.style.stroke = color;
+      svg.append(line, ...dots);
       var key = document.createElement('li');
       key.style.setProperty('--series', color);
       key.textContent = name;
