@@ -6,7 +6,7 @@ on:
       - '.github/workflows/gpu-weekly-usage.yml'
       - 'scripts/gpu-weekly-usage.py'
   schedule:
-    - cron: '2-59/5 * * * *'
+    - cron: '2,7,12,17,22,27,32,37,42,47,52,57 * * * *'
   workflow_dispatch:
 
 permissions:
@@ -18,7 +18,7 @@ concurrency:
 
 jobs:
   update:
-    if: github.ref == 'refs/heads/main'
+    if: github.ref == 'refs/heads/main' && (github.event_name != 'schedule' || vars.GPU_EXTERNAL_SCHEDULER != 'true')
     runs-on: ubuntu-latest
     timeout-minutes: 3
     steps:
