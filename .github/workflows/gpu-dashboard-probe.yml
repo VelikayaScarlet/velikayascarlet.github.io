@@ -1,0 +1,37 @@
+name: GPU dashboard connectivity probe
+on:
+  push:
+    branches: [codex/gpu-dashboard-probe]
+permissions: {}
+jobs:
+  probe:
+    runs-on: ubuntu-latest
+    timeout-minutes: 2
+    steps:
+      - name: Check public snapshot without logging contents
+        run: |
+          python3 - <<'PY'
+          import json
+          import re
+          from urllib.request import urlopen
+
+          url = "https://lotus.kuee.kyoto-u.ac.jp/~linuxbrew/gpus-web/"
+          try:
+              with urlopen(url, timeout=15) as response:
+                  print("HTTP", response.status)
+                  html = response.read(16 * 1024 * 1024).decode("utf-8")
+              match = re.search(r'<script\b[^>]*\bid="gpuDetailsData"[^>]*>(.*?)</script>', html, re.S)
+              if not match:
+                  raise ValueError("Snapshot not found")
+              cards = json.loads(match.group(1))
+              valid = any(
+                  {"user", "used_memory"} <= process.keys()
+                  for card in cards.values() for process in card.get("processes", [])
+              )
+              print("Per-process user and memory fields:", valid)
+              if not valid:
+                  raise SystemExit(1)
+          except Exception as error:
+              print("Probe failed:", type(error).__name__, getattr(error, "code", ""))
+              raise SystemExit(1)
+          PY
