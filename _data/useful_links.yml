@@ -3,3 +3,6 @@
 
 - name: ARR Dashboard
   url: https://stats.aclrollingreview.org/
+
+- name: GPU Weekly Usage
+  path: /gpu-usage/

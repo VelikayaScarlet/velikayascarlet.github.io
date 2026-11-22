@@ -19,8 +19,6 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - name: Compute weekly totals
-        env:
-          GPU_USAGE_OPT_IN: ${{ secrets.GPU_USAGE_OPT_IN }}
         run: |
           set -eu
           branch=refs/heads/gpu-usage-data

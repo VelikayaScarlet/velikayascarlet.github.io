@@ -81,7 +81,11 @@ author_profile: true
 <ul class="friends-list">
   {% for link in site.data.useful_links %}
     <li>
+      {% if link.path %}
+      <a href="{{ link.path | relative_url }}">
+      {% else %}
       <a href="{{ link.url }}" target="_blank" rel="noopener noreferrer">
+      {% endif %}
         <span class="friend-name">{{ link.name }}</span>
         <span class="friend-arrow">→</span>
       </a>

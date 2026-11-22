@@ -4,43 +4,34 @@ title: "GPU Weekly Usage"
 author_profile: false
 ---
 
-<p>京都大学 GPU 看板 · 每周显存占用（日本时间）</p>
-<p>每 5 分钟采样一次，按进程实际占用显存累计。单位 GiB·h；漏采不补算。只展示同意公开的参与者昵称，不代表算力或工作量。</p>
-<p id="gpu-week-status" role="status">正在读取周榜…</p>
-<table id="gpu-week-ranking" aria-label="本周显存占用排名" hidden>
-  <thead><tr><th scope="col">排名</th><th scope="col">昵称</th><th scope="col">显存占用（GiB·h）</th></tr></thead>
-  <tbody></tbody>
-</table>
-
-<script>
-(async function () {
-  var status = document.getElementById('gpu-week-status');
-  var table = document.getElementById('gpu-week-ranking');
-  var body = table.tBodies[0];
-  try {
-    var response = await fetch('https://raw.githubusercontent.com/VelikayaScarlet/velikayascarlet.github.io/gpu-usage-data/weekly.json', { cache: 'no-store' });
-    if (response.status === 404) {
-      status.textContent = '周榜尚未开始采集。';
-      return;
-    }
-    if (!response.ok) throw new Error('Data unavailable');
-    var data = await response.json();
-    if (!data.ranking.length) {
-      status.textContent = data.week + '：暂无参与者的采样记录。';
-      return;
-    }
-    status.textContent = data.week + ' · 最近一次有效采样：' + new Intl.DateTimeFormat('zh-CN', {
-      dateStyle: 'medium', timeStyle: 'short', timeZone: 'Asia/Tokyo'
-    }).format(new Date(data.source_time)) + '（日本时间）';
-    data.ranking.forEach(function (item, index) {
-      var row = body.insertRow();
-      [index + 1, item.nickname, (item.mib_minutes / (1024 * 60)).toFixed(2)].forEach(function (value) {
-        row.insertCell().textContent = value;
-      });
-    });
-    table.hidden = false;
-  } catch (error) {
-    status.textContent = '周榜暂时无法读取。';
-  }
-})();
-</script>
+<link rel="stylesheet" href="{{ '/assets/css/gpu-usage.css' | relative_url }}">
+<section class="gpu-board" lang="zh-CN" aria-label="GPU 周榜">
+  <header class="gpu-board__head">
+    <span class="gpu-board__source">京都大学 GPU 看板</span>
+    <span class="gpu-board__week" id="gpu-board-week">本周 · JST</span>
+  </header>
+  <div class="gpu-board__toolbar">
+    <div class="gpu-board__sort" role="group" aria-label="排名指标">
+      <button type="button" data-gpu-sort="memory" aria-pressed="true">显存小时</button>
+      <button type="button" data-gpu-sort="compute" aria-pressed="false">H100 等效小时</button>
+    </div>
+    <p id="gpu-week-status" role="status">正在读取周榜…</p>
+  </div>
+  <table id="gpu-week-ranking" aria-label="本周 GPU 占用排名" hidden>
+    <thead>
+      <tr>
+        <th scope="col">排名</th><th scope="col">集群账号</th>
+        <th scope="col" data-metric="memory" aria-sort="descending">显存小时 <small>GiB·h</small></th>
+        <th scope="col" data-metric="compute">H100 等效 <small>小时 · 估算</small></th>
+      </tr>
+    </thead>
+    <tbody></tbody>
+  </table>
+  <details class="gpu-board__notes">
+    <summary>统计口径</summary>
+    <p>每 5 分钟采样，日本时间周一归零。首次采到账号占用显存就自动上榜，同卡多进程按账号汇总，漏采不补算。</p>
+    <p>显存小时 = 实际占用显存 × 时间。H100 等效小时 = 相对 H100 SXM 的理论算力 × 个人占整卡显存比例 × 时间。优先按非稀疏 BF16 折算，旧卡用 FP16 Tensor 或 FP32 峰值。</p>
+    <p>规格来源：<a href="https://resources.nvidia.com/en-us-hopper-architecture">Hopper</a>、<a href="https://www.nvidia.com/en-au/data-center/h100/">H100 NVL</a>、<a href="https://images.nvidia.com/data-center/a100/a100-datasheet.pdf">A100</a>、<a href="https://www.nvidia.com/en-gb/data-center/l40s/">L40S</a>、<a href="https://www.nvidia.com/content/dam/en-zz/Solutions/design-visualization/support-guide/NVIDIA-L40-Datasheet-January-2023.pdf">L40</a>、<a href="https://www.nvidia.com/content/dam/en-zz/Solutions/design-visualization/quadro-product-literature/pdf/NVIDIA-RTX-Blackwell-PRO-GPU-Architecture-v1_1.pdf">RTX 系列</a>。</p>
+  </details>
+</section>
+<script src="{{ '/assets/js/gpu-weekly-board.js' | relative_url }}" defer></script>

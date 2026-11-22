@@ -1,7 +1,6 @@
-"""Accumulate public weekly totals for consenting participants only."""
+"""Accumulate weekly GPU usage by account from the public dashboard."""
 
 import json
-import os
 import re
 import sys
 from collections import Counter
@@ -13,15 +12,49 @@ SOURCE = "https://lotus.kuee.kyoto-u.ac.jp/~linuxbrew/gpus-web/"
 JST = timezone(timedelta(hours=9))
 MIB = re.compile(r"\s*(\d+)\s*MiB\s*")
 SNAPSHOT = re.compile(r'<script\b[^>]*\bid="gpuDetailsData"[^>]*>(.*?)</script>', re.S)
+SAMPLE_MINUTES = 5
+H100_SXM_BF16 = 989.4
+# NVIDIA Hopper, Ada, and RTX Blackwell architecture whitepapers and card datasheets.
+# Dense BF16 Tensor Core TFLOPS.
+DENSE_BF16 = {
+    "H100 80GB HBM3": H100_SXM_BF16,
+    "H100 SXM": H100_SXM_BF16,
+    "H100 PCIe": 756.0,
+    "H100 NVL": 835.5,
+    "H200 SXM": H100_SXM_BF16,
+    "H200 NVL": 835.5,
+    "A100 80GB PCIe": 312.0,
+    "A100-PCIE-40GB": 312.0,
+    "L40": 181.05,
+    "L40S": 362.05,
+    "RTX A6000": 154.8,
+    "RTX 6000 Ada Generation": 364.0,
+    "RTX PRO 6000 Blackwell Max-Q Workstation Edition": 438.9,
+    "RTX PRO 6000 Blackwell Workstation Edition": 503.8,
+}
+# For cards without BF16, use vendor-rated FP16 Tensor throughput or FP32
+# CUDA throughput if the card has no Tensor Cores.
+LEGACY_PEAK = {
+    "Tesla V100-PCIE-32GB": 112.0,
+    "Tesla V100-SXM2-32GB": 125.0,
+    "TITAN RTX": 130.0,
+    "TITAN V": 110.0,
+    "GeForce GTX 1080": 8.9,
+    "GeForce GTX 1080 Ti": 11.3,
+    "TITAN X (Pascal)": 11.0,
+    "GeForce GTX TITAN X": 7.0,
+}
 
 
-def tally(cards, names, previous, now):
+def tally(cards, previous, now):
     year, week, _ = now.isocalendar()
     label = f"{year}-W{week:02d}"
-    slot = int(now.timestamp()) // 300
+    slot = int(now.timestamp()) // (60 * SAMPLE_MINUTES)
     last_source = previous.get("source_time", "")
     timestamps = []
     current = Counter()
+    rated = Counter()
+    equivalent = Counter()
     for card in cards.values():
         timestamp = card.get("timestamp", "")
         try:
@@ -34,17 +67,31 @@ def tally(cards, names, previous, now):
         timestamps.append(timestamp)
         if timestamp <= last_source:
             continue
+        model = str(card.get("name", "")).removeprefix("NVIDIA ").strip()
+        score = DENSE_BF16.get(model) or LEGACY_PEAK.get(model)
+        capacity = MIB.fullmatch(str(card.get("mem_total", "")))
+        capacity = int(capacity.group(1)) if capacity else 0
+        card_usage = Counter()
         for process in card.get("processes", []):
-            nickname = names.get(process.get("user"))
+            account = process.get("user")
             memory = MIB.fullmatch(str(process.get("used_memory", "")))
-            if nickname is not None and memory:
-                current[nickname] += int(memory.group(1))
+            if isinstance(account, str) and account.strip() and memory:
+                card_usage[account.strip()] += int(memory.group(1))
+        for nickname, mib in card_usage.items():
+            current[nickname] += mib
+            if score and 0 < mib <= capacity:
+                rated[nickname] += mib
+                equivalent[nickname] += score / H100_SXM_BF16 * (mib / capacity) * SAMPLE_MINUTES / 60
 
-    approved = set(names.values())
     totals = {
-        row["nickname"]: row["mib_minutes"]
+        row["nickname"]: {
+            "nickname": row["nickname"],
+            "mib_minutes": row["mib_minutes"],
+            "rated_mib_minutes": row.get("rated_mib_minutes", 0),
+            "h100_hours": row.get("h100_hours", 0),
+        }
         for row in previous.get("ranking", [])
-        if previous.get("week") == label and row["nickname"] in approved
+        if previous.get("week") == label and previous.get("identity") == "account"
     }
     last_slot = previous.get("slot", -1)
     newest = max(timestamps, default="")
@@ -52,37 +99,33 @@ def tally(cards, names, previous, now):
         last_slot, last_source = slot, newest
         for nickname, mib in current.items():
             if mib:
-                totals[nickname] = totals.get(nickname, 0) + mib * 5
+                row = totals.setdefault(nickname, {
+                    "nickname": nickname, "mib_minutes": 0,
+                    "rated_mib_minutes": 0, "h100_hours": 0,
+                })
+                row["mib_minutes"] += mib * SAMPLE_MINUTES
+                row["rated_mib_minutes"] += rated[nickname] * SAMPLE_MINUTES
+                row["h100_hours"] += equivalent[nickname]
     return {
         "week": label,
+        "identity": "account",
         "slot": last_slot,
         "source_time": last_source,
-        "ranking": [
-            {"nickname": nickname, "mib_minutes": amount}
-            for nickname, amount in sorted(totals.items(), key=lambda item: (-item[1], item[0]))
-        ],
+        "ranking": sorted(totals.values(), key=lambda row: (-row["mib_minutes"], row["nickname"])),
     }
 
 
 def main(state_path, output_path):
-    names = json.loads(os.getenv("GPU_USAGE_OPT_IN") or "{}")
-    if not isinstance(names, dict) or any(
-        not isinstance(name, str) or not name.strip() or len(name) > 32
-        for name in names.values()
-    ) or len(set(names.values())) != len(names):
-        raise ValueError("Invalid opt-in settings")
     previous = json.loads(state_path.read_text(encoding="utf-8")) if state_path.exists() else {}
-    cards = {}
-    if names:
-        with urlopen(SOURCE, timeout=20) as response:
-            html = response.read(16 * 1024 * 1024).decode("utf-8")
-        match = SNAPSHOT.search(html)
-        if not match:
-            raise ValueError("Dashboard snapshot missing")
-        cards = json.loads(match.group(1))
-    output = tally(cards, names, previous, datetime.now(JST))
+    with urlopen(SOURCE, timeout=20) as response:
+        html = response.read(16 * 1024 * 1024).decode("utf-8")
+    match = SNAPSHOT.search(html)
+    if not match:
+        raise ValueError("Dashboard snapshot missing")
+    cards = json.loads(match.group(1))
+    output = tally(cards, previous, datetime.now(JST))
     output_path.write_text(json.dumps(output, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
-    print("Weekly snapshot processed." if names else "No opt-in list configured; did not fetch.")
+    print("Weekly snapshot processed.")
 
 
 if __name__ == "__main__":
