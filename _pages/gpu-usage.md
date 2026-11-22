@@ -48,26 +48,6 @@ author_profile: false
     </div>
     <p id="gpu-week-status" role="status">正在读取周榜…</p>
   </div>
-  <section class="gpu-daily" aria-labelledby="gpu-daily-title">
-    <header class="gpu-daily-heading"><h2 id="gpu-daily-title">GPU 用量趋势</h2><span>JST</span></header>
-    <div id="gpu-period-totals" class="gpu-period-totals"></div>
-    <div class="gpu-daily-plot">
-    <div class="gpu-daily-controls">
-      <div class="gpu-daily-range">
-        <input type="range" id="gpu-daily-range" min="0" max="2" step="1" value="0"
-          aria-label="时间范围" aria-valuetext="今日逐小时">
-        <div class="gpu-daily-stops">
-          <button type="button" data-gpu-stop="0" aria-pressed="true">今日逐小时</button>
-          <button type="button" data-gpu-stop="1" aria-pressed="false">7 Days</button>
-          <button type="button" data-gpu-stop="2" aria-pressed="false">30 Days</button>
-        </div>
-      </div>
-    </div>
-    <p id="gpu-daily-unit" aria-live="polite"></p>
-    <div id="gpu-daily-chart"></div>
-    <ul id="gpu-daily-legend" class="gpu-daily-legend" aria-label="集群账号"></ul>
-    </div>
-  </section>
   <h2 class="gpu-ranking-heading">本周排名</h2>
   <div class="gpu-board__leaders" id="gpu-board-leaders" aria-label="前三名" hidden></div>
   <table id="gpu-week-ranking" aria-label="本周 GPU 占用排名" hidden>
@@ -87,6 +67,26 @@ author_profile: false
     <span data-band="mid-low">中低分 15–40%</span>
     <span data-band="low">低分 &lt;15%</span>
   </div>
+  <section class="gpu-daily" aria-labelledby="gpu-daily-title">
+    <header class="gpu-daily-heading"><h2 id="gpu-daily-title">GPU 用量趋势</h2><span>JST</span></header>
+    <div class="gpu-daily-grid">
+      <div id="gpu-period-totals" class="gpu-period-totals"></div>
+      <div class="gpu-daily-plot">
+        <div class="gpu-daily-range">
+          <input type="range" id="gpu-daily-range" min="0" max="2" step="1" value="0"
+            aria-label="时间范围" aria-valuetext="今日逐小时">
+          <div class="gpu-daily-stops">
+            <button type="button" data-gpu-stop="0" aria-pressed="true">今日逐小时</button>
+            <button type="button" data-gpu-stop="1" aria-pressed="false">7 Days</button>
+            <button type="button" data-gpu-stop="2" aria-pressed="false">30 Days</button>
+          </div>
+        </div>
+        <p id="gpu-daily-unit" aria-live="polite"></p>
+        <div id="gpu-daily-chart"></div>
+        <ul id="gpu-daily-legend" class="gpu-daily-legend" aria-label="集群账号"></ul>
+      </div>
+    </div>
+  </section>
   <details class="gpu-board__notes">
     <summary>统计口径</summary>
     <p>Cloudflare 模式每 3 分钟采样，GitHub 原生备用模式每 5 分钟。日本时间周一归零；同卡多进程按账号汇总，漏采不补算。</p>

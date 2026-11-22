@@ -388,3 +388,124 @@
 #gpu-daily-chart circle:is(:hover, :focus-visible) {
   stroke: var(--gpu-ink);
 }
+
+#gpu-board-content {
+  --gpu-swiss: #b83222;
+  --gpu-swiss-wash: #fae3d9;
+  --gpu-bento-blue: #e8eff6;
+  --gpu-bento-green: #e1eee7;
+}
+
+#gpu-board-content .gpu-board__mast {
+  align-items: stretch;
+  min-height: 0;
+  gap: 0;
+  padding: 0;
+  border: 1px solid var(--gpu-line);
+  border-top: 4px solid var(--gpu-ink);
+  border-radius: 0;
+  background: var(--gpu-bg);
+  color: var(--gpu-ink);
+}
+
+#gpu-board-content .gpu-board__mast > :first-child {
+  flex: 1 1 auto;
+  min-width: 0;
+  padding: 1.5rem 1.75rem;
+}
+
+#gpu-board-content .gpu-board__mast h1 {
+  font: 850 2.9rem/1.08 system-ui, sans-serif;
+}
+
+#gpu-board-content .gpu-board__source {
+  color: var(--gpu-muted);
+  overflow-wrap: anywhere;
+}
+
+#gpu-board-content .gpu-board__meta {
+  align-content: center;
+  align-items: center;
+  justify-content: center;
+  padding: .75rem 1rem;
+  background: var(--gpu-swiss);
+  color: white;
+}
+
+#gpu-board-content :is(.gpu-board__week, #gpu-board-lock) {
+  background: transparent;
+  color: inherit;
+  border-color: rgb(255 255 255 / 55%);
+}
+
+#gpu-board-content .gpu-board__toolbar {
+  border-bottom: 1px solid var(--gpu-line);
+  margin-bottom: 1.25rem;
+}
+
+.gpu-ranking-heading, .gpu-daily-heading h2 {
+  border-inline-start: 4px solid var(--gpu-swiss);
+  padding-inline-start: .65rem;
+}
+
+.gpu-board__leaders {
+  grid-template-columns: 1.35fr 1fr 1fr;
+}
+
+.gpu-board__leaders > :first-child {
+  --gpu-band: var(--gpu-swiss);
+  --gpu-band-bg: var(--gpu-swiss-wash);
+}
+
+.gpu-board__leaders > :first-child .gpu-board__leader-place {
+  font-size: 1.8rem;
+}
+
+.gpu-daily-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 2.8fr);
+  gap: .65rem;
+}
+
+.gpu-daily-grid .gpu-period-totals {
+  grid-template-columns: minmax(0, 1fr);
+  align-content: start;
+  gap: .65rem;
+  margin: 0;
+  border: 0;
+  background: transparent;
+  overflow: visible;
+}
+
+.gpu-period-totals section {
+  border: 1px solid var(--gpu-line);
+  border-radius: 7px;
+}
+
+.gpu-period-totals section:nth-child(1) { background: var(--gpu-bento-green); }
+.gpu-period-totals section:nth-child(2) { background: var(--gpu-bento-blue); }
+.gpu-period-totals section:nth-child(3) { background: var(--gpu-swiss-wash); }
+.gpu-daily-plot { min-width: 0; }
+
+@media (max-width: 720px) {
+  .gpu-daily-grid { grid-template-columns: minmax(0, 1fr); }
+  .gpu-daily-grid .gpu-period-totals { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+}
+
+@media (max-width: 520px) {
+  #gpu-board-content .gpu-board__mast > :first-child { padding: 1rem .75rem; }
+  #gpu-board-content .gpu-board__mast h1 { font-size: 1.8rem; }
+  #gpu-board-content .gpu-board__meta { padding: .5rem; }
+  .gpu-period-totals section { padding: .5rem; }
+  .gpu-period-totals section div { font-size: 1rem; }
+  .gpu-period-totals small { overflow-wrap: anywhere; }
+}
+
+@media (prefers-color-scheme: dark) {
+  #gpu-board-content {
+    --gpu-swiss-wash: #482b25;
+    --gpu-bento-blue: #273a49;
+    --gpu-bento-green: #263d35;
+  }
+  .gpu-board__leaders > :first-child { --gpu-band: #ffab96; }
+}
