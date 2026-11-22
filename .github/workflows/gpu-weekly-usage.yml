@@ -1,5 +1,10 @@
 name: GPU weekly usage
 on:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/gpu-weekly-usage.yml'
+      - 'scripts/gpu-weekly-usage.py'
   schedule:
     - cron: '2-59/5 * * * *'
   workflow_dispatch:

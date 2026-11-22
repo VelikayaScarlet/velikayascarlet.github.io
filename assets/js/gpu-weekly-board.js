@@ -46,7 +46,12 @@ async function loadBoard() {
   var items = [];
   var controls = document.querySelectorAll('[data-gpu-sort]');
   var headers = table.querySelectorAll('[data-metric]');
+  var legend = document.getElementById('gpu-board-legend');
   var number = new Intl.NumberFormat('zh-CN', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+  var refreshMs = 120_000;
+  var revision = '';
+  var currentData;
+  var displayed = '';
 
   function complete(item) {
     return item.mib_minutes > 0 && item.rated_mib_minutes === item.mib_minutes;
@@ -147,27 +152,54 @@ async function loadBoard() {
     button.addEventListener('click', function () { sort = button.dataset.gpuSort; render(); });
   });
 
-  try {
-    var response = await fetch('https://raw.githubusercontent.com/VelikayaScarlet/velikayascarlet.github.io/gpu-usage-data/weekly.json', { cache: 'no-store' });
-    if (response.status === 404) {
-      status.textContent = '周榜尚未开始采集。';
-      return;
+  async function refresh() {
+    try {
+      var repo = 'VelikayaScarlet/velikayascarlet.github.io';
+      var ref = await fetch('https://api.github.com/repos/' + repo + '/git/ref/heads/gpu-usage-data', {
+        cache: 'no-store',
+        signal: AbortSignal.timeout(12000)
+      });
+      if (ref.status === 404 && !displayed) {
+        status.textContent = '周榜尚未开始采集。';
+        return;
+      }
+      if (!ref.ok) throw new Error('Data branch unavailable');
+      var sha = (await ref.json()).object?.sha;
+      if (!/^[\da-f]{40}$/.test(sha)) throw new Error('Invalid data revision');
+      if (sha !== revision) {
+        var response = await fetch('https://raw.githubusercontent.com/' + repo + '/' + sha + '/weekly.json', {
+          signal: AbortSignal.timeout(12000)
+        });
+        if (!response.ok) throw new Error('Data unavailable');
+        var fresh = await response.json();
+        if (!Array.isArray(fresh.ranking)) throw new Error('Invalid weekly data');
+        currentData = fresh;
+        revision = sha;
+      }
+      var data = currentData;
+      var sampled = new Date(data.source_time);
+      week.textContent = data.week + ' · JST';
+      var snapshot = data.week + '/' + data.source_time;
+      if (snapshot !== displayed) {
+        displayed = snapshot;
+        items = data.ranking;
+        render();
+        table.hidden = items.length === 0;
+        legend.hidden = table.hidden;
+      }
+      if (!items.length) {
+        status.textContent = '本周暂无采样记录。';
+        return;
+      }
+      var timestamp = new Intl.DateTimeFormat('zh-CN', {
+        dateStyle: 'short', timeStyle: 'short', timeZone: 'Asia/Tokyo'
+      }).format(sampled);
+      status.textContent = (Date.now() - sampled.getTime() >= 15 * 60_000 ? '采样延迟 · ' : '最近采样 · ') + timestamp;
+    } catch (error) {
+      status.textContent = displayed ? '刷新失败，仍显示上次数据。' : '周榜暂时无法读取。';
+    } finally {
+      window.setTimeout(refresh, refreshMs);
     }
-    if (!response.ok) throw new Error('Data unavailable');
-    var data = await response.json();
-    week.textContent = data.week + ' · JST';
-    items = data.ranking;
-    if (!items.length) {
-      status.textContent = '本周暂无采样记录。';
-      return;
-    }
-    status.textContent = '最近采样 · ' + new Intl.DateTimeFormat('zh-CN', {
-      dateStyle: 'short', timeStyle: 'short', timeZone: 'Asia/Tokyo'
-    }).format(new Date(data.source_time));
-    render();
-    table.hidden = false;
-    document.getElementById('gpu-board-legend').hidden = false;
-  } catch (error) {
-    status.textContent = '周榜暂时无法读取。';
   }
+  await refresh();
 }
