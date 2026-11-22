@@ -5,10 +5,38 @@ author_profile: false
 ---
 
 <link rel="stylesheet" href="{{ '/assets/css/gpu-usage.css' | relative_url }}">
-<section class="gpu-board" lang="zh-CN" aria-label="GPU 周榜">
-  <header class="gpu-board__head">
-    <span class="gpu-board__source">京都大学 GPU 看板</span>
-    <span class="gpu-board__week" id="gpu-board-week">本周 · JST</span>
+<section class="gpu-board" lang="zh-CN" aria-label="进入 GPU 周榜" id="gpu-board-gate">
+  <header class="gpu-board__mast">
+    <div>
+      <p class="gpu-board__source">KYOTO UNIVERSITY / KUEE</p>
+      <h2>GPU 周榜</h2>
+    </div>
+    <svg class="gpu-board__chip" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
+      <rect x="10" y="10" width="28" height="28" rx="4"/><rect x="16" y="16" width="16" height="16" rx="2"/>
+      <path d="M16 4v6m8-6v6m8-6v6m0 28v6m-8-6v6m-8-6v6M4 16h6m-6 8h6m-6 8h6m28 0h6m-6-8h6m-6-8h6"/>
+    </svg>
+  </header>
+  <form class="gpu-board__gate">
+    <label for="gpu-board-password">访问密码</label>
+    <div class="gpu-board__gate-controls">
+      <input id="gpu-board-password" type="password" required autocomplete="current-password" aria-describedby="gpu-board-gate-status">
+      <button type="submit">进入周榜</button>
+    </div>
+    <p id="gpu-board-gate-status" role="status"></p>
+  </form>
+</section>
+<section class="gpu-board" lang="zh-CN" aria-label="GPU 周榜" id="gpu-board-content" tabindex="-1" hidden>
+  <header class="gpu-board__mast">
+    <div>
+      <p class="gpu-board__source">KYOTO UNIVERSITY / KUEE</p>
+      <h2>GPU 周榜</h2>
+    </div>
+    <div class="gpu-board__meta">
+      <span class="gpu-board__week" id="gpu-board-week">本周 · JST</span>
+      <button type="button" id="gpu-board-lock" aria-label="锁定周榜" title="锁定周榜">
+        <svg viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" aria-hidden="true"><rect x="5" y="10" width="14" height="11" rx="2"/><path d="M8 10V7a4 4 0 1 1 8 0v3m-4 4v3"/></svg>
+      </button>
+    </div>
   </header>
   <div class="gpu-board__toolbar">
     <div class="gpu-board__sort" role="group" aria-label="排名指标">
