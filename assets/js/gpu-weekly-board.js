@@ -8,6 +8,7 @@
 
   function unlock(moveFocus) {
     gate.hidden = true;
+    if (moveFocus) board.classList.add('gpu-board--enter');
     board.hidden = false;
     if (moveFocus) board.focus();
     loadBoard();
@@ -60,6 +61,15 @@ async function loadBoard() {
   var legendDaily = document.getElementById('gpu-daily-legend');
   var periodTotals = document.getElementById('gpu-period-totals');
   var dailyUnit = document.getElementById('gpu-daily-unit');
+  var selectedSeries = new Set();
+  var zoomButton = document.getElementById('gpu-daily-zoom');
+  var zoomed = false;
+
+  zoomButton.addEventListener('click', function () {
+    zoomed = !zoomed;
+    if (!zoomed) selectedSeries.clear();
+    renderDaily(true);
+  });
 
   function svgNode(tag, attrs, label) {
     var node = document.createElementNS('http://www.w3.org/2000/svg', tag);
@@ -107,9 +117,12 @@ async function loadBoard() {
     });
   }
 
-  function renderDaily() {
+  function renderDaily(animate) {
+    var focusedSeries = document.activeElement?.dataset.gpuSeries;
     chart.replaceChildren();
     legendDaily.replaceChildren();
+    zoomButton.disabled = true;
+    zoomButton.textContent = zoomed ? '还原全部' : '放大所选';
     var today = new Date(Date.now() + 9 * 3600000);
     var date = today.toISOString().slice(0, 10);
     renderTotals(date);
@@ -131,12 +144,63 @@ async function loadBoard() {
       chart.textContent = '该时间范围内没有记录到 GPU 占用。';
       return;
     }
+    var picked = names.filter(function (name) { return selectedSeries.has(name); });
+    zoomButton.disabled = !zoomed && !picked.length;
+    var active = zoomed && picked.length ? picked : names;
+    var series = new Map(active.map(function (name) {
+      return [name, points.map(function (point) {
+        var row = point.rows?.find(function (entry) { return entry.nickname === name; });
+        if (!point.rows || (sort === 'compute' && row && !row.rated_mib_minutes)) return null;
+        return { value: row ? usage(row) : 0, row: row };
+      })];
+    }));
     var svg = svgNode('svg', { viewBox: '0 0 620 230', role: 'group', 'aria-label': '所有账号 GPU 用量折线图' });
-    var max = Math.max(1, ...points.flatMap(function (point) { return (point.rows || []).map(usage); }));
+    if (animate) svg.classList.add('gpu-chart-enter');
+    var values = Array.from(series.values()).flat().filter(Boolean).map(function (point) { return point.value; });
+    var high = Math.max(0, ...values);
+    var low = values.length ? Math.min(...values) : 0;
+    var padding = Math.max((high - low) * .08, high * .005, .02);
+    var min = zoomed ? Math.max(0, low - padding) : 0;
+    var max = zoomed ? high + padding : Math.max(1, high);
     var x = function (i) { return 76 + i * 509 / (points.length - 1); };
-    var y = function (value) { return 190 - 165 * value / max; };
+    var y = function (value) { return 190 - 165 * (value - min) / (max - min); };
+    var tooltip = document.createElement('span');
+    tooltip.className = 'gpu-chart-tooltip';
+    tooltip.hidden = true;
+    var visuals = [];
+    var highlighted = null;
+    var restoreFocus;
+    function highlight(index) {
+      if (index === highlighted) return;
+      highlighted = index;
+      visuals.forEach(function (elements, i) {
+        elements.forEach(function (element) {
+          element.classList.toggle('is-muted', index !== null && i !== index);
+          element.classList.toggle('is-highlighted', i === index);
+        });
+      });
+    }
+    function showTooltip(label, clientX, clientY) {
+      var bounds = chart.getBoundingClientRect();
+      tooltip.textContent = label;
+      tooltip.hidden = false;
+      tooltip.style.left = Math.max(0, Math.min(clientX - bounds.left + 12, bounds.width - tooltip.offsetWidth)) + 'px';
+      tooltip.style.top = Math.max(0, clientY - bounds.top - tooltip.offsetHeight - 8) + 'px';
+    }
+    function clearHighlight() {
+      tooltip.hidden = true;
+      highlight(null);
+    }
+    function bindHover(node, label, index) {
+      node.addEventListener('pointermove', function (event) {
+        if (event.pointerType === 'touch') return;
+        highlight(index);
+        showTooltip(label, event.clientX, event.clientY);
+      });
+      node.addEventListener('pointerleave', clearHighlight);
+    }
     for (var i = 0; i <= 4; i += 1) {
-      var value = max * i / 4;
+      var value = min + (max - min) * i / 4;
       svg.append(
         svgNode('line', { x1: x(0), x2: x(points.length - 1), y1: y(value), y2: y(value) }),
         svgNode('text', { x: 66, y: y(value), 'text-anchor': 'end', dy: '.35em' }, number.format(value))
@@ -150,44 +214,82 @@ async function loadBoard() {
           days ? point.key.slice(5) : point.key.slice(11) + ':00'));
       }
     });
+    var hitPaths = [];
+    var allDots = [];
     names.forEach(function (name, index) {
       var hue = (index * 137.508 + 161) % 360;
       var color = 'light-dark(hsl(' + hue + ' 68% 35%), hsl(' + hue + ' 77% 72%))';
       var path = '';
-      var dots = [];
+      var marks = visuals[index] = [];
       var connected = false;
-      points.forEach(function (point, i) {
-        var row = point.rows?.find(function (entry) { return entry.nickname === name; });
-        if (!point.rows || (sort === 'compute' && row && !row.rated_mib_minutes)) {
+      series.get(name)?.forEach(function (sample, i) {
+        var point = points[i];
+        if (!sample) {
           connected = false;
           return;
         }
-        var value = row ? usage(row) : 0;
+        var value = sample.value;
         path += (connected ? ' L' : ' M') + x(i) + ' ' + y(value);
         connected = true;
         var label = name + ' · ' + point.key.replace('T', ' ') + (days ? '' : ':00') + ' · ' + number.format(value);
-        if (sort === 'compute' && row && !complete(row)) label += '（部分折算）';
-        var dot = svgNode('circle', { cx: x(i), cy: y(value), r: 4, fill: color, tabindex: 0, 'aria-label': label });
+        if (sort === 'compute' && sample.row && !complete(sample.row)) label += '（部分折算）';
+        var dot = svgNode('circle', { cx: x(i), cy: y(value), r: 2.1, class: 'gpu-chart-point', tabindex: 0, 'aria-label': label });
         dot.style.fill = color;
-        dot.append(svgNode('title', {}, label));
-        dots.push(dot);
+        bindHover(dot, label, index);
+        dot.addEventListener('focus', function () {
+          var rect = dot.getBoundingClientRect();
+          highlight(index);
+          showTooltip(label, rect.right, rect.top);
+        });
+        dot.addEventListener('blur', clearHighlight);
+        marks.push(dot);
+        allDots.push(dot);
       });
-      var line = svgNode('path', { d: path, fill: 'none' });
-      line.style.stroke = color;
-      svg.append(line, ...dots);
+      if (path) {
+        var line = svgNode('path', { d: path, fill: 'none', class: 'gpu-chart-trace', pathLength: 1 });
+        line.style.stroke = color;
+        marks.push(line);
+        svg.append(line);
+        var hit = svgNode('path', { d: path, fill: 'none', class: 'gpu-chart-hit', 'aria-hidden': 'true' });
+        bindHover(hit, name, index);
+        hitPaths.push(hit);
+      }
       var key = document.createElement('li');
       key.style.setProperty('--series', color);
-      key.textContent = name;
+      var button = document.createElement('button');
+      button.type = 'button';
+      button.dataset.gpuSeries = name;
+      button.textContent = name;
+      button.setAttribute('aria-pressed', selectedSeries.has(name));
+      if (series.has(name)) {
+        button.addEventListener('pointerenter', function (event) {
+          if (event.pointerType !== 'touch') highlight(index);
+        });
+        button.addEventListener('pointerleave', clearHighlight);
+        button.addEventListener('focus', function () { highlight(index); });
+        button.addEventListener('blur', clearHighlight);
+      }
+      button.addEventListener('click', function () {
+        if (!selectedSeries.delete(name)) selectedSeries.add(name);
+        if (!selectedSeries.size) zoomed = false;
+        renderDaily();
+      });
+      key.append(button);
       legendDaily.append(key);
+      if (name === focusedSeries) restoreFocus = button;
     });
-    chart.append(svg);
+    svg.append(...hitPaths, ...allDots);
+    chart.append(svg, tooltip);
+    restoreFocus?.focus({ preventScroll: true });
   }
   function changeRange() {
     var index = slider.valueAsNumber;
     days = [0, 7, 30][index];
+    zoomed = false;
+    selectedSeries.clear();
     slider.setAttribute('aria-valuetext', stops[index].textContent);
     stops.forEach(function (item, i) { item.setAttribute('aria-pressed', i === index); });
-    renderDaily();
+    renderDaily(true);
   }
 
   slider.addEventListener('input', changeRange);
@@ -237,8 +339,8 @@ async function loadBoard() {
     });
   }
 
-  function render() {
-    renderDaily();
+  function render(animate) {
+    renderDaily(animate);
     controls.forEach(function (button) {
       button.setAttribute('aria-pressed', String(button.dataset.gpuSort === sort));
     });
@@ -296,7 +398,11 @@ async function loadBoard() {
   }
 
   controls.forEach(function (button) {
-    button.addEventListener('click', function () { sort = button.dataset.gpuSort; render(); });
+    button.addEventListener('click', function () {
+      if (sort === button.dataset.gpuSort) return;
+      sort = button.dataset.gpuSort;
+      render(true);
+    });
   });
 
   async function refresh() {
@@ -328,10 +434,11 @@ async function loadBoard() {
       week.textContent = data.week + ' · JST';
       var snapshot = sha;
       if (snapshot !== displayed) {
+        var first = !displayed;
         displayed = snapshot;
         items = data.ranking;
         daily = data.daily || {};
-        render();
+        render(first);
         table.hidden = items.length === 0;
         legend.hidden = table.hidden;
       }
@@ -342,8 +449,16 @@ async function loadBoard() {
       var timestamp = new Intl.DateTimeFormat('zh-CN', {
         dateStyle: 'short', timeStyle: 'short', timeZone: 'Asia/Tokyo'
       }).format(sampled);
-      status.textContent = (Date.now() - sampled.getTime() >= 15 * 60_000 ? '采样延迟 · ' : '最近采样 · ') + timestamp;
+      var freshSample = Date.now() - sampled.getTime() < 15 * 60_000;
+      var lastLabel = (freshSample ? '最近采样 · ' : '采样延迟 · ') + timestamp;
+      if (status.textContent !== lastLabel && freshSample) {
+        status.classList.add('gpu-sample-updated');
+        window.setTimeout(function () { status.classList.remove('gpu-sample-updated'); }, 700);
+      }
+      status.dataset.sample = freshSample ? 'current' : 'delayed';
+      status.textContent = lastLabel;
     } catch (error) {
+      delete status.dataset.sample;
       status.textContent = displayed ? '刷新失败，仍显示上次数据。' : '周榜暂时无法读取。';
     } finally {
       window.setTimeout(refresh, refreshMs);
