@@ -61,21 +61,108 @@ async function loadBoard() {
   var legendDaily = document.getElementById('gpu-daily-legend');
   var periodTotals = document.getElementById('gpu-period-totals');
   var dailyUnit = document.getElementById('gpu-daily-unit');
-  var selectedSeries = new Set();
-  var zoomButton = document.getElementById('gpu-daily-zoom');
-  var zoomed = false;
-
-  zoomButton.addEventListener('click', function () {
-    zoomed = !zoomed;
-    if (!zoomed) selectedSeries.clear();
-    renderDaily(true);
-  });
+  var selectedSeries = null;
+  var sharePanel = document.getElementById('gpu-daily-share');
+  var shareBar = sharePanel.querySelector('.gpu-share-bar');
+  var zoomControls = Object.fromEntries(Array.from(document.querySelectorAll('[data-chart-zoom]'), function (button) {
+    return [button.dataset.chartZoom, button];
+  }));
+  var viewport;
+  var percent = new Intl.NumberFormat('zh-CN', { style: 'percent', maximumFractionDigits: 1 });
 
   function svgNode(tag, attrs, label) {
     var node = document.createElementNS('http://www.w3.org/2000/svg', tag);
     Object.entries(attrs).forEach(function ([key, value]) { node.setAttribute(key, value); });
     if (label !== undefined) node.textContent = label;
     return node;
+  }
+
+  function bindChartViewport(svg, bounds, redraw) {
+    var maxScale = 8;
+    var pointers = new Map();
+    var view = viewport || { scale: 1, left: 0, top: 0 };
+    var center = { x: bounds.width / 2, y: bounds.height / 2 };
+
+    function clamp(value, min, max) { return Math.max(min, Math.min(max, value)); }
+    function svgPoint(event) {
+      var point = new DOMPoint(event.clientX, event.clientY).matrixTransform(svg.getScreenCTM().inverse());
+      return { x: point.x - bounds.x, y: point.y - bounds.y };
+    }
+    function inside(point) {
+      return point.x >= 0 && point.x <= bounds.width && point.y >= 0 && point.y <= bounds.height;
+    }
+    function apply(scale, left, top) {
+      view = viewport = {
+        scale: scale,
+        left: clamp(left, 0, bounds.width * (1 - 1 / scale)),
+        top: clamp(top, 0, bounds.height * (1 - 1 / scale))
+      };
+      svg.classList.toggle('is-zoomed', scale > 1);
+      zoomControls.in.disabled = scale >= maxScale;
+      zoomControls.out.disabled = zoomControls.reset.disabled = scale <= 1;
+      zoomControls.reset.textContent = Number(scale.toFixed(1)) + '×';
+      redraw(view);
+    }
+    function zoom(factor, from, to) {
+      var scale = clamp(view.scale * factor, 1, maxScale);
+      apply(scale, view.left + from.x / view.scale - to.x / scale, view.top + from.y / view.scale - to.y / scale);
+    }
+    function midpoint(a, b) { return { x: (a.x + b.x) / 2, y: (a.y + b.y) / 2 }; }
+    function distance(a, b) { return Math.hypot(a.x - b.x, a.y - b.y); }
+    zoomControls.in.onclick = function () { zoom(1.5, center, center); };
+    zoomControls.out.onclick = function () { zoom(1 / 1.5, center, center); };
+    zoomControls.reset.onclick = function () { apply(1, 0, 0); };
+    svg.addEventListener('wheel', function (event) {
+      if (!event.deltaY || (event.deltaY > 0 && view.scale === 1 && !event.ctrlKey)) return;
+      var p = svgPoint(event);
+      if (!inside(p)) return;
+      event.preventDefault();
+      var delta = event.deltaY * (event.deltaMode === 1 ? 16 : event.deltaMode === 2 ? 120 : 1);
+      zoom(Math.exp(clamp(-delta / 300, -.55, .55)), p, p);
+    }, { passive: false });
+    svg.addEventListener('dblclick', function (event) {
+      var p = svgPoint(event);
+      if (inside(p)) { event.preventDefault(); zoom(1.5, p, p); }
+    });
+    svg.setAttribute('tabindex', '0');
+    svg.addEventListener('keydown', function (event) {
+      if (event.target !== svg) return;
+      var shifts = { ArrowLeft: [-1, 0], ArrowRight: [1, 0], ArrowUp: [0, -1], ArrowDown: [0, 1] };
+      var shift = shifts[event.key];
+      if (shift && view.scale > 1) {
+        apply(view.scale, view.left + shift[0] * 32 / view.scale, view.top + shift[1] * 24 / view.scale);
+      } else if (event.key === '+' || event.key === '=') zoom(1.5, center, center);
+      else if (event.key === '-') zoom(1 / 1.5, center, center);
+      else if (event.key === '0') apply(1, 0, 0);
+      else return;
+      event.preventDefault();
+    });
+    svg.addEventListener('pointerdown', function (event) {
+      if (event.button !== 0 || pointers.size >= 2 || (event.pointerType === 'mouse' && view.scale === 1)) return;
+      var p = svgPoint(event);
+      if (!inside(p)) return;
+      pointers.set(event.pointerId, p);
+      svg.setPointerCapture(event.pointerId);
+      svg.classList.add('is-grabbing');
+    });
+    svg.addEventListener('pointermove', function (event) {
+      var old = pointers.get(event.pointerId);
+      if (!old) return;
+      var next = svgPoint(event);
+      var other = Array.from(pointers.entries()).find(function (entry) { return entry[0] !== event.pointerId; })?.[1];
+      pointers.set(event.pointerId, next);
+      if (other) {
+        var before = distance(old, other);
+        if (before > 0) zoom(distance(next, other) / before, midpoint(old, other), midpoint(next, other));
+      } else if (view.scale > 1) {
+        apply(view.scale, view.left + (old.x - next.x) / view.scale, view.top + (old.y - next.y) / view.scale);
+      }
+    });
+    svg.addEventListener('lostpointercapture', function (event) {
+      pointers.delete(event.pointerId);
+      if (!pointers.size) svg.classList.remove('is-grabbing');
+    });
+    apply(view.scale, view.left, view.top);
   }
 
   function usage(row) {
@@ -121,8 +208,10 @@ async function loadBoard() {
     var focusedSeries = document.activeElement?.dataset.gpuSeries;
     chart.replaceChildren();
     legendDaily.replaceChildren();
-    zoomButton.disabled = true;
-    zoomButton.textContent = zoomed ? '还原全部' : '放大所选';
+    shareBar.replaceChildren();
+    sharePanel.hidden = true;
+    Object.values(zoomControls).forEach(function (button) { button.disabled = true; button.onclick = null; });
+    zoomControls.reset.textContent = '1×';
     var today = new Date(Date.now() + 9 * 3600000);
     var date = today.toISOString().slice(0, 10);
     renderTotals(date);
@@ -144,9 +233,14 @@ async function loadBoard() {
       chart.textContent = '该时间范围内没有记录到 GPU 占用。';
       return;
     }
-    var picked = names.filter(function (name) { return selectedSeries.has(name); });
-    zoomButton.disabled = !zoomed && !picked.length;
-    var active = zoomed && picked.length ? picked : names;
+    var shares = new Map();
+    points.forEach(function (point) {
+      (point.rows || []).forEach(function (row) {
+        shares.set(row.nickname, (shares.get(row.nickname) || 0) + (usage(row) || 0));
+      });
+    });
+    var totalUsage = Array.from(shares.values()).reduce(function (total, value) { return total + value; }, 0);
+    var active = names.includes(selectedSeries) ? [selectedSeries] : names;
     var series = new Map(active.map(function (name) {
       return [name, points.map(function (point) {
         var row = point.rows?.find(function (entry) { return entry.nickname === name; });
@@ -154,16 +248,14 @@ async function loadBoard() {
         return { value: row ? usage(row) : 0, row: row };
       })];
     }));
-    var svg = svgNode('svg', { viewBox: '0 0 620 230', role: 'group', 'aria-label': '所有账号 GPU 用量折线图' });
+    var svg = svgNode('svg', { viewBox: '0 0 620 230', role: 'group', 'aria-label': active.length === 1 ? active[0] + ' GPU 用量折线图' : '全员 GPU 用量折线图' });
     if (animate) svg.classList.add('gpu-chart-enter');
     var values = Array.from(series.values()).flat().filter(Boolean).map(function (point) { return point.value; });
     var high = Math.max(0, ...values);
-    var low = values.length ? Math.min(...values) : 0;
-    var padding = Math.max((high - low) * .08, high * .005, .02);
-    var min = zoomed ? Math.max(0, low - padding) : 0;
-    var max = zoomed ? high + padding : Math.max(1, high);
-    var x = function (i) { return 76 + i * 509 / (points.length - 1); };
-    var y = function (value) { return 190 - 165 * (value - min) / (max - min); };
+    var max = Math.max(1, high);
+    var bounds = { x: 76, y: 25, width: 509, height: 165 };
+    var x = function (i) { return bounds.x + i * bounds.width / (points.length - 1); };
+    var y = function (value) { return bounds.y + bounds.height * (1 - value / max); };
     var tooltip = document.createElement('span');
     tooltip.className = 'gpu-chart-tooltip';
     tooltip.hidden = true;
@@ -199,26 +291,30 @@ async function loadBoard() {
       });
       node.addEventListener('pointerleave', clearHighlight);
     }
-    for (var i = 0; i <= 4; i += 1) {
-      var value = min + (max - min) * i / 4;
-      svg.append(
-        svgNode('line', { x1: x(0), x2: x(points.length - 1), y1: y(value), y2: y(value) }),
-        svgNode('text', { x: 66, y: y(value), 'text-anchor': 'end', dy: '.35em' }, number.format(value))
-      );
-    }
-    points.forEach(function (point, index) {
-      var step = days === 7 ? 2 : days ? 7 : 6;
-      var last = points.length - 1;
-      if (index === last || (index % step === 0 && x(last) - x(index) >= 65)) {
-        svg.append(svgNode('text', { x: x(index), y: 218, 'text-anchor': 'middle' },
-          days ? point.key.slice(5) : point.key.slice(11) + ':00'));
-      }
-    });
+    var axes = svgNode('g', {});
+    var clip = svgNode('clipPath', { id: 'gpu-chart-plot-clip' });
+    clip.append(svgNode('rect', { x: bounds.x - 3, y: bounds.y - 3, width: bounds.width + 6, height: bounds.height + 6 }));
+    var defs = svgNode('defs', {});
+    defs.append(clip);
+    var frame = svgNode('g', { 'clip-path': 'url(#gpu-chart-plot-clip)' });
+    var plot = svgNode('g', { class: 'gpu-chart-world' });
+    var surface = svgNode('rect', { ...bounds, fill: 'transparent' });
+    frame.append(surface, plot);
+    svg.append(defs, axes, frame);
     var hitPaths = [];
     var allDots = [];
     names.forEach(function (name, index) {
       var hue = (index * 137.508 + 161) % 360;
       var color = 'light-dark(hsl(' + hue + ' 68% 35%), hsl(' + hue + ' 77% 72%))';
+      var ratio = totalUsage ? (shares.get(name) || 0) / totalUsage : 0;
+      var share = totalUsage ? (ratio > 0 && ratio < .001 ? '<0.1%' : percent.format(ratio)) : '—';
+      if (ratio > 0) {
+        var segment = document.createElement('span');
+        segment.style.flex = ratio + ' 1 0px';
+        segment.style.background = color;
+        segment.title = name + ' · ' + share;
+        shareBar.append(segment);
+      }
       var path = '';
       var marks = visuals[index] = [];
       var connected = false;
@@ -249,7 +345,7 @@ async function loadBoard() {
         var line = svgNode('path', { d: path, fill: 'none', class: 'gpu-chart-trace', pathLength: 1 });
         line.style.stroke = color;
         marks.push(line);
-        svg.append(line);
+        plot.append(line);
         var hit = svgNode('path', { d: path, fill: 'none', class: 'gpu-chart-hit', 'aria-hidden': 'true' });
         bindHover(hit, name, index);
         hitPaths.push(hit);
@@ -259,8 +355,11 @@ async function loadBoard() {
       var button = document.createElement('button');
       button.type = 'button';
       button.dataset.gpuSeries = name;
-      button.textContent = name;
-      button.setAttribute('aria-pressed', selectedSeries.has(name));
+      var fraction = document.createElement('span');
+      fraction.className = 'gpu-series-fraction';
+      fraction.textContent = share;
+      button.append(name, ' ', fraction);
+      button.setAttribute('aria-pressed', selectedSeries === name);
       if (series.has(name)) {
         button.addEventListener('pointerenter', function (event) {
           if (event.pointerType !== 'touch') highlight(index);
@@ -270,23 +369,58 @@ async function loadBoard() {
         button.addEventListener('blur', clearHighlight);
       }
       button.addEventListener('click', function () {
-        if (!selectedSeries.delete(name)) selectedSeries.add(name);
-        if (!selectedSeries.size) zoomed = false;
+        selectedSeries = selectedSeries === name ? null : name;
+        viewport = null;
         renderDaily();
       });
       key.append(button);
       legendDaily.append(key);
       if (name === focusedSeries) restoreFocus = button;
     });
-    svg.append(...hitPaths, ...allDots);
+    sharePanel.hidden = !totalUsage;
+    plot.append(...hitPaths, ...allDots);
     chart.append(svg, tooltip);
+    bindChartViewport(svg, bounds, function (view) {
+      axes.replaceChildren();
+      var xRight = bounds.x + bounds.width;
+      for (var i = 0; i <= 4; i += 1) {
+        var tickY = bounds.y + bounds.height * i / 4;
+        var value = max * (1 - (view.top + bounds.height * i / (4 * view.scale)) / bounds.height);
+        axes.append(
+          svgNode('line', { x1: bounds.x, x2: xRight, y1: tickY, y2: tickY }),
+          svgNode('text', { x: 66, y: tickY, 'text-anchor': 'end', dy: '.35em' }, number.format(Math.max(0, value)))
+        );
+      }
+      var ticks = points.map(function (point, i) {
+        return { key: point.key, x: bounds.x + (x(i) - bounds.x - view.left) * view.scale, index: i };
+      }).filter(function (tick) { return tick.x >= bounds.x - .01 && tick.x <= xRight + .01; });
+      var last = ticks.at(-1);
+      var previous = -Infinity;
+      ticks.forEach(function (tick) {
+        var step = days === 7 ? 2 : days ? 7 : 6;
+        if (tick !== last && ((view.scale === 1 && tick.index % step !== 0) ||
+            last.x - tick.x < 65 || tick.x - previous < 65)) return;
+        axes.append(svgNode('text', { x: tick.x, y: 218, 'text-anchor': 'middle' },
+          days ? tick.key.slice(5) : tick.key.slice(11) + ':00'));
+        previous = tick.x;
+      });
+      plot.setAttribute('transform', 'translate(' + bounds.x + ' ' + bounds.y + ') scale(' + view.scale +
+        ') translate(' + (-bounds.x - view.left) + ' ' + (-bounds.y - view.top) + ')');
+      svg.style.setProperty('--gpu-inverse-zoom', 1 / view.scale);
+      allDots.forEach(function (dot) {
+        var px = dot.cx.baseVal.value - bounds.x - view.left;
+        var py = dot.cy.baseVal.value - bounds.y - view.top;
+        var visible = px >= -.01 && px <= bounds.width / view.scale + .01 && py >= -.01 && py <= bounds.height / view.scale + .01;
+        dot.setAttribute('tabindex', visible ? '0' : '-1');
+      });
+      clearHighlight();
+    });
     restoreFocus?.focus({ preventScroll: true });
   }
   function changeRange() {
     var index = slider.valueAsNumber;
     days = [0, 7, 30][index];
-    zoomed = false;
-    selectedSeries.clear();
+    viewport = null;
     slider.setAttribute('aria-valuetext', stops[index].textContent);
     stops.forEach(function (item, i) { item.setAttribute('aria-pressed', i === index); });
     renderDaily(true);
@@ -401,6 +535,7 @@ async function loadBoard() {
     button.addEventListener('click', function () {
       if (sort === button.dataset.gpuSort) return;
       sort = button.dataset.gpuSort;
+      viewport = null;
       render(true);
     });
   });

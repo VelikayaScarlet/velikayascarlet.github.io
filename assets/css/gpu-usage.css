@@ -261,7 +261,7 @@
 .gpu-daily-range { display: grid; width: min(100%, 19rem); }
 .gpu-daily-range input { width: calc(66.6667% + 16px); justify-self: center; margin: 0; min-height: 25px; accent-color: var(--accent); cursor: pointer; }
 .gpu-daily-stops { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); }
-.gpu-daily-stops button, .gpu-daily-legend button, .gpu-daily-zoom {
+.gpu-daily-stops button, .gpu-daily-legend button, .gpu-chart-controls button {
   padding: .19rem .3rem;
   border: 1px solid transparent;
   border-radius: 3px;
@@ -272,16 +272,19 @@
 .gpu-daily-stops button[aria-pressed="true"] { color: var(--accent); font-weight: 750; }
 #gpu-daily-unit { color: var(--muted); font-size: .78rem; margin: .5rem 0 .6rem; }
 #gpu-daily-chart { position: relative; color: var(--muted); }
-#gpu-daily-chart svg { display: block; width: 100%; height: auto; }
+#gpu-daily-chart svg { display: block; width: 100%; height: auto; touch-action: none; }
+#gpu-daily-chart svg.is-zoomed { cursor: grab; }
+#gpu-daily-chart svg.is-grabbing { cursor: grabbing; }
+#gpu-daily-chart .gpu-chart-world :is(path, circle) { vector-effect: non-scaling-stroke; }
 #gpu-daily-chart text { fill: var(--muted); font: 17px var(--text); font-variant-numeric: tabular-nums; }
 #gpu-daily-chart line { stroke: var(--rule); stroke-dasharray: 2 5; }
 #gpu-daily-chart path { stroke-width: 2; stroke-linejoin: round; }
-#gpu-daily-chart circle { stroke: var(--surface); stroke-width: 1; }
+#gpu-daily-chart circle { stroke: var(--surface); stroke-width: 1; r: calc(2.1px * var(--gpu-inverse-zoom, 1)); }
 #gpu-daily-chart circle:is(:hover, :focus-visible) { stroke: var(--ink); }
 #gpu-daily-chart .gpu-chart-hit { stroke: transparent; stroke-width: 8; pointer-events: stroke; }
 #gpu-daily-chart :is(.gpu-chart-trace, .gpu-chart-point).is-muted { opacity: .19; }
 #gpu-daily-chart .gpu-chart-trace.is-highlighted { stroke-width: 3.2; }
-#gpu-daily-chart .gpu-chart-point.is-highlighted { r: 2.7; }
+#gpu-daily-chart .gpu-chart-point.is-highlighted { r: calc(2.7px * var(--gpu-inverse-zoom, 1)); }
 .gpu-chart-tooltip {
   position: absolute;
   z-index: 1;
@@ -294,21 +297,30 @@
   overflow-wrap: anywhere;
   pointer-events: none;
 }
-.gpu-daily-series { display: flex; flex-wrap: wrap; align-items: start; gap: .5rem; border-top: 1px solid var(--rule); padding-top: .6rem; }
+.gpu-chart-toolbar { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: .5rem; }
+.gpu-chart-controls { display: inline-flex; border: 1px solid var(--rule); border-radius: 4px; }
+.gpu-chart-controls button { min-width: 33px; min-height: 32px; font-variant-numeric: tabular-nums; }
+.gpu-chart-controls button + button { border-inline-start-color: var(--rule); }
+.gpu-chart-controls button:not(:disabled):hover { background: var(--accent-wash); color: var(--accent); }
+.gpu-chart-controls button:disabled { opacity: .62; }
+.gpu-daily-series { display: grid; gap: .5rem; border-top: 1px solid var(--rule); padding-top: .6rem; }
+.gpu-share strong { display: block; margin-bottom: .35rem; font-size: .78rem; }
+.gpu-share-bar { display: flex; height: .55rem; border-radius: 3px; overflow: hidden; }
+.gpu-share-bar span { min-width: 0; }
+.gpu-series-fraction { font-size: .73rem; font-variant-numeric: tabular-nums; color: var(--muted); white-space: nowrap; }
 .gpu-daily-legend { flex: 1 1 14rem; display: flex; flex-wrap: wrap; gap: .18rem .3rem; padding: 0; margin: 0; list-style: none; min-width: 0; }
 .gpu-daily-legend li { display: inline-flex; align-items: center; padding-inline-start: .24rem; max-width: 100%; }
 .gpu-daily-legend li::before { content: ""; flex: 0 0 .7em; height: .18em; margin-inline-end: .12em; background: var(--series); }
 .gpu-daily-legend button { min-width: 0; overflow-wrap: anywhere; }
-.gpu-daily-legend button:hover, .gpu-daily-legend button[aria-pressed="true"], .gpu-daily-zoom {
+.gpu-daily-legend button:hover, .gpu-daily-legend button[aria-pressed="true"] {
   color: var(--ink);
   border-color: var(--rule);
   background: var(--paper);
 }
-.gpu-daily-legend button[aria-pressed="true"], .gpu-daily-zoom:not(:disabled):hover {
+.gpu-daily-legend button[aria-pressed="true"] {
   color: var(--accent);
   background: var(--accent-wash);
 }
-.gpu-daily-zoom:disabled { opacity: .6; }
 
 .gpu-board__notes { border-block: 1px solid var(--rule); padding: .65rem 0; color: var(--muted); font-size: .83rem; }
 .gpu-board__notes summary { cursor: pointer; color: var(--ink); font-weight: 700; }

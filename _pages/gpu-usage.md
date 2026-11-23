@@ -71,20 +71,30 @@ author_profile: false
     <header class="gpu-daily-heading"><h2 class="gpu-section-title" id="gpu-daily-title"><span aria-hidden="true">02</span> GPU 用量趋势</h2></header>
     <div class="gpu-daily-grid">
       <div class="gpu-daily-plot">
-        <div class="gpu-daily-range">
-          <input type="range" id="gpu-daily-range" min="0" max="2" step="1" value="0"
-            aria-label="时间范围" aria-valuetext="今日逐小时">
-          <div class="gpu-daily-stops">
-            <button type="button" data-gpu-stop="0" aria-pressed="true">今日逐小时</button>
-            <button type="button" data-gpu-stop="1" aria-pressed="false">7 Days</button>
-            <button type="button" data-gpu-stop="2" aria-pressed="false">30 Days</button>
+        <div class="gpu-chart-toolbar">
+          <div class="gpu-daily-range">
+            <input type="range" id="gpu-daily-range" min="0" max="2" step="1" value="0"
+              aria-label="时间范围" aria-valuetext="今日逐小时">
+            <div class="gpu-daily-stops">
+              <button type="button" data-gpu-stop="0" aria-pressed="true">今日逐小时</button>
+              <button type="button" data-gpu-stop="1" aria-pressed="false">7 Days</button>
+              <button type="button" data-gpu-stop="2" aria-pressed="false">30 Days</button>
+            </div>
+          </div>
+          <div class="gpu-chart-controls" role="group" aria-label="图表缩放">
+            <button type="button" data-chart-zoom="out" aria-label="缩小图表" title="缩小图表" disabled>−</button>
+            <button type="button" data-chart-zoom="reset" aria-label="恢复原始视图" title="恢复原始视图" disabled>1×</button>
+            <button type="button" data-chart-zoom="in" aria-label="放大图表" title="放大图表" disabled>+</button>
           </div>
         </div>
         <p id="gpu-daily-unit" aria-live="polite"></p>
         <div id="gpu-daily-chart"></div>
         <div class="gpu-daily-series">
+          <div id="gpu-daily-share" class="gpu-share" hidden>
+            <strong>全员用量占比</strong>
+            <div class="gpu-share-bar" aria-hidden="true"></div>
+          </div>
           <ul id="gpu-daily-legend" class="gpu-daily-legend" aria-label="集群账号"></ul>
-          <button type="button" id="gpu-daily-zoom" class="gpu-daily-zoom" disabled>放大所选</button>
         </div>
       </div>
       <div id="gpu-period-totals" class="gpu-period-totals" aria-label="累计用量"></div>
@@ -97,4 +107,4 @@ author_profile: false
     <p>规格来源：<a href="https://resources.nvidia.com/en-us-hopper-architecture">Hopper</a>、<a href="https://www.nvidia.com/en-au/data-center/h100/">H100 NVL</a>、<a href="https://images.nvidia.com/data-center/a100/a100-datasheet.pdf">A100</a>、<a href="https://www.nvidia.com/en-gb/data-center/l40s/">L40S</a>、<a href="https://www.nvidia.com/content/dam/en-zz/Solutions/design-visualization/support-guide/NVIDIA-L40-Datasheet-January-2023.pdf">L40</a>、<a href="https://www.nvidia.com/content/dam/en-zz/Solutions/design-visualization/quadro-product-literature/pdf/NVIDIA-RTX-Blackwell-PRO-GPU-Architecture-v1_1.pdf">RTX 系列</a>。</p>
   </details>
 </section>
-<script src="{{ '/assets/js/gpu-weekly-board.js' | relative_url }}?v=13" defer></script>
+<script src="{{ '/assets/js/gpu-weekly-board.js' | relative_url }}?v=14" defer></script>
