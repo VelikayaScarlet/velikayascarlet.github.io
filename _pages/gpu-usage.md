@@ -73,15 +73,16 @@ author_profile: false
       <div class="gpu-daily-plot">
         <div class="gpu-chart-toolbar">
           <div class="gpu-daily-range">
-            <input type="range" id="gpu-daily-range" min="0" max="2" step="1" value="0"
-              aria-label="时间范围" aria-valuetext="逐小时">
+            <input type="range" id="gpu-daily-range" min="0" max="3" step="1" value="0"
+              aria-label="时间范围" aria-valuetext="最近 24 小时">
             <div class="gpu-daily-stops">
-              <button type="button" data-gpu-stop="0" aria-pressed="true">逐小时</button>
-              <button type="button" data-gpu-stop="1" aria-pressed="false">7 Days</button>
-              <button type="button" data-gpu-stop="2" aria-pressed="false">30 Days</button>
+              <button type="button" data-gpu-stop="0" aria-pressed="true">最近 24 小时</button>
+              <button type="button" data-gpu-stop="1" aria-pressed="false">当天</button>
+              <button type="button" data-gpu-stop="2" aria-pressed="false">7 天</button>
+              <button type="button" data-gpu-stop="3" aria-pressed="false">30 天</button>
             </div>
           </div>
-          <label class="gpu-chart-date" id="gpu-chart-date-control">
+          <label class="gpu-chart-date" id="gpu-chart-date-control" hidden>
             日期（JST） <input type="date" id="gpu-chart-date">
           </label>
           <div class="gpu-chart-controls" role="group" aria-label="图表缩放">
@@ -110,4 +111,4 @@ author_profile: false
     <p>规格来源：<a href="https://resources.nvidia.com/en-us-hopper-architecture">Hopper</a>、<a href="https://www.nvidia.com/en-au/data-center/h100/">H100 NVL</a>、<a href="https://images.nvidia.com/data-center/a100/a100-datasheet.pdf">A100</a>、<a href="https://www.nvidia.com/en-gb/data-center/l40s/">L40S</a>、<a href="https://www.nvidia.com/content/dam/en-zz/Solutions/design-visualization/support-guide/NVIDIA-L40-Datasheet-January-2023.pdf">L40</a>、<a href="https://www.nvidia.com/content/dam/en-zz/Solutions/design-visualization/quadro-product-literature/pdf/NVIDIA-RTX-Blackwell-PRO-GPU-Architecture-v1_1.pdf">RTX 系列</a>。</p>
   </details>
 </section>
-<script src="{{ '/assets/js/gpu-weekly-board.js' | relative_url }}?v=15" defer></script>
+<script src="{{ '/assets/js/gpu-weekly-board.js' | relative_url }}?v=16" defer></script>

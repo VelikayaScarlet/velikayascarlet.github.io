@@ -54,7 +54,9 @@ async function loadBoard() {
   var currentData;
   var displayed = '';
   var daily = {};
-  var days = 0;
+  var days = -1;
+  var renderedHour;
+  var hourMs = 3600000;
   var slider = document.getElementById('gpu-daily-range');
   var dateControl = document.getElementById('gpu-chart-date-control');
   var dateInput = document.getElementById('gpu-chart-date');
@@ -184,7 +186,7 @@ async function loadBoard() {
     var rate = sort === 'memory' ? capacity?.mib / 1024 : capacity?.h100;
     var monthDays = Object.keys(daily).filter(function (key) { return key.startsWith(month) && key <= date; });
     [
-      ['今日', date, daily[date]],
+      ['今日', date, daily[date] ?? (sampleDate < date ? [] : null)],
       ['本周', startOfWeek, sampleDate >= startOfWeek && sampleDate <= date ? items : null],
       ['本月', month + '-01', monthDays.length ? monthDays.flatMap(function (key) { return daily[key]; }) : null]
     ].forEach(function ([label, start, rows]) {
@@ -195,7 +197,7 @@ async function loadBoard() {
       var track = document.createElement('span');
       var elapsed = (source - Date.parse(start + 'T00:00:00+09:00')) / 3600000;
       var actual = rows?.reduce(function (sum, row) { return sum + usage(row); }, 0);
-      var limit = rate > 0 && elapsed >= 0 ? rate * elapsed : null;
+      var limit = rate > 0 && Number.isFinite(elapsed) ? rate * Math.max(0, elapsed) : null;
       title.textContent = label;
       total.textContent = actual === undefined ? '—' : number.format(actual);
       ceiling.textContent = '理论上限 ' + (limit === null ? '—' : number.format(limit));
@@ -215,7 +217,9 @@ async function loadBoard() {
     sharePanel.hidden = true;
     Object.values(zoomControls).forEach(function (button) { button.disabled = true; button.onclick = null; });
     zoomControls.reset.textContent = '1×';
-    var today = new Date(Date.now() + 9 * 3600000);
+    var now = Date.now();
+    renderedHour = Math.floor(now / hourMs);
+    var today = new Date(now + 9 * hourMs);
     var date = today.toISOString().slice(0, 10);
     dateControl.hidden = days !== 0;
     dateInput.min = new Date(today.getTime() - 30 * 86400000).toISOString().slice(0, 10);
@@ -225,10 +229,13 @@ async function loadBoard() {
     dateInput.value = chartDate;
     renderTotals(date);
     var unit = sort === 'memory' ? '显存小时（GiB·h）' : 'H100 等效小时（已折算卡）';
-    var points = Array.from({ length: days || 24 }, function (_, index) {
-      var key = days ? new Date(today.getTime() - (days - 1 - index) * 86400000).toISOString().slice(0, 10)
-        : chartDate + 'T' + String(index).padStart(2, '0');
-      return { key: key, rows: days ? daily[key] : currentData?.hourly?.[key] };
+    var dailyView = days > 0;
+    var points = Array.from({ length: dailyView ? days : 24 }, function (_, index) {
+      var key;
+      if (dailyView) key = new Date(today.getTime() - (days - 1 - index) * 86400000).toISOString().slice(0, 10);
+      else if (days === -1) key = new Date(today.getTime() - (23 - index) * hourMs).toISOString().slice(0, 13);
+      else key = chartDate + 'T' + String(index).padStart(2, '0');
+      return { key: key, rows: dailyView ? daily[key] : currentData?.hourly?.[key] };
     });
     dailyUnit.textContent = unit + ' · JST · 仅累计已采集数据；上限按当前卡量及截至最近采样的时长估算。';
     if (!points.some(function (point) { return point.rows; })) {
@@ -336,7 +343,7 @@ async function loadBoard() {
         var value = sample.value;
         path += (connected ? ' L' : ' M') + x(i) + ' ' + y(value);
         connected = true;
-        var label = name + ' · ' + point.key.replace('T', ' ') + (days ? '' : ':00') + ' · ' + number.format(value);
+        var label = name + ' · ' + point.key.replace('T', ' ') + (dailyView ? '' : ':00') + ' · ' + number.format(value);
         if (sort === 'compute' && sample.row && !complete(sample.row)) label += '（部分折算）';
         var dot = svgNode('circle', { cx: x(i), cy: y(value), r: 2.1, class: 'gpu-chart-point', tabindex: 0, 'aria-label': label });
         dot.style.fill = color;
@@ -406,11 +413,11 @@ async function loadBoard() {
       var last = ticks.at(-1);
       var previous = -Infinity;
       ticks.forEach(function (tick) {
-        var step = days === 7 ? 2 : days ? 7 : 6;
+        var step = days === 7 ? 2 : dailyView ? 7 : 6;
         if (tick !== last && ((view.scale === 1 && tick.index % step !== 0) ||
             last.x - tick.x < 65 || tick.x - previous < 65)) return;
         axes.append(svgNode('text', { x: tick.x, y: 218, 'text-anchor': 'middle' },
-          days ? tick.key.slice(5) : tick.key.slice(11) + ':00'));
+          dailyView ? tick.key.slice(5) : tick.key.slice(11) + ':00'));
         previous = tick.x;
       });
       plot.setAttribute('transform', 'translate(' + bounds.x + ' ' + bounds.y + ') scale(' + view.scale +
@@ -428,7 +435,7 @@ async function loadBoard() {
   }
   function changeRange() {
     var index = slider.valueAsNumber;
-    days = [0, 7, 30][index];
+    days = [-1, 0, 7, 30][index];
     viewport = null;
     slider.setAttribute('aria-valuetext', stops[index].textContent);
     stops.forEach(function (item, i) { item.setAttribute('aria-pressed', i === index); });
@@ -452,6 +459,21 @@ async function loadBoard() {
     });
   });
   renderDaily();
+
+  function refreshClock() {
+    if (renderedHour !== Math.floor(Date.now() / hourMs)) renderDaily();
+  }
+
+  function scheduleClockRefresh() {
+    window.setTimeout(function () {
+      refreshClock();
+      scheduleClockRefresh();
+    }, hourMs - Date.now() % hourMs + 50);
+  }
+  scheduleClockRefresh();
+  document.addEventListener('visibilitychange', function () {
+    if (!document.hidden) refreshClock();
+  });
 
   function complete(item) {
     return item.mib_minutes > 0 && item.rated_mib_minutes === item.mib_minutes;
