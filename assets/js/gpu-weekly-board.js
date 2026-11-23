@@ -56,6 +56,9 @@ async function loadBoard() {
   var daily = {};
   var days = 0;
   var slider = document.getElementById('gpu-daily-range');
+  var dateControl = document.getElementById('gpu-chart-date-control');
+  var dateInput = document.getElementById('gpu-chart-date');
+  var selectedDate = '';
   var stops = Array.from(document.querySelectorAll('[data-gpu-stop]'));
   var chart = document.getElementById('gpu-daily-chart');
   var legendDaily = document.getElementById('gpu-daily-legend');
@@ -214,11 +217,17 @@ async function loadBoard() {
     zoomControls.reset.textContent = '1×';
     var today = new Date(Date.now() + 9 * 3600000);
     var date = today.toISOString().slice(0, 10);
+    dateControl.hidden = days !== 0;
+    dateInput.min = new Date(today.getTime() - 30 * 86400000).toISOString().slice(0, 10);
+    dateInput.max = date;
+    if (selectedDate && (selectedDate < dateInput.min || selectedDate > date)) selectedDate = '';
+    var chartDate = selectedDate || date;
+    dateInput.value = chartDate;
     renderTotals(date);
     var unit = sort === 'memory' ? '显存小时（GiB·h）' : 'H100 等效小时（已折算卡）';
     var points = Array.from({ length: days || 24 }, function (_, index) {
       var key = days ? new Date(today.getTime() - (days - 1 - index) * 86400000).toISOString().slice(0, 10)
-        : date + 'T' + String(index).padStart(2, '0');
+        : chartDate + 'T' + String(index).padStart(2, '0');
       return { key: key, rows: days ? daily[key] : currentData?.hourly?.[key] };
     });
     dailyUnit.textContent = unit + ' · JST · 仅累计已采集数据；上限按当前卡量及截至最近采样的时长估算。';
@@ -427,6 +436,15 @@ async function loadBoard() {
   }
 
   slider.addEventListener('input', changeRange);
+  dateInput.addEventListener('change', function () {
+    if (!dateInput.validity.valid) {
+      dateInput.value = selectedDate || dateInput.max;
+      return;
+    }
+    selectedDate = dateInput.value === dateInput.max ? '' : dateInput.value;
+    viewport = null;
+    renderDaily(true);
+  });
   stops.forEach(function (button) {
     button.addEventListener('click', function () {
       slider.value = button.dataset.gpuStop;

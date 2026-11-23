@@ -298,6 +298,8 @@
   pointer-events: none;
 }
 .gpu-chart-toolbar { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: .5rem; }
+.gpu-chart-date { display: inline-flex; align-items: center; flex-wrap: wrap; gap: .35rem; font-size: .8rem; color: var(--muted); }
+.gpu-chart-date input { min-height: 34px; max-width: 100%; padding: .15rem .4rem; border: 1px solid var(--rule); border-radius: 4px; color: var(--ink); background: var(--paper); }
 .gpu-chart-controls { display: inline-flex; border: 1px solid var(--rule); border-radius: 4px; }
 .gpu-chart-controls button { min-width: 33px; min-height: 32px; font-variant-numeric: tabular-nums; }
 .gpu-chart-controls button + button { border-inline-start-color: var(--rule); }
