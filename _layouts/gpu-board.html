@@ -3,19 +3,47 @@ layout: compress
 ---
 
 <!doctype html>
-<html lang="zh-CN">
+<html lang="zh-CN" data-gpu-theme="editorial">
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     {% include seo.html %}
     <link rel="icon" type="image/png" href="{{ '/images/favicon-32x32.png' | relative_url }}">
     <link rel="stylesheet" href="{{ '/assets/css/gpu-usage.css' | relative_url }}?v=16">
+    <link rel="stylesheet" href="{{ '/assets/css/gpu-themes.css' | relative_url }}?v=1">
+    <script>
+      (function () {
+        var root = document.documentElement;
+        var key = 'gpu-board-theme';
+        try {
+          var theme = localStorage.getItem(key) || '';
+          if (/^(editorial|y2k|windows|mac|terminal)$/.test(theme)) root.dataset.gpuTheme = theme;
+        } catch (error) {}
+        document.addEventListener('DOMContentLoaded', function () {
+          var picker = document.getElementById('gpu-theme');
+          picker.value = root.dataset.gpuTheme;
+          picker.addEventListener('change', function () {
+            root.dataset.gpuTheme = picker.value;
+            try { localStorage.setItem(key, picker.value); } catch (error) {}
+          });
+        });
+      })();
+    </script>
   </head>
   <body class="gpu-site">
     <main class="gpu-shell">
       <nav class="gpu-shell__nav" aria-label="返回链接">
         <a href="{{ '/links/' | relative_url }}"><span aria-hidden="true">←</span> Links</a>
-        <span class="gpu-shell__mark">KUEE <span>/</span> GPU</span>
+        <div class="gpu-shell__tools">
+          <span class="gpu-shell__mark">KUEE <span>/</span> GPU</span>
+          <select id="gpu-theme" aria-label="切换界面风格" title="切换界面风格">
+            <option value="editorial">算力日报</option>
+            <option value="y2k">千禧年</option>
+            <option value="windows">Windows 经典</option>
+            <option value="mac">macOS</option>
+            <option value="terminal">终端</option>
+          </select>
+        </div>
       </nav>
       {{ content }}
     </main>

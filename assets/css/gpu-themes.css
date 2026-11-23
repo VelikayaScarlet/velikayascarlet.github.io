@@ -1,0 +1,173 @@
+.gpu-shell__tools { display: flex; align-items: center; justify-content: flex-end; gap: .9rem; }
+#gpu-theme {
+  min-height: 32px;
+  max-width: 100%;
+  padding: .24rem .45rem;
+  border: 1px solid var(--rule);
+  border-radius: 4px;
+  background: var(--surface);
+  color: var(--ink);
+  font: 600 .82rem/1.4 var(--text);
+  cursor: pointer;
+}
+#gpu-theme:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
+
+[data-gpu-theme="y2k"] .gpu-site {
+  --paper: #d9f2fe;
+  --surface: #f4fbff;
+  --ink: #102f50;
+  --muted: #345578;
+  --rule: #8dbcd4;
+  --accent: #a91a66;
+  --accent-wash: #ffdbf0;
+  --lime: #d8f581;
+  --ice: #b1eafa;
+  --strong: #144e82;
+  --swatch-ink: #183442;
+  --text: Verdana, "Microsoft YaHei UI", sans-serif;
+  --display: "Trebuchet MS", "Arial Black", sans-serif;
+  --han: "Microsoft YaHei UI", "PingFang SC", sans-serif;
+  color-scheme: light;
+}
+[data-gpu-theme="y2k"] .gpu-board__mast {
+  margin-top: .75rem;
+  padding-left: 1rem;
+  border: 1px solid var(--rule);
+  border-radius: 10px;
+  background: linear-gradient(#f7fdff 5%, #c5edff 51%, #a4dbf7 52%, #def4ff);
+  box-shadow: inset 0 0 0 2px #f5fcff;
+  overflow: hidden;
+}
+[data-gpu-theme="y2k"] .gpu-board--locked .gpu-board__mast { margin-top: 0; }
+[data-gpu-theme="y2k"] .gpu-board--locked { border: 1px solid var(--rule); border-radius: 10px; }
+[data-gpu-theme="y2k"] .gpu-board__mast h1 span { font-weight: 900; text-shadow: 1px 2px #fff; }
+[data-gpu-theme="y2k"] .gpu-board__meta { background: linear-gradient(#287cb1, var(--strong)); }
+[data-gpu-theme="y2k"] :is(#gpu-theme, .gpu-board__sort, .gpu-board__gate-controls button) { border-radius: 999px; }
+[data-gpu-theme="y2k"] .gpu-board__sort button { border-radius: inherit; }
+[data-gpu-theme="y2k"] :is(.gpu-board__leaders > div, .gpu-period-totals section, .gpu-daily-plot) {
+  border: 1px solid var(--rule);
+  border-radius: 9px;
+  box-shadow: inset 0 1px 0 #fff;
+}
+
+[data-gpu-theme="windows"] .gpu-site {
+  --paper: #196f72;
+  --surface: #fff;
+  --ink: #1a2530;
+  --muted: #485c65;
+  --rule: #9ba7ae;
+  --accent: #003b86;
+  --accent-wash: #cde3ff;
+  --lime: #e0efd5;
+  --ice: #dceaee;
+  --strong: #074280;
+  --text: Tahoma, "Microsoft YaHei UI", "Segoe UI", sans-serif;
+  --display: Tahoma, "Segoe UI", sans-serif;
+  --han: var(--text);
+  color-scheme: light;
+}
+[data-gpu-theme="windows"] .gpu-shell { margin-top: min(3vh, 1.5rem); background: #d7dcde; padding: 0 .7rem 1rem; border: 2px outset #eaf2f6; }
+[data-gpu-theme="windows"] .gpu-shell__nav { min-height: 44px; }
+[data-gpu-theme="windows"] .gpu-board__mast { margin-top: .55rem; padding-left: .8rem; background: #074280; border: 2px inset #b6c8da; color: #fff; }
+[data-gpu-theme="windows"] .gpu-board__mast > :first-child { padding-block: .65rem; }
+[data-gpu-theme="windows"] .gpu-board__mast h1 { font-size: 1.6rem; font-weight: 750; }
+[data-gpu-theme="windows"] .gpu-board__mast h1 span { font: inherit; color: inherit; }
+[data-gpu-theme="windows"] .gpu-board__source { color: #e1edfb; }
+[data-gpu-theme="windows"] .gpu-board__meta { background: #083568; }
+[data-gpu-theme="windows"] .gpu-board__gate-mark { color: #e1edfb; }
+[data-gpu-theme="windows"] .gpu-board--locked { border: 2px outset #eaf2f6; background: #d7dcde; }
+[data-gpu-theme="windows"] .gpu-board--locked .gpu-board__mast { margin-top: 0; }
+[data-gpu-theme="windows"] :is(#gpu-theme, .gpu-chart-controls, .gpu-board__sort, .gpu-board__gate-controls button, .gpu-period-totals section, .gpu-daily-plot) {
+  border: 2px outset #f0f6f8;
+  border-radius: 0;
+}
+[data-gpu-theme="windows"] :is(.gpu-board__leaders > div, .gpu-board__rank, .gpu-board__sort button, .gpu-chart-date input) { border-radius: 0; }
+[data-gpu-theme="windows"] :is(.gpu-chart-date input, .gpu-board__gate-controls input) { background: var(--surface); }
+[data-gpu-theme="windows"] .gpu-board__leader-place { font-style: normal; font-weight: 800; }
+[data-gpu-theme="windows"] .gpu-board table { border-top: 2px inset #b4c2c9; }
+
+[data-gpu-theme="mac"] .gpu-site {
+  --paper: #edf0f3;
+  --surface: #fff;
+  --ink: #182631;
+  --muted: #53626f;
+  --rule: #c7d0d9;
+  --accent: #0a57a3;
+  --accent-wash: #dcecff;
+  --lime: #dcefe5;
+  --ice: #e0edfb;
+  --strong: #174374;
+  --text: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Microsoft YaHei UI", sans-serif;
+  --display: var(--text);
+  --han: var(--text);
+  color-scheme: light;
+}
+[data-gpu-theme="mac"] .gpu-board__mast {
+  margin-top: 1rem;
+  padding-left: 1.2rem;
+  border: 1px solid var(--rule);
+  border-radius: 8px;
+  background: var(--surface);
+  overflow: hidden;
+}
+[data-gpu-theme="mac"] .gpu-board__mast > :first-child::before {
+  content: "";
+  display: block;
+  width: 9px;
+  height: 9px;
+  margin-bottom: .58rem;
+  border-radius: 50%;
+  background: #d94645;
+  box-shadow: 15px 0 #db991d, 30px 0 #388748;
+}
+[data-gpu-theme="mac"] .gpu-board--locked { border: 1px solid var(--rule); border-radius: 8px; box-shadow: 0 10px 26px #25334a1b; }
+[data-gpu-theme="mac"] .gpu-board--locked .gpu-board__mast {
+  margin-top: 0;
+  border-width: 0 0 1px;
+  border-radius: 8px 8px 0 0;
+}
+[data-gpu-theme="mac"] .gpu-board__mast h1 span { color: inherit; font: inherit; }
+[data-gpu-theme="mac"] .gpu-board__meta { color: var(--ink); background: var(--ice); }
+[data-gpu-theme="mac"] #gpu-board-lock { border-color: var(--rule); }
+[data-gpu-theme="mac"] #gpu-board-lock:focus-visible { outline-color: var(--accent); }
+[data-gpu-theme="mac"] .gpu-section-title > span { font-style: normal; font-weight: 650; }
+[data-gpu-theme="mac"] :is(#gpu-theme, .gpu-board__sort, .gpu-chart-controls) { border-radius: 8px; }
+[data-gpu-theme="mac"] :is(.gpu-daily-plot, .gpu-period-totals section, .gpu-board__leaders > div) { border-radius: 8px; }
+[data-gpu-theme="mac"] .gpu-board table, [data-gpu-theme="mac"] .gpu-daily { border-top: 1px solid var(--rule); }
+
+[data-gpu-theme="terminal"] .gpu-site {
+  --paper: #101b18;
+  --surface: #162823;
+  --ink: #e0f0e8;
+  --muted: #abc4ba;
+  --rule: #45685d;
+  --accent: #9af5c7;
+  --accent-wash: #284239;
+  --lime: #9af5c7;
+  --ice: #b5dae0;
+  --strong: #25423a;
+  --text: "Cascadia Code", "SFMono-Regular", Consolas, "Microsoft YaHei UI", monospace;
+  --display: var(--text);
+  --han: var(--text);
+  color-scheme: dark;
+}
+[data-gpu-theme="terminal"] .gpu-board__mast { margin-top: .7rem; padding-left: .8rem; border: 1px solid var(--rule); background: var(--surface); }
+[data-gpu-theme="terminal"] .gpu-board__mast h1 span { font: inherit; }
+[data-gpu-theme="terminal"] .gpu-board__mast h1 span::before { content: "> "; }
+[data-gpu-theme="terminal"] .gpu-board--locked .gpu-board__mast { margin-top: 0; }
+[data-gpu-theme="terminal"] :is(#gpu-theme, .gpu-board__sort, .gpu-daily-plot, .gpu-period-totals section, .gpu-board__leaders > div) { border-radius: 0; }
+[data-gpu-theme="terminal"] #gpu-daily-chart line { stroke-dasharray: 1 5; }
+[data-gpu-theme="terminal"] .gpu-board tbody tr:hover { background: var(--strong); }
+[data-gpu-theme="terminal"] .gpu-board [data-band="mid"] { --gpu-band: #d1e8a4; --gpu-band-bg: #314631; }
+[data-gpu-theme="terminal"] .gpu-board [data-band="mid-low"] { --gpu-band: #b0dbda; --gpu-band-bg: #2b4748; }
+
+:is([data-gpu-theme="y2k"], [data-gpu-theme="windows"], [data-gpu-theme="mac"]) .gpu-board [data-band="mid"] { --gpu-band: #365719; --gpu-band-bg: var(--lime); }
+:is([data-gpu-theme="y2k"], [data-gpu-theme="windows"], [data-gpu-theme="mac"]) .gpu-board [data-band="mid-low"] { --gpu-band: #235e65; --gpu-band-bg: var(--ice); }
+:is([data-gpu-theme="y2k"], [data-gpu-theme="windows"], [data-gpu-theme="mac"]) .gpu-board tbody tr:hover { background: var(--ice); }
+
+@media (max-width: 460px) {
+  .gpu-shell__tools { gap: .5rem; }
+  .gpu-shell__mark { display: none; }
+  [data-gpu-theme="windows"] .gpu-shell { padding-inline: .35rem; }
+  :is([data-gpu-theme="y2k"], [data-gpu-theme="mac"], [data-gpu-theme="terminal"]) .gpu-board__mast { padding-left: .6rem; }
+}
