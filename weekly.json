@@ -1,8 +1,8 @@
 {
   "week": "2026-W48",
   "identity": "account",
-  "slot_end": 1795543200,
-  "source_time": "2026-11-25T02:55:30.631000+09:00",
+  "slot_end": 1795543920,
+  "source_time": "2026-11-25T03:07:47.839000+09:00",
   "daily": {
     "2026-11-23": [
       {
@@ -143,9 +143,9 @@
       },
       {
         "nickname": "tarutani",
-        "mib_minutes": 13665888,
-        "rated_mib_minutes": 13665888,
-        "h100_hours": 1.7535144405700427
+        "mib_minutes": 14045496,
+        "rated_mib_minutes": 14045496,
+        "h100_hours": 1.8022231750303217
       },
       {
         "nickname": "ruiyi",
@@ -2097,6 +2097,14 @@
         "rated_mib_minutes": 7577136,
         "h100_hours": 0.40208486884047845
       }
+    ],
+    "2026-11-25T03": [
+      {
+        "nickname": "tarutani",
+        "mib_minutes": 379608,
+        "rated_mib_minutes": 379608,
+        "h100_hours": 0.04870873446027895
+      }
     ]
   },
   "capacity": {
@@ -2136,9 +2144,9 @@
     },
     {
       "nickname": "tarutani",
-      "mib_minutes": 120914424,
-      "rated_mib_minutes": 120914424,
-      "h100_hours": 15.514922159263145
+      "mib_minutes": 121294032,
+      "rated_mib_minutes": 121294032,
+      "h100_hours": 15.563630893723424
     },
     {
       "nickname": "lan",
