@@ -27,3 +27,16 @@ dashboard, store data, or host an HTTP endpoint.
 Cloudflare dispatches every three minutes and samples are weighted by three
 minutes. The native GitHub fallback uses five minutes. Neither service requires
 your computer to stay on. If the token expires, rotate the Worker secret.
+
+## Usage history
+
+The data branch keeps the latest weekly ranking and rolling daily/hourly
+history (about 30 days) in `weekly.json`. It also retains the latest four hours
+of five-minute buckets. On the first collection after a month ends in JST,
+the collector saves that month's available daily and hourly buckets in
+`archive/YYYY-MM.json`. It merges by bucket key before removing older buckets
+from `weekly.json`, and commits both files together. Archives are not pruned.
+
+Use the date picker in the board's single-day view to retrieve older hourly
+data on demand. Existing data still present in `weekly.json` is archived
+automatically; data already dropped before this change is not backfilled.

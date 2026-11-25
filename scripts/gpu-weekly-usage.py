@@ -14,6 +14,8 @@ JST = timezone(timedelta(hours=9))
 MIB = re.compile(r"\s*(\d+)\s*MiB\s*")
 SNAPSHOT = re.compile(r'<script\b[^>]*\bid="gpuDetailsData"[^>]*>(.*?)</script>', re.S)
 SAMPLE_MINUTES = 5
+HISTORY_DAYS = 30
+MONTH = re.compile(r"\d{4}-(?:0[1-9]|1[0-2])")
 H100_SXM_BF16 = 989.4
 # NVIDIA Hopper, Ada, and RTX Blackwell architecture whitepapers and card datasheets.
 # Dense BF16 Tensor Core TFLOPS.
@@ -58,6 +60,7 @@ def tally(cards, previous, now, sample_minutes=SAMPLE_MINUTES):
     rated = Counter()
     equivalent = Counter()
     by_hour = {}
+    by_five_minutes = {}
     capacity_mib = 0
     capacity_h100 = 0
     for card in cards.values():
@@ -79,6 +82,10 @@ def tally(cards, previous, now, sample_minutes=SAMPLE_MINUTES):
         if timestamp <= last_source:
             continue
         hour_memory, hour_rated, hour_compute = by_hour.setdefault(timestamp[:13], (Counter(), Counter(), Counter()))
+        bucket = sampled.replace(minute=sampled.minute // 5 * 5, second=0, microsecond=0)
+        five_memory, five_rated, five_compute = by_five_minutes.setdefault(
+            bucket.isoformat()[:16], (Counter(), Counter(), Counter())
+        )
         card_usage = Counter()
         for process in card.get("processes", []):
             account = process.get("user")
@@ -88,12 +95,15 @@ def tally(cards, previous, now, sample_minutes=SAMPLE_MINUTES):
         for nickname, mib in card_usage.items():
             current[nickname] += mib
             hour_memory[nickname] += mib
+            five_memory[nickname] += mib
             if score and 0 < mib <= capacity:
                 rated[nickname] += mib
                 hour_rated[nickname] += mib
+                five_rated[nickname] += mib
                 hours = score / H100_SXM_BF16 * (mib / capacity) * sample_minutes / 60
                 equivalent[nickname] += hours
                 hour_compute[nickname] += hours
+                five_compute[nickname] += hours
 
     totals = {
         row["nickname"]: {
@@ -108,12 +118,17 @@ def tally(cards, previous, now, sample_minutes=SAMPLE_MINUTES):
     # The previous schema stored the index of a five-minute bucket.
     last_slot_end = previous.get("slot_end", (previous.get("slot", -1) + 1) * 300)
     newest = max(timestamps, default="")
-    cutoff = (now.date() - timedelta(days=30)).isoformat()
     daily = {
         date: rows for date, rows in previous.get("daily", {}).items()
-        if date >= cutoff and previous.get("identity") == "account"
+        if previous.get("identity") == "account"
     }
-    hourly = {hour: rows for hour, rows in previous.get("hourly", {}).items() if hour[:10] >= cutoff}
+    hourly = dict(previous.get("hourly", {}))
+    latest_bucket = now.replace(minute=now.minute // 5 * 5, second=0, microsecond=0)
+    recent_cutoff = (latest_bucket - timedelta(hours=4, minutes=-5)).isoformat()[:16]
+    five_minutes = {
+        bucket: rows for bucket, rows in previous.get("five_minutes", {}).items()
+        if bucket >= recent_cutoff
+    }
 
     def accumulate(rows, memory, rated_memory, compute):
         for nickname, mib in memory.items():
@@ -129,6 +144,10 @@ def tally(cards, previous, now, sample_minutes=SAMPLE_MINUTES):
     if newest > last_source and slot_start >= last_slot_end:
         last_slot_end, last_source = slot_start + slot_width, newest
         accumulate(totals, current, rated, equivalent)
+        for bucket, usage in by_five_minutes.items():
+            rows = {row["nickname"]: dict(row) for row in five_minutes.get(bucket, [])}
+            accumulate(rows, *usage)
+            five_minutes[bucket] = list(rows.values())
         for hour, usage in by_hour.items():
             date = hour[:10]
             hour_rows = {row["nickname"]: dict(row) for row in hourly.get(hour, [])}
@@ -144,12 +163,44 @@ def tally(cards, previous, now, sample_minutes=SAMPLE_MINUTES):
         "source_time": last_source,
         "daily": daily,
         "hourly": hourly,
+        "five_minutes": five_minutes,
         "capacity": {"mib": capacity_mib, "h100": capacity_h100} if capacity_mib else previous.get("capacity"),
         "ranking": sorted(totals.values(), key=lambda row: (-row["mib_minutes"], row["nickname"])),
     }
 
 
-def main(state_path, output_path):
+def archive_and_prune(output, archive_dir, now):
+    current_month = now.strftime("%Y-%m")
+    cutoff = (now.date() - timedelta(days=HISTORY_DAYS)).isoformat()
+    fields = ("daily", "hourly")
+    months = {}
+    for field in fields:
+        for key, rows in output[field].items():
+            month = key[:7]
+            if not MONTH.fullmatch(month):
+                raise ValueError("Invalid GPU usage month")
+            if month < current_month:
+                months.setdefault(month, {"daily": {}, "hourly": {}})[field][key] = rows
+
+    for month, buckets in months.items():
+        path = archive_dir / f"{month}.json"
+        previous = json.loads(path.read_text(encoding="utf-8")) if path.exists() else {}
+        merged = {
+            "month": month,
+            **{field: dict(sorted((previous.get(field, {}) | buckets[field]).items())) for field in fields},
+        }
+        if merged != previous:
+            archive_dir.mkdir(parents=True, exist_ok=True)
+            path.write_text(json.dumps(merged, ensure_ascii=False, separators=(",", ":")) + "\n", encoding="utf-8")
+
+    output["archive_months"] = sorted(
+        path.stem for path in archive_dir.glob("*.json") if MONTH.fullmatch(path.stem)
+    )
+    for field in fields:
+        output[field] = {key: rows for key, rows in output[field].items() if key[:10] >= cutoff}
+
+
+def main(state_path, output_path, archive_dir):
     sample_minutes = int(os.getenv("GPU_SAMPLE_MINUTES", str(SAMPLE_MINUTES)))
     if sample_minutes not in (3, 5):
         raise ValueError("Unsupported sampling interval")
@@ -160,14 +211,16 @@ def main(state_path, output_path):
     if not match:
         raise ValueError("Dashboard snapshot missing")
     cards = json.loads(match.group(1))
-    output = tally(cards, previous, datetime.now(JST), sample_minutes)
+    now = datetime.now(JST)
+    output = tally(cards, previous, now, sample_minutes)
+    archive_and_prune(output, archive_dir, now)
     output_path.write_text(json.dumps(output, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
     print("Weekly snapshot processed.")
 
 
 if __name__ == "__main__":
     try:
-        main(Path(sys.argv[1]), Path(sys.argv[2]))
+        main(Path(sys.argv[1]), Path(sys.argv[2]), Path(sys.argv[3]))
     except Exception as error:
         print(f"Weekly snapshot failed: {type(error).__name__}", file=sys.stderr)
         raise SystemExit(1)

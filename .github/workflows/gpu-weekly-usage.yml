@@ -37,18 +37,17 @@ jobs:
           set -eu
           branch=refs/heads/gpu-usage-data
           ref=$(git ls-remote --heads origin "$branch")
+          collector="$RUNNER_TEMP/gpu-weekly-usage.py"
+          cp scripts/gpu-weekly-usage.py "$collector"
           if [ -n "$ref" ]; then
             git fetch --depth=1 origin "$branch"
-            git show FETCH_HEAD:weekly.json > "$RUNNER_TEMP/gpu-previous.json"
-          fi
-          python3 scripts/gpu-weekly-usage.py "$RUNNER_TEMP/gpu-previous.json" "$RUNNER_TEMP/gpu-weekly.json"
-          if [ -n "$ref" ]; then
             git switch --detach FETCH_HEAD
           else
             git switch --orphan gpu-usage-data
           fi
-          cp "$RUNNER_TEMP/gpu-weekly.json" weekly.json
+          python3 "$collector" weekly.json weekly.json archive
           git add weekly.json
+          if [ -d archive ]; then git add -- archive; fi
           if git diff --cached --quiet; then exit 0; fi
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"

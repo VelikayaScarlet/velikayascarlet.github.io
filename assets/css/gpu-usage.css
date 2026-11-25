@@ -259,8 +259,8 @@
 
 .gpu-daily-plot { min-width: 0; min-height: 15rem; padding: .85rem 1rem; border: 1px solid var(--rule); border-radius: 5px; background: var(--surface); }
 .gpu-daily-range { display: grid; width: min(100%, 23rem); }
-.gpu-daily-range input { width: calc(75% + 16px); justify-self: center; margin: 0; min-height: 25px; accent-color: var(--accent); cursor: pointer; }
-.gpu-daily-stops { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); }
+.gpu-daily-range input { width: calc(80% + 16px); justify-self: center; margin: 0; min-height: 25px; accent-color: var(--accent); cursor: pointer; }
+.gpu-daily-stops { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); }
 .gpu-daily-stops button, .gpu-daily-legend button, .gpu-chart-controls button {
   padding: .19rem .3rem;
   border: 1px solid transparent;
@@ -277,6 +277,7 @@
 #gpu-daily-chart svg.is-grabbing { cursor: grabbing; }
 #gpu-daily-chart .gpu-chart-world :is(path, circle) { vector-effect: non-scaling-stroke; }
 #gpu-daily-chart text { fill: var(--muted); font: 17px var(--text); font-variant-numeric: tabular-nums; }
+#gpu-daily-chart .gpu-chart-y-tick { font-size: 13px; }
 #gpu-daily-chart line { stroke: var(--rule); stroke-dasharray: 2 5; }
 #gpu-daily-chart path { stroke-width: 2; stroke-linejoin: round; }
 #gpu-daily-chart circle { stroke: var(--surface); stroke-width: 1; r: calc(2.1px * var(--gpu-inverse-zoom, 1)); }

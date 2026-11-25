@@ -73,13 +73,14 @@ author_profile: false
       <div class="gpu-daily-plot">
         <div class="gpu-chart-toolbar">
           <div class="gpu-daily-range">
-            <input type="range" id="gpu-daily-range" min="0" max="3" step="1" value="0"
+            <input type="range" id="gpu-daily-range" min="0" max="4" step="1" value="1"
               aria-label="时间范围" aria-valuetext="最近 24 小时">
             <div class="gpu-daily-stops">
-              <button type="button" data-gpu-stop="0" aria-pressed="true">最近 24 小时</button>
-              <button type="button" data-gpu-stop="1" aria-pressed="false">当天</button>
-              <button type="button" data-gpu-stop="2" aria-pressed="false">7 天</button>
-              <button type="button" data-gpu-stop="3" aria-pressed="false">30 天</button>
+              <button type="button" data-gpu-stop="0" aria-pressed="false">最近 2 小时</button>
+              <button type="button" data-gpu-stop="1" aria-pressed="true">最近 24 小时</button>
+              <button type="button" data-gpu-stop="2" aria-pressed="false">当天</button>
+              <button type="button" data-gpu-stop="3" aria-pressed="false">7 天</button>
+              <button type="button" data-gpu-stop="4" aria-pressed="false">30 天</button>
             </div>
           </div>
           <label class="gpu-chart-date" id="gpu-chart-date-control" hidden>
@@ -107,8 +108,9 @@ author_profile: false
   <details class="gpu-board__notes">
     <summary>统计口径</summary>
     <p>Cloudflare 模式每 3 分钟采样，GitHub 原生备用模式每 5 分钟。日本时间周一归零；同卡多进程按账号汇总，漏采不补算。</p>
+    <p>小时和日汇总按日本时间逐月归档，可在「当天」视图选择较早的日期。5 分钟明细只保留最近 4 小时。</p>
     <p>显存小时 = 实际占用显存 × 时间。H100 等效小时 = 相对 H100 SXM 的理论算力 × 个人占整卡显存比例 × 时间。优先按非稀疏 BF16 折算，旧卡用 FP16 Tensor 或 FP32 峰值。</p>
     <p>规格来源：<a href="https://resources.nvidia.com/en-us-hopper-architecture">Hopper</a>、<a href="https://www.nvidia.com/en-au/data-center/h100/">H100 NVL</a>、<a href="https://images.nvidia.com/data-center/a100/a100-datasheet.pdf">A100</a>、<a href="https://www.nvidia.com/en-gb/data-center/l40s/">L40S</a>、<a href="https://www.nvidia.com/content/dam/en-zz/Solutions/design-visualization/support-guide/NVIDIA-L40-Datasheet-January-2023.pdf">L40</a>、<a href="https://www.nvidia.com/content/dam/en-zz/Solutions/design-visualization/quadro-product-literature/pdf/NVIDIA-RTX-Blackwell-PRO-GPU-Architecture-v1_1.pdf">RTX 系列</a>。</p>
   </details>
 </section>
-<script src="{{ '/assets/js/gpu-weekly-board.js' | relative_url }}?v=16" defer></script>
+<script src="{{ '/assets/js/gpu-weekly-board.js' | relative_url }}?v=17" defer></script>

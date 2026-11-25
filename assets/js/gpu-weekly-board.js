@@ -49,14 +49,18 @@ async function loadBoard() {
   var headers = table.querySelectorAll('[data-metric]');
   var legend = document.getElementById('gpu-board-legend');
   var number = new Intl.NumberFormat('zh-CN', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+  var compactTick = new Intl.NumberFormat('en', { notation: 'compact', maximumSignificantDigits: 3 });
   var refreshMs = 120_000;
+  var repo = 'VelikayaScarlet/velikayascarlet.github.io';
   var revision = '';
   var currentData;
   var displayed = '';
   var daily = {};
+  var archives = new Map();
   var days = -1;
   var renderedHour;
   var hourMs = 3600000;
+  var fiveMinutesMs = 300000;
   var slider = document.getElementById('gpu-daily-range');
   var dateControl = document.getElementById('gpu-chart-date-control');
   var dateInput = document.getElementById('gpu-chart-date');
@@ -209,6 +213,47 @@ async function loadBoard() {
     });
   }
 
+  function eightHourRows(hourly, start) {
+    var totals = new Map();
+    var collected = false;
+    for (var i = 0; i < 8; i += 1) {
+      var hour = new Date(start + i * hourMs).toISOString().slice(0, 13);
+      if (!hourly[hour]) continue;
+      collected = true;
+      hourly[hour].forEach(function (row) {
+        var total = totals.get(row.nickname);
+        if (!total) {
+          total = { nickname: row.nickname, mib_minutes: 0, rated_mib_minutes: 0, h100_hours: 0 };
+          totals.set(row.nickname, total);
+        }
+        total.mib_minutes += row.mib_minutes || 0;
+        total.rated_mib_minutes += row.rated_mib_minutes || 0;
+        total.h100_hours += row.h100_hours || 0;
+      });
+    }
+    return collected ? Array.from(totals.values()) : undefined;
+  }
+
+  function loadArchive(month) {
+    var entry = { state: 'loading' };
+    archives.set(month, entry);
+    fetch('https://raw.githubusercontent.com/' + repo + '/' + revision + '/archive/' + month + '.json', {
+      signal: AbortSignal.timeout(12000)
+    }).then(function (response) {
+      if (!response.ok) throw new Error('Archive unavailable');
+      return response.json();
+    }).then(function (data) {
+      if (data.month !== month || !data.hourly || typeof data.hourly !== 'object') throw new Error('Invalid archive');
+      entry.state = 'ready';
+      entry.hourly = data.hourly;
+    }).catch(function () {
+      entry.state = 'error';
+    }).finally(function () {
+      if (days === 0 && selectedDate.startsWith(month + '-')) renderDaily();
+    });
+    return entry;
+  }
+
   function renderDaily(animate) {
     var focusedSeries = document.activeElement?.dataset.gpuSeries;
     chart.replaceChildren();
@@ -218,26 +263,50 @@ async function loadBoard() {
     Object.values(zoomControls).forEach(function (button) { button.disabled = true; button.onclick = null; });
     zoomControls.reset.textContent = '1×';
     var now = Date.now();
-    renderedHour = Math.floor(now / hourMs);
+    renderedHour = Math.floor(now / (days === -2 ? fiveMinutesMs : hourMs));
     var today = new Date(now + 9 * hourMs);
     var date = today.toISOString().slice(0, 10);
     dateControl.hidden = days !== 0;
-    dateInput.min = new Date(today.getTime() - 30 * 86400000).toISOString().slice(0, 10);
+    var liveStart = new Date(today.getTime() - 30 * 86400000).toISOString().slice(0, 10);
+    var archiveMonths = currentData?.archive_months || [];
+    var archiveStart = archiveMonths[0] ? archiveMonths[0] + '-01' : liveStart;
+    dateInput.min = archiveStart < liveStart ? archiveStart : liveStart;
     dateInput.max = date;
     if (selectedDate && (selectedDate < dateInput.min || selectedDate > date)) selectedDate = '';
     var chartDate = selectedDate || date;
     dateInput.value = chartDate;
     renderTotals(date);
     var unit = sort === 'memory' ? '显存小时（GiB·h）' : 'H100 等效小时（已折算卡）';
-    var dailyView = days > 0;
-    var points = Array.from({ length: dailyView ? days : 24 }, function (_, index) {
+    var dailyView = days === 30;
+    var shortView = days === -2;
+    var eightHourView = days === 7;
+    var hourly = currentData?.hourly || {};
+    var resolution = shortView ? ' · 每 5 分钟' : eightHourView ? ' · 每 8 小时' : '';
+    dailyUnit.textContent = unit + ' · JST' + resolution + ' · 仅累计已采集数据；上限按当前卡量及截至最近采样的时长估算。';
+    var month = chartDate.slice(0, 7);
+    if (days === 0 && chartDate < liveStart && archiveMonths.includes(month)) {
+      var archive = archives.get(month) || loadArchive(month);
+      if (archive.state !== 'ready') {
+        chart.textContent = archive.state === 'error' ? '归档暂时无法读取。' : '正在读取月度归档…';
+        return;
+      }
+      hourly = archive.hourly;
+    }
+    var binMs = eightHourView ? 8 * hourMs : fiveMinutesMs;
+    var lastBucket = Math.floor(today.getTime() / binMs) * binMs;
+    var count = dailyView ? days : eightHourView ? 21 : 24;
+    var points = Array.from({ length: count }, function (_, index) {
       var key;
+      if (shortView || eightHourView) {
+        var start = lastBucket - (count - 1 - index) * binMs;
+        key = new Date(start).toISOString().slice(0, 16);
+        return { key: key, rows: shortView ? currentData?.five_minutes?.[key] : eightHourRows(hourly, start) };
+      }
       if (dailyView) key = new Date(today.getTime() - (days - 1 - index) * 86400000).toISOString().slice(0, 10);
       else if (days === -1) key = new Date(today.getTime() - (23 - index) * hourMs).toISOString().slice(0, 13);
       else key = chartDate + 'T' + String(index).padStart(2, '0');
-      return { key: key, rows: dailyView ? daily[key] : currentData?.hourly?.[key] };
+      return { key: key, rows: dailyView ? daily[key] : hourly[key] };
     });
-    dailyUnit.textContent = unit + ' · JST · 仅累计已采集数据；上限按当前卡量及截至最近采样的时长估算。';
     if (!points.some(function (point) { return point.rows; })) {
       chart.textContent = '这个时间范围还没有采样记录。';
       return;
@@ -343,7 +412,7 @@ async function loadBoard() {
         var value = sample.value;
         path += (connected ? ' L' : ' M') + x(i) + ' ' + y(value);
         connected = true;
-        var label = name + ' · ' + point.key.replace('T', ' ') + (dailyView ? '' : ':00') + ' · ' + number.format(value);
+        var label = name + ' · ' + point.key.replace('T', ' ') + (point.key.length === 13 ? ':00' : '') + ' · ' + number.format(value);
         if (sort === 'compute' && sample.row && !complete(sample.row)) label += '（部分折算）';
         var dot = svgNode('circle', { cx: x(i), cy: y(value), r: 2.1, class: 'gpu-chart-point', tabindex: 0, 'aria-label': label });
         dot.style.fill = color;
@@ -404,7 +473,8 @@ async function loadBoard() {
         var value = max * (1 - (view.top + bounds.height * i / (4 * view.scale)) / bounds.height);
         axes.append(
           svgNode('line', { x1: bounds.x, x2: xRight, y1: tickY, y2: tickY }),
-          svgNode('text', { x: 66, y: tickY, 'text-anchor': 'end', dy: '.35em' }, number.format(Math.max(0, value)))
+          svgNode('text', { x: 66, y: tickY, 'text-anchor': 'end', dy: '.35em', class: 'gpu-chart-y-tick' },
+            value >= 10000 ? compactTick.format(value) : number.format(Math.max(0, value)))
         );
       }
       var ticks = points.map(function (point, i) {
@@ -413,11 +483,12 @@ async function loadBoard() {
       var last = ticks.at(-1);
       var previous = -Infinity;
       ticks.forEach(function (tick) {
-        var step = days === 7 ? 2 : dailyView ? 7 : 6;
+        var step = eightHourView ? 3 : dailyView ? 7 : shortView ? 5 : 6;
         if (tick !== last && ((view.scale === 1 && tick.index % step !== 0) ||
             last.x - tick.x < 65 || tick.x - previous < 65)) return;
         axes.append(svgNode('text', { x: tick.x, y: 218, 'text-anchor': 'middle' },
-          dailyView ? tick.key.slice(5) : tick.key.slice(11) + ':00'));
+          dailyView || eightHourView ? tick.key.slice(5, 10) :
+            tick.key.slice(11) + (tick.key.length === 13 ? ':00' : '')));
         previous = tick.x;
       });
       plot.setAttribute('transform', 'translate(' + bounds.x + ' ' + bounds.y + ') scale(' + view.scale +
@@ -435,7 +506,7 @@ async function loadBoard() {
   }
   function changeRange() {
     var index = slider.valueAsNumber;
-    days = [-1, 0, 7, 30][index];
+    days = [-2, -1, 0, 7, 30][index];
     viewport = null;
     slider.setAttribute('aria-valuetext', stops[index].textContent);
     stops.forEach(function (item, i) { item.setAttribute('aria-pressed', i === index); });
@@ -449,6 +520,8 @@ async function loadBoard() {
       return;
     }
     selectedDate = dateInput.value === dateInput.max ? '' : dateInput.value;
+    var month = selectedDate.slice(0, 7);
+    if (archives.get(month)?.state === 'error') archives.delete(month);
     viewport = null;
     renderDaily(true);
   });
@@ -461,14 +534,14 @@ async function loadBoard() {
   renderDaily();
 
   function refreshClock() {
-    if (renderedHour !== Math.floor(Date.now() / hourMs)) renderDaily();
+    if (renderedHour !== Math.floor(Date.now() / (days === -2 ? fiveMinutesMs : hourMs))) renderDaily();
   }
 
   function scheduleClockRefresh() {
     window.setTimeout(function () {
       refreshClock();
       scheduleClockRefresh();
-    }, hourMs - Date.now() % hourMs + 50);
+    }, fiveMinutesMs - Date.now() % fiveMinutesMs + 50);
   }
   scheduleClockRefresh();
   document.addEventListener('visibilitychange', function () {
@@ -582,7 +655,6 @@ async function loadBoard() {
 
   async function refresh() {
     try {
-      var repo = 'VelikayaScarlet/velikayascarlet.github.io';
       var ref = await fetch('https://api.github.com/repos/' + repo + '/git/ref/heads/gpu-usage-data', {
         cache: 'no-store',
         signal: AbortSignal.timeout(12000)
