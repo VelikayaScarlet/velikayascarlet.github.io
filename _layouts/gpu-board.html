@@ -3,48 +3,87 @@ layout: compress
 ---
 
 <!doctype html>
-<html lang="zh-CN" data-gpu-theme="editorial">
+<html lang="zh-CN" data-gpu-theme="light">
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     {% include seo.html %}
     <link rel="icon" type="image/png" href="{{ '/images/favicon-32x32.png' | relative_url }}">
-    <link rel="stylesheet" href="{{ '/assets/css/gpu-usage.css' | relative_url }}?v=17">
-    <link rel="stylesheet" href="{{ '/assets/css/gpu-themes.css' | relative_url }}?v=1">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&family=Noto+Serif+SC:wght@600;700&display=swap">
+    <link rel="stylesheet" href="{{ '/assets/css/gpu-usage.css' | relative_url }}?v=18">
+    <link rel="stylesheet" href="{{ '/assets/css/gpu-themes.css' | relative_url }}?v=2">
     <script>
       (function () {
         var root = document.documentElement;
         var key = 'gpu-board-theme';
-        try {
-          var theme = localStorage.getItem(key) || '';
-          if (/^(editorial|y2k|windows|mac|terminal)$/.test(theme)) root.dataset.gpuTheme = theme;
-        } catch (error) {}
+        var valid = { light: true, dark: true, washi: true };
+        var legacy = { terminal: 'dark', editorial: 'washi', y2k: 'light', windows: 'light', mac: 'light' };
+        var saved = '';
+        try { saved = localStorage.getItem(key) || ''; } catch (e) {}
+        if (valid[saved]) {
+          root.dataset.gpuTheme = saved;
+        } else if (legacy[saved]) {
+          root.dataset.gpuTheme = legacy[saved];
+        } else if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+          root.dataset.gpuTheme = 'dark';
+        }
         document.addEventListener('DOMContentLoaded', function () {
-          var picker = document.getElementById('gpu-theme');
-          picker.value = root.dataset.gpuTheme;
-          picker.addEventListener('change', function () {
-            root.dataset.gpuTheme = picker.value;
-            try { localStorage.setItem(key, picker.value); } catch (error) {}
+          var buttons = document.querySelectorAll('[data-theme-choice]');
+          function sync(theme) {
+            root.dataset.gpuTheme = theme;
+            buttons.forEach(function (btn) {
+              btn.setAttribute('aria-pressed', String(btn.dataset.themeChoice === theme));
+            });
+          }
+          sync(root.dataset.gpuTheme);
+          buttons.forEach(function (btn) {
+            btn.addEventListener('click', function () {
+              var next = btn.dataset.themeChoice;
+              if (!valid[next]) return;
+              sync(next);
+              try { localStorage.setItem(key, next); } catch (e) {}
+            });
           });
         });
       })();
     </script>
   </head>
   <body class="gpu-site">
-    <main class="gpu-shell">
-      <nav class="gpu-shell__nav" aria-label="返回链接">
-        <a href="{{ '/links/' | relative_url }}"><span aria-hidden="true">←</span> Links</a>
-        <div class="gpu-shell__tools">
-          <span class="gpu-shell__mark">KUEE <span>/</span> GPU</span>
-          <select id="gpu-theme" aria-label="切换界面风格" title="切换界面风格">
-            <option value="editorial">算力日报</option>
-            <option value="y2k">千禧年</option>
-            <option value="windows">Windows 经典</option>
-            <option value="mac">macOS</option>
-            <option value="terminal">终端</option>
-          </select>
+    <div class="gpu-ambient" aria-hidden="true"></div>
+    <header class="gpu-topbar">
+      <div class="gpu-topbar__inner">
+        <div class="gpu-topbar__left">
+          <a class="gpu-back-link" href="{{ '/links/' | relative_url }}">
+            <svg viewBox="0 0 20 20" width="15" height="15" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12.5 15L7.5 10l5-5"/></svg>
+            <span>Links</span>
+          </a>
+          <span class="gpu-topbar__sep" aria-hidden="true">/</span>
+          <span class="gpu-topbar__brand">
+            <span class="gpu-brand-dot" aria-hidden="true"></span>
+            KUEE <em>GPU Telemetry</em>
+          </span>
         </div>
-      </nav>
+        <div class="gpu-topbar__right">
+          <div class="gpu-theme-switch" role="group" aria-label="切换界面主题">
+            <button type="button" data-theme-choice="light" aria-pressed="true" title="晴岚浅色">
+              <svg viewBox="0 0 20 20" width="14" height="14" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" aria-hidden="true"><circle cx="10" cy="10" r="3.5"/><path d="M10 2.5v2M10 15.5v2M2.5 10h2M15.5 10h2M4.7 4.7l1.4 1.4M13.9 13.9l1.4 1.4M15.3 4.7l-1.4 1.4M6.1 13.9l-1.4 1.4"/></svg>
+              <span>晴岚</span>
+            </button>
+            <button type="button" data-theme-choice="dark" aria-pressed="false" title="曜石深色">
+              <svg viewBox="0 0 20 20" width="14" height="14" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M16.2 12.1A6.5 6.5 0 0 1 7.9 3.8a6.5 6.5 0 1 0 8.3 8.3Z"/></svg>
+              <span>曜石</span>
+            </button>
+            <button type="button" data-theme-choice="washi" aria-pressed="false" title="京都和纸">
+              <svg viewBox="0 0 20 20" width="14" height="14" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4.5 15.5c2-5.5 6.5-9.5 11.5-11-1 5-4.5 9-9.5 10.5M4.5 15.5l2-2"/></svg>
+              <span>和纸</span>
+            </button>
+          </div>
+        </div>
+      </div>
+    </header>
+    <main class="gpu-shell">
       {{ content }}
     </main>
   </body>

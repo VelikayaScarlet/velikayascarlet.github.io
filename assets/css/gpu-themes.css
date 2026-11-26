@@ -1,173 +1,175 @@
-.gpu-shell__tools { display: flex; align-items: center; justify-content: flex-end; gap: .9rem; }
-#gpu-theme {
-  min-height: 32px;
-  max-width: 100%;
-  padding: .24rem .45rem;
-  border: 1px solid var(--rule);
-  border-radius: 4px;
-  background: var(--surface);
-  color: var(--ink);
-  font: 600 .82rem/1.4 var(--text);
-  cursor: pointer;
-}
-#gpu-theme:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
+/* ==========================================================================
+   KUEE GPU Telemetry — Curated Themes (曜石 Dark & 和纸 Washi)
+   Default theme (晴岚 Light) tokens live in gpu-usage.css
+   ========================================================================== */
 
-[data-gpu-theme="y2k"] .gpu-site {
-  --paper: #d9f2fe;
-  --surface: #f4fbff;
-  --ink: #102f50;
-  --muted: #345578;
-  --rule: #8dbcd4;
-  --accent: #a91a66;
-  --accent-wash: #ffdbf0;
-  --lime: #d8f581;
-  --ice: #b1eafa;
-  --strong: #144e82;
-  --swatch-ink: #183442;
-  --text: Verdana, "Microsoft YaHei UI", sans-serif;
-  --display: "Trebuchet MS", "Arial Black", sans-serif;
-  --han: "Microsoft YaHei UI", "PingFang SC", sans-serif;
-  color-scheme: light;
-}
-[data-gpu-theme="y2k"] .gpu-board__mast {
-  margin-top: .75rem;
-  padding-left: 1rem;
-  border: 1px solid var(--rule);
-  border-radius: 10px;
-  background: linear-gradient(#f7fdff 5%, #c5edff 51%, #a4dbf7 52%, #def4ff);
-  box-shadow: inset 0 0 0 2px #f5fcff;
-  overflow: hidden;
-}
-[data-gpu-theme="y2k"] .gpu-board--locked .gpu-board__mast { margin-top: 0; }
-[data-gpu-theme="y2k"] .gpu-board--locked { border: 1px solid var(--rule); border-radius: 10px; }
-[data-gpu-theme="y2k"] .gpu-board__mast h1 span { font-weight: 900; text-shadow: 1px 2px #fff; }
-[data-gpu-theme="y2k"] .gpu-board__meta { background: linear-gradient(#287cb1, var(--strong)); }
-[data-gpu-theme="y2k"] :is(#gpu-theme, .gpu-board__sort, .gpu-board__gate-controls button) { border-radius: 999px; }
-[data-gpu-theme="y2k"] .gpu-board__sort button { border-radius: inherit; }
-[data-gpu-theme="y2k"] :is(.gpu-board__leaders > div, .gpu-period-totals section, .gpu-daily-plot) {
-  border: 1px solid var(--rule);
-  border-radius: 9px;
-  box-shadow: inset 0 1px 0 #fff;
-}
+/* --------------------------------------------------------------------------
+   Theme 2: 曜石 Dark (Obsidian Telemetry)
+   -------------------------------------------------------------------------- */
+[data-gpu-theme="dark"] {
+  --bg: #080b12;
+  --surface: #111622;
+  --surface-2: #171e2e;
+  --surface-hover: #1c2538;
+  --glass-bg: rgba(11, 15, 25, 0.78);
+  --ambient-1: rgba(99, 102, 241, 0.18);
+  --ambient-2: rgba(56, 189, 248, 0.14);
+  --ambient-3: rgba(244, 63, 94, 0.08);
+  --grid-dot: rgba(148, 163, 184, 0.08);
 
-[data-gpu-theme="windows"] .gpu-site {
-  --paper: #196f72;
-  --surface: #fff;
-  --ink: #1a2530;
-  --muted: #485c65;
-  --rule: #9ba7ae;
-  --accent: #003b86;
-  --accent-wash: #cde3ff;
-  --lime: #e0efd5;
-  --ice: #dceaee;
-  --strong: #074280;
-  --text: Tahoma, "Microsoft YaHei UI", "Segoe UI", sans-serif;
-  --display: Tahoma, "Segoe UI", sans-serif;
-  --han: var(--text);
-  color-scheme: light;
-}
-[data-gpu-theme="windows"] .gpu-shell { margin-top: min(3vh, 1.5rem); background: #d7dcde; padding: 0 .7rem 1rem; border: 2px outset #eaf2f6; }
-[data-gpu-theme="windows"] .gpu-shell__nav { min-height: 44px; }
-[data-gpu-theme="windows"] .gpu-board__mast { margin-top: .55rem; padding-left: .8rem; background: #074280; border: 2px inset #b6c8da; color: #fff; }
-[data-gpu-theme="windows"] .gpu-board__mast > :first-child { padding-block: .65rem; }
-[data-gpu-theme="windows"] .gpu-board__mast h1 { font-size: 1.6rem; font-weight: 750; }
-[data-gpu-theme="windows"] .gpu-board__mast h1 span { font: inherit; color: inherit; }
-[data-gpu-theme="windows"] .gpu-board__source { color: #e1edfb; }
-[data-gpu-theme="windows"] .gpu-board__meta { background: #083568; }
-[data-gpu-theme="windows"] .gpu-board__gate-mark { color: #e1edfb; }
-[data-gpu-theme="windows"] .gpu-board--locked { border: 2px outset #eaf2f6; background: #d7dcde; }
-[data-gpu-theme="windows"] .gpu-board--locked .gpu-board__mast { margin-top: 0; }
-[data-gpu-theme="windows"] :is(#gpu-theme, .gpu-chart-controls, .gpu-board__sort, .gpu-board__gate-controls button, .gpu-period-totals section, .gpu-daily-plot) {
-  border: 2px outset #f0f6f8;
-  border-radius: 0;
-}
-[data-gpu-theme="windows"] :is(.gpu-board__leaders > div, .gpu-board__rank, .gpu-board__sort button, .gpu-chart-date input) { border-radius: 0; }
-[data-gpu-theme="windows"] :is(.gpu-chart-date input, .gpu-board__gate-controls input) { background: var(--surface); }
-[data-gpu-theme="windows"] .gpu-board__leader-place { font-style: normal; font-weight: 800; }
-[data-gpu-theme="windows"] .gpu-board table { border-top: 2px inset #b4c2c9; }
+  --ink: #f1f5f9;
+  --ink-2: #cbd5e1;
+  --muted: #94a3b8;
+  --subtle: #64748b;
 
-[data-gpu-theme="mac"] .gpu-site {
-  --paper: #edf0f3;
-  --surface: #fff;
-  --ink: #182631;
-  --muted: #53626f;
-  --rule: #c7d0d9;
-  --accent: #0a57a3;
-  --accent-wash: #dcecff;
-  --lime: #dcefe5;
-  --ice: #e0edfb;
-  --strong: #174374;
-  --text: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Microsoft YaHei UI", sans-serif;
-  --display: var(--text);
-  --han: var(--text);
-  color-scheme: light;
-}
-[data-gpu-theme="mac"] .gpu-board__mast {
-  margin-top: 1rem;
-  padding-left: 1.2rem;
-  border: 1px solid var(--rule);
-  border-radius: 8px;
-  background: var(--surface);
-  overflow: hidden;
-}
-[data-gpu-theme="mac"] .gpu-board__mast > :first-child::before {
-  content: "";
-  display: block;
-  width: 9px;
-  height: 9px;
-  margin-bottom: .58rem;
-  border-radius: 50%;
-  background: #d94645;
-  box-shadow: 15px 0 #db991d, 30px 0 #388748;
-}
-[data-gpu-theme="mac"] .gpu-board--locked { border: 1px solid var(--rule); border-radius: 8px; box-shadow: 0 10px 26px #25334a1b; }
-[data-gpu-theme="mac"] .gpu-board--locked .gpu-board__mast {
-  margin-top: 0;
-  border-width: 0 0 1px;
-  border-radius: 8px 8px 0 0;
-}
-[data-gpu-theme="mac"] .gpu-board__mast h1 span { color: inherit; font: inherit; }
-[data-gpu-theme="mac"] .gpu-board__meta { color: var(--ink); background: var(--ice); }
-[data-gpu-theme="mac"] #gpu-board-lock { border-color: var(--rule); }
-[data-gpu-theme="mac"] #gpu-board-lock:focus-visible { outline-color: var(--accent); }
-[data-gpu-theme="mac"] .gpu-section-title > span { font-style: normal; font-weight: 650; }
-[data-gpu-theme="mac"] :is(#gpu-theme, .gpu-board__sort, .gpu-chart-controls) { border-radius: 8px; }
-[data-gpu-theme="mac"] :is(.gpu-daily-plot, .gpu-period-totals section, .gpu-board__leaders > div) { border-radius: 8px; }
-[data-gpu-theme="mac"] .gpu-board table, [data-gpu-theme="mac"] .gpu-daily { border-top: 1px solid var(--rule); }
+  --border: rgba(148, 163, 184, 0.12);
+  --border-strong: rgba(148, 163, 184, 0.22);
+  --border-highlight: rgba(255, 255, 255, 0.06);
 
-[data-gpu-theme="terminal"] .gpu-site {
-  --paper: #101b18;
-  --surface: #162823;
-  --ink: #e0f0e8;
-  --muted: #abc4ba;
-  --rule: #45685d;
-  --accent: #9af5c7;
-  --accent-wash: #284239;
-  --lime: #9af5c7;
-  --ice: #b5dae0;
-  --strong: #25423a;
-  --text: "Cascadia Code", "SFMono-Regular", Consolas, "Microsoft YaHei UI", monospace;
-  --display: var(--text);
-  --han: var(--text);
+  --accent: #818cf8;
+  --accent-2: #38bdf8;
+  --accent-soft: rgba(129, 140, 248, 0.14);
+  --accent-ring: rgba(129, 140, 248, 0.34);
+  --accent-ink: #080b12;
+  --accent-gradient: linear-gradient(135deg, #818cf8 0%, #6366f1 48%, #38bdf8 100%);
+
+  --live: #34d399;
+  --live-soft: rgba(52, 211, 153, 0.16);
+  --warn: #fbbf24;
+  --warn-soft: rgba(251, 191, 36, 0.16);
+  --danger: #fb7185;
+  --danger-soft: rgba(251, 113, 133, 0.16);
+
+  --band-high: #fb7185;
+  --band-high-bg: rgba(251, 113, 133, 0.14);
+  --band-mid: #34d399;
+  --band-mid-bg: rgba(52, 211, 153, 0.14);
+  --band-midlow: #38bdf8;
+  --band-midlow-bg: rgba(56, 189, 248, 0.14);
+  --band-low: #94a3b8;
+  --band-low-bg: rgba(148, 163, 184, 0.14);
+
+  --gold: #fcd34d;
+  --gold-bar: linear-gradient(90deg, #f59e0b, #fde68a, #d97706);
+  --gold-bg: linear-gradient(155deg, rgba(245, 158, 11, 0.14) 0%, rgba(17, 22, 34, 0.96) 64%);
+  --gold-border: rgba(251, 191, 36, 0.28);
+  --gold-badge: rgba(251, 191, 36, 0.16);
+
+  --silver: #cbd5e1;
+  --silver-bar: linear-gradient(90deg, #64748b, #e2e8f0, #94a3b8);
+  --silver-bg: linear-gradient(155deg, rgba(148, 163, 184, 0.12) 0%, rgba(17, 22, 34, 0.96) 64%);
+  --silver-border: rgba(148, 163, 184, 0.24);
+  --silver-badge: rgba(148, 163, 184, 0.16);
+
+  --bronze: #fdba74;
+  --bronze-bar: linear-gradient(90deg, #ea580c, #fdba74, #c2410c);
+  --bronze-bg: linear-gradient(155deg, rgba(234, 88, 12, 0.13) 0%, rgba(17, 22, 34, 0.96) 64%);
+  --bronze-border: rgba(251, 146, 60, 0.25);
+  --bronze-badge: rgba(251, 146, 60, 0.15);
+
+  --chart-grid: rgba(148, 163, 184, 0.12);
+  --chart-axis: #94a3b8;
+  --chart-crosshair: rgba(129, 140, 248, 0.45);
+  --tooltip-bg: rgba(8, 11, 18, 0.94);
+  --tooltip-ink: #f8fafc;
+  --tooltip-muted: #94a3b8;
+  --tooltip-border: rgba(148, 163, 184, 0.22);
+
+  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.25);
+  --shadow-md: 0 10px 28px -10px rgba(0, 0, 0, 0.55), 0 2px 6px rgba(0, 0, 0, 0.3);
+  --shadow-lg: 0 24px 60px -16px rgba(0, 0, 0, 0.72), 0 6px 18px rgba(0, 0, 0, 0.4);
+
   color-scheme: dark;
 }
-[data-gpu-theme="terminal"] .gpu-board__mast { margin-top: .7rem; padding-left: .8rem; border: 1px solid var(--rule); background: var(--surface); }
-[data-gpu-theme="terminal"] .gpu-board__mast h1 span { font: inherit; }
-[data-gpu-theme="terminal"] .gpu-board__mast h1 span::before { content: "> "; }
-[data-gpu-theme="terminal"] .gpu-board--locked .gpu-board__mast { margin-top: 0; }
-[data-gpu-theme="terminal"] :is(#gpu-theme, .gpu-board__sort, .gpu-daily-plot, .gpu-period-totals section, .gpu-board__leaders > div) { border-radius: 0; }
-[data-gpu-theme="terminal"] #gpu-daily-chart line { stroke-dasharray: 1 5; }
-[data-gpu-theme="terminal"] .gpu-board tbody tr:hover { background: var(--strong); }
-[data-gpu-theme="terminal"] .gpu-board [data-band="mid"] { --gpu-band: #d1e8a4; --gpu-band-bg: #314631; }
-[data-gpu-theme="terminal"] .gpu-board [data-band="mid-low"] { --gpu-band: #b0dbda; --gpu-band-bg: #2b4748; }
 
-:is([data-gpu-theme="y2k"], [data-gpu-theme="windows"], [data-gpu-theme="mac"]) .gpu-board [data-band="mid"] { --gpu-band: #365719; --gpu-band-bg: var(--lime); }
-:is([data-gpu-theme="y2k"], [data-gpu-theme="windows"], [data-gpu-theme="mac"]) .gpu-board [data-band="mid-low"] { --gpu-band: #235e65; --gpu-band-bg: var(--ice); }
-:is([data-gpu-theme="y2k"], [data-gpu-theme="windows"], [data-gpu-theme="mac"]) .gpu-board tbody tr:hover { background: var(--ice); }
-
-@media (max-width: 460px) {
-  .gpu-shell__tools { gap: .5rem; }
-  .gpu-shell__mark { display: none; }
-  [data-gpu-theme="windows"] .gpu-shell { padding-inline: .35rem; }
-  :is([data-gpu-theme="y2k"], [data-gpu-theme="mac"], [data-gpu-theme="terminal"]) .gpu-board__mast { padding-left: .6rem; }
+[data-gpu-theme="dark"] .gpu-metric-switch button[aria-pressed="true"],
+[data-gpu-theme="dark"] .gpu-gate-submit {
+  color: #ffffff;
 }
+
+[data-gpu-theme="dark"] .gpu-kpi-card:nth-child(1) { --kpi-accent: #38bdf8; }
+[data-gpu-theme="dark"] .gpu-kpi-card:nth-child(2) { --kpi-accent: #818cf8; }
+[data-gpu-theme="dark"] .gpu-kpi-card:nth-child(3) { --kpi-accent: #c084fc; }
+
+/* --------------------------------------------------------------------------
+   Theme 3: 京都和纸 (Kyoto Washi & Cinnabar Ink)
+   -------------------------------------------------------------------------- */
+[data-gpu-theme="washi"] {
+  --bg: #f6f1e7;
+  --surface: #fffdf8;
+  --surface-2: #f2ece0;
+  --surface-hover: #ece4d5;
+  --glass-bg: rgba(246, 241, 231, 0.84);
+  --ambient-1: rgba(184, 50, 39, 0.08);
+  --ambient-2: rgba(180, 134, 65, 0.09);
+  --ambient-3: rgba(54, 102, 74, 0.06);
+  --grid-dot: rgba(48, 36, 24, 0.055);
+
+  --ink: #221c17;
+  --ink-2: #4a3f35;
+  --muted: #786a5c;
+  --subtle: #a39585;
+
+  --border: rgba(66, 51, 36, 0.11);
+  --border-strong: rgba(66, 51, 36, 0.20);
+  --border-highlight: rgba(255, 255, 255, 0.85);
+
+  --accent: #b83227;
+  --accent-2: #c98a2e;
+  --accent-soft: rgba(184, 50, 39, 0.09);
+  --accent-ring: rgba(184, 50, 39, 0.28);
+  --accent-ink: #fffdf8;
+  --accent-gradient: linear-gradient(135deg, #b83227 0%, #c84b31 55%, #c98a2e 100%);
+
+  --live: #2f6f4e;
+  --live-soft: rgba(47, 111, 78, 0.12);
+  --warn: #b4690e;
+  --warn-soft: rgba(180, 105, 14, 0.12);
+  --danger: #b83227;
+  --danger-soft: rgba(184, 50, 39, 0.11);
+
+  --band-high: #b83227;
+  --band-high-bg: rgba(184, 50, 39, 0.10);
+  --band-mid: #2f6f4e;
+  --band-mid-bg: rgba(47, 111, 78, 0.11);
+  --band-midlow: #2b607a;
+  --band-midlow-bg: rgba(43, 96, 122, 0.10);
+  --band-low: #786a5c;
+  --band-low-bg: rgba(120, 106, 92, 0.11);
+
+  --gold: #9a6516;
+  --gold-bar: linear-gradient(90deg, #b8862b, #dfb354, #9a6516);
+  --gold-bg: linear-gradient(155deg, rgba(246, 232, 198, 0.72) 0%, rgba(255, 253, 248, 0.96) 64%);
+  --gold-border: rgba(184, 134, 43, 0.30);
+  --gold-badge: rgba(184, 134, 43, 0.15);
+
+  --silver: #57524b;
+  --silver-bar: linear-gradient(90deg, #8b8378, #c4bcb0, #6d665c);
+  --silver-bg: linear-gradient(155deg, rgba(235, 229, 218, 0.78) 0%, rgba(255, 253, 248, 0.96) 64%);
+  --silver-border: rgba(115, 106, 94, 0.26);
+  --silver-badge: rgba(115, 106, 94, 0.13);
+
+  --bronze: #8e3b24;
+  --bronze-bar: linear-gradient(90deg, #b85334, #dc8364, #8e3b24);
+  --bronze-bg: linear-gradient(155deg, rgba(245, 222, 211, 0.65) 0%, rgba(255, 253, 248, 0.96) 64%);
+  --bronze-border: rgba(184, 83, 52, 0.25);
+  --bronze-badge: rgba(184, 83, 52, 0.12);
+
+  --chart-grid: rgba(66, 51, 36, 0.10);
+  --chart-axis: #786a5c;
+  --chart-crosshair: rgba(184, 50, 39, 0.36);
+  --tooltip-bg: rgba(34, 28, 23, 0.94);
+  --tooltip-ink: #faf5eb;
+  --tooltip-muted: #c2b5a4;
+  --tooltip-border: rgba(250, 245, 235, 0.14);
+
+  --shadow-sm: 0 1px 2px rgba(45, 34, 22, 0.05);
+  --shadow-md: 0 6px 18px -6px rgba(45, 34, 22, 0.08), 0 2px 5px -2px rgba(45, 34, 22, 0.04);
+  --shadow-lg: 0 22px 48px -16px rgba(45, 34, 22, 0.15), 0 4px 12px -4px rgba(45, 34, 22, 0.06);
+
+  color-scheme: light;
+}
+
+[data-gpu-theme="washi"] .gpu-kpi-card:nth-child(1) { --kpi-accent: #2b607a; }
+[data-gpu-theme="washi"] .gpu-kpi-card:nth-child(2) { --kpi-accent: #b83227; }
+[data-gpu-theme="washi"] .gpu-kpi-card:nth-child(3) { --kpi-accent: #2f6f4e; }
