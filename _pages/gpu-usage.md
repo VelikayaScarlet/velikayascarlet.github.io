@@ -74,14 +74,65 @@ author_profile: false
     </div>
   </header>
 
-  <section class="gpu-kpi-strip" aria-label="累计用量总览">
-    <div id="gpu-period-totals" class="gpu-period-totals"></div>
+  <section class="gpu-section gpu-daily" aria-labelledby="gpu-daily-title">
+    <div class="gpu-section__head">
+      <div class="gpu-section__title-wrap">
+        <span class="gpu-section__index" aria-hidden="true">01</span>
+        <h2 class="gpu-section__title" id="gpu-daily-title">用量趋势</h2>
+        <button type="button" class="gpu-active-filter" id="gpu-active-filter" hidden>
+          <span class="gpu-active-filter__dot" aria-hidden="true"></span>
+          <span class="gpu-active-filter__name"></span>
+          <span class="gpu-active-filter__close" aria-hidden="true">×</span>
+        </button>
+      </div>
+      <p id="gpu-daily-unit" class="gpu-daily-unit" aria-live="polite"></p>
+    </div>
+
+    <div class="gpu-daily-grid">
+      <div class="gpu-card gpu-chart-card">
+        <div class="gpu-chart-toolbar">
+          <div class="gpu-range-tabs" role="group" aria-label="时间范围">
+            <button type="button" data-gpu-stop="0" aria-pressed="false">最近 2 小时</button>
+            <button type="button" data-gpu-stop="1" aria-pressed="true">最近 24 小时</button>
+            <button type="button" data-gpu-stop="2" aria-pressed="false">当天</button>
+            <button type="button" data-gpu-stop="3" aria-pressed="false">7 天</button>
+            <button type="button" data-gpu-stop="4" aria-pressed="false">30 天</button>
+          </div>
+          <div class="gpu-chart-toolbar__right">
+            <label class="gpu-chart-date" id="gpu-chart-date-control" hidden>
+              <span>日期 · JST</span>
+              <input type="date" id="gpu-chart-date">
+            </label>
+            <div class="gpu-chart-controls" role="group" aria-label="图表缩放">
+              <button type="button" data-chart-zoom="out" aria-label="缩小图表" title="缩小图表" disabled>−</button>
+              <button type="button" data-chart-zoom="reset" aria-label="恢复原始视图" title="恢复原始视图" disabled>1×</button>
+              <button type="button" data-chart-zoom="in" aria-label="放大图表" title="放大图表" disabled>+</button>
+            </div>
+          </div>
+        </div>
+
+        <div id="gpu-daily-chart" class="gpu-chart-canvas"></div>
+
+        <div class="gpu-daily-series">
+          <div id="gpu-daily-share" class="gpu-share" hidden>
+            <div class="gpu-share__head">
+              <strong>窗口内全员用量占比</strong>
+              <span id="gpu-share-total" class="gpu-share__total"></span>
+            </div>
+            <div class="gpu-share-bar" aria-hidden="true"></div>
+          </div>
+          <ul id="gpu-daily-legend" class="gpu-daily-legend" aria-label="集群账号图例"></ul>
+        </div>
+      </div>
+
+      <aside id="gpu-period-totals" class="gpu-period-totals" aria-label="今日、本周与本月累计用量"></aside>
+    </div>
   </section>
 
   <section class="gpu-section gpu-ranking" aria-labelledby="gpu-ranking-title">
     <div class="gpu-section__head">
       <div class="gpu-section__title-wrap">
-        <span class="gpu-section__index" aria-hidden="true">01</span>
+        <span class="gpu-section__index" aria-hidden="true">02</span>
         <h2 class="gpu-section__title" id="gpu-ranking-title">本周排名</h2>
         <span class="gpu-count-badge" id="gpu-ranking-count" hidden></span>
       </div>
@@ -93,82 +144,33 @@ author_profile: false
       </div>
     </div>
 
-    <div class="gpu-podium" id="gpu-board-leaders" aria-label="本周前三名" hidden></div>
+    <div class="gpu-ranking-grid">
+      <div class="gpu-podium" id="gpu-board-leaders" aria-label="本周前三名" hidden></div>
 
-    <div class="gpu-card gpu-table-card" id="gpu-table-card" hidden>
-      <div class="gpu-table-wrap">
-        <table id="gpu-week-ranking" aria-labelledby="gpu-ranking-title">
-          <thead>
-            <tr>
-              <th scope="col">排名</th>
-              <th scope="col">集群账号</th>
-              <th scope="col" data-metric="memory" aria-sort="descending">显存小时 <small>GiB·h</small></th>
-              <th scope="col" data-metric="compute">H100 等效 <small>小时 · 估算</small></th>
-            </tr>
-          </thead>
-          <tbody></tbody>
-        </table>
-      </div>
-      <div class="gpu-table-footer" id="gpu-board-legend" hidden>
-        <div class="gpu-band-legend">
-          <span class="gpu-band-legend__label">相对榜首</span>
-          <span class="gpu-band-chip" data-band="high">高分 ≥75%</span>
-          <span class="gpu-band-chip" data-band="mid">中分 40–75%</span>
-          <span class="gpu-band-chip" data-band="mid-low">中低分 15–40%</span>
-          <span class="gpu-band-chip" data-band="low">低分 &lt;15%</span>
+      <div class="gpu-card gpu-table-card" id="gpu-table-card" hidden>
+        <div class="gpu-table-wrap">
+          <table id="gpu-week-ranking" aria-labelledby="gpu-ranking-title">
+            <thead>
+              <tr>
+                <th scope="col">排名</th>
+                <th scope="col">集群账号</th>
+                <th scope="col" data-metric="memory" aria-sort="descending">显存小时 <small>GiB·h</small></th>
+                <th scope="col" data-metric="compute">H100 等效 <small>小时 · 估算</small></th>
+              </tr>
+            </thead>
+            <tbody></tbody>
+          </table>
         </div>
-        <span class="gpu-table-hint">点击任意账号行，可在下方趋势图中聚焦其曲线</span>
-      </div>
-    </div>
-  </section>
-
-  <section class="gpu-section gpu-daily" aria-labelledby="gpu-daily-title">
-    <div class="gpu-section__head">
-      <div class="gpu-section__title-wrap">
-        <span class="gpu-section__index" aria-hidden="true">02</span>
-        <h2 class="gpu-section__title" id="gpu-daily-title">用量趋势</h2>
-        <button type="button" class="gpu-active-filter" id="gpu-active-filter" hidden>
-          <span class="gpu-active-filter__dot" aria-hidden="true"></span>
-          <span class="gpu-active-filter__name"></span>
-          <span class="gpu-active-filter__close" aria-hidden="true">×</span>
-        </button>
-      </div>
-      <p id="gpu-daily-unit" class="gpu-daily-unit" aria-live="polite"></p>
-    </div>
-
-    <div class="gpu-card gpu-chart-card">
-      <div class="gpu-chart-toolbar">
-        <div class="gpu-range-tabs" role="group" aria-label="时间范围">
-          <button type="button" data-gpu-stop="0" aria-pressed="false">最近 2 小时</button>
-          <button type="button" data-gpu-stop="1" aria-pressed="true">最近 24 小时</button>
-          <button type="button" data-gpu-stop="2" aria-pressed="false">当天</button>
-          <button type="button" data-gpu-stop="3" aria-pressed="false">7 天</button>
-          <button type="button" data-gpu-stop="4" aria-pressed="false">30 天</button>
-        </div>
-        <div class="gpu-chart-toolbar__right">
-          <label class="gpu-chart-date" id="gpu-chart-date-control" hidden>
-            <span>日期 · JST</span>
-            <input type="date" id="gpu-chart-date">
-          </label>
-          <div class="gpu-chart-controls" role="group" aria-label="图表缩放">
-            <button type="button" data-chart-zoom="out" aria-label="缩小图表" title="缩小图表" disabled>−</button>
-            <button type="button" data-chart-zoom="reset" aria-label="恢复原始视图" title="恢复原始视图" disabled>1×</button>
-            <button type="button" data-chart-zoom="in" aria-label="放大图表" title="放大图表" disabled>+</button>
+        <div class="gpu-table-footer" id="gpu-board-legend" hidden>
+          <div class="gpu-band-legend">
+            <span class="gpu-band-legend__label">相对榜首</span>
+            <span class="gpu-band-chip" data-band="high">高分 ≥75%</span>
+            <span class="gpu-band-chip" data-band="mid">中分 40–75%</span>
+            <span class="gpu-band-chip" data-band="mid-low">中低分 15–40%</span>
+            <span class="gpu-band-chip" data-band="low">低分 &lt;15%</span>
           </div>
+          <span class="gpu-table-hint">点击任意账号行，可在上方趋势图中聚焦其曲线</span>
         </div>
-      </div>
-
-      <div id="gpu-daily-chart" class="gpu-chart-canvas"></div>
-
-      <div class="gpu-daily-series">
-        <div id="gpu-daily-share" class="gpu-share" hidden>
-          <div class="gpu-share__head">
-            <strong>窗口内全员用量占比</strong>
-            <span id="gpu-share-total" class="gpu-share__total"></span>
-          </div>
-          <div class="gpu-share-bar" aria-hidden="true"></div>
-        </div>
-        <ul id="gpu-daily-legend" class="gpu-daily-legend" aria-label="集群账号图例"></ul>
       </div>
     </div>
   </section>
