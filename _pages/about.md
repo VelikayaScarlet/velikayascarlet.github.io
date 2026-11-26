@@ -25,7 +25,7 @@ Prior to this, I obtained my Master's degree in Software Engineering from Inner 
 
 <!-- I am currently a Doctoral Student at the <a href="https://nlp.ist.i.kyoto-u.ac.jp/EN/">Language Media Lab (Former Kurohashi's Lab)</a>, Kyoto University, working under the supervision of <a href="murawaki.org">Murawaki Yugo</a>. Prior to this, I earned my master's degree at Inner Mongolia University and bachelor's degree at Zhengzhou University of Light Industry. -->
 
-<div markdown="1" style="background: #f8f9fb; border-left: 3px solid #5b7a9a; border-radius: 4px; padding: 0.8em 1.2em; margin: 1em 0;">
+<div markdown="1" class="research-box">
 
 My research interests include:
 
@@ -93,9 +93,12 @@ For Full Publications, see my <a href='https://scholar.google.com/citations?user
   <li class="publication-row">
     <a class="publication-figure" href="{{ '/images/publications/changan.png' | relative_url }}"><img src="{{ '/images/publications/changan.png' | relative_url }}" alt="Figure from the changan paper" loading="lazy" width="204" height="122"></a>
     <div class="publication-citation">
-      <span class="publication-venue publication-venue--acl">ACL 2026</span>
+      <div class="publication-badges">
+        <span class="publication-venue publication-venue--acl">ACL 2026</span>
+        <span class="publication-badge--oral">Oral</span>
+      </div>
       <h3 class="publication-title"><a href="https://aclanthology.org/2026.acl-long.245/">Who Wrote This Line? Evaluating the Detection of LLM-Generated Classical Chinese Poetry</a></h3>
-      <p class="publication-authors">Jiang Li*, <strong>Tian Lan*</strong>, Shanshan Wang, Dongxing Zhang, Dianqing Lin, Guanglai Gao, Derek F. Wong, Xiangdong Su <span>(Oral)</span></p>
+      <p class="publication-authors">Jiang Li*, <strong>Tian Lan*</strong>, Shanshan Wang, Dongxing Zhang, Dianqing Lin, Guanglai Gao, Derek F. Wong, Xiangdong Su</p>
     </div>
   </li>
 
@@ -194,7 +197,7 @@ For Full Publications, see my <a href='https://scholar.google.com/citations?user
 
 <div class="beyond-item">
 <span class="beyond-emoji">📜</span>
-<span class="beyond-text">Whenever something moves me, I also enjoy writing classical Chinese poetry (See <strong>Creations</strong>).</span>
+<span class="beyond-text">Whenever something moves me, I also enjoy writing classical Chinese poetry (See <a href="{{ '/creations/' | relative_url }}"><strong>Creations</strong></a>).</span>
 </div>
 
 </div>
