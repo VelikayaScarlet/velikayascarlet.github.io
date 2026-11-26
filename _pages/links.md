@@ -173,6 +173,27 @@ author_profile: true
   color: #ffffff;
 }
 
+.links-card--pink {
+  background: linear-gradient(135deg, #fff6f8 0%, #fdeaf0 100%);
+  border-color: #f2ccd8;
+}
+
+.links-card--pink:hover,
+.links-card--pink:focus-visible {
+  background: linear-gradient(135deg, #fff0f4 0%, #fbdde7 100%);
+  border-color: #df91aa;
+}
+
+.links-card--pink .links-card__arrow {
+  background: rgba(219, 112, 147, 0.14);
+  color: #b85374;
+}
+
+.links-card--pink:hover .links-card__arrow {
+  background: #d46b8c;
+  color: #ffffff;
+}
+
 .links-empty {
   color: var(--lk-muted);
   font-style: italic;
@@ -200,6 +221,23 @@ author_profile: true
     --lk-shadow: 0 2px 10px -4px rgba(0, 0, 0, 0.35);
     --lk-shadow-hover: 0 12px 26px -10px rgba(0, 0, 0, 0.55);
   }
+  .links-card--pink {
+    background: linear-gradient(135deg, rgba(244, 143, 177, 0.13) 0%, rgba(236, 72, 153, 0.06) 100%), #232730;
+    border-color: rgba(244, 143, 177, 0.28);
+  }
+  .links-card--pink:hover,
+  .links-card--pink:focus-visible {
+    background: linear-gradient(135deg, rgba(244, 143, 177, 0.20) 0%, rgba(236, 72, 153, 0.10) 100%), #292e39;
+    border-color: rgba(244, 143, 177, 0.52);
+  }
+  .links-card--pink .links-card__arrow {
+    background: rgba(244, 143, 177, 0.16);
+    color: #f4a8c1;
+  }
+  .links-card--pink:hover .links-card__arrow {
+    background: #e57fa1;
+    color: #1a1518;
+  }
 }
 </style>
 
@@ -219,7 +257,7 @@ author_profile: true
       {% for friend in site.data.friends %}
         {% assign host = friend.url | remove: 'https://' | remove: 'http://' | split: '/' | first %}
         <li>
-          <a class="links-card" href="{{ friend.url }}" target="_blank" rel="noopener noreferrer">
+          <a class="links-card{% if friend.url contains 'lyy0323.space' %} links-card--pink{% endif %}" href="{{ friend.url }}" target="_blank" rel="noopener noreferrer">
             <span class="links-card__body">
               <span class="links-card__name">{{ friend.name }}</span>
               <span class="links-card__meta">{{ host }}</span>
