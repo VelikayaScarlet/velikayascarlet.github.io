@@ -183,7 +183,7 @@ For Full Publications, see my <a href='https://scholar.google.com/citations?user
 
 <ul class="service-list">
   <li><span class="service-badge service-badge--reviewer">Conference Reviewer</span> ACL ARR, ACM MM</li>
-  <li><span class="service-badge service-badge--workshop">Workshop Reviewer</span> ACL StereACult</li>
+  <li><span class="service-badge service-badge--workshop">Workshop Reviewer</span> ACL StereACult, COLING 2027 TrustNLP</li>
 </ul>
 
 # 🚁 Beyond Academia

@@ -71,7 +71,7 @@ Bachelor of Engineering in Computer Science
 ## Academic Services
 
 - **Conference Reviewer:** ACL ARR, ACM MM
-- **Workshop Reviewer:** ACL StereACult
+- **Workshop Reviewer:** ACL StereACult, COLING 2027 TrustNLP
 
 ## Skills
 
