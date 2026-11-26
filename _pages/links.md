@@ -174,24 +174,49 @@ author_profile: true
 }
 
 .links-card--pink {
-  background: linear-gradient(135deg, #fffcfd 0%, #fdf4f7 100%);
-  border-color: #f3dfe5;
+  position: relative;
+  overflow: hidden;
+  background: linear-gradient(135deg, #ffffff 0%, #fef7f9 100%);
+  border-color: #f0e3e7;
 }
 
 .links-card--pink:hover,
 .links-card--pink:focus-visible {
-  background: linear-gradient(135deg, #fff9fb 0%, #fbedf1 100%);
-  border-color: #e6b8c7;
+  background: linear-gradient(135deg, #ffffff 0%, #fdf3f6 100%);
+  border-color: #d7b46a;
+  animation: links-gold-flash 720ms cubic-bezier(0.22, 1, 0.36, 1) forwards;
 }
 
 .links-card--pink .links-card__arrow {
-  background: rgba(219, 112, 147, 0.09);
-  color: #be6b86;
+  background: rgba(219, 112, 147, 0.07);
+  color: #be788e;
 }
 
 .links-card--pink:hover .links-card__arrow {
-  background: #d98aa3;
+  background: linear-gradient(135deg, #e2be72 0%, #c89d4c 100%);
   color: #ffffff;
+}
+
+@keyframes links-gold-flash {
+  0% {
+    border-color: #f0e3e7;
+    box-shadow: var(--lk-shadow);
+  }
+  38% {
+    border-color: #f0cf7b;
+    box-shadow: 0 0 0 3px rgba(235, 198, 108, 0.34), 0 10px 26px -8px rgba(198, 152, 62, 0.32);
+  }
+  100% {
+    border-color: #d7b46a;
+    box-shadow: 0 0 0 1px rgba(215, 180, 106, 0.22), var(--lk-shadow-hover);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .links-card--pink:hover,
+  .links-card--pink:focus-visible {
+    animation: none;
+  }
 }
 
 .links-empty {
@@ -222,21 +247,21 @@ author_profile: true
     --lk-shadow-hover: 0 12px 26px -10px rgba(0, 0, 0, 0.55);
   }
   .links-card--pink {
-    background: linear-gradient(135deg, rgba(244, 143, 177, 0.07) 0%, rgba(236, 72, 153, 0.03) 100%), #232730;
-    border-color: rgba(244, 143, 177, 0.18);
+    background: linear-gradient(135deg, rgba(244, 143, 177, 0.04) 0%, rgba(236, 72, 153, 0.015) 100%), #232730;
+    border-color: rgba(244, 143, 177, 0.13);
   }
   .links-card--pink:hover,
   .links-card--pink:focus-visible {
-    background: linear-gradient(135deg, rgba(244, 143, 177, 0.12) 0%, rgba(236, 72, 153, 0.06) 100%), #292e39;
-    border-color: rgba(244, 143, 177, 0.36);
+    background: linear-gradient(135deg, rgba(244, 143, 177, 0.07) 0%, rgba(236, 72, 153, 0.03) 100%), #292e39;
+    border-color: #e2c278;
   }
   .links-card--pink .links-card__arrow {
-    background: rgba(244, 143, 177, 0.11);
-    color: #ebb0c4;
+    background: rgba(244, 143, 177, 0.08);
+    color: #e5b2c3;
   }
   .links-card--pink:hover .links-card__arrow {
-    background: #df90aa;
-    color: #1a1518;
+    background: linear-gradient(135deg, #edd087 0%, #cfa44e 100%);
+    color: #1c1710;
   }
 }
 </style>
