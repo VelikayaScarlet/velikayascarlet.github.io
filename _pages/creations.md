@@ -113,27 +113,29 @@ hide_nav: true
         </div>
       </div>
     </section>
-    <section class="folio-chapter" id="settings" aria-labelledby="folio-settings-title">
-      <header class="folio-chapter-title">
-        <span aria-hidden="true">04</span><h2 id="folio-settings-title">设定</h2>
-      </header>
-      <div class="folio-chapter-content">
-        <div class="folio-group">
-          <a class="folio-link" href="{{ '/creations/settings/identity-number/' | relative_url }}"><b>新版身份证号码设定</b></a>
-          <a class="folio-link" href="{{ '/creations/settings/army-organization/' | relative_url }}"><b>陆军编制与军衔</b></a>
+    <div class="folio-chapter-pair">
+      <section class="folio-chapter folio-chapter--stacked" id="settings" aria-labelledby="folio-settings-title">
+        <header class="folio-chapter-title">
+          <span aria-hidden="true">04</span><h2 id="folio-settings-title">设定</h2>
+        </header>
+        <div class="folio-chapter-content">
+          <div class="folio-group folio-group--cards">
+            <a class="folio-link" href="{{ '/creations/settings/identity-number/' | relative_url }}"><b>新版身份证号码设定</b><span class="folio-link-tag">交互工具</span></a>
+            <a class="folio-link" href="{{ '/creations/settings/army-organization/' | relative_url }}"><b>陆军编制与军衔</b><span class="folio-link-tag">设定</span></a>
+          </div>
         </div>
-      </div>
-    </section>
-    <section class="folio-chapter" id="games" aria-labelledby="folio-games-title">
-      <header class="folio-chapter-title">
-        <span aria-hidden="true">05</span><h2 id="folio-games-title">小游戏</h2>
-      </header>
-      <div class="folio-chapter-content">
-        <div class="folio-group">
-          <a class="folio-link" href="{{ '/koochess/' | relative_url }}"><b>丂棋（KooChess）</b><span>10×10 / 8×8 策略棋类</span></a>
+      </section>
+      <section class="folio-chapter folio-chapter--stacked" id="games" aria-labelledby="folio-games-title">
+        <header class="folio-chapter-title">
+          <span aria-hidden="true">05</span><h2 id="folio-games-title">小游戏</h2>
+        </header>
+        <div class="folio-chapter-content">
+          <div class="folio-group folio-group--cards">
+            <a class="folio-link folio-link--featured" href="{{ '/koochess/' | relative_url }}"><b>丂棋（KooChess）</b><span class="folio-link-tag">10×10 / 8×8 策略棋</span></a>
+          </div>
         </div>
-      </div>
-    </section>
+      </section>
+    </div>
     <footer class="folio-footer"><span>Creations · 2014–2026</span><a href="#">回到顶部 <span aria-hidden="true">↑</span></a></footer>
   </div>
 </main>

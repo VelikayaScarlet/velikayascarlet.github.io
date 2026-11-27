@@ -633,11 +633,22 @@
 
 .folio-chapter {
   display: grid;
-  grid-template-columns: minmax(150px, 0.32fr) minmax(0, 1fr);
-  gap: 24px;
-  padding: 30px 0;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 16px;
+  padding: 28px 0;
   border-bottom: 1px solid var(--folio-line);
   scroll-margin-top: 20px;
+}
+
+.folio-chapter-pair {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 28px;
+  border-bottom: 1px solid var(--folio-line);
+}
+
+.folio-chapter-pair .folio-chapter {
+  border-bottom: 0;
 }
 
 .folio-chapter-title {
@@ -663,8 +674,16 @@
   line-height: 1.35;
 }
 
-.folio-chapter-content { min-width: 0; }
-.folio-chapter--books { grid-template-columns: minmax(0, 1fr); gap: 18px; padding-block: 30px 34px; }
+.folio-chapter-content {
+  min-width: 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 18px 22px;
+  align-items: start;
+}
+
+.folio-chapter--books { gap: 18px; padding-block: 30px 34px; }
+.folio-chapter--books .folio-chapter-content { display: block; }
 
 .creation-folio .folio-poetry {
   display: grid;
@@ -755,10 +774,16 @@
    Library / Languages / Settings Rows
    ========================================================================== */
 
-.folio-group + .folio-group { margin-top: 18px; }
+.folio-group {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  min-width: 0;
+}
 
 .folio-group h3 {
-  margin: 0 0 8px;
+  margin: 0 0 4px;
+  padding-left: 2px;
   color: var(--folio-muted);
   font-size: 12.5px;
   font-weight: 650;
@@ -771,24 +796,31 @@
   justify-content: space-between;
   align-items: center;
   gap: 12px;
-  padding: 10px 12px;
-  margin-inline: -12px;
-  border-bottom: 1px solid var(--folio-line);
-  border-radius: 10px;
+  padding: 12px 15px;
+  border: 1px solid var(--folio-line);
+  border-radius: 12px;
+  background: var(--folio-card);
+  box-shadow: var(--folio-shadow-sm);
   font-size: 16px;
   line-height: 1.45;
-  transition: background-color 170ms ease, padding-left 180ms var(--folio-ease);
+  transition: transform 180ms var(--folio-ease), border-color 180ms ease, background-color 180ms ease, box-shadow 180ms ease;
 }
 
 .creation-folio .folio-link:hover {
-  background: var(--folio-wash-soft);
-  padding-left: 16px;
+  transform: translateY(-2px);
+  border-color: var(--folio-line-strong);
+  background: var(--folio-card);
+  box-shadow: var(--folio-shadow-md);
+}
+
+.folio-link--featured {
+  background: linear-gradient(145deg, var(--folio-card) 0%, var(--folio-wash) 100%) !important;
 }
 
 .folio-link b {
   min-width: 0;
   overflow-wrap: anywhere;
-  font-size: 17.5px;
+  font-size: 17px;
   color: var(--folio-ink);
   transition: color 160ms ease;
 }
@@ -801,13 +833,11 @@
   padding: 2px 9px;
   border-radius: 999px;
   border: 1px solid var(--folio-line);
-  background: var(--folio-card);
+  background: var(--folio-page);
   color: var(--folio-muted);
   font: 500 11.5px/1.4 var(--folio-mono);
   white-space: nowrap;
 }
-
-.folio-link:last-child { border-bottom: 0; }
 
 .folio-footer {
   display: flex;
@@ -856,6 +886,9 @@
   .folio-update--feature a { min-height: 150px; padding: 14px 16px; }
   .folio-update--feature h3 { font-size: 21px; }
   .folio-chapter { grid-template-columns: minmax(0, 1fr); gap: 12px; padding-block: 22px; }
+  .folio-chapter-pair { grid-template-columns: minmax(0, 1fr); gap: 0; border-bottom: 0; }
+  .folio-chapter-pair .folio-chapter { border-bottom: 1px solid var(--folio-line); }
+  .folio-chapter-content { grid-template-columns: minmax(0, 1fr); }
   .creation-folio .folio-poetry { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; }
   .creation-folio .folio-poetry a { padding: 10px 12px; }
   .folio-poetry b { font-size: 20px; }
