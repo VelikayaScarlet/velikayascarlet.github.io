@@ -31,6 +31,7 @@ DENSE_BF16 = {
     "L40": 181.05,
     "L40S": 362.05,
     "RTX A6000": 154.8,
+    "GeForce RTX 3090": 142.0,
     "RTX 6000 Ada Generation": 364.0,
     "RTX PRO 6000 Blackwell Max-Q Workstation Edition": 438.9,
     "RTX PRO 6000 Blackwell Workstation Edition": 503.8,
