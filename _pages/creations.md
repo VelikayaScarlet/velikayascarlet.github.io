@@ -58,7 +58,7 @@ hide_nav: true
     </section>
 
     <nav class="folio-contents" aria-label="作品目录">
-      <a href="#collections">诗集</a><a href="#library">文库</a><a href="#languages">语言档案</a><a href="#settings">设定</a>
+      <a href="#collections">诗集</a><a href="#library">文库</a><a href="#languages">语言档案</a><a href="#settings">设定</a><a href="#games">小游戏</a>
     </nav>
 
     <section class="folio-chapter folio-chapter--books" id="collections" aria-labelledby="folio-collections-title">
@@ -121,6 +121,16 @@ hide_nav: true
         <div class="folio-group">
           <a class="folio-link" href="{{ '/creations/settings/identity-number/' | relative_url }}"><b>新版身份证号码设定</b></a>
           <a class="folio-link" href="{{ '/creations/settings/army-organization/' | relative_url }}"><b>陆军编制与军衔</b></a>
+        </div>
+      </div>
+    </section>
+    <section class="folio-chapter" id="games" aria-labelledby="folio-games-title">
+      <header class="folio-chapter-title">
+        <span aria-hidden="true">05</span><h2 id="folio-games-title">小游戏</h2>
+      </header>
+      <div class="folio-chapter-content">
+        <div class="folio-group">
+          <a class="folio-link" href="{{ '/koochess/' | relative_url }}"><b>丂棋（KooChess）</b><span>10×10 / 8×8 策略棋类</span></a>
         </div>
       </div>
     </section>

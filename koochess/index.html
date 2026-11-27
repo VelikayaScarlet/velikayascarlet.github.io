@@ -1,0 +1,191 @@
+﻿<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>丂棋 KooChess</title>
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><circle cx='16' cy='16' r='14' fill='%23b63228' stroke='%23d4b36a' stroke-width='2'/><text x='16' y='21' text-anchor='middle' fill='%23fff4e6' font-size='16' font-weight='bold'>丂</text></svg>">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <nav class="site-return-bar" aria-label="返回主站">
+        <a href="../creations/">← 返回 Creations</a>
+        <a href="../">主页</a>
+    </nav>
+    <!-- Mode Selection -->
+    <div id="mode-overlay" class="overlay">
+        <div class="mode-modal">
+            <h1>丂棋 <span>KooChess</span></h1>
+            <p class="mode-sub">选择游戏模式</p>
+            <div class="mode-buttons">
+                <button id="btn-mode-full" class="mode-btn">
+                    <span class="mode-icon">🏰</span>
+                    <span class="mode-title">完整版</span>
+                    <span class="mode-desc">10×10 · 26子 · 精锐阵型</span>
+                </button>
+                <button id="btn-mode-lite" class="mode-btn">
+                    <span class="mode-icon">⚔️</span>
+                    <span class="mode-title">简易版</span>
+                    <span class="mode-desc">8×8 · 20子 · 10种棋子</span>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <div id="app">
+        <!-- Header -->
+        <div class="header">
+            <h1>丂棋 <span style="font-size:0.7em;opacity:0.5;">KooChess</span></h1>
+            <div class="subtitle">10×10 策略棋类</div>
+        </div>
+
+        <!-- Status Bar -->
+        <div id="status-bar">红方走棋</div>
+
+        <!-- Game Layout -->
+        <div class="game-layout">
+            <!-- Black captured pieces (pieces Red lost) -->
+            <div class="captured-panel black">
+                <h3>黑方吃掉</h3>
+                <div class="captured-pieces" id="black-captured"></div>
+            </div>
+
+            <!-- Board -->
+            <div class="board-container">
+                <div id="board"></div>
+            </div>
+
+            <!-- Move History -->
+            <div class="move-history-panel">
+                <h3>走法记录</h3>
+                <div class="move-list" id="move-list"></div>
+            </div>
+
+            <!-- Red captured pieces (pieces Black lost) -->
+            <div class="captured-panel red">
+                <h3>红方吃掉</h3>
+                <div class="captured-pieces" id="red-captured"></div>
+            </div>
+        </div>
+
+        <!-- Controls -->
+        <div class="controls">
+            <button id="btn-new-game">新游戏</button>
+            <button id="btn-undo">悔棋</button>
+            <button id="btn-ai">vs AI</button>
+            <button id="btn-ai-duel">AI对战</button>
+            <button id="btn-start-ai-duel" class="hidden">开始AI对战</button>
+            <select id="ai-depth" title="vs AI 难度（搜索深度）">
+                <option value="1">AI: 简单</option>
+                <option value="2" selected>AI: 中等</option>
+                <option value="3">AI: 困难</option>
+                <option value="4">AI: 专家</option>
+            </select>
+            <span id="duel-ai-depths" class="duel-depths hidden">
+                <select id="ai-red-depth" title="红方 AI 难度">
+                    <option value="1">红AI: 简单</option>
+                    <option value="2" selected>红AI: 中等</option>
+                    <option value="3">红AI: 困难</option>
+                    <option value="4">红AI: 专家</option>
+                </select>
+                <select id="ai-black-depth" title="黑方 AI 难度">
+                    <option value="1">黑AI: 简单</option>
+                    <option value="2" selected>黑AI: 中等</option>
+                    <option value="3">黑AI: 困难</option>
+                    <option value="4">黑AI: 专家</option>
+                </select>
+            </span>
+            <button id="btn-endgame">残局布阵</button>
+            <span id="setup-controls" class="setup-controls hidden">
+                <div id="setup-palette" class="setup-palette"></div>
+                <select id="setup-turn" title="残局先手">
+                    <option value="red" selected>红先</option>
+                    <option value="black">黑先</option>
+                </select>
+                <button id="btn-clear-board">清空</button>
+                <button id="btn-start-endgame">开始残局</button>
+            </span>
+            <button id="btn-rules">规则</button>
+        </div>
+
+        <div style="font-size:0.7rem;color:#666;margin-top:4px;">
+            快捷键: Ctrl+Z 悔棋 &nbsp;|&nbsp; Ctrl+N 新游戏
+        </div>
+    </div>
+
+    <!-- Rules Modal -->
+    <div id="rules-overlay" class="overlay hidden">
+        <div class="rules-modal">
+            <div class="rules-header">
+                <h2>丂棋 规则</h2>
+                <button id="btn-close-rules" class="close-btn">&times;</button>
+            </div>
+            <div class="rules-body">
+                <h3>棋盘</h3>
+                <p>完整版为 10×10 方格棋盘（简易版为 8×8）。红方在下，黑方在上，红方先行。</p>
+
+                <h3>棋子（完整版每方 26 枚，三排）</h3>
+
+                <h4>第一排（前排）— 兵·士·长</h4>
+                <table>
+                    <tr><th>棋子</th><th>数量</th><th>走法</th><th>升变</th></tr>
+                    <tr><td>兵</td><td>8</td><td>首步可向前/左前/右前一步；之后只能向前一步。吃子向前方三向</td><td>吃非兵/士子→士</td></tr>
+                    <tr><td>士</td><td>2</td><td>前后左右各一步</td><td>吃非兵/士子→长</td></tr>
+                    <tr><td>长</td><td>0（升变）</td><td>八方向一步（同国际象棋王）</td><td>不可升变</td></tr>
+                </table>
+
+                <h4>第二排（中排）— 炮·骑</h4>
+                <table>
+                    <tr><th>棋子</th><th>数量</th><th>走法</th></tr>
+                    <tr><td>枪</td><td>2</td><td>走：前后左右1-2步。吃：仅向前；无屏风时可吃前3格，有屏风时隔一子吃其后的第一枚棋子，距离不限</td></tr>
+                    <tr><td>马</td><td>2</td><td>L型走法（同国际象棋马）</td></tr>
+                    <tr><td>炮</td><td>1</td><td>走：前后左右一步。吃：前后左右隔一子打后方第一个敌子</td></tr>
+                    <tr><td>骠</td><td>1</td><td>先正交一步（到空格），再做马步；马步落点可吃子</td></tr>
+                </table>
+
+                <h4>第三排（后排）— 大子</h4>
+                <table>
+                    <tr><th>棋子</th><th>数量</th><th>走法</th><th>特殊</th></tr>
+                    <tr><td>车</td><td>2</td><td>同国际象棋车</td><td>-</td></tr>
+                    <tr><td>角</td><td>2</td><td>同国际象棋象（一黑一白异色格）</td><td>-</td></tr>
+                    <tr><td>法</td><td>2</td><td>前后左右一步</td><td>可召唤被吃掉的兵到斜向4格空位（隔一回合冷却）；斜向贴近敌「龙」时使其只能走1步</td></tr>
+                    <tr><td>堡</td><td>2</td><td>前后左右最多2步，斜向1步</td><td>只能被炮/王/龙吃；可吃任何子</td></tr>
+                    <tr><td>王</td><td>1</td><td>八方向一步</td><td>被将死即输</td></tr>
+                    <tr><td>龙</td><td>1</td><td>同国际象棋后</td><td>被敌「法」斜向贴近时只能走1步</td></tr>
+                </table>
+
+                <h3>特殊规则</h3>
+                <ul>
+                    <li><strong>升变：</strong>兵吃非兵/士子→士，士吃非兵/士子→长。必须立刻升。</li>
+                    <li><strong>法召唤：</strong>消耗一回合，将被吃掉的兵放到斜向4格空位。需隔一回合冷却。</li>
+                    <li><strong>法制龙：</strong>当「法」斜向紧邻敌方「龙」时，敌「龙」本回合只能移动或吃子1步。</li>
+                    <li><strong>堡防御：</strong>只有炮、王、龙可以吃堡。</li>
+                    <li><strong>将军/将死：</strong>攻击王时警告将军，无路可逃为将死。</li>
+                </ul>
+
+                <h3>和棋条件</h3>
+                <ul>
+                    <li>困毙（无子可走且未被将军）</li>
+                    <li>三次重复局面</li>
+                    <li>50步无吃子且无兵移动</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <!-- Scripts (order matters) -->
+    <script src="js/constants.js"></script>
+    <script src="js/board.js"></script>
+    <script src="js/moves.js"></script>
+    <script src="js/game.js"></script>
+    <script src="js/ai.js"></script>
+    <script src="js/ui.js"></script>
+</body>
+</html>
+
+
+
+
+
+
+
