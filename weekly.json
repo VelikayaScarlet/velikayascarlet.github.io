@@ -1,8 +1,8 @@
 {
   "week": "2026-W48",
   "identity": "account",
-  "slot_end": 1795776840,
-  "source_time": "2026-11-27T19:50:30.063000+09:00",
+  "slot_end": 1795777200,
+  "source_time": "2026-11-27T19:55:30.834000+09:00",
   "daily": {
     "2026-11-23": [
       {
@@ -267,9 +267,9 @@
     "2026-11-27": [
       {
         "nickname": "youyuan",
-        "mib_minutes": 281384296,
-        "rated_mib_minutes": 281384296,
-        "h100_hours": 18.932747292186498
+        "mib_minutes": 283005886,
+        "rated_mib_minutes": 283005886,
+        "h100_hours": 19.050991635512514
       },
       {
         "nickname": "tingyi",
@@ -279,9 +279,9 @@
       },
       {
         "nickname": "zhong",
-        "mib_minutes": 78418440,
-        "rated_mib_minutes": 78418440,
-        "h100_hours": 9.916572464800623
+        "mib_minutes": 78763590,
+        "rated_mib_minutes": 78763590,
+        "h100_hours": 9.9559224213186
       },
       {
         "nickname": "yangliu",
@@ -297,15 +297,15 @@
       },
       {
         "nickname": "lan",
-        "mib_minutes": 43683486,
-        "rated_mib_minutes": 39103834,
-        "h100_hours": 2.6731902528641016
+        "mib_minutes": 44149986,
+        "rated_mib_minutes": 39477346,
+        "h100_hours": 2.7197968756583126
       },
       {
         "nickname": "yihang",
-        "mib_minutes": 351289060,
-        "rated_mib_minutes": 351289060,
-        "h100_hours": 15.536847222140443
+        "mib_minutes": 352794637,
+        "rated_mib_minutes": 352794637,
+        "h100_hours": 15.603083318008016
       },
       {
         "nickname": "imazu",
@@ -321,15 +321,15 @@
       },
       {
         "nickname": "tarutani",
-        "mib_minutes": 170061624,
-        "rated_mib_minutes": 170061624,
-        "h100_hours": 14.99658609190864
+        "mib_minutes": 171486774,
+        "rated_mib_minutes": 171486774,
+        "h100_hours": 15.132027998435133
       },
       {
         "nickname": "ruiyi",
-        "mib_minutes": 9599970,
-        "rated_mib_minutes": 9599970,
-        "h100_hours": 0.5094276621565889
+        "mib_minutes": 10249722,
+        "rated_mib_minutes": 10249722,
+        "h100_hours": 0.5439071076487694
       }
     ]
   },
@@ -5287,39 +5287,39 @@
     "2026-11-27T19": [
       {
         "nickname": "youyuan",
-        "mib_minutes": 17529222,
-        "rated_mib_minutes": 17529222,
-        "h100_hours": 1.2808786482141064
+        "mib_minutes": 19150812,
+        "rated_mib_minutes": 19150812,
+        "h100_hours": 1.3991229915401227
       },
       {
         "nickname": "zhong",
-        "mib_minutes": 3565614,
-        "rated_mib_minutes": 3565614,
-        "h100_hours": 0.4153994561486519
+        "mib_minutes": 3910764,
+        "rated_mib_minutes": 3910764,
+        "h100_hours": 0.45474941266662855
       },
       {
         "nickname": "tarutani",
-        "mib_minutes": 15676650,
-        "rated_mib_minutes": 15676650,
-        "h100_hours": 1.4898609717914169
+        "mib_minutes": 17101800,
+        "rated_mib_minutes": 17101800,
+        "h100_hours": 1.6253028783179093
       },
       {
         "nickname": "lan",
-        "mib_minutes": 5002050,
-        "rated_mib_minutes": 3800574,
-        "h100_hours": 0.47423354221413666
+        "mib_minutes": 5468550,
+        "rated_mib_minutes": 4174086,
+        "h100_hours": 0.5208401650083478
       },
       {
         "nickname": "yihang",
-        "mib_minutes": 16530423,
-        "rated_mib_minutes": 16530423,
-        "h100_hours": 0.7269673453248715
+        "mib_minutes": 18036000,
+        "rated_mib_minutes": 18036000,
+        "h100_hours": 0.7932034411924453
       },
       {
         "nickname": "ruiyi",
-        "mib_minutes": 3123648,
-        "rated_mib_minutes": 3123648,
-        "h100_hours": 0.16575809070654432
+        "mib_minutes": 3773400,
+        "rated_mib_minutes": 3773400,
+        "h100_hours": 0.2002375361987248
       }
     ]
   },
@@ -6863,6 +6863,44 @@
         "rated_mib_minutes": 1503945,
         "h100_hours": 0.06614949289437294
       }
+    ],
+    "2026-11-27T19:55": [
+      {
+        "nickname": "youyuan",
+        "mib_minutes": 1621590,
+        "rated_mib_minutes": 1621590,
+        "h100_hours": 0.11824434332601622
+      },
+      {
+        "nickname": "zhong",
+        "mib_minutes": 345150,
+        "rated_mib_minutes": 345150,
+        "h100_hours": 0.03934995651797664
+      },
+      {
+        "nickname": "tarutani",
+        "mib_minutes": 1425150,
+        "rated_mib_minutes": 1425150,
+        "h100_hours": 0.1354419065264924
+      },
+      {
+        "nickname": "lan",
+        "mib_minutes": 466500,
+        "rated_mib_minutes": 373512,
+        "h100_hours": 0.04660662279421124
+      },
+      {
+        "nickname": "ruiyi",
+        "mib_minutes": 649752,
+        "rated_mib_minutes": 649752,
+        "h100_hours": 0.03447944549218049
+      },
+      {
+        "nickname": "yihang",
+        "mib_minutes": 1505577,
+        "rated_mib_minutes": 1505577,
+        "h100_hours": 0.06623609586757385
+      }
     ]
   },
   "capacity": {
@@ -6872,9 +6910,9 @@
   "ranking": [
     {
       "nickname": "yihang",
-      "mib_minutes": 2044429893,
-      "rated_mib_minutes": 2044429893,
-      "h100_hours": 93.68735237880337
+      "mib_minutes": 2045935470,
+      "rated_mib_minutes": 2045935470,
+      "h100_hours": 93.75358847467095
     },
     {
       "nickname": "yangliu",
@@ -6884,33 +6922,33 @@
     },
     {
       "nickname": "youyuan",
-      "mib_minutes": 1125110006,
-      "rated_mib_minutes": 1125110006,
-      "h100_hours": 81.66762656791397
+      "mib_minutes": 1126731596,
+      "rated_mib_minutes": 1126731596,
+      "h100_hours": 81.78587091123998
     },
     {
       "nickname": "ruiyi",
-      "mib_minutes": 680959080,
-      "rated_mib_minutes": 680959080,
-      "h100_hours": 36.13546627215506
+      "mib_minutes": 681608832,
+      "rated_mib_minutes": 681608832,
+      "h100_hours": 36.16994571764724
     },
     {
       "nickname": "zhong",
-      "mib_minutes": 500986492,
-      "rated_mib_minutes": 500986492,
-      "h100_hours": 56.70180577503045
+      "mib_minutes": 501331642,
+      "rated_mib_minutes": 501331642,
+      "h100_hours": 56.741155731548425
     },
     {
       "nickname": "tarutani",
-      "mib_minutes": 401617808,
-      "rated_mib_minutes": 401617808,
-      "h100_hours": 44.70831155367893
+      "mib_minutes": 403042958,
+      "rated_mib_minutes": 403042958,
+      "h100_hours": 44.84375346020543
     },
     {
       "nickname": "lan",
-      "mib_minutes": 367018642,
-      "rated_mib_minutes": 362438990,
-      "h100_hours": 28.56599902560018
+      "mib_minutes": 367485142,
+      "rated_mib_minutes": 362812502,
+      "h100_hours": 28.612605648394393
     },
     {
       "nickname": "dpli",
