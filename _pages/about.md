@@ -29,11 +29,11 @@ Prior to this, I obtained my Master's degree in Software Engineering from Inner 
 
 My research interests include:
 
-**1️⃣ Human-centered NLP** — AI Fairness, (Sub)Cultures, and Social Awareness
+**1️⃣ Human-centered NLP** — Bias & Fairness (<a href="https://aclanthology.org/2025.findings-acl.313/">McBE</a>, <a href="https://aclanthology.org/2025.emnlp-main.105/">F²Bench</a>, <a href="https://arxiv.org/abs/2610.01696">Acmite</a>), (Sub)Cultures (<a href="https://aclanthology.org/2026.findings-acl.128/">Mouse</a>), and Social Awareness (<a href="https://arxiv.org/abs/2610.20785">APRiL</a>)
 
-**2️⃣ Multilingual** — Multilingual and Low-resource Language Systems 
+**2️⃣ Multilingual** — Multilingual and Low-resource Language Systems
 
-**3️⃣ Poems in LLMs** — Classical and Modern Chinese Poems x LLMs
+**3️⃣ Poems in LLMs** — Classical (<a href="https://aclanthology.org/2026.acl-long.245/">ChangAn</a>) and Modern (<a href="https://arxiv.org/abs/2608.21827">Peony</a>) Chinese Poems × LLMs
 
 </div>
 

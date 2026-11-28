@@ -39,7 +39,7 @@ Bachelor of Engineering in Computer Science
 
 ## Research Interests
 
-**Human-centered NLP:** AI Fairness, (Sub)Cultures, and Social Awareness  
+**Human-centered NLP:** Bias & Fairness, (Sub)Cultures, and Social Awareness  
 **Multilingual:** Multilingual and Low-resource Language Systems  
 **Poems in LLMs:** Classical and Modern Chinese Poems x LLMs
 
